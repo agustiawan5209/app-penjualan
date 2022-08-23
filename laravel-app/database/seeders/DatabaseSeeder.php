@@ -22,13 +22,13 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Admin',
                 'email' => 'Admin@gmail.com',
                 'password' => '$2y$10$KEDhGdPP5J035czJ6jUMouuYqqhjzMmHz0qDn3qlTRRQOTg9H8sUS',
-                'role_id' => 'SuperAdmin',
+                'role_id' => '1',
 
             ],[
                 'name' => 'user',
                 'email' => 'user@gmail.com',
                 'password' => '$2y$10$KEDhGdPP5J035czJ6jUMouuYqqhjzMmHz0qDn3qlTRRQOTg9H8sUS',
-                'role_id' => 'Customer',
+                'role_id' => '2',
             ]
         ]);
         Satuan::insert([

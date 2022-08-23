@@ -14,11 +14,31 @@ namespace App\Models{
 /**
  * App\Models\Barang
  *
+ * @property int $id
+ * @property string $gambar
+ * @property string $kode_barang
+ * @property int $jenis_id
+ * @property int $harga
+ * @property string $deskripsi
+ * @property int $satuan_id
+ * @property string $tgl_perolehan
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Jenis|null $jenis
  * @property-read \App\Models\Satuan|null $satuan
  * @method static \Illuminate\Database\Eloquent\Builder|Barang newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Barang newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Barang query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Barang whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Barang whereDeskripsi($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Barang whereGambar($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Barang whereHarga($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Barang whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Barang whereJenisId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Barang whereKodeBarang($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Barang whereSatuanId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Barang whereTglPerolehan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Barang whereUpdatedAt($value)
  */
 	class Barang extends \Eloquent {}
 }
@@ -27,10 +47,18 @@ namespace App\Models{
 /**
  * App\Models\Jenis
  *
+ * @property int $id
+ * @property string $nama_jenis
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Barang|null $barang
  * @method static \Illuminate\Database\Eloquent\Builder|Jenis newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Jenis newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Jenis query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Jenis whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Jenis whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Jenis whereNamaJenis($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Jenis whereUpdatedAt($value)
  */
 	class Jenis extends \Eloquent {}
 }
@@ -62,10 +90,18 @@ namespace App\Models{
 /**
  * App\Models\Satuan
  *
+ * @property int $id
+ * @property string $nama_satuan
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Barang|null $barang
  * @method static \Illuminate\Database\Eloquent\Builder|Satuan newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Satuan newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Satuan query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Satuan whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Satuan whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Satuan whereNamaSatuan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Satuan whereUpdatedAt($value)
  */
 	class Satuan extends \Eloquent {}
 }
@@ -134,7 +170,6 @@ namespace App\Models{
  * @property string $password
  * @property string|null $two_factor_secret
  * @property string|null $two_factor_recovery_codes
- * @property string|null $two_factor_confirmed_at
  * @property string $role_id
  * @property string|null $remember_token
  * @property int|null $current_team_id
@@ -165,7 +200,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereProfilePhotoPath($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRoleId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorConfirmedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorRecoveryCodes($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorSecret($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
