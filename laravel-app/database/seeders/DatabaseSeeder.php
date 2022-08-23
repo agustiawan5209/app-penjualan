@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Jenis;
+use App\Models\Satuan;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -28,7 +31,16 @@ class DatabaseSeeder extends Seeder
                 'role_id' => 'Customer',
             ]
         ]);
-
+        Satuan::insert([
+            ['nama_satuan' => 'Buah'],
+            ['nama_satuan' => 'Box'],
+            ['nama_satuan' => 'Biji'],
+        ]);
+        Jenis::insert([
+            ['nama_jenis' => 'Seng'],
+            ['nama_jenis' => 'Semen'],
+            ['nama_jenis' => 'Kawat'],
+        ]);
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
