@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
+            $table->string('id_transaksi')->unique();
+            $table->date('tgl_transaksi');
+            $table->text('item');
             $table->timestamps();
         });
     }
