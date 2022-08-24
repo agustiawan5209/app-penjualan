@@ -40,6 +40,7 @@ class DatabaseSeeder extends Seeder
             ['nama_jenis' => 'Seng'],
             ['nama_jenis' => 'Semen'],
             ['nama_jenis' => 'Kawat'],
+            ['nama_jenis' => 'besi'],
         ]);
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
