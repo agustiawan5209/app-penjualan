@@ -18,6 +18,7 @@
     @livewireStyles
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" />
     <link rel="stylesheet" href="{{asset('@fortawesome/fontawesome-free/css/all.min.css')}}" />
+    <script src="{{asset('js/sweetalert.all.js')}}"></script>
 </head>
 
 <body class="font-sans antialiased">

@@ -1,9 +1,12 @@
 <div class="w-full py-10">
-
+    @if (session()->has('message'))
+    <x-alert></x-alert>
+    @endif
     <x-table>
         <thead>
             <tr>
-                <x-th>Gambar</x-th>
+                <x-th>No.</x-th>
+                <x-th wire:click='TambahModal'>Gambar</x-th>
                 <x-th>Kode Barang</x-th>
                 <x-th>Harga</x-th>
                 <x-th>Tgl Perolehan</x-th>
@@ -16,13 +19,14 @@
             @if ($barang->count() > 0)
             @foreach ($barang as $item)
             <tr>
-                <x-td>{{$item->gambar}}</x-td>
+                <x-td>{{ ($barang->currentpage()-1) * $barang->perpage() + $loop->index + 1 }}</x-td>
+                <x-td><img src="{{$item->gambar}}" alt="" class="h-12 w-12 bg-white rounded-full border" srcset=""></x-td>
                 <x-td>{{$item->kode_barang}}</x-td>
                 <x-td>{{$item->harga}}</x-td>
                 <x-td>{{$item->tgl_perolehan}}</x-td>
-                <x-td>{{$item->satuan_id}}</x-td>
-                <x-td>{{$item->jenis_id}}</x-td>
-                <x-tdaction></x-tdaction>
+                <x-td>{{$item->satuan->nama_satuan}}</x-td>
+                <x-td>{{$item->jenis->nama_jenis}}</x-td>
+                <x-tdaction> <x-alert></x-alert></x-tdaction>
             </tr>
 
             @endforeach
@@ -32,7 +36,10 @@
             </tr>
             @endif
         </tbody>
+        <x-slot name='links'>
+            {{$barang->links()}}
+        </x-slot>
     </x-table>
-    {{$barang->links()}}
+
 
 </div>

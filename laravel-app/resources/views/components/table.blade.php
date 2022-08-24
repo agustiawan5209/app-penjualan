@@ -7,10 +7,17 @@
             <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white">
                 <div class="rounded-t mb-0 px-4 py-3 border-0">
                     <div class="flex flex-wrap items-center">
-                        <div class="relative w-full px-4 max-w-full flex-grow flex-1">
-                            <h3 class="font-semibold text-lg text-blueGray-700">
-                                Card Tables
-                            </h3>
+                        <div class="relative w-full px-4 max-w-full flex justify-between flex-nowrap">
+                            <select wire:model="row" id="row">
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                            <div>
+                                <x-jet-input type='search' wire:model='search' />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -20,6 +27,7 @@
                         {{$slot}}
                     </table>
                 </div>
+                {{$links}}
             </div>
         </div>
     </div>
