@@ -13,8 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('d_iskons', function (Blueprint $table) {
+        Schema::create('diskons', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('barang_id')->constrained('barangs');
+            $table->date('tgl_mulai');
+            $table->date('tgl_kadaluarsa');
             $table->timestamps();
         });
     }

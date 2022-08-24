@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('pembayarans', function (Blueprint $table) {
             $table->id();
+            $table->enum('metode', ['BANK', 'COD']);
+            $table->text('item_barang')->comment('Dapatkan ID Barang Dari Keranjang');
+            $table->bigInteger('sub_total')->comment('Sub_total Dengan Di hitung Diskon');
             $table->timestamps();
         });
     }

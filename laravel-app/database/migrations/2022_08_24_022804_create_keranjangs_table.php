@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('keranjangs', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('barang_id')->constrained('barangs');
+            $table->integer('quantity');
+            $table->bigInteger('sub_total');
+            $table->bigInteger('potongan');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
