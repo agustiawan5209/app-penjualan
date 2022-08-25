@@ -20,8 +20,8 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('role_id', 11);
-            $table->string('no_telpon',20);
-            $table->string('alamat',50);
+            $table->string('no_telpon',20)->nullable();
+            $table->string('alamat',50)->nullable();
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();

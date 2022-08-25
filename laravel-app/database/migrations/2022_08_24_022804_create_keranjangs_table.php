@@ -17,8 +17,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('barang_id')->constrained('barangs');
             $table->integer('quantity');
+            $table->bigInteger('potongan_persen');
+            $table->bigInteger('potongan_nominal');
             $table->bigInteger('sub_total');
-            $table->bigInteger('potongan');
             $table->softDeletes();
             $table->timestamps();
         });
