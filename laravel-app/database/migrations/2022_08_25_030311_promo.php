@@ -13,16 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('vouchers', function (Blueprint $table) {
+        Schema::create('promos', function (Blueprint $table) {
             $table->id();
-            $table->string('kode_voucher')->unique();
+            $table->string('kode_promo')->unique();
             $table->integer('promo_nominal')->nullable();
             $table->integer('promo_persen')->nullable();
             $table->integer('max_user')->nullable();
             $table->integer('use_user')->nullable();
             $table->date('tgl_mulai');
             $table->date('tgl_kadaluarsa');
-            $table->softDeletes('deleted_at');
             $table->timestamps();
         });
     }
@@ -34,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vouchers');
+        Schema::dropIfExists('promos');
     }
 };
