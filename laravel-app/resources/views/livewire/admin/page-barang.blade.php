@@ -26,7 +26,9 @@
                 <x-td>{{$item->tgl_perolehan}}</x-td>
                 <x-td>{{$item->satuan->nama_satuan}}</x-td>
                 <x-td>{{$item->jenis->nama_jenis}}</x-td>
-                <x-tdaction> <x-alert></x-alert></x-tdaction>
+                <x-tdaction>
+                    
+                </x-tdaction>
             </tr>
 
             @endforeach

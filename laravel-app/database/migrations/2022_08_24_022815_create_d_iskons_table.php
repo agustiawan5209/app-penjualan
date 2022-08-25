@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('diskons', function (Blueprint $table) {
             $table->id();
             $table->foreignId('barang_id')->constrained('barangs');
+            $table->integer('jumlah_diskon');
             $table->date('tgl_mulai');
             $table->date('tgl_kadaluarsa');
             $table->timestamps();

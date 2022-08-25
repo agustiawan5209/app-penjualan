@@ -24,6 +24,9 @@ class CheckRole
         if($role == "Customer" && Auth::user()->role_id != "2"){
             abort(401);
         }
+        if($role == "Pemilik"  && Auth::user()->role_id != '3'){
+            abort(401);
+        }
 
         return $next($request);
     }
