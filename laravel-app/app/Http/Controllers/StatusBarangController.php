@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Barang;
 use App\Models\StatusBarang;
 use Illuminate\Http\Request;
 
 class StatusBarangController extends Controller
 {
+    public function chart()
+    {
+      $result = Barang::whereNotNull('updated_at')
+                  ->orderBy('id', 'ASC')
+                  ->get();
+      return response()->json($result);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +22,7 @@ class StatusBarangController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
