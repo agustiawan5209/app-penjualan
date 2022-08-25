@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\StatusBarangController;
 use App\Http\Controllers\UserController;
 use App\Http\Livewire\Admin\Dashboard;
 use App\Http\Livewire\Admin\Laporan;
@@ -51,5 +52,5 @@ Route::middleware([
 
 
 });
-
+Route::get('stock/chart',[StatusBarangController::class, 'chart']);
 Route::get('Keranjang', ShoppingCart::class)->name('Keranjang');

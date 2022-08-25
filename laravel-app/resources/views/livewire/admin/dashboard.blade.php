@@ -121,7 +121,7 @@
 </div>
 <div class="py-8">
     <div class="flex flex-wrap">
-        <div class="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
+        {{-- <div class="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
             <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-gray-700">
                 <div class="rounded-t mb-0 px-4 py-3 bg-black">
                     <div class="flex flex-wrap items-center">
@@ -142,7 +142,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <div class="w-full xl:w-4/12 px-4">
             <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
                 <div class="rounded-t mb-0 px-4 py-3 bg-transparent">
@@ -166,6 +166,9 @@
             </div>
         </div>
     </div>
+    <script>
+
+    </script>
 </div>
 <footer class="block py-4">
     <div class="container mx-auto px-4">

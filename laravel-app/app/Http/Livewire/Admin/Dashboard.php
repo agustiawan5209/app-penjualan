@@ -2,9 +2,11 @@
 
 namespace App\Http\Livewire\Admin;
 
-use App\Models\Barang;
 use Auth;
+use Carbon\Carbon;
+use App\Models\Barang;
 use Livewire\Component;
+use Illuminate\Support\Facades\DB;
 
 class Dashboard extends Component
 {
@@ -15,15 +17,12 @@ class Dashboard extends Component
     public function render()
     {
         $name = Auth::user()->name;
+        // $data = $this->SetDataChart()
+        // return $data;
         return view(
             'livewire.admin.dashboard',
             compact('name')
         );
     }
-    public function SetDataChart(){
-        Barang::all();
-        // foreach (Barang::all() as $key => $value) {
-        //     $data[] = $value->created_at
-        // }
-    }
+
 }
