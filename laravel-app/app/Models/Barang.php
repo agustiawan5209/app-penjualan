@@ -12,6 +12,7 @@ class Barang extends Model
     protected $fillable = [
         'gambar','kode_barang', 'jenis_id','harga','deskripsi','satuan_id','tgl_perolehan',
     ];
+    public $timestamps = true;
 
     public function satuan(){
         return $this->hasOne(Satuan::class, 'id','satuan_id');
