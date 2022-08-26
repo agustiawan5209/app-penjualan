@@ -21,25 +21,25 @@
             </x-slot>
         </x-jet-dialog-modal>
         <button wire:click='TambahModal()'
-            class="bg-white text-lightBlue-400 shadow-lg font-normal w-32 py-2 rounded-md items-center justify-center align-center outline-none focus:outline-none mr-2"
+            class="bg-white text-blue-400 shadow-lg font-normal w-32 py-2 rounded-md items-center justify-center align-center outline-none focus:outline-none mr-2"
             type="button">
             Tambah Barang
         </button>
-        <button
-            class="bg-white text-lightBlue-600 shadow-lg font-normal w-32 py-2 rounded-md items-center justify-center align-center outline-none focus:outline-none mr-2"
+        <a href="{{route('Admin.Page-Promo')}}"
+            class="bg-white text-center text-blue-600 shadow-lg font-normal w-32 py-2 rounded-md items-center justify-center align-center outline-none focus:outline-none mr-2"
             type="button">
             Promo
-        </button>
-        <button
-            class="bg-white text-pink-400 shadow-lg font-normal w-32 py-2 rounded-md items-center justify-center align-center outline-none focus:outline-none mr-2"
+        </a>
+        <a href="{{route('Admin.Page-Voucher')}}"
+            class="bg-white text-center text-pink-400 shadow-lg font-normal w-32 py-2 rounded-md items-center justify-center align-center outline-none focus:outline-none mr-2"
             type="button">
             Voucher
-        </button>
-        <button
-            class="bg-white text-blueGray-800 shadow-lg font-normal w-32 py-2 rounded-md items-center justify-center align-center outline-none focus:outline-none mr-2"
+        </a>
+        <a href="{{route('Admin.Page-Diskon')}}"
+            class="bg-white text-center text-gray-800 shadow-lg font-normal w-32 py-2 rounded-md items-center justify-center align-center outline-none focus:outline-none mr-2"
             type="button">
             Diskon
-        </button>
+        </a>
     </div>
     @if (session()->has('message'))
     <x-alert :message="session('message')" />

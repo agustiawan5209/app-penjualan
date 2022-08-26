@@ -12,16 +12,16 @@
         <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
             <form>
                 <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
-                  Barang
+                    User Information
                 </h6>
                 <div class="flex flex-wrap">
                     <div class="w-full lg:w-6/12 px-4">
                         <div class="relative w-full mb-3">
                             <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                                 htmlfor="grid-password">
-                                Gambar
+                                Kode Promo
                             </label>
-                            <input type="file" wire:model='gambar'
+                            <input type="text" wire:model='gambar'
                                 class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                 value="lucky.jesse">
                         </div>
@@ -30,82 +30,61 @@
                         <div class="relative w-full mb-3">
                             <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                                 htmlfor="grid-password">
-                                Gambar Preview
+                                Max User
                             </label>
-                            @if ($gambar == null)
-                            <img src="{{asset('upload/'.$updateFoto)}}" class="w-60" alt="">
-                            @elseif ($gambar)
-                                <img src="{{$gambar->temporaryUrl()}}" class="w-60" alt="">
-                            @endif
+                            <input type="text" wire:model='gambar'
+                                class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                value="lucky.jesse">
                         </div>
                     </div>
                     <div class="w-full lg:w-6/12 px-4">
                         <div class="relative w-full mb-3">
                             <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                                 htmlfor="grid-password">
-                                Jenis
+                                Promo Nominal
                             </label>
-                            <select wire:model='jenis_id'
-                                class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
-                                <option value="--">--</option>
-                                @foreach ($jenis as $item)
-                                <option value="{{$item->id}}">{{$item->nama_jenis}}</option>
-                                @endforeach
-                            </select>
+                            <input type="text" wire:model='promo_nominal'
+                                class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                value="lucky.jesse">
                         </div>
                     </div>
                     <div class="w-full lg:w-6/12 px-4">
                         <div class="relative w-full mb-3">
                             <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                                 htmlfor="grid-password">
-                                Satuan
+                                Promo Persen
                             </label>
-                            <select wire:model='satuan_id'
-                                class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
-                                <option value="--">--</option>
-                                @foreach ($satuan as $item)
-                                <option value="{{$item->id}}">{{$item->nama_satuan}}</option>
-                                @endforeach
-                            </select>
+                            <input type="text" wire:model='promo_persen'
+                                class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                value="lucky.jesse">
                         </div>
                     </div>
                 </div>
                 <hr class="mt-6 border-b-1 border-blueGray-300">
                 <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
-                    Detail Barang
+                    Tanggal Promo
                 </h6>
                 <div class="flex flex-wrap">
                     <div class="w-full lg:w-12/12 px-4">
                         <div class="relative w-full mb-3">
                             <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                                 htmlfor="grid-password">
-                                Harga
+                                Tanggal Promo Mulai
                             </label>
-                            <input type="text" wire:model='harga'
+                            <input type="date" wire:model='tgl_mulai'
                                 class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                 value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
                         </div>
                     </div>
-                    <div class="w-full lg:w-4/12 px-4">
+                    <div class="w-full lg:w-12/12 px-4">
                         <div class="relative w-full mb-3">
                             <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                                 htmlfor="grid-password">
-                                Tanggal Pembelian
+                                Tanggal Kadaluarsa
                             </label>
-                            <input type="date" wire:model='tgl_perolehan'
+                            <input type="date" wire:model='tgl_kadaluarsa'
                                 class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                 value="New York">
-                        </div>
-                    </div>
-                    <div class="w-full lg:w-4/12 px-4">
-                        <div class="relative w-full mb-3">
-                            <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                                htmlfor="grid-password">
-                                Deskripsi
-                            </label>
-                            <input type="text" wire:model='deskripsi'
-                                class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                value="United States">
                         </div>
                     </div>
                 </div>
