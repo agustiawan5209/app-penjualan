@@ -168,16 +168,16 @@
                                 <a href="{{route('dashboard')}}"
                                     class="text-sm font-medium text-gray-700 hover:text-gray-800">Dashboard</a>
                                 <form action="{{route('logout')}}" method="post">
-                                @csrf
-                                <button type='submit'
-                                    class="text-sm font-medium text-gray-700 hover:text-gray-800">Logout</button>
+                                    @csrf
+                                    <button type='submit'
+                                        class="text-sm font-medium text-gray-700 hover:text-gray-800">Logout</button>
                                 </form>
                                 @else
                                 <a href="{{route('login')}}"
-                                class="text-sm font-medium text-gray-700 hover:text-gray-800">Masuk</a>
+                                    class="text-sm font-medium text-gray-700 hover:text-gray-800">Masuk</a>
                                 <span class="h-6 w-px bg-gray-200" aria-hidden="true"></span>
                                 <a href="{{route('register')}}"
-                                class="text-sm font-medium text-gray-700 hover:text-gray-800">Daftar</a>
+                                    class="text-sm font-medium text-gray-700 hover:text-gray-800">Daftar</a>
                                 @endauth
                                 @endif
                             </div>
@@ -208,6 +208,7 @@
 
 
     <div class="font-sans text-gray-900 antialiased">
+
         {{ $slot }}
 
     </div>

@@ -19,7 +19,7 @@ class PageBarang extends Component
     // Item FIeld Table
     // Barang
 
-    public $gambar, $kode_barang, $jenis_id, $satuan_id, $harga, $deskripsi, $tgl_perolehan, $itemID;
+    public $gambar, $kode_barang, $jenis_id, $satuan_id, $harga, $deskripsi, $tgl_perolehan, $itemID, $nama_barang ,$stock;
     public $updateFoto;
 
     public function render()
@@ -63,11 +63,14 @@ class PageBarang extends Component
         $barang = Barang::find($id);
         $this->itemID = $barang->id;
         $this->updateFoto = $barang->gambar;
+        $this->nama_barang = $barang->nama_barang;
         $this->jenis_id = $barang->jenis_id;
         $this->satuan_id = $barang->satuan_id;
         $this->harga = $barang->harga;
         $this->deskripsi = $barang->deskripsi;
         $this->tgl_perolehan = $barang->tgl_perolehan;
+        $this->stock = $barang->stock;
+
         $this->itemEdit = true;
     }
 
@@ -79,12 +82,13 @@ class PageBarang extends Component
     {
         $valid =   $this->validate([
             'gambar' => 'image|max:2040',
-            // 'kode_barang'=> 'required',
+            'nama_barang'=> 'required',
             'jenis_id' => 'required',
             'satuan_id' => 'required',
             'harga' => 'required',
             'deskripsi' => 'required',
             'tgl_perolehan' => 'required',
+            'stock'=>'required',
         ]);
         $kode = Barang::max('kode_barang');
         if ($kode == null) {
@@ -108,10 +112,12 @@ class PageBarang extends Component
             'gambar' => $random,
             'kode_barang' => $book_id,
             'jenis_id' => $this->jenis_id,
+            'nama_barang' => $this->nama_barang,
             'satuan_id' => $this->satuan_id,
             'harga' => $this->harga,
             'deskripsi' => $this->deskripsi,
             'tgl_perolehan' => $this->tgl_perolehan,
+            'stock' => $this->stock,
         ]);
         session()->flash('message', $barang ? 'Berhasil Ditambah' : "Gagal");
         $this->itemTambah = false;
@@ -121,11 +127,13 @@ class PageBarang extends Component
         $valid =   $this->validate([
             // 'gambar' => 'image|max:2040',
             // 'kode_barang'=> 'required',
+            'nama_barang'=>'required',
             'jenis_id' => 'required',
             'satuan_id' => 'required',
             'harga' => 'required',
             'deskripsi' => 'required',
             'tgl_perolehan' => 'required',
+            'stock' => 'required',
         ]);
         $random = $this->updateFoto;
         if ($this->gambar != null) {
@@ -141,6 +149,7 @@ class PageBarang extends Component
             'harga' => $this->harga,
             'deskripsi' => $this->deskripsi,
             'tgl_perolehan' => $this->tgl_perolehan,
+            'stock' => $this->stock,
         ]);
         $this->itemEdit = false;
         session()->flash('message', 'Berhasil Di Edit');

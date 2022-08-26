@@ -56,9 +56,7 @@
             Diskon
         </a>
     </div>
-    @if (session()->has('message'))
-    <x-alert :message="session('message')" />
-    @endif
+
     <x-table>
         <thead>
             <tr>

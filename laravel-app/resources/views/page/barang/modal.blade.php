@@ -75,13 +75,35 @@
                     Detail Barang
                 </h6>
                 <div class="flex flex-wrap">
-                    <div class="w-full lg:w-12/12 px-4">
+                    <div class="w-full lg:w-4/12 px-4">
+                        <div class="relative w-full mb-3">
+                            <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                htmlfor="grid-password">
+                                Nama Barang
+                            </label>
+                            <input type="text" wire:model='nama_barang'
+                                class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
+                        </div>
+                    </div>
+                    <div class="w-full lg:w-4/12 px-4">
                         <div class="relative w-full mb-3">
                             <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                                 htmlfor="grid-password">
                                 Harga
                             </label>
                             <input type="text" wire:model='harga'
+                                class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
+                        </div>
+                    </div>
+                    <div class="w-full lg:w-4/12 px-4">
+                        <div class="relative w-full mb-3">
+                            <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                htmlfor="grid-password">
+                                Jumlah Stock
+                            </label>
+                            <input type="text" wire:model='stock'
                                 class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                 value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
                         </div>
@@ -97,7 +119,7 @@
                                 value="New York">
                         </div>
                     </div>
-                    <div class="w-full lg:w-4/12 px-4">
+                    <div class="w-full lg:w-12/12 px-4">
                         <div class="relative w-full mb-3">
                             <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                                 htmlfor="grid-password">
