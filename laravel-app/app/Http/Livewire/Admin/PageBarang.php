@@ -166,6 +166,7 @@ class PageBarang extends Component
     {
         $jenis = Jenis::find($id);
         $this->nama_Jenis = $jenis->nama_jenis;
+        $this->itemID = $jenis->id;
         $this->editJenis = true;
     }
     public function hapusJenisModal($id)
@@ -176,10 +177,12 @@ class PageBarang extends Component
 
     public function createJenis()
     {
+        $this->validate([
+            'nama_Jenis'=> 'required'
+        ]);
         Jenis::create([
             'nama_jenis' => $this->nama_Jenis,
         ]);
-        $this->addJenis = false;
     }
     public function editJenis($id)
     {
@@ -235,4 +238,11 @@ class PageBarang extends Component
         Satuan::find($id)->delete();
         $this->hapusSatuan = false;
     }
+
+
+    /**
+     * Fungsi Update Katalog
+     */
+    public $itemKatalog;
+
 }

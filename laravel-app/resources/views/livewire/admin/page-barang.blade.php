@@ -1,5 +1,15 @@
 <div class="w-full py-10 block">
     <div class="mt-6 lg:mb-0 mb-6">
+        <x-jet-dialog-modal wire:model='addJenis' maxWidth="2xl">
+            <x-slot name='title'></x-slot>
+            <x-slot name='content'>
+                @include('page.katalog.modal')
+            </x-slot>
+            <x-slot name='footer'>
+                <x-jet-secondary-button wire:click="$toggle('addJenis')" wire:loading.attr='disabled'>Close
+                </x-jet-secondary-button>
+            </x-slot>
+        </x-jet-dialog-modal>
         <x-jet-dialog-modal wire:model='itemTambah'>
             <x-slot name='title'></x-slot>
             <x-slot name='content'>
@@ -24,6 +34,11 @@
             class="bg-white text-blue-400 shadow-lg font-normal w-32 py-2 rounded-md items-center justify-center align-center outline-none focus:outline-none mr-2"
             type="button">
             Tambah Barang
+        </button>
+        <button wire:click='tambahJenis()'
+            class="bg-white text-blue-400 shadow-lg font-normal w-32 py-2 rounded-md items-center justify-center align-center outline-none focus:outline-none mr-2"
+            type="button">
+            Tambah Jenis
         </button>
         <a href="{{route('Admin.Page-Promo')}}"
             class="bg-white text-center text-blue-600 shadow-lg font-normal w-32 py-2 rounded-md items-center justify-center align-center outline-none focus:outline-none mr-2"
