@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\StatusBarangController;
+use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UserController;
 use App\Http\Livewire\Admin\Dashboard;
 use App\Http\Livewire\Admin\Laporan;
@@ -48,6 +49,7 @@ Route::middleware([
     // Akses User
     Route::group(['middleware' => 'role:Customer', 'prefix' => 'Customer', 'as' => 'Customer.'], function () {
         Route::get('Dashboard', UserDashboard::class)->name('Dashboard-User');
+        Route::get('receive', [TransaksiController::class, 'receive'])->name('Pembayaran');
     });
 
 

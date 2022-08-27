@@ -15,10 +15,11 @@ return new class extends Migration
     {
         Schema::create('keranjangs', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users');
             $table->foreignId('barang_id')->constrained('barangs');
             $table->integer('quantity');
-            $table->bigInteger('potongan_persen');
-            $table->bigInteger('potongan_nominal');
+            $table->bigInteger('potongan_persen')->nullable();
+            $table->bigInteger('potongan_nominal')->nullable();
             $table->bigInteger('sub_total');
             $table->softDeletes();
             $table->timestamps();
