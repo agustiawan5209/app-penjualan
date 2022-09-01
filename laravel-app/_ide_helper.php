@@ -16852,7 +16852,367 @@
      
 }
 
-        namespace Jenssegers\Agent\Facades { 
+        namespace Darryldecode\Cart\Facades { 
+            /**
+     * 
+     *
+     */ 
+        class CartFacade {
+                    /**
+         * sets the session key
+         *
+         * @param string $sessionKey the session key or identifier
+         * @return $this|bool 
+         * @throws \Exception
+         * @static 
+         */ 
+        public static function session($sessionKey)
+        {
+                        /** @var \Darryldecode\Cart\Cart $instance */
+                        return $instance->session($sessionKey);
+        }
+                    /**
+         * get instance name of the cart
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getInstanceName()
+        {
+                        /** @var \Darryldecode\Cart\Cart $instance */
+                        return $instance->getInstanceName();
+        }
+                    /**
+         * get an item on a cart by item ID
+         *
+         * @param $itemId
+         * @return mixed 
+         * @static 
+         */ 
+        public static function get($itemId)
+        {
+                        /** @var \Darryldecode\Cart\Cart $instance */
+                        return $instance->get($itemId);
+        }
+                    /**
+         * check if an item exists by item ID
+         *
+         * @param $itemId
+         * @return bool 
+         * @static 
+         */ 
+        public static function has($itemId)
+        {
+                        /** @var \Darryldecode\Cart\Cart $instance */
+                        return $instance->has($itemId);
+        }
+                    /**
+         * add item to the cart, it can be an array or multi dimensional array
+         *
+         * @param string|array $id
+         * @param string $name
+         * @param float $price
+         * @param int $quantity
+         * @param array $attributes
+         * @param \Darryldecode\Cart\CartCondition|array $conditions
+         * @param string $associatedModel
+         * @return \Darryldecode\Cart\Cart 
+         * @throws InvalidItemException
+         * @static 
+         */ 
+        public static function add($id, $name = null, $price = null, $quantity = null, $attributes = [], $conditions = [], $associatedModel = null)
+        {
+                        /** @var \Darryldecode\Cart\Cart $instance */
+                        return $instance->add($id, $name, $price, $quantity, $attributes, $conditions, $associatedModel);
+        }
+                    /**
+         * update a cart
+         *
+         * @param $id
+         * @param array $data the $data will be an associative array, you don't need to pass all the data, only the key value
+         * of the item you want to update on it
+         * @return bool 
+         * @static 
+         */ 
+        public static function update($id, $data)
+        {
+                        /** @var \Darryldecode\Cart\Cart $instance */
+                        return $instance->update($id, $data);
+        }
+                    /**
+         * add condition on an existing item on the cart
+         *
+         * @param int|string $productId
+         * @param \Darryldecode\Cart\CartCondition $itemCondition
+         * @return \Darryldecode\Cart\Cart 
+         * @static 
+         */ 
+        public static function addItemCondition($productId, $itemCondition)
+        {
+                        /** @var \Darryldecode\Cart\Cart $instance */
+                        return $instance->addItemCondition($productId, $itemCondition);
+        }
+                    /**
+         * removes an item on cart by item ID
+         *
+         * @param $id
+         * @return bool 
+         * @static 
+         */ 
+        public static function remove($id)
+        {
+                        /** @var \Darryldecode\Cart\Cart $instance */
+                        return $instance->remove($id);
+        }
+                    /**
+         * clear cart
+         *
+         * @return bool 
+         * @static 
+         */ 
+        public static function clear()
+        {
+                        /** @var \Darryldecode\Cart\Cart $instance */
+                        return $instance->clear();
+        }
+                    /**
+         * add a condition on the cart
+         *
+         * @param \Darryldecode\Cart\CartCondition|array $condition
+         * @return \Darryldecode\Cart\Cart 
+         * @throws InvalidConditionException
+         * @static 
+         */ 
+        public static function condition($condition)
+        {
+                        /** @var \Darryldecode\Cart\Cart $instance */
+                        return $instance->condition($condition);
+        }
+                    /**
+         * get conditions applied on the cart
+         *
+         * @return \Darryldecode\Cart\CartConditionCollection 
+         * @static 
+         */ 
+        public static function getConditions()
+        {
+                        /** @var \Darryldecode\Cart\Cart $instance */
+                        return $instance->getConditions();
+        }
+                    /**
+         * get condition applied on the cart by its name
+         *
+         * @param $conditionName
+         * @return \Darryldecode\Cart\CartCondition 
+         * @static 
+         */ 
+        public static function getCondition($conditionName)
+        {
+                        /** @var \Darryldecode\Cart\Cart $instance */
+                        return $instance->getCondition($conditionName);
+        }
+                    /**
+         * Get all the condition filtered by Type
+         * Please Note that this will only return condition added on cart bases, not those conditions added
+         * specifically on an per item bases
+         *
+         * @param $type
+         * @return \Darryldecode\Cart\CartConditionCollection 
+         * @static 
+         */ 
+        public static function getConditionsByType($type)
+        {
+                        /** @var \Darryldecode\Cart\Cart $instance */
+                        return $instance->getConditionsByType($type);
+        }
+                    /**
+         * Remove all the condition with the $type specified
+         * Please Note that this will only remove condition added on cart bases, not those conditions added
+         * specifically on an per item bases
+         *
+         * @param $type
+         * @return \Darryldecode\Cart\Cart 
+         * @static 
+         */ 
+        public static function removeConditionsByType($type)
+        {
+                        /** @var \Darryldecode\Cart\Cart $instance */
+                        return $instance->removeConditionsByType($type);
+        }
+                    /**
+         * removes a condition on a cart by condition name,
+         * this can only remove conditions that are added on cart bases not conditions that are added on an item/product.
+         * 
+         * If you wish to remove a condition that has been added for a specific item/product, you may
+         * use the removeItemCondition(itemId, conditionName) method instead.
+         *
+         * @param $conditionName
+         * @return void 
+         * @static 
+         */ 
+        public static function removeCartCondition($conditionName)
+        {
+                        /** @var \Darryldecode\Cart\Cart $instance */
+                        $instance->removeCartCondition($conditionName);
+        }
+                    /**
+         * remove a condition that has been applied on an item that is already on the cart
+         *
+         * @param $itemId
+         * @param $conditionName
+         * @return bool 
+         * @static 
+         */ 
+        public static function removeItemCondition($itemId, $conditionName)
+        {
+                        /** @var \Darryldecode\Cart\Cart $instance */
+                        return $instance->removeItemCondition($itemId, $conditionName);
+        }
+                    /**
+         * remove all conditions that has been applied on an item that is already on the cart
+         *
+         * @param $itemId
+         * @return bool 
+         * @static 
+         */ 
+        public static function clearItemConditions($itemId)
+        {
+                        /** @var \Darryldecode\Cart\Cart $instance */
+                        return $instance->clearItemConditions($itemId);
+        }
+                    /**
+         * clears all conditions on a cart,
+         * this does not remove conditions that has been added specifically to an item/product.
+         * 
+         * If you wish to remove a specific condition to a product, you may use the method: removeItemCondition($itemId, $conditionName)
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function clearCartConditions()
+        {
+                        /** @var \Darryldecode\Cart\Cart $instance */
+                        $instance->clearCartConditions();
+        }
+                    /**
+         * get cart sub total without conditions
+         *
+         * @param bool $formatted
+         * @return float 
+         * @static 
+         */ 
+        public static function getSubTotalWithoutConditions($formatted = true)
+        {
+                        /** @var \Darryldecode\Cart\Cart $instance */
+                        return $instance->getSubTotalWithoutConditions($formatted);
+        }
+                    /**
+         * get cart sub total
+         *
+         * @param bool $formatted
+         * @return float 
+         * @static 
+         */ 
+        public static function getSubTotal($formatted = true)
+        {
+                        /** @var \Darryldecode\Cart\Cart $instance */
+                        return $instance->getSubTotal($formatted);
+        }
+                    /**
+         * the new total in which conditions are already applied
+         *
+         * @return float 
+         * @static 
+         */ 
+        public static function getTotal()
+        {
+                        /** @var \Darryldecode\Cart\Cart $instance */
+                        return $instance->getTotal();
+        }
+                    /**
+         * get total quantity of items in the cart
+         *
+         * @return int 
+         * @static 
+         */ 
+        public static function getTotalQuantity()
+        {
+                        /** @var \Darryldecode\Cart\Cart $instance */
+                        return $instance->getTotalQuantity();
+        }
+                    /**
+         * get the cart
+         *
+         * @return \Darryldecode\Cart\CartCollection 
+         * @static 
+         */ 
+        public static function getContent()
+        {
+                        /** @var \Darryldecode\Cart\Cart $instance */
+                        return $instance->getContent();
+        }
+                    /**
+         * check if cart is empty
+         *
+         * @return bool 
+         * @static 
+         */ 
+        public static function isEmpty()
+        {
+                        /** @var \Darryldecode\Cart\Cart $instance */
+                        return $instance->isEmpty();
+        }
+                    /**
+         * Setter for decimals. Change value on demand.
+         *
+         * @param $decimals
+         * @static 
+         */ 
+        public static function setDecimals($decimals)
+        {
+                        /** @var \Darryldecode\Cart\Cart $instance */
+                        return $instance->setDecimals($decimals);
+        }
+                    /**
+         * Setter for decimals point. Change value on demand.
+         *
+         * @param $dec_point
+         * @static 
+         */ 
+        public static function setDecPoint($dec_point)
+        {
+                        /** @var \Darryldecode\Cart\Cart $instance */
+                        return $instance->setDecPoint($dec_point);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setThousandsSep($thousands_sep)
+        {
+                        /** @var \Darryldecode\Cart\Cart $instance */
+                        return $instance->setThousandsSep($thousands_sep);
+        }
+                    /**
+         * Associate the cart item with the given id with the given model.
+         *
+         * @param string $id
+         * @param mixed $model
+         * @return void 
+         * @static 
+         */ 
+        public static function associate($model)
+        {
+                        /** @var \Darryldecode\Cart\Cart $instance */
+                        $instance->associate($model);
+        }
+         
+    }
+     
+}
+
+    namespace Jenssegers\Agent\Facades { 
             /**
      * 
      *
@@ -17715,6 +18075,447 @@
         {
                         /** @var \Livewire\LivewireManager $instance */
                         return $instance->flushState();
+        }
+         
+    }
+     
+}
+
+    namespace RealRashid\SweetAlert\Facades { 
+            /**
+     * 
+     *
+     */ 
+        class Alert {
+                    /**
+         * The default configuration for middleware alert.
+         *
+         * @return \RealRashid\SweetAlert\$config 
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function middleware()
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->middleware();
+        }
+                    /**
+         * Flash an alert message.
+         *
+         * @param string $title
+         * @param string $text
+         * @param array $icon
+         * @return void 
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function alert($title = '', $text = '', $icon = null)
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        $instance->alert($title, $text, $icon);
+        }
+                    /**
+         * Display a success typed alert message with a text and a title.
+         *
+         * @param string $title
+         * @param string $text
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function success($title = '', $text = '')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->success($title, $text);
+        }
+                    /**
+         * Display a info typed alert message with a text and a title.
+         *
+         * @param string $title
+         * @param string $text
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function info($title = '', $text = '')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->info($title, $text);
+        }
+                    /**
+         * Display a warning typed alert message with a text and a title.
+         *
+         * @param string $title
+         * @param string $text
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function warning($title = '', $text = '')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->warning($title, $text);
+        }
+                    /**
+         * Display a question typed alert message with a text and a title.
+         *
+         * @param string $title
+         * @param string $text
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function question($title = '', $text = '')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->question($title, $text);
+        }
+                    /**
+         * Display a error typed alert message with a text and a title.
+         *
+         * @param string $title
+         * @param string $text
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function error($title = '', $text = '')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->error($title, $text);
+        }
+                    /**
+         * Display a message with a custom image and CSS animation disabled.
+         *
+         * @param string $title
+         * @param string $text
+         * @param string $imageUrl
+         * @param integer $imageWidth
+         * @param integer $imageHeight
+         * @param string $imageAlt
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function image($title, $text, $imageUrl, $imageWidth, $imageHeight, $imageAlt = null)
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->image($title, $text, $imageUrl, $imageWidth, $imageHeight, $imageAlt);
+        }
+                    /**
+         * Display a html typed alert message with html code.
+         *
+         * @param string $title
+         * @param string $code
+         * @param string $icon
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function html($title = '', $code = '', $icon = '')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->html($title, $code, $icon);
+        }
+                    /**
+         * Display a toast message
+         *
+         * @param string $title
+         * @param string $icon
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function toast($title = '', $icon = '')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->toast($title, $icon);
+        }
+                    /**
+         * Convert any alert modal to Toast
+         *
+         * @param string $position
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function toToast($position = '')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->toToast($position);
+        }
+                    /**
+         * Convert any alert modal to html
+         *
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function toHtml()
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->toHtml();
+        }
+                    /**
+         * Add a custom image to alert
+         *
+         * @param string $imageUrl
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function addImage($imageUrl)
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->addImage($imageUrl);
+        }
+                    /**
+         * Add footer section to alert()
+         *
+         * @param string $code
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function footer($code)
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->footer($code);
+        }
+                    /**
+         * positioned alert dialog
+         *
+         * @param string $position
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function position($position = 'top-end')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->position($position);
+        }
+                    /**
+         * Modal window width
+         * including paddings
+         * (box-sizing: border-box).
+         * 
+         * Can be in px or %. The default width is 32rem
+         *
+         * @param string $width
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function width($width = '32rem')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->width($width);
+        }
+                    /**
+         * Modal window padding.
+         * 
+         * The default padding is 1.25rem.
+         *
+         * @param string $padding
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function padding($padding = '1.25rem')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->padding($padding);
+        }
+                    /**
+         * Modal window background
+         * (CSS background property).
+         * 
+         * The default background is '#fff'.
+         *
+         * @param string $background
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function background($background = '#fff')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->background($background);
+        }
+                    /**
+         * Set to false if you want to
+         * focus the first element in tab
+         * order instead of "Confirm"-button by default.
+         *
+         * @param boolean $focus
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function focusConfirm($focus = true)
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->focusConfirm($focus);
+        }
+                    /**
+         * Set to true if you want to focus the
+         * "Cancel"-button by default.
+         *
+         * @param boolean $focus
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function focusCancel($focus = false)
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->focusCancel($focus);
+        }
+                    /**
+         * Custom animation with [Animate.css](https://daneden.github.io/animate.css/)
+         * CSS classes for animations when showing a popup (fade in):
+         * CSS classes for animations when hiding a popup (fade out):
+         *
+         * @param string $showAnimation
+         * @param string $hideAnimation
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function animation($showAnimation, $hideAnimation)
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->animation($showAnimation, $hideAnimation);
+        }
+                    /**
+         * Persistent the alert modal
+         *
+         * @param boolean $showConfirmBtn
+         * @param boolean $showCloseBtn
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function persistent($showConfirmBtn = true, $showCloseBtn = false)
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->persistent($showConfirmBtn, $showCloseBtn);
+        }
+                    /**
+         * auto close alert modal after
+         * specifid time
+         *
+         * @param integer $milliseconds
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function autoClose($milliseconds = 5000)
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->autoClose($milliseconds);
+        }
+                    /**
+         * Display confirm button
+         *
+         * @param string $btnText
+         * @param string $btnColor
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function showConfirmButton($btnText = 'Ok', $btnColor = '#3085d6')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->showConfirmButton($btnText, $btnColor);
+        }
+                    /**
+         * Display cancel button
+         *
+         * @param string $btnText
+         * @param string $btnColor
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function showCancelButton($btnText = 'Cancel', $btnColor = '#aaa')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->showCancelButton($btnText, $btnColor);
+        }
+                    /**
+         * Display close button
+         *
+         * @param string $closeButtonAriaLabel
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function showCloseButton($closeButtonAriaLabel = 'aria-label')
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->showCloseButton($closeButtonAriaLabel);
+        }
+                    /**
+         * Hide close button from alert or toast
+         *
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function hideCloseButton()
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->hideCloseButton();
+        }
+                    /**
+         * Apply default styling to buttons.
+         * 
+         * If you want to use your own classes (e.g. Bootstrap classes)
+         * set this parameter to false.
+         *
+         * @param boolean $buttonsStyling
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function buttonsStyling($buttonsStyling)
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->buttonsStyling($buttonsStyling);
+        }
+                    /**
+         * Use any HTML inside icons (e.g. Font Awesome)
+         *
+         * @param string $iconHtml
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function iconHtml($iconHtml)
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->iconHtml($iconHtml);
+        }
+                    /**
+         * If set to true, the timer will have a progress bar at the bottom of a popup.
+         * 
+         * Mostly, this feature is useful with toasts.
+         *
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function timerProgressBar()
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->timerProgressBar();
+        }
+                    /**
+         * Reverse buttons position
+         *
+         * @author Faber44 <https://github.com/Faber44>
+         * @static 
+         */ 
+        public static function reverseButtons()
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->reverseButtons();
+        }
+                    /**
+         * Flash the config options for alert.
+         *
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function flash()
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->flash();
+        }
+                    /**
+         * Build Flash config options for flashing.
+         *
+         * @author Rashid Ali <realrashid05@gmail.com>
+         * @static 
+         */ 
+        public static function buildConfig()
+        {
+                        /** @var \RealRashid\SweetAlert\Toaster $instance */
+                        return $instance->buildConfig();
         }
          
     }
@@ -22108,8 +22909,10 @@ namespace  {
             class Validator extends \Illuminate\Support\Facades\Validator {}
             class View extends \Illuminate\Support\Facades\View {}
             class Vite extends \Illuminate\Support\Facades\Vite {}
+            class Cart extends \Darryldecode\Cart\Facades\CartFacade {}
             class Agent extends \Jenssegers\Agent\Facades\Agent {}
             class Livewire extends \Livewire\Livewire {}
+            class Alert extends \RealRashid\SweetAlert\Facades\Alert {}
             class Flare extends \Spatie\LaravelIgnition\Facades\Flare {}
      
 }

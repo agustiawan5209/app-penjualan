@@ -56,3 +56,16 @@ Route::middleware([
 });
 Route::get('stock/chart',[StatusBarangController::class, 'chart']);
 Route::get('Keranjang', ShoppingCart::class)->name('Keranjang');
+
+Route::get('about' , function(){
+    return view('about');
+})->name('about');
+Route::get('contact' , function(){
+    return view('contact');
+})->name('contact');
+Route::get('shop-single' , function(){
+    return view('shop-single');
+})->name('shop-single');
+Route::get('shop' , function(){
+    return view('shop');
+})->name('shop');

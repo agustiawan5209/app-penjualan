@@ -2,22 +2,26 @@
 
 namespace App\Http\Livewire\Page;
 
+use App\Models\Keranjang;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 
 class ShoppingCart extends Component
 {
     protected $listeners = ['cartUpdated' => '$refresh'];
-    public $cartItems = [];
+    // public $cartItems = [];
     public $quantity = 1;
     public $Keranjang = false;
 
     public function render()
     {
-        $userID = Auth::user()->id;
-        $this->cartItems = \Cart::getContent();
+        $cartItems = "";
+        if (Auth::check()) {
+            $userID = Auth::user()->id;
+            $cartItems = Keranjang::where('user_id', $userID)->get();
+        }
         // dd($this->cartItems);
-        return view('livewire.page.shopping-cart');
+        return view('livewire.page.shopping-cart', compact('cartItems'));
     }
     public function show()
     {
@@ -26,47 +30,39 @@ class ShoppingCart extends Component
     }
     public function removeCart($id)
     {
-        \Cart::remove($id);
-
+        Keranjang::find($id)->delete();
         session()->flash('success', 'Item has removed !');
     }
 
     public function clearAllCart()
     {
-        \Cart::clear();
-
+        Keranjang::where('user_id', Auth::user()->id)->delete();
         session()->flash('success', 'All Item Cart Clear Successfully !');
     }
     public function PlusupdateCart($id)
     {
-        $cart = \Cart::get($id);
-         $cat = \Cart::update($id, [
-            'quantity' => [
-                'relative' => false,
-                'value' => $this->quantity++,
-            ],
+        $cart = Keranjang::find($id);
+        $cat = Keranjang::where('id', $id)->update([
+            'quantity' => $cart->quantity + 1,
         ]);
-        if($cat){
-            \Cart::update($id,array(
-                'price' => $cart['quantity'] * $cart['price'],
-            ));
+        if ($cat) {
+            Keranjang::where('id', $id)->update([
+                'sub_total' => $cart->quantity * $cart->barang->harga,
+            ]);
         }
 
         // $this->emit('cartUpdated');
     }
     public function MinusupdateCart($id)
     {
-        $cart = \Cart::get($id);
-         $cat = \Cart::update($id, [
-            'quantity' => [
-                'relative' => false,
-                'value' => $this->quantity--,
-            ],
+        $cart = Keranjang::find($id);
+        $cat = Keranjang::where('id', $id)->update([
+            'quantity' => $cart->quantity - 1,
         ]);
-        if($cat){
-            \Cart::update($id,array(
-                'price' => $this->quantity * $cart['price'],
-            ));
+        if ($cat) {
+            Keranjang::where('id', $id)->update([
+                'sub_total' => $cart->quantity * $cart->barang->harga,
+            ]);
         }
 
         // $this->emit('cartUpdated');
