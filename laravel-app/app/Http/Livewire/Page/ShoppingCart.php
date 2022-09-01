@@ -15,13 +15,8 @@ class ShoppingCart extends Component
 
     public function render()
     {
-        $cartItems = "";
-        if (Auth::check()) {
-            $userID = Auth::user()->id;
-            $cartItems = Keranjang::where('user_id', $userID)->get();
-        }
         // dd($this->cartItems);
-        return view('livewire.page.shopping-cart', compact('cartItems'));
+        return view('livewire.page.shopping-cart')->layout('layouts.guest');
     }
     public function show()
     {
