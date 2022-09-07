@@ -11,8 +11,8 @@
                   </div>
                   <div class="col-md-6 col-lg-7 d-flex align-items-center">
                     <div class="card-body p-4 p-lg-5 text-black">
-
-                      <form action="{{route('login')}}" action="post">
+                 <x-jet-validation-errors class="mb-4" />
+                      <form action="{{route('login')}}" method="POST">
                         @csrf
                         @method("POST")
 
@@ -24,13 +24,13 @@
                         <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
 
                         <div class="form-outline mb-4">
-                          <input type="email" name="email" id="form2Example17" class="form-control form-control-lg" />
+                          <input type="email" name="email" id="form2Example17" :value="old('email')" class="form-control form-control-lg" />
                           <label class="form-label" for="form2Example17">Email address</label>
                         </div>
 
                         <div class="form-outline mb-4">
-                          <input type="password" id="form2Example27" class="form-control form-control-lg" />
-                          <label class="form-label" name='password' for="form2Example27">Password</label>
+                          <input type="password" id="form2Example27" name='password' :value="old('email')" class="form-control form-control-lg" />
+                          <label class="form-label"  for="form2Example27">Password</label>
                         </div>
 
                         <div class="pt-1 mb-4">
