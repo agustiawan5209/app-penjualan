@@ -68,7 +68,7 @@
                                 <span
                                     class="w-12 h-12 text-sm text-white bg-gray-200 inline-flex items-center justify-center rounded-full"><img
                                         alt="..." class="w-full rounded-full align-middle border-none shadow-lg"
-                                        src="../../assets/img/team-1-800x800.jpg" /></span>
+                                        src="{{ Auth::user()->profile_photo_url}}" /></span>
                             </div>
                         </a>
                         <div class="hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
@@ -206,7 +206,7 @@
                                 <span
                                     class="w-12 h-12 text-sm text-white bg-gray-200 inline-flex items-center justify-center rounded-full"><img
                                         alt="..." class="w-full rounded-full align-middle border-none shadow-lg"
-                                        src="../../assets/img/team-1-800x800.jpg" /></span>
+                                        src="{{Auth::user()->profile_photo_url}}" /></span>
                             </div>
                         </a>
                         <div class="hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
