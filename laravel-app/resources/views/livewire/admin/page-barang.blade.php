@@ -1,5 +1,18 @@
 <div class="w-full py-10 block">
+    @include('sweetalert::alert')
     <div class="mt-6 lg:mb-0 mb-6">
+        <x-jet-dialog-modal wire:model='itemHapus' maxWidth="2xl">
+            <x-slot name='title'></x-slot>
+            <x-slot name='content'>
+            Hapus?
+            </x-slot>
+            <x-slot name='footer'>
+                <x-jet-secondary-button wire:click="$toggle('itemHapus')" wire:loading.attr='disabled'>Close
+                </x-jet-secondary-button>
+                <x-jet-danger-button wire:click="delete({{$itemID}})" wire:loading.attr='disabled'>Hapus
+                </x-jet-danger-button>
+            </x-slot>
+        </x-jet-dialog-modal>
         <x-jet-dialog-modal wire:model='addJenis' maxWidth="2xl">
             <x-slot name='title'></x-slot>
             <x-slot name='content'>

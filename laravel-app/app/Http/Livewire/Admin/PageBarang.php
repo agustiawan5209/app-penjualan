@@ -9,6 +9,7 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 use RealRashid\SweetAlert\Facades\Alert;
+use Storage;
 
 class PageBarang extends Component
 {
@@ -50,12 +51,14 @@ class PageBarang extends Component
     public function TambahModal()
     {
         $this->itemTambah = true;
-        session()->flash('message', 'Berhasil Ditambah');
+        Alert::info('message', 'Berhasil Ditambah');
         Alert::success('Congrats', 'You\'ve Successfully Registered');
     }
 
-    public function HapusModal()
+    public function HapusModal($id)
     {
+        $barang = Barang::find($id);
+        $this->itemID = $barang->id;
         $this->itemHapus = true;
     }
     public function EditModal($id)
@@ -106,7 +109,7 @@ class PageBarang extends Component
         if ($this->gambar != null) {
             $nama = $this->gambar->getClientOriginalName();
             $random = bcrypt($nama) . '.' . $this->gambar->getClientOriginalExtension();
-            $this->gambar->storeAs('upload/', $nama);
+            $this->gambar->storeAs('public/', $nama);
         }
         $barang = Barang::insert([
             'gambar' => $nama,
@@ -119,7 +122,7 @@ class PageBarang extends Component
             'tgl_perolehan' => $this->tgl_perolehan,
             'stock' => $this->stock,
         ]);
-        session()->flash('message', $barang ? 'Berhasil Ditambah' : "Gagal");
+        Alert::info('message', $barang ? 'Berhasil Ditambah' : "Gagal");
         $this->itemTambah = false;
     }
     public function edit($id)
@@ -152,12 +155,12 @@ class PageBarang extends Component
             'stock' => $this->stock,
         ]);
         $this->itemEdit = false;
-        session()->flash('message', 'Berhasil Di Edit');
+       Alert::info('message', 'Berhasil Di Edit');
     }
     public function delete($id)
     {
         Barang::find($id)->delete();
-        session()->flash('message', 'Berhasil Ditambah');
+        Alert::success('info', 'Berhasil Di Hapus');
         $this->itemHapus = false;
     }
 
