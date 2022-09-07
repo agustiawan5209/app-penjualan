@@ -106,10 +106,10 @@ class PageBarang extends Component
         if ($this->gambar != null) {
             $nama = $this->gambar->getClientOriginalName();
             $random = bcrypt($nama) . '.' . $this->gambar->getClientOriginalExtension();
-            $this->gambar->storeAs('upload/', $random);
+            $this->gambar->storeAs('upload/', $nama);
         }
         $barang = Barang::insert([
-            'gambar' => $random,
+            'gambar' => $nama,
             'kode_barang' => $book_id,
             'jenis_id' => $this->jenis_id,
             'nama_barang' => $this->nama_barang,
