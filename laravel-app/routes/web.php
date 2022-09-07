@@ -11,6 +11,7 @@ use App\Http\Livewire\Admin\PagePenjualan;
 use App\Http\Livewire\Admin\PagePromo;
 use App\Http\Livewire\Admin\PageVOucher;
 use App\Http\Livewire\Page\HalamanUtama;
+use App\Http\Livewire\Page\PageShop;
 use App\Http\Livewire\Page\ShoppingCart;
 use App\Http\Livewire\User\Dashboard as UserDashboard;
 use Illuminate\Support\Facades\Route;
@@ -66,6 +67,4 @@ Route::get('contact' , function(){
 Route::get('shop-single' , function(){
     return view('shop-single');
 })->name('shop-single');
-Route::get('shop' , function(){
-    return view('shop');
-})->name('shop');
+Route::get('shop' , PageShop::class)->name('shop');

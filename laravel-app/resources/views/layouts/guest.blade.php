@@ -18,7 +18,8 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/templatemo.css">
     <link rel="stylesheet" href="css/custom.css">
-
+    <link rel="stylesheet" href="{{asset('css/slick.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/slick-theme.css')}}">
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
@@ -254,7 +255,36 @@
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/templatemo.js"></script>
     <script src="js/custom.js"></script>
+    <script src="js/slick.min.js"></script>
     <!-- End Script -->
+    <script>
+        $('#carousel-related-product').slick({
+            infinite: true,
+            arrows: false,
+            slidesToShow: 4,
+            slidesToScroll: 3,
+            dots: true,
+            responsive: [{
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3
+                }
+            }, {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 3
+                }
+            }, {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 3
+                }
+            }]
+        });
+    </script>
 </body>
 
 </html>

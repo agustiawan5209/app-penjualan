@@ -1,5 +1,6 @@
 <main>
       <!-- Start Banner Hero -->
+      @include('sweetalert::alert')
   <div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
     <ol class="carousel-indicators">
         <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="0" class="active"></li>
