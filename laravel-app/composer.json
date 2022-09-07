@@ -53,7 +53,7 @@
         ],
         "post-install-cmd": [
             "ln -sr storage/app/public public/storage",
-            "ln -sr storage/app/upload public/bukti"
+            "ln -sr storage/app/upload public/upload"
         ]
     },
     "extra": {
