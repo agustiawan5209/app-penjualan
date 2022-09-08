@@ -155,10 +155,10 @@
                                             <li class="list-inline-item">Size :
                                                 <input type="hidden" name="product-size" id="product-size" value="S">
                                             </li>
-                                            <li class="list-inline-item"><span class="btn btn-success btn-size">S</span></li>
-                                            <li class="list-inline-item"><span class="btn btn-success btn-size">M</span></li>
-                                            <li class="list-inline-item"><span class="btn btn-success btn-size">L</span></li>
-                                            <li class="list-inline-item"><span class="btn btn-success btn-size">XL</span></li>
+                                            <li class="list-inline-item"><span class="btn btn-orange-dark btn-size">S</span></li>
+                                            <li class="list-inline-item"><span class="btn btn-orange-dark btn-size">M</span></li>
+                                            <li class="list-inline-item"><span class="btn btn-orange-dark btn-size">L</span></li>
+                                            <li class="list-inline-item"><span class="btn btn-orange-dark btn-size">XL</span></li>
                                         </ul>
                                     </div>
                                     <div class="col-auto">
@@ -167,18 +167,18 @@
                                                 Quantity
                                                 <input type="hidden" name="product-quanity" id="product-quanity" value="1">
                                             </li>
-                                            <li class="list-inline-item"><span class="btn btn-success" id="btn-minus">-</span></li>
+                                            <li class="list-inline-item"><span class="btn btn-orange-dark" id="btn-minus">-</span></li>
                                             <li class="list-inline-item"><span class="badge bg-secondary" id="var-value">1</span></li>
-                                            <li class="list-inline-item"><span class="btn btn-success" id="btn-plus">+</span></li>
+                                            <li class="list-inline-item"><span class="btn btn-orange-dark" id="btn-plus">+</span></li>
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="row pb-3">
                                     <div class="col d-grid">
-                                        <button type="submit" class="btn btn-success btn-lg" name="submit" value="buy">Buy</button>
+                                        <button type="submit" class="btn btn-orange-dark btn-lg" name="submit" value="buy">Buy</button>
                                     </div>
                                     <div class="col d-grid">
-                                        <button type="submit" class="btn btn-success btn-lg" name="submit" value="addtocard">Add To Cart</button>
+                                        <button type="submit" class="btn btn-orange-dark btn-lg" name="submit" value="addtocard">Add To Cart</button>
                                     </div>
                                 </div>
                             </form>
@@ -207,9 +207,9 @@
                             <img class="card-img rounded-0 img-fluid" src="img/shop_08.jpg">
                             <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                    <li><a class="btn btn-orange-dark text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
+                                    <li><a class="btn btn-orange-dark text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
+                                    <li><a class="btn btn-orange-dark text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -245,9 +245,9 @@
                             <img class="card-img rounded-0 img-fluid" src="img/shop_09.jpg">
                             <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                    <li><a class="btn btn-orange-dark text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
+                                    <li><a class="btn btn-orange-dark text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
+                                    <li><a class="btn btn-orange-dark text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -283,9 +283,9 @@
                             <img class="card-img rounded-0 img-fluid" src="img/shop_10.jpg">
                             <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                    <li><a class="btn btn-orange-dark text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
+                                    <li><a class="btn btn-orange-dark text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
+                                    <li><a class="btn btn-orange-dark text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -321,9 +321,9 @@
                             <img class="card-img rounded-0 img-fluid" src="img/shop_11.jpg">
                             <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                    <li><a class="btn btn-orange-dark text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
+                                    <li><a class="btn btn-orange-dark text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
+                                    <li><a class="btn btn-orange-dark text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -359,9 +359,9 @@
                             <img class="card-img rounded-0 img-fluid" src="img/shop_08.jpg">
                             <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                    <li><a class="btn btn-orange-dark text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
+                                    <li><a class="btn btn-orange-dark text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
+                                    <li><a class="btn btn-orange-dark text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -397,9 +397,9 @@
                             <img class="card-img rounded-0 img-fluid" src="img/shop_09.jpg">
                             <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                    <li><a class="btn btn-orange-dark text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
+                                    <li><a class="btn btn-orange-dark text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
+                                    <li><a class="btn btn-orange-dark text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -435,9 +435,9 @@
                             <img class="card-img rounded-0 img-fluid" src="img/shop_10.jpg">
                             <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                    <li><a class="btn btn-orange-dark text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
+                                    <li><a class="btn btn-orange-dark text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
+                                    <li><a class="btn btn-orange-dark text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -473,9 +473,9 @@
                             <img class="card-img rounded-0 img-fluid" src="img/shop_11.jpg">
                             <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                    <li><a class="btn btn-orange-dark text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
+                                    <li><a class="btn btn-orange-dark text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
+                                    <li><a class="btn btn-orange-dark text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -511,9 +511,9 @@
                             <img class="card-img rounded-0 img-fluid" src="img/shop_08.jpg">
                             <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                    <li><a class="btn btn-orange-dark text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
+                                    <li><a class="btn btn-orange-dark text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
+                                    <li><a class="btn btn-orange-dark text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -549,9 +549,9 @@
                             <img class="card-img rounded-0 img-fluid" src="img/shop_09.jpg">
                             <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                    <li><a class="btn btn-orange-dark text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
+                                    <li><a class="btn btn-orange-dark text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
+                                    <li><a class="btn btn-orange-dark text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -587,9 +587,9 @@
                             <img class="card-img rounded-0 img-fluid" src="img/shop_10.jpg">
                             <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                    <li><a class="btn btn-orange-dark text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
+                                    <li><a class="btn btn-orange-dark text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
+                                    <li><a class="btn btn-orange-dark text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -625,9 +625,9 @@
                             <img class="card-img rounded-0 img-fluid" src="img/shop_11.jpg">
                             <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                    <li><a class="btn btn-orange-dark text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
+                                    <li><a class="btn btn-orange-dark text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
+                                    <li><a class="btn btn-orange-dark text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
                                 </ul>
                             </div>
                         </div>

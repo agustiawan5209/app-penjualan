@@ -19,7 +19,7 @@
 
         L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
             maxZoom: 18,
-            attribution: 'Zay Telmplte | Template Design by <a href="https://templatemo.com/">Templatemo</a> | Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+            attribution: 'didiJaya Telmplte | Template Design by <a href="https://templatemo.com/">Templatemo</a> | Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
                 '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
                 'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
             id: 'mapbox/streets-v11',
@@ -28,7 +28,7 @@
         }).addTo(mymap);
 
         L.marker([-23.013104, -43.394365, 13]).addTo(mymap)
-            .bindPopup("<b>Zay</b> eCommerce Template<br />Location.").openPopup();
+            .bindPopup("<b>didiJaya</b> eCommerce Template<br />Location.").openPopup();
 
         mymap.scrollWheelZoom.disable();
         mymap.touchZoom.disable();
@@ -59,7 +59,7 @@
                 </div>
                 <div class="row">
                     <div class="col text-end mt-2">
-                        <button type="submit" class="btn btn-success btn-lg px-3">Let’s Talk</button>
+                        <button type="submit" class="btn btn-orange-dark btn-lg px-3">Let’s Talk</button>
                     </div>
                 </div>
             </form>

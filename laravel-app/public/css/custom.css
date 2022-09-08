@@ -1,3 +1,29 @@
 /*
 Custom Css
 */
+
+.bg-orange-dark {
+    background-color: #ec5f00;
+}
+
+.btn-orange-dark {
+    background-color: #ec5f00;
+    color: #fff;
+    border-color: #dfe3e6;
+}
+
+.text-orange-dark {
+    color: #ec5f00;
+}
+
+.bg-blue-dark {
+    background-color: #274d6b;
+}
+
+.btn-blue-dark {
+    background-color: #274d6b;
+}
+
+.text-blue-dark {
+    color: #274d6b;
+}

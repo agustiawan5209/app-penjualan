@@ -36,7 +36,7 @@
 
 <body>
     <!-- Start Top Nav -->
-    <nav class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block" id="templatemo_nav_top">
+    <nav class="navbar navbar-expand-lg bg-blue-dark navbar-light d-none d-lg-block" id="templatemo_nav_top">
         <div class="container text-light">
             <div class="w-100 d-flex justify-content-between">
                 <div>
@@ -66,8 +66,8 @@
     <nav class="navbar navbar-expand-lg navbar-light shadow">
         <div class="container d-flex justify-content-between align-items-center">
 
-            <a class="navbar-brand text-success logo h1 align-self-center" href="index.html">
-                Zay
+            <a class="navbar-brand text-orange-dark logo h1 align-self-center" href="/">
+                <span class="text-orange-dark">didi</span><span class="text-blue-dark">Jaya</span>
             </a>
 
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
@@ -109,13 +109,13 @@
                     </a>
                     <a class="nav-icon position-relative text-decoration-none" href="{{ route('Keranjang') }}">
                         <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
-                        <span
-                            class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span>
+                        {{-- <span
+                            class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span> --}}
                     </a>
                     <a class="nav-icon position-relative text-decoration-none" href="#">
                         <i class="fa fa-fw fa-user text-dark mr-3"></i>
-                        <span
-                            class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+99</span>
+                        {{-- <span
+                            class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+99</span> --}}
                     </a>
                 </div>
             </div>
@@ -135,7 +135,7 @@
                 <div class="input-group mb-2">
                     <input type="text" class="form-control" id="inputModalSearch" name="q"
                         placeholder="Search ...">
-                    <button type="submit" class="input-group-text bg-success text-light">
+                    <button type="submit" class="input-group-text bg-orange-dark text-light">
                         <i class="fa fa-fw fa-search text-white"></i>
                     </button>
                 </div>
@@ -154,7 +154,7 @@
             <div class="row">
 
                 <div class="col-md-4 pt-5">
-                    <h2 class="h2 text-success border-bottom pb-3 border-light logo">Zay Shop</h2>
+                    <h2 class="h2 text-orange-dark border-bottom pb-3 border-light logo"><span class="text-orange-dark">didi</span><span class="text-blue-dark">Jaya</span> <span class="text-white">Shop</span></h2>
                     <ul class="list-unstyled text-light footer-link-list">
                         <li>
                             <i class="fas fa-map-marker-alt fa-fw"></i>
@@ -226,7 +226,7 @@
                     <div class="input-group mb-2">
                         <input type="text" class="form-control bg-dark border-light" id="subscribeEmail"
                             placeholder="Email address">
-                        <div class="input-group-text btn-success text-light">Subscribe</div>
+                        <div class="input-group-text btn-blue-dark text-light">Subscribe</div>
                     </div>
                 </div>
             </div>
