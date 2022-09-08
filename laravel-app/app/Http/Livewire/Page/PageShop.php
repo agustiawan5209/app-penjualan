@@ -45,14 +45,22 @@ class PageShop extends Component
             if(1 <= 0){
                 Alert::info('Stock Habis', 'Stock Tidak Cukup');
             }else{
-              $cat = Keranjang::create([
-                'user_id'=> $userID,
-                'barang_id'=>$barang->id,
-                'quantity'=> 1,
-                'sub_total'=> $barang->harga,
-              ]);
-                // dd($cat);
-                return redirect('/')->with('message', $cat ? 'Berhasil Di Masukkan Ke Keranjang' : 'gagal');
+                // Cek Jika barang_id Sudah Ada Atau Belum
+                $cart = Keranjang::where('user_id', Auth::user()->id)->where('barang_id', '=', $id)->get();
+                // dd($cart);
+                    if($cart->count() > 0){
+                        Alert::warning('Gagal', 'Barang Sudah Dalam Keranjang');
+                    }else{
+                        $cat = Keranjang::create([
+                            'user_id'=> $userID,
+                            'barang_id'=>$barang->id,
+                            'quantity'=> 1,
+                            'sub_total'=> $barang->harga,
+                          ]);
+                            // dd($cat);
+                          Alert::success('Pemesanan Berhasil', 'Cek Pesanan Anda');
+                            return redirect('/');
+                    }
             }
         } else {
             Alert::error('Akses Ditolak', 'Silahkan Login terlebih Dahulu');

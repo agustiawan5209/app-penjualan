@@ -33,7 +33,7 @@
 
               <div class="col-lg-9">
                   <div class="row">
-                      <div class="col-md-6">
+                      {{-- <div class="col-md-6">
                           <ul class="list-inline shop-top-menu pb-3 pt-1">
                               <li class="list-inline-item">
                                   <a class="h3 text-dark text-decoration-none mr-3" href="#">All</a>
@@ -45,7 +45,7 @@
                                   <a class="h3 text-dark text-decoration-none" href="#">Women's</a>
                               </li>
                           </ul>
-                      </div>
+                      </div> --}}
                       <div class="col-md-6 pb-4">
                           <div class="d-flex">
                               <select class="form-control">
@@ -64,9 +64,9 @@
                                       <img class="card-img rounded-0 img-fluid" src="{{asset('upload/'.$barang->gambar)}}">
                                       <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                           <ul class="list-unstyled">
-                                              <li><a class="btn btn-orange-dark text-white" href="{{route('shop-single')}}"><i class="far fa-heart"></i></a></li>
-                                              <li><a class="btn btn-orange-dark text-white mt-2" href="#Detail/{{$barang->id}}" wire:click='ShowDetail({{$barang->id}})'><i class="far fa-eye"></i></a></li>
-                                              <li><a class="btn btn-orange-dark text-white mt-2" href="#Cart" wire:click='addToCart({{$barang->id}})'><i class="fas fa-cart-plus"></i></a></li>
+                                              <li><a class="btn btn-blue-dark text-white" href="{{route('shop-single')}}"><i class="far fa-heart"></i></a></li>
+                                              <li><a class="btn btn-blue-dark text-white mt-2" href="#Detail/{{$barang->id}}" wire:click='ShowDetail({{$barang->id}})'><i class="far fa-eye"></i></a></li>
+                                              <li><a class="btn btn-blue-dark text-white mt-2" href="#Cart" wire:click='addToCart({{$barang->id}})'><i class="fas fa-cart-plus"></i></a></li>
                                           </ul>
                                       </div>
                                   </div>

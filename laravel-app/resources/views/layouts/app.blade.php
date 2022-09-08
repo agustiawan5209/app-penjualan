@@ -124,7 +124,7 @@
                     <ul class="md:flex-col md:min-w-full flex flex-col list-none">
                         <li class="items-center">
                             <a href="{{route('Admin.Dashboard-Admin')}}"
-                                class="text-xs uppercase py-3 font-bold block text-pink-500 hover:text-pink-600">
+                                class="text-xs uppercase py-3 font-bold block text-blue-darken hover:text-blue-darken">
                                 <i class="fas fa-tv mr-2 text-sm opacity-75"></i>
                                 Dashboard
                             </a>
@@ -227,7 +227,7 @@
                 </div>
             </nav>
             <!-- Header -->
-            <div class="relative bg-pink-600 md:pt-12 pb-12 pt-12">
+            <div class="relative bg-blue-darken md:pt-12 pb-12 pt-12">
                 <div class="px-4 md:px-10 mx-auto w-full">
                    {{$slot}}
                 </div>

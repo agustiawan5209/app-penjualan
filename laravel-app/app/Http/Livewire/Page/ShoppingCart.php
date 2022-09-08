@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Page;
 use App\Models\Keranjang;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ShoppingCart extends Component
 {
@@ -12,30 +13,33 @@ class ShoppingCart extends Component
     // public $cartItems = [];
     public $quantity = 1;
     public $Keranjang = false;
-
+    public $itemID;
     public function render()
     {
         // dd($this->cartItems);
-        $cart = Keranjang::where('user_id')->get();
+        $cart = Keranjang::where('user_id', Auth::user()->id)->get();
         return view('livewire.page.shopping-cart',[
             'cart'=> $cart,
         ])->layout('layouts.guest');
     }
-    public function show()
+    public function show($id)
     {
         // dd($this->Keranjang);
-        $this->Keranjang = false;
+        $Keranjang = Keranjang::find($id);
+        // dd($Keranjang);
+        $this->itemID = $Keranjang->id;
+        $this->Keranjang = true;
     }
     public function removeCart($id)
     {
         Keranjang::find($id)->delete();
-        session()->flash('success', 'Item has removed !');
+        Alert::success('Berhasil', 'Berhasil Di Hapus !');
     }
 
     public function clearAllCart()
     {
         Keranjang::where('user_id', Auth::user()->id)->delete();
-        session()->flash('success', 'All Item Cart Clear Successfully !');
+        Alert::success('Berhasil', 'Semua Item Berhasil Di Hapus !');
     }
     public function PlusupdateCart($id)
     {
