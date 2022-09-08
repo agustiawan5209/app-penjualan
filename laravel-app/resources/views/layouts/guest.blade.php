@@ -15,9 +15,9 @@
     @vite(['resources/js/app.js'])
     <script src="{{ asset('js/sweetalert.all.js') }}"></script>
 
+    <link rel="stylesheet" href="css/custom.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/templatemo.css">
-    <link rel="stylesheet" href="css/custom.css">
     <link rel="stylesheet" href="{{asset('css/slick.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/slick-theme.css')}}">
     <!-- Load fonts style after rendering the layout styles -->
