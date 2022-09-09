@@ -18,11 +18,11 @@ return new class extends Migration
             $table->string('gambar',100);
             $table->string('nama_barang',30);
             $table->string('kode_barang',20);
-            $table->foreignId('jenis_id');
-            $table->bigInteger('harga');
+            $table->string('harga');
             $table->integer('stock');
             $table->string('deskripsi', 100);
             $table->foreignId('satuan_id');
+            $table->foreignId('jenis_id');
             $table->date('tgl_perolehan');
             $table->timestamps();
         });
