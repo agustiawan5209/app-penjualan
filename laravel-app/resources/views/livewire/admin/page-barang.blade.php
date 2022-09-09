@@ -63,11 +63,7 @@
             type="button">
             Voucher
         </a>
-        <a href="{{route('Admin.Page-Diskon')}}"
-            class="bg-white text-center text-black shadow-lg font-normal w-32 py-2 rounded-md items-center justify-center align-center outline-none focus:outline-none mr-2"
-            type="button">
-            Diskon
-        </a>
+
     </div>
 
     <x-table>

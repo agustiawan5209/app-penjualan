@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin;
 
+use App\Models\Barang;
 use App\Models\DIskon;
 use Livewire\Component;
 
@@ -15,9 +16,21 @@ class PageDiskon extends Component
     // item field table DISKON
     public $itemID;
     public $jumlah_diskon, $tgl_kadaluarsa, $tgl_mulai, $barang_id;
+
+    // itemSearch And Row
+    public $search = '', $row=10;
+    public function closeModal(){
+        $this->editItem=false;
+        $this->addItem = false;
+    }
     public function render()
     {
-        return view('livewire.admin.page-diskon');
+        $diskon = DIskon::paginate($this->row);
+        $barang = Barang::all();
+        return view('livewire.admin.page-diskon',[
+            'diskon'=> $diskon,
+            'barang'=> $barang,
+        ]);
     }
 
     public function TambahModal()

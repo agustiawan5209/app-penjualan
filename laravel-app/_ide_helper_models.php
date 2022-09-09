@@ -12,20 +12,44 @@
 
 namespace App\Models{
 /**
+ * App\Models\Bank
+ *
+ * @property int $id
+ * @property string $nama_bank
+ * @property string $no_rek
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Bank newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Bank newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Bank query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Bank whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Bank whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Bank whereNamaBank($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Bank whereNoRek($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Bank whereUpdatedAt($value)
+ */
+	class Bank extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Barang
  *
  * @property int $id
  * @property string $gambar
+ * @property string $nama_barang
  * @property string $kode_barang
- * @property int $jenis_id
- * @property int $harga
+ * @property string $harga
+ * @property int $stock
  * @property string $deskripsi
  * @property int $satuan_id
+ * @property int $jenis_id
  * @property string $tgl_perolehan
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Jenis|null $jenis
  * @property-read \App\Models\Satuan|null $satuan
+ * @method static \Database\Factories\BarangFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Barang newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Barang newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Barang query()
@@ -36,11 +60,40 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Barang whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Barang whereJenisId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Barang whereKodeBarang($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Barang whereNamaBarang($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Barang whereSatuanId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Barang whereStock($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Barang whereTglPerolehan($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Barang whereUpdatedAt($value)
  */
 	class Barang extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\DIskon
+ *
+ * @property int $id
+ * @property int $barang_id
+ * @property int $jumlah_diskon
+ * @property string $tgl_mulai
+ * @property string $tgl_kadaluarsa
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Barang|null $barang
+ * @method static \Database\Factories\DIskonFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|DIskon newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|DIskon newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|DIskon query()
+ * @method static \Illuminate\Database\Eloquent\Builder|DIskon whereBarangId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DIskon whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DIskon whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DIskon whereJumlahDiskon($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DIskon whereTglKadaluarsa($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DIskon whereTglMulai($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DIskon whereUpdatedAt($value)
+ */
+	class DIskon extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -61,6 +114,59 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Jenis whereUpdatedAt($value)
  */
 	class Jenis extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Katalog
+ *
+ * @property int $id
+ * @property string $nama_katalog
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Katalog newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Katalog newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Katalog query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Katalog whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Katalog whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Katalog whereNamaKatalog($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Katalog whereUpdatedAt($value)
+ */
+	class Katalog extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Keranjang
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property int $barang_id
+ * @property int $quantity
+ * @property int|null $potongan_persen
+ * @property int|null $potongan_nominal
+ * @property int $sub_total
+ * @property string|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Barang|null $barang
+ * @property-read \App\Models\User|null $user
+ * @method static \Database\Factories\KeranjangFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Keranjang newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Keranjang newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Keranjang query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Keranjang whereBarangId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Keranjang whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Keranjang whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Keranjang whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Keranjang wherePotonganNominal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Keranjang wherePotonganPersen($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Keranjang whereQuantity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Keranjang whereSubTotal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Keranjang whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Keranjang whereUserId($value)
+ */
+	class Keranjang extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -88,6 +194,88 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Pembayaran
+ *
+ * @property int $id
+ * @property string $metode
+ * @property string $item_barang Dapatkan ID Barang Dari Keranjang
+ * @property int $sub_total Sub_total Dengan Di hitung Diskon
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Database\Factories\PembayaranFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran whereItemBarang($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran whereMetode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran whereSubTotal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran whereUpdatedAt($value)
+ */
+	class Pembayaran extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Pengiriman
+ *
+ * @property int $id
+ * @property int $pembayaran_id
+ * @property string $alamat_detail
+ * @property int $harga
+ * @property string $tgl_pengiriman
+ * @property string $status 1 = belum dikirim ,2 dalam pengiriman, 3 = konfirmasi admin, 4 = konfirmasi user, 5 = gagal
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Pengiriman newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Pengiriman newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Pengiriman query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Pengiriman whereAlamatDetail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pengiriman whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pengiriman whereHarga($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pengiriman whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pengiriman wherePembayaranId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pengiriman whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pengiriman whereTglPengiriman($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pengiriman whereUpdatedAt($value)
+ */
+	class Pengiriman extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Promo
+ *
+ * @property int $id
+ * @property string $kode_promo
+ * @property int|null $promo_nominal
+ * @property int|null $promo_persen
+ * @property int|null $max_user
+ * @property int|null $use_user
+ * @property string $tgl_mulai
+ * @property string $tgl_kadaluarsa
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Promo newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Promo newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Promo query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Promo whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Promo whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Promo whereKodePromo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Promo whereMaxUser($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Promo wherePromoNominal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Promo wherePromoPersen($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Promo whereTglKadaluarsa($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Promo whereTglMulai($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Promo whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Promo whereUseUser($value)
+ */
+	class Promo extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Satuan
  *
  * @property int $id
@@ -108,6 +296,44 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Slide
+ *
+ * @property int $id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Slide newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Slide newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Slide query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Slide whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Slide whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Slide whereUpdatedAt($value)
+ */
+	class Slide extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\StatusBarang
+ *
+ * @property int $id
+ * @property string $status
+ * @property string $detail
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|StatusBarang newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|StatusBarang newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|StatusBarang query()
+ * @method static \Illuminate\Database\Eloquent\Builder|StatusBarang whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatusBarang whereDetail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatusBarang whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatusBarang whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatusBarang whereUpdatedAt($value)
+ */
+	class StatusBarang extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Team
  *
  * @property int $id
@@ -116,7 +342,7 @@ namespace App\Models{
  * @property bool $personal_team
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\User|null $owner
+ * @property-read \App\Models\User $owner
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\TeamInvitation[] $teamInvitations
  * @property-read int|null $team_invitations_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $users
@@ -161,6 +387,30 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Transaksi
+ *
+ * @property int $id
+ * @property string $id_transaksi
+ * @property string $tgl_transaksi
+ * @property string $item
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Database\Factories\TransaksiFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaksi newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaksi newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaksi query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaksi whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaksi whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaksi whereIdTransaksi($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaksi whereItem($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaksi whereTglTransaksi($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaksi whereUpdatedAt($value)
+ */
+	class Transaksi extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\User
  *
  * @property int $id
@@ -171,6 +421,8 @@ namespace App\Models{
  * @property string|null $two_factor_secret
  * @property string|null $two_factor_recovery_codes
  * @property string $role_id
+ * @property string|null $no_telpon
+ * @property string|null $alamat
  * @property string|null $remember_token
  * @property int|null $current_team_id
  * @property string|null $profile_photo_path
@@ -190,12 +442,14 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereAlamat($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCurrentTeamId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereNoTelpon($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereProfilePhotoPath($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
@@ -205,5 +459,86 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  */
 	class User extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\UsesUserPromo
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property int $promo_id
+ * @property string $status
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Database\Factories\UsesUserPromoFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|UsesUserPromo newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|UsesUserPromo newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|UsesUserPromo query()
+ * @method static \Illuminate\Database\Eloquent\Builder|UsesUserPromo whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UsesUserPromo whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UsesUserPromo wherePromoId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UsesUserPromo whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UsesUserPromo whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UsesUserPromo whereUserId($value)
+ */
+	class UsesUserPromo extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\UsesUserVoucher
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property int $voucher_id
+ * @property string $status
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Database\Factories\UsesUserVoucherFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|UsesUserVoucher newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|UsesUserVoucher newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|UsesUserVoucher query()
+ * @method static \Illuminate\Database\Eloquent\Builder|UsesUserVoucher whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UsesUserVoucher whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UsesUserVoucher whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UsesUserVoucher whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UsesUserVoucher whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UsesUserVoucher whereVoucherId($value)
+ */
+	class UsesUserVoucher extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Voucher
+ *
+ * @property int $id
+ * @property string $kode_voucher
+ * @property int|null $promo_nominal
+ * @property int|null $promo_persen
+ * @property int|null $max_user
+ * @property int|null $use_user
+ * @property string $tgl_mulai
+ * @property string $tgl_kadaluarsa
+ * @property string|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Voucher newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Voucher newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Voucher query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereKodeVoucher($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereMaxUser($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Voucher wherePromoNominal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Voucher wherePromoPersen($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereTglKadaluarsa($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereTglMulai($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereUseUser($value)
+ */
+	class Voucher extends \Eloquent {}
 }
 

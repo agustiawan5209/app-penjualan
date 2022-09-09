@@ -38,6 +38,9 @@
                                 <img src="{{$gambar->temporaryUrl()}}" class="w-60" alt="">
                             @endif
                         </div>
+                        @error('gambar')
+                        <span class="text-white">{{$message}}</span>
+                    @enderror
                     </div>
                     <div class="w-full lg:w-6/12 px-4">
                         <div class="relative w-full mb-3">
@@ -52,6 +55,9 @@
                                 <option value="{{$item->id}}">{{$item->nama_jenis}}</option>
                                 @endforeach
                             </select>
+                            @error('jenis_id')
+                            <span class="text-white">{{$message}}</span>
+                        @enderror
                         </div>
                     </div>
                     <div class="w-full lg:w-6/12 px-4">
@@ -67,6 +73,9 @@
                                 <option value="{{$item->id}}">{{$item->nama_satuan}}</option>
                                 @endforeach
                             </select>
+                            @error('satuan_id')
+                            <span class="text-white">{{$message}}</span>
+                        @enderror
                         </div>
                     </div>
                 </div>
@@ -84,6 +93,9 @@
                             <input type="text" wire:model='nama_barang'
                                 class="border-0 px-3 py-3 placeholder-blueGray-300  rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                 value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
+                                @error('nama_barang')
+                                    <span class="text-white">{{$message}}</span>
+                                @enderror
                         </div>
                     </div>
                     <div class="w-full lg:w-4/12 px-4">
@@ -95,6 +107,9 @@
                             <input type="text" wire:model='harga'
                                 class="border-0 px-3 py-3 placeholder-blueGray-300  rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                 value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
+                                @error('harga')
+                                <span class="text-white">{{$message}}</span>
+                            @enderror
                         </div>
                     </div>
                     <div class="w-full lg:w-4/12 px-4">
@@ -106,6 +121,9 @@
                             <input type="text" wire:model='stock'
                                 class="border-0 px-3 py-3 placeholder-blueGray-300  rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                 value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
+                                @error('stock')
+                                <span class="text-white">{{$message}}</span>
+                            @enderror
                         </div>
                     </div>
                     <div class="w-full lg:w-4/12 px-4">
@@ -117,6 +135,9 @@
                             <input type="date" wire:model='tgl_perolehan'
                                 class="border-0 px-3 py-3 placeholder-blueGray-300  rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                 value="New York">
+                                @error('tgl_perolehan')
+                                <span class="text-white">{{$message}}</span>
+                            @enderror
                         </div>
                     </div>
                     <div class="w-full lg:w-12/12 px-4">
@@ -128,6 +149,9 @@
                             <input type="text" wire:model='deskripsi'
                                 class="border-0 px-3 py-3 placeholder-blueGray-300  rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                 value="United States">
+                                @error('deskripsi')
+                                <span class="text-white">{{$message}}</span>
+                            @enderror
                         </div>
                     </div>
                 </div>
