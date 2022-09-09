@@ -16,7 +16,7 @@ class ShoppingCart extends Component
     public $itemID;
 
     public function mount(){
-        abort_if(Auth::check() == false, 401);
+        abort_if(Auth::check() == false, 401, 'Maaf Silahkan Login Terlebih Dahulu', ['message'=> 'Akses Di Tolak']);
     }
     public function render()
     {

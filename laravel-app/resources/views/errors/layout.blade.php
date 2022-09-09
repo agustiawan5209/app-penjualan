@@ -1,53 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<x-guest-layout>
+<div class="container">
+    <div class="row justify-content-center  py-xl-5">
+        <div class="col-md-12 d-flex justify-content-center py-10">
+            <div class="error-template">
+                <h1>
+                    Oops!</h1>
+                <h2>
+                    @yield('message')</h2>
+                <div class="error-details">
 
-        <title>@yield('title')</title>
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 36px;
-                padding: 20px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            <div class="content">
-                <div class="title">
-                    @yield('message')
+                </div>
+                <div class="error-actions">
+                    <a href="{{ url()->previous() }}" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
+                        Kembali </a>
                 </div>
             </div>
         </div>
-    </body>
-</html>
+    </div>
+</div>
+    </x-guest-layout>
