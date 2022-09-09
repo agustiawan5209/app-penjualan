@@ -22,7 +22,7 @@
                                 Gambar
                             </label>
                             <input type="file" wire:model='gambar'
-                                class="border-0 px-3 py-3 placeholder-blueGray-300 text-white bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                class="border-0 px-3 py-3 placeholder-blueGray-300 bg-white text-black  rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                 value="lucky.jesse">
                         </div>
                     </div>
@@ -46,7 +46,7 @@
                                 Jenis
                             </label>
                             <select wire:model='jenis_id'
-                                class="border-0 px-3 py-3 placeholder-blueGray-300 text-white bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                                class="border-0 px-3 py-3 placeholder-blueGray-300  rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
                                 <option value="--">--</option>
                                 @foreach ($jenis as $item)
                                 <option value="{{$item->id}}">{{$item->nama_jenis}}</option>
@@ -61,7 +61,7 @@
                                 Satuan
                             </label>
                             <select wire:model='satuan_id'
-                                class="border-0 px-3 py-3 placeholder-blueGray-300 text-white bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                                class="border-0 px-3 py-3 placeholder-blueGray-300  rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
                                 <option value="--">--</option>
                                 @foreach ($satuan as $item)
                                 <option value="{{$item->id}}">{{$item->nama_satuan}}</option>
@@ -82,7 +82,7 @@
                                 Nama Barang
                             </label>
                             <input type="text" wire:model='nama_barang'
-                                class="border-0 px-3 py-3 placeholder-blueGray-300 text-white bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                class="border-0 px-3 py-3 placeholder-blueGray-300  rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                 value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
                         </div>
                     </div>
@@ -93,7 +93,7 @@
                                 Harga
                             </label>
                             <input type="text" wire:model='harga'
-                                class="border-0 px-3 py-3 placeholder-blueGray-300 text-white bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                class="border-0 px-3 py-3 placeholder-blueGray-300  rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                 value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
                         </div>
                     </div>
@@ -104,7 +104,7 @@
                                 Jumlah Stock
                             </label>
                             <input type="text" wire:model='stock'
-                                class="border-0 px-3 py-3 placeholder-blueGray-300 text-white bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                class="border-0 px-3 py-3 placeholder-blueGray-300  rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                 value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
                         </div>
                     </div>
@@ -115,7 +115,7 @@
                                 Tanggal Pembelian
                             </label>
                             <input type="date" wire:model='tgl_perolehan'
-                                class="border-0 px-3 py-3 placeholder-blueGray-300 text-white bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                class="border-0 px-3 py-3 placeholder-blueGray-300  rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                 value="New York">
                         </div>
                     </div>
@@ -126,7 +126,7 @@
                                 Deskripsi
                             </label>
                             <input type="text" wire:model='deskripsi'
-                                class="border-0 px-3 py-3 placeholder-blueGray-300 text-white bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                class="border-0 px-3 py-3 placeholder-blueGray-300  rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                 value="United States">
                         </div>
                     </div>
