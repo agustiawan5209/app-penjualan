@@ -71,7 +71,7 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * App\Models\DIskon
+ * App\Models\Diskon
  *
  * @property int $id
  * @property int $barang_id
@@ -81,19 +81,19 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Barang|null $barang
- * @method static \Database\Factories\DIskonFactory factory(...$parameters)
- * @method static \Illuminate\Database\Eloquent\Builder|DIskon newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|DIskon newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|DIskon query()
- * @method static \Illuminate\Database\Eloquent\Builder|DIskon whereBarangId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|DIskon whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|DIskon whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|DIskon whereJumlahDiskon($value)
- * @method static \Illuminate\Database\Eloquent\Builder|DIskon whereTglKadaluarsa($value)
- * @method static \Illuminate\Database\Eloquent\Builder|DIskon whereTglMulai($value)
- * @method static \Illuminate\Database\Eloquent\Builder|DIskon whereUpdatedAt($value)
+ * @method static \Database\Factories\DiskonFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Diskon newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Diskon newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Diskon query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Diskon whereBarangId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Diskon whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Diskon whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Diskon whereJumlahDiskon($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Diskon whereTglKadaluarsa($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Diskon whereTglMulai($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Diskon whereUpdatedAt($value)
  */
-	class DIskon extends \Eloquent {}
+	class Diskon extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -489,22 +489,10 @@ namespace App\Models{
 /**
  * App\Models\UsesUserVoucher
  *
- * @property int $id
- * @property int $user_id
- * @property int $voucher_id
- * @property string $status
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Database\Factories\UsesUserVoucherFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|UsesUserVoucher newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|UsesUserVoucher newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|UsesUserVoucher query()
- * @method static \Illuminate\Database\Eloquent\Builder|UsesUserVoucher whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|UsesUserVoucher whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|UsesUserVoucher whereStatus($value)
- * @method static \Illuminate\Database\Eloquent\Builder|UsesUserVoucher whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|UsesUserVoucher whereUserId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|UsesUserVoucher whereVoucherId($value)
  */
 	class UsesUserVoucher extends \Eloquent {}
 }

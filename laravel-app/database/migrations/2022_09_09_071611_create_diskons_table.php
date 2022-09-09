@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('diskons', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('barang_id')->constrained('barangs');
+            $table->unsignedBigInteger('barang_id');
+            $table->foreign('barang_id')->references('id')->on('barangs')->onDelete('cascade');
             $table->integer('jumlah_diskon');
             $table->date('tgl_mulai');
             $table->date('tgl_kadaluarsa');
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('d_iskons');
+        Schema::dropIfExists('diskons');
     }
 };
