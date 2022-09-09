@@ -98,4 +98,9 @@ class PagePromo extends Component
         session()->flash('message', 'Berhasil Di Edit');
         $this->itemHapus = false;
     }
+    public function closeModal(){
+        $this->itemAdd = false;
+        $this->itemEdit = false;
+        $this->itemHapus = false;
+    }
 }

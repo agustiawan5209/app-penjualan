@@ -1,5 +1,5 @@
 <div>
-
+@include('sweetalert::alert')
     <!-- Card stats -->
     <div class="flex flex-wrap py-10">
         <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
@@ -7,10 +7,10 @@
                 <div class="flex-auto p-4">
                     <div class="flex flex-wrap">
                         <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
-                            <h5 class="text-blueGray-400 uppercase font-bold text-xs">
+                            <h5 class="text-blue-darken uppercase font-bold text-xs">
                                 Traffic
                             </h5>
-                            <span class="font-semibold text-xl text-blueGray-700">
+                            <span class="font-semibold text-xl text-blue-darken">
                                 350,897
                             </span>
                         </div>
@@ -21,7 +21,7 @@
                             </div>
                         </div>
                     </div>
-                    <p class="text-sm text-blueGray-400 mt-4">
+                    <p class="text-sm text-white mt-4">
                         <span class="text-emerald-500 mr-2">
                             <i class="fas fa-arrow-up"></i> 3.48%
                         </span>
@@ -37,10 +37,10 @@
                 <div class="flex-auto p-4">
                     <div class="flex flex-wrap">
                         <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
-                            <h5 class="text-blueGray-400 uppercase font-bold text-xs">
+                            <h5 class="text-blue-darken uppercase font-bold text-xs">
                                 New users
                             </h5>
-                            <span class="font-semibold text-xl text-blueGray-700">
+                            <span class="font-semibold text-xl text-blue-darken">
                                 2,356
                             </span>
                         </div>
@@ -51,9 +51,9 @@
                             </div>
                         </div>
                     </div>
-                    <p class="text-sm text-blueGray-400 mt-4">
+                    <p class="text-sm text-white mt-4">
                         <span class="text-red-500 mr-2">
-                            <i class="fas fa-arrow-down"></i> 3.48%
+                            <i class="fas fa-arrow-down "></i> 3.48%
                         </span>
                         <span class="whitespace-nowrap"> Since last week </span>
                     </p>
@@ -65,10 +65,10 @@
                 <div class="flex-auto p-4">
                     <div class="flex flex-wrap">
                         <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
-                            <h5 class="text-blueGray-400 uppercase font-bold text-xs">
+                            <h5 class="text-blue-darken uppercase font-bold text-xs">
                                 Sales
                             </h5>
-                            <span class="font-semibold text-xl text-blueGray-700">
+                            <span class="font-semibold text-xl text-blue-darken">
                                 924
                             </span>
                         </div>
@@ -79,7 +79,7 @@
                             </div>
                         </div>
                     </div>
-                    <p class="text-sm text-blueGray-400 mt-4">
+                    <p class="text-sm text-white mt-4">
                         <span class="text-orange-500 mr-2">
                             <i class="fas fa-arrow-down"></i> 1.10%
                         </span>
@@ -93,21 +93,21 @@
                 <div class="flex-auto p-4">
                     <div class="flex flex-wrap">
                         <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
-                            <h5 class="text-blueGray-400 uppercase font-bold text-xs">
+                            <h5 class="text-blue-darken uppercase font-bold text-xs">
                                 Performance
                             </h5>
-                            <span class="font-semibold text-xl text-blueGray-700">
+                            <span class="font-semibold text-xl text-blue-darken">
                                 49,65%
                             </span>
                         </div>
                         <div class="relative w-auto pl-4 flex-initial">
                             <div
-                                class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-lightBlue-500">
+                                class="text-blue-darken p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-lightBlue-500">
                                 <i class="fas fa-percent"></i>
                             </div>
                         </div>
                     </div>
-                    <p class="text-sm text-blueGray-400 mt-4">
+                    <p class="text-sm text-white mt-4">
                         <span class="text-emerald-500 mr-2">
                             <i class="fas fa-arrow-up"></i> 12%
                         </span>
@@ -130,7 +130,7 @@
                             <h6 class="uppercase text-blueGray-100 mb-1 text-xs font-semibold">
                                 Overview
                             </h6>
-                            <h2 class="text-white text-xl font-semibold">
+                            <h2 class="text-blue-darken text-xl font-semibold">
                                 Sales value
                             </h2>
                         </div>
@@ -149,10 +149,10 @@
                 <div class="rounded-t mb-0 px-4 py-3 bg-transparent">
                     <div class="flex flex-wrap items-center">
                         <div class="relative w-full max-w-full flex-grow flex-1">
-                            <h6 class="uppercase text-blueGray-400 mb-1 text-xs font-semibold">
+                            <h6 class="uppercase text-blue-darken mb-1 text-xs font-semibold">
                                 Performance
                             </h6>
-                            <h2 class="text-blueGray-700 text-xl font-semibold">
+                            <h2 class="text-blue-darken text-xl font-semibold">
                                 Total orders
                             </h2>
                         </div>

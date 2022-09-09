@@ -44,27 +44,27 @@
             </x-slot>
         </x-jet-dialog-modal>
         <button wire:click='TambahModal()'
-            class="bg-white text-blue-400 shadow-lg font-normal w-32 py-2 rounded-md items-center justify-center align-center outline-none focus:outline-none mr-2"
+            class="bg-white text-black shadow-lg font-normal w-32 py-2 rounded-md items-center justify-center align-center outline-none focus:outline-none mr-2"
             type="button">
             Tambah Barang
         </button>
         <button wire:click='tambahJenis()'
-            class="bg-white text-blue-400 shadow-lg font-normal w-32 py-2 rounded-md items-center justify-center align-center outline-none focus:outline-none mr-2"
+            class="bg-white text-black shadow-lg font-normal w-32 py-2 rounded-md items-center justify-center align-center outline-none focus:outline-none mr-2"
             type="button">
             Tambah Jenis
         </button>
         <a href="{{route('Admin.Page-Promo')}}"
-            class="bg-white text-center text-blue-600 shadow-lg font-normal w-32 py-2 rounded-md items-center justify-center align-center outline-none focus:outline-none mr-2"
+            class="bg-white text-center text-black shadow-lg font-normal w-32 py-2 rounded-md items-center justify-center align-center outline-none focus:outline-none mr-2"
             type="button">
             Promo
         </a>
         <a href="{{route('Admin.Page-Voucher')}}"
-            class="bg-white text-center text-pink-400 shadow-lg font-normal w-32 py-2 rounded-md items-center justify-center align-center outline-none focus:outline-none mr-2"
+            class="bg-white text-center text-black shadow-lg font-normal w-32 py-2 rounded-md items-center justify-center align-center outline-none focus:outline-none mr-2"
             type="button">
             Voucher
         </a>
         <a href="{{route('Admin.Page-Diskon')}}"
-            class="bg-white text-center text-gray-800 shadow-lg font-normal w-32 py-2 rounded-md items-center justify-center align-center outline-none focus:outline-none mr-2"
+            class="bg-white text-center text-black shadow-lg font-normal w-32 py-2 rounded-md items-center justify-center align-center outline-none focus:outline-none mr-2"
             type="button">
             Diskon
         </a>
