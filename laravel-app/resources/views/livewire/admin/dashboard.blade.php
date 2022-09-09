@@ -186,16 +186,16 @@
             </div>
             <div class="w-full md:w-8/12 px-4">
                 <ul class="flex flex-wrap list-none md:justify-end justify-center">
-                    <li>
+                    {{-- <li>
                         <a href="https://www.creative-tim.com?ref=njs-dashboard"
                             class="text-gray-600 hover:text-gray-800 text-sm font-semibold block py-1 px-3">
                             Creative Tim
                         </a>
-                    </li>
+                    </li> --}}
                     <li>
                         <a href="https://www.creative-tim.com/presentation?ref=njs-dashboard"
                             class="text-gray-600 hover:text-gray-800 text-sm font-semibold block py-1 px-3">
-                            About Us
+                            Tentang Kmai
                         </a>
                     </li>
                     <li>

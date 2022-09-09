@@ -14,6 +14,10 @@ class ShoppingCart extends Component
     public $quantity = 1;
     public $Keranjang = false;
     public $itemID;
+
+    public function mount(){
+        abort_if(Auth::check() == false, 401);
+    }
     public function render()
     {
         // dd($this->cartItems);

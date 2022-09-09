@@ -42,9 +42,9 @@
                 <div>
                     <i class="fa fa-envelope mx-2"></i>
                     <a class="navbar-sm-brand text-light text-decoration-none"
-                        href="{{route('login')}}">Login</a>
+                        href="{{route('login')}}">Masuk</a>
                     <i class="fa fa-phone mx-2"></i>
-                    <a class="navbar-sm-brand text-light text-decoration-none" href="{{route('register')}}">Register</a>
+                    <a class="navbar-sm-brand text-light text-decoration-none" href="{{route('register')}}">Daftar</a>
                 </div>
                 <div>
                     <a class="text-light" href="https://fb.com/templatemo" target="_blank" rel="sponsored"><i
@@ -84,13 +84,13 @@
                             <a class="nav-link" href="/">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('about') }}">About</a>
+                            <a class="nav-link" href="{{ route('about') }}">Tentang Kami</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('shop') }}">Shop</a>
+                            <a class="nav-link" href="{{ route('shop') }}">Belanja</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('contact') }}">Contact</a>
+                            <a class="nav-link" href="{{ route('contact') }}">Kontak</a>
                         </li>
                     </ul>
                 </div>
@@ -103,17 +103,17 @@
                             </div>
                         </div>
                     </div>
-                    <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal"
+                    <a class="nav-icon d-none d-lg-inline text-blue-darken" href="#" data-bs-toggle="modal"
                         data-bs-target="#templatemo_search">
-                        <i class="fa fa-fw fa-search text-dark mr-2"></i>
+                        <i class="fa fa-fw fa-search text-blue-darken mr-2"></i>
                     </a>
                     <a class="nav-icon position-relative text-decoration-none" href="{{ route('Keranjang') }}">
-                        <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
+                        <i class="fa fa-fw fa-cart-arrow-down text-blue-darken mr-1"></i>
                         {{-- <span
-                            class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span> --}}
+                            class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-blue-darken">7</span> --}}
                     </a>
                     <a class="nav-icon position-relative text-decoration-none" href="#">
-                        <i class="fa fa-fw fa-user text-dark mr-3"></i>
+                        <i class="fa fa-fw fa-user text-blue-darken mr-3"></i>
                         {{-- <span
                             class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+99</span> --}}
                     </a>
@@ -171,8 +171,8 @@
                     </ul>
                 </div>
 
-                <div class="col-md-4 pt-5">
-                    <h2 class="h2 text-light border-bottom pb-3 border-light">Products</h2>
+                {{-- <div class="col-md-4 pt-5">
+                    <h2 class="h2 text-light border-bottom pb-3 border-light">Produk Kami</h2>
                     <ul class="list-unstyled text-light footer-link-list">
                         <li><a class="text-decoration-none" href="#">Luxury</a></li>
                         <li><a class="text-decoration-none" href="#">Sport Wear</a></li>
@@ -188,16 +188,16 @@
                     <h2 class="h2 text-light border-bottom pb-3 border-light">Further Info</h2>
                     <ul class="list-unstyled text-light footer-link-list">
                         <li><a class="text-decoration-none" href="#">Home</a></li>
-                        <li><a class="text-decoration-none" href="#">About Us</a></li>
+                        <li><a class="text-decoration-none" href="#">Tentang Kami</a></li>
                         <li><a class="text-decoration-none" href="#">Shop Locations</a></li>
                         <li><a class="text-decoration-none" href="#">FAQs</a></li>
                         <li><a class="text-decoration-none" href="#">Contact</a></li>
                     </ul>
-                </div>
+                </div> --}}
 
             </div>
 
-            <div class="row text-light mb-4">
+            {{-- <div class="row text-light mb-4">
                 <div class="col-12 mb-3">
                     <div class="w-100 my-3 border-top border-light"></div>
                 </div>
@@ -229,7 +229,7 @@
                         <div class="input-group-text btn-blue-dark text-light">Subscribe</div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
 
         <div class="w-100 bg-black py-3">
@@ -237,7 +237,7 @@
                 <div class="row pt-2">
                     <div class="col-12">
                         <p class="text-left text-light">
-                            Copyright &copy; 2021 Company Name
+                            Copyright &copy; 2021 didiJaya
                             | Designed by <a rel="sponsored" href="https://templatemo.com"
                                 target="_blank">TemplateMo</a>
                         </p>
