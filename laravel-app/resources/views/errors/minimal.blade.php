@@ -11,8 +11,10 @@
 
                     </div>
                     <div class="error-actions">
-                        <a href="{{ url()->previous() }}" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
-                            Kembali </a>
+                        <a href="{{ route('login') }}" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
+                            Masuk </a>
+                        <a href="{{ route('register') }}" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
+                            Daftar </a>
                     </div>
                 </div>
             </div>
