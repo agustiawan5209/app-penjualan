@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Page;
+namespace App\Http\Livewire;
 
 use App\Models\Jenis;
 use App\Models\Barang;
@@ -9,24 +9,16 @@ use App\Models\Keranjang;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class PageShop extends Component
+class PageSearchkatalog extends Component
 {
-
     public $showDetail = false;
-    public $itemID;
     public $alert = false;
-
-    // get Param URL
-    public $nama_jenis;
-    public function mount(){
+    public $itemID, $nama_jenis;
+    public function mount($id ,$nama_jenis){
+        $this->itemID = $id;
+        $this->nama_jenis = $nama_jenis;
     }
-    /**
-     * ShowDetail
-     * Tampilkan Halaman Detail
-     * PageDetailShop.php
-     * @param  mixed $id
-     * @return void
-     */
+
     public function ShowDetail($id)
     {
         $this->showDetail = true;
@@ -35,9 +27,9 @@ class PageShop extends Component
 
     public function render()
     {
-        $produk = Barang::all();
+        $produk = Barang::where('jenis_id', $this->itemID)->get();
         $jenis = Jenis::all();
-        return view('livewire.page.page-shop', [
+        return view('livewire.page-searchkatalog', [
             'produk' => $produk,
             'jenis' => $jenis,
         ])->layout('layouts.guest');

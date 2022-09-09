@@ -23,7 +23,7 @@
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
-    <link rel="stylesheet" href="css/fontawesome.min.css">
+    <link rel="stylesheet" href="{{asset('css/fontawesome.min.css')}}">
 
     <!-- Load map styles -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
@@ -67,7 +67,7 @@
         <div class="container d-flex justify-content-between align-items-center">
 
             <a class="navbar-brand text-orange-dark logo h1 align-self-center" href="/">
-                <span class="text-orange-dark">didi</span><span class="text-blue-dark">Jaya</span>
+                <span class="text-orange-dark">Irsan</span><span class="text-blue-dark">Jaya</span>
             </a>
 
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
@@ -154,7 +154,7 @@
             <div class="row">
 
                 <div class="col-md-4 pt-5">
-                    <h2 class="h2 text-orange-dark border-bottom pb-3 border-light logo"><span class="text-orange-dark">didi</span><span class="text-blue-dark">Jaya</span> <span class="text-white">Shop</span></h2>
+                    <h2 class="h2 text-orange-dark border-bottom pb-3 border-light logo"><span class="text-orange-dark">Irsan</span><span class="text-blue-dark">Jaya</span> <span class="text-white">Shop</span></h2>
                     <ul class="list-unstyled text-light footer-link-list">
                         <li>
                             <i class="fas fa-map-marker-alt fa-fw"></i>
@@ -237,7 +237,7 @@
                 <div class="row pt-2">
                     <div class="col-12">
                         <p class="text-left text-light">
-                            Copyright &copy; 2021 didiJaya
+                            Copyright &copy; 2021 IrsanJaya
                             | Designed by <a rel="sponsored" href="https://templatemo.com"
                                 target="_blank">TemplateMo</a>
                         </p>
@@ -250,12 +250,12 @@
     <!-- End Footer -->
 
     <!-- Start Script -->
-    <script src="js/jquery-1.11.0.min.js"></script>
-    <script src="js/jquery-migrate-1.2.1.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/templatemo.js"></script>
-    <script src="js/custom.js"></script>
-    <script src="js/slick.min.js"></script>
+    <script src="{{asset('js/jquery-1.11.0.min.js')}}"></script>
+    <script src="{{asset('js/jquery-migrate-1.2.1.min.js')}}"></script>
+    <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('js/templatemo.js')}}"></script>
+    <script src="{{asset('js/custom.js')}}"></script>
+    <script src="{{asset('js/slick.min.js')}}"></script>
     <!-- End Script -->
     <script>
         $('#carousel-related-product').slick({

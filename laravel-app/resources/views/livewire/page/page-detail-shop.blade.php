@@ -107,22 +107,22 @@
                         <div class="card-body">
                             <h1 class="h2">{{$barang->nama_barang}}</h1>
                             <p class="h3 py-2">{{number_format($barang->harga, 0,2)}}</p>
-                            <p class="py-2">
+                            {{-- <p class="py-2">
                                 <i class="fa fa-star text-warning"></i>
                                 <i class="fa fa-star text-warning"></i>
                                 <i class="fa fa-star text-warning"></i>
                                 <i class="fa fa-star text-warning"></i>
                                 <i class="fa fa-star text-secondary"></i>
                                 <span class="list-inline-item text-dark">Rating 4.8 | 36 Comments</span>
-                            </p>
-                            <ul class="list-inline">
+                            </p> --}}
+                            {{-- <ul class="list-inline">
                                 <li class="list-inline-item">
                                     <h6>Brand:</h6>
                                 </li>
                                 <li class="list-inline-item">
                                     <p class="text-muted"><strong>Easy Wear</strong></p>
                                 </li>
-                            </ul>
+                            </ul> --}}
 
                             <h6>Description:</h6>
                             <p>{{$barang->deskripsi}}.</p>
@@ -149,7 +149,7 @@
                             <form action="" method="GET">
                                 <input type="hidden" name="product-title" value="Activewear">
                                 <div class="row">
-                                    <div class="col-auto">
+                                    {{-- <div class="col-auto">
                                         <ul class="list-inline pb-3">
                                             <li class="list-inline-item">Size :
                                                 <input type="hidden" name="product-size" id="product-size" value="S">
@@ -159,25 +159,25 @@
                                             <li class="list-inline-item"><span class="btn btn-orange-dark btn-size">L</span></li>
                                             <li class="list-inline-item"><span class="btn btn-orange-dark btn-size">XL</span></li>
                                         </ul>
-                                    </div>
+                                    </div> --}}
                                     <div class="col-auto">
                                         <ul class="list-inline pb-3">
                                             <li class="list-inline-item text-right">
                                                 Jumlah
                                                 <input type="hidden" name="product-quanity" id="product-quanity" value="1">
                                             </li>
-                                            <li class="list-inline-item"><span class="btn btn-orange-dark" id="btn-minus">-</span></li>
-                                            <li class="list-inline-item"><span class="badge bg-secondary" id="var-value">1</span></li>
-                                            <li class="list-inline-item"><span class="btn btn-orange-dark" id="btn-plus">+</span></li>
+                                            <li class="list-inline-item"><span class="btn btn-blue-dark" id="btn-minus" wire:click='countminus'>-</span></li>
+                                            <li class="list-inline-item"><span class="badge bg-secondary" id="var-value" >{{$count}}</span></li>
+                                            <li class="list-inline-item"><span class="btn btn-blue-dark" id="btn-plus" wire:click='countplus'>+</span></li>
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="row pb-3">
+                                    {{-- <div class="col d-grid">
+                                        <button type="button" class="btn btn-blue-dark btn-lg" name="button" value="buy">Beli</button>
+                                    </div> --}}
                                     <div class="col d-grid">
-                                        <button type="button" class="btn btn-orange-dark btn-lg" name="button" value="buy">Beli</button>
-                                    </div>
-                                    <div class="col d-grid">
-                                        <button type="button"  wire:click='addToCart({{$barang->id}})' class="btn btn-orange-dark btn-lg" name="button" value="addtocard">Masukan Keranjang</button>
+                                        <button type="button"  wire:click='addToCart({{$barang->id}})' class="btn btn-blue-dark btn-lg" name="button" value="addtocard">Masukan Keranjang</button>
                                     </div>
                                 </div>
                             </form>

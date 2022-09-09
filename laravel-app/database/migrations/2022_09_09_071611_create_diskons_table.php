@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('jumlah_diskon');
             $table->date('tgl_mulai');
             $table->date('tgl_kadaluarsa');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

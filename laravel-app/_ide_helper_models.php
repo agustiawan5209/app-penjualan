@@ -84,6 +84,7 @@ namespace App\Models{
  * @method static \Database\Factories\DiskonFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Diskon newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Diskon newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Diskon onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Diskon query()
  * @method static \Illuminate\Database\Eloquent\Builder|Diskon whereBarangId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Diskon whereCreatedAt($value)
@@ -92,6 +93,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Diskon whereTglKadaluarsa($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Diskon whereTglMulai($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Diskon whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|Diskon withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Diskon withoutTrashed()
  */
 	class Diskon extends \Eloquent {}
 }

@@ -11,6 +11,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 class PageDetailShop extends Component
 {
     public $itemID;
+    public $count= 1;
     public function mount($itemID){
         $this->itemID = $itemID;
     }
@@ -19,7 +20,7 @@ class PageDetailShop extends Component
         $barang = Barang::find($this->itemID);
         return view('livewire.page.page-detail-shop',[
             'barang'=> $barang,
-        ]);
+        ])->layout('layouts.guest');
     }
     public function addToCart($id)
     {
@@ -27,20 +28,39 @@ class PageDetailShop extends Component
         if (Auth::check()) {
             $userID = auth()->user()->id;
             $barang = Barang::find($id);
+
+            // Cek Diskon
+
             if(1 <= 0){
                 Alert::info('Stock Habis', 'Stock Tidak Cukup');
             }else{
               $cat = Keranjang::create([
                 'user_id'=> $userID,
                 'barang_id'=>$barang->id,
-                'quantity'=> 1,
+                'quantity'=> $this->count,
                 'sub_total'=> $barang->harga,
               ]);
                 // dd($cat);
-                return redirect('/')->with('message', $cat ? 'Berhasil Di Masukkan Ke Keranjang' : 'gagal');
+                $this->count = 1;
+                toast('Signed in successfully','success')->timerProgressBar();
+                return redirect('/')->route('Keranjang')->withToastSuccess('Task Created Successfully!')->timerProgressBar();
             }
         } else {
             Alert::error('Akses Ditolak', 'Silahkan Login terlebih Dahulu');
+        }
+    }
+
+    public function countplus(){
+        $barang = Barang::find($this->itemID);
+        if($barang->stock > $this->count){
+            $this->count++;
+        }
+    }
+    public function countminus(){
+        if( $this->count > 0){
+            $this->count--;
+        }else{
+            $this->count = 1;
         }
     }
 }

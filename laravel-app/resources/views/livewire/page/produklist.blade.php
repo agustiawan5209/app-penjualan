@@ -15,7 +15,7 @@
             <div class=" col-auto p-5 mt-3">
                 {{-- <a href="#"><img src="./img/category_img_01.jpg" class="rounded-circle img-fluid border"></a> --}}
                 <h5 class="text-center mt-3 mb-3">{{$jenis->nama_jenis}}</h5>
-                <p class="text-center"><a class="btn btn-blue-dark">Go Shop</a></p>
+                <p class="text-center"><a href="{{route('katalog', ['id'=> $jenis->id, 'nama_jenis'=> $jenis->nama_jenis])}}" class="btn btn-blue-dark" >Belanja</a></p>
             </div>
         @endforeach
     </div>
@@ -28,86 +28,40 @@
     <div class="container py-5">
         <div class="row text-center py-3">
             <div class="col-lg-6 m-auto">
-                <h1 class="h1">Produk Yang Tersedia</h1>
-                <p>
+                <h1 class="h1">Produk Terlaris</h1>
+                {{-- <p>
                     Reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
                     Excepteur sint occaecat cupidatat non proident.
-                </p>
+                </p> --}}
             </div>
         </div>
         <div class="row">
-            <div class="col-12 col-md-4 mb-4">
-                <div class="card h-100">
-                    <a href="{{route('shop-single')}}">
-                        <img src="./img/feature_prod_01.jpg" class="card-img-top" alt="...">
-                    </a>
-                    <div class="card-body">
-                        <ul class="list-unstyled d-flex justify-content-between">
-                            <li>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-muted fa fa-star"></i>
-                                <i class="text-muted fa fa-star"></i>
-                            </li>
-                            <li class="text-muted text-right">$240.00</li>
-                        </ul>
-                        <a href="{{route('shop-single')}}" class="h2 text-decoration-none text-dark">Gym Weight</a>
-                        <p class="card-text">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt in culpa qui officia deserunt.
-                        </p>
-                        <p class="text-muted">Reviews (24)</p>
+            @foreach ($produk as $barang)
+                <div class="col-12 col-md-4 mb-4">
+                    <div class="card h-100">
+                        <a href="{{route('shop-single')}}">
+                            <img src="{{asset('upload/'. $barang->gambar)}}" class="card-img-top" alt="...">
+                        </a>
+                        <div class="card-body">
+                            <ul class="list-unstyled d-flex justify-content-between">
+                                {{-- <li>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-muted fa fa-star"></i>
+                                    <i class="text-muted fa fa-star"></i>
+                                </li> --}}
+                                <li class="text-muted text-right">Rp. {{number_format($barang->harga,0,2)}}</li>
+                            </ul>
+                            <a href="{{route('Shop-detail', ['itemID'=> $barang->id])}}" class="h2 text-decoration-none text-dark">{{$barang->nama_barang}}</a>
+                            <p class="card-text">
+                               {{$barang->deskripsi}}
+                            </p>
+                            <p class="text-muted">Reviews (24)</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-12 col-md-4 mb-4">
-                <div class="card h-100">
-                    <a href="{{route('shop-single')}}">
-                        <img src="./img/feature_prod_02.jpg" class="card-img-top" alt="...">
-                    </a>
-                    <div class="card-body">
-                        <ul class="list-unstyled d-flex justify-content-between">
-                            <li>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-muted fa fa-star"></i>
-                                <i class="text-muted fa fa-star"></i>
-                            </li>
-                            <li class="text-muted text-right">$480.00</li>
-                        </ul>
-                        <a href="{{route('shop-single')}}" class="h2 text-decoration-none text-dark">Cloud Nike Shoes</a>
-                        <p class="card-text">
-                            Aenean gravida dignissim finibus. Nullam ipsum diam, posuere vitae pharetra sed, commodo ullamcorper.
-                        </p>
-                        <p class="text-muted">Reviews (48)</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-4 mb-4">
-                <div class="card h-100">
-                    <a href="{{route('shop-single')}}">
-                        <img src="./img/feature_prod_03.jpg" class="card-img-top" alt="...">
-                    </a>
-                    <div class="card-body">
-                        <ul class="list-unstyled d-flex justify-content-between">
-                            <li>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                            </li>
-                            <li class="text-muted text-right">$360.00</li>
-                        </ul>
-                        <a href="{{route('shop-single')}}" class="h2 text-decoration-none text-dark">Summer Addides Shoes</a>
-                        <p class="card-text">
-                            Curabitur ac mi sit amet diam luctus porta. Phasellus pulvinar sagittis diam, et scelerisque ipsum lobortis nec.
-                        </p>
-                        <p class="text-muted">Reviews (74)</p>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>

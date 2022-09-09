@@ -82,7 +82,7 @@
                                               <span class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
                                           </li>
                                       </ul>
-                                      <ul class="list-unstyled d-flex justify-content-center mb-1">
+                                      {{-- <ul class="list-unstyled d-flex justify-content-center mb-1">
                                           <li>
                                               <i class="text-warning fa fa-star"></i>
                                               <i class="text-warning fa fa-star"></i>
@@ -90,8 +90,8 @@
                                               <i class="text-muted fa fa-star"></i>
                                               <i class="text-muted fa fa-star"></i>
                                           </li>
-                                      </ul>
-                                      <p class="text-center mb-0">{{$barang->harga}}</p>
+                                      </ul> --}}
+                                      <p class="text-center mb-0">Rp. {{number_format($barang->harga,0,2)}}</p>
                                   </div>
                               </div>
                           </div>

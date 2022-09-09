@@ -11,8 +11,10 @@ use App\Http\Livewire\Admin\PagePenjualan;
 use App\Http\Livewire\Admin\PagePromo;
 use App\Http\Livewire\Admin\PageVOucher;
 use App\Http\Livewire\Page\HalamanUtama;
+use App\Http\Livewire\Page\PageDetailShop;
 use App\Http\Livewire\Page\PageShop;
 use App\Http\Livewire\Page\ShoppingCart;
+use App\Http\Livewire\PageSearchkatalog;
 use App\Http\Livewire\User\Dashboard as UserDashboard;
 use Illuminate\Support\Facades\Route;
 
@@ -57,6 +59,10 @@ Route::middleware([
 });
 Route::get('stock/chart',[StatusBarangController::class, 'chart']);
 Route::get('Keranjang', ShoppingCart::class)->name('Keranjang');
+Route::get('shop' , PageShop::class)->name('shop');
+Route::get('katalog/{id}/{nama_jenis}' , PageSearchkatalog::class)->name('katalog');
+Route::get('Detail/{itemID}', PageDetailShop::class)->name('Shop-detail');
+
 
 Route::get('about' , function(){
     return view('about');
@@ -67,4 +73,3 @@ Route::get('contact' , function(){
 Route::get('shop-single' , function(){
     return view('shop-single');
 })->name('shop-single');
-Route::get('shop' , PageShop::class)->name('shop');
