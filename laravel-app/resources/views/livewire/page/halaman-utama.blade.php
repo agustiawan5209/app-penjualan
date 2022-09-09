@@ -16,12 +16,10 @@
                     </div>
                     <div class="col-lg-6 mb-0 d-flex align-items-center">
                         <div class="text-align-left align-self-center">
-                            <h1 class="h1 text-orange-dark"><b>didiJaya</b> eCommerce</h1>
-                            <h3 class="h2">Tiny and Perfect eCommerce Template</h3>
+                            <h1 class="h1 text-orange-dark"><b>didiJaya</b> Toko Bangunan</h1>
+                            <h3 class="h2"></h3>
                             <p>
-                                didiJaya Shop is an eCommerce HTML5 CSS template with latest version of Bootstrap 5 (beta 1).
-                                This template is 100% free provided by <a rel="sponsored" class="text-orange-dark" href="https://templatemo.com" target="_blank">TemplateMo</a> website.
-                                Image credits go to <a rel="sponsored" class="text-orange-dark" href="https://stories.freepik.com/" target="_blank">Freepik Stories</a>,
+                                didiJaya Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis voluptate obcaecati quibusdam perferendis voluptates consequatur quod corporis similique temporibus voluptatem, assumenda necessitatibus voluptatibus qui animi quis commodi! Voluptates magnam, asperiores esse quos inventore quia debitis velit ratione fuga labore vitae distinctio animi, error accusamus obcaecati alias ad nostrum accusantium temporibus? <a rel="sponsored" class="text-orange-dark" href="https://stories.freepik.com/" target="_blank">Freepik Stories</a>,
                                 <a rel="sponsored" class="text-orange-dark" href="https://unsplash.com/" target="_blank">Unsplash</a> and
                                 <a rel="sponsored" class="text-orange-dark" href="https://icons8.com/" target="_blank">Icons 8</a>.
                             </p>
@@ -30,7 +28,7 @@
                 </div>
             </div>
         </div>
-        <div class="carousel-item">
+        {{-- <div class="carousel-item">
             <div class="container">
                 <div class="row p-5">
                     <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
@@ -67,7 +65,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
     <a class="carousel-control-prev text-decoration-none w-auto ps-3" href="#template-mo-didiJaya-hero-carousel" role="button" data-bs-slide="prev">
         <i class="fas fa-chevron-left"></i>

@@ -21,7 +21,8 @@ Custom Css
 }
 
 .btn-blue-dark {
-    background-color: #274d6b;
+    background-color: #274d6b !important;
+    color: #ffffff !important;
 }
 
 .btn-blue-dark:hover {
