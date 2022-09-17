@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('slides', function (Blueprint $table) {
             $table->id();
+            $table->string('slide');
+            $table->string('deskripsi');
+            $table->string('thumbnail');
             $table->timestamps();
         });
     }
