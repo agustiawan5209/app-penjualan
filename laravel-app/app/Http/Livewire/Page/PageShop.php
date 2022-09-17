@@ -7,7 +7,7 @@ use App\Models\Barang;
 use Livewire\Component;
 use App\Models\Keranjang;
 use Illuminate\Support\Facades\Auth;
-use RealRashid\SweetAlert\Facades\Alert;
+use Alert;
 
 class PageShop extends Component
 {
@@ -66,14 +66,14 @@ class PageShop extends Component
                         'sub_total' => $barang->harga,
                     ]);
                     // dd($cat);
-                    toast('Pemesanan Berhasil Cek Pesanan Anda', 'info')->timerProgressBar();
+                    Alert::info('Pemesanan Berhasil Cek Pesanan Anda', 'info');
                     return redirect('/');
                 }
             }
         } else {
             // Alert::error('Akses Ditolak', 'Silahkan Login terlebih Dahulu');
             // example:
-            toast('Maaf Silahkan Login Terlebih Dahulu', 'error')->timerProgressBar();
+            Alert::info('Maaf Silahkan Login Terlebih Dahulu', 'error');
         }
     }
 }

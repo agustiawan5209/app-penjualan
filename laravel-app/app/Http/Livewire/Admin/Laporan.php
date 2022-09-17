@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin;
 
+use Alert;
 use Livewire\Component;
 
 class Laporan extends Component
@@ -12,6 +13,7 @@ class Laporan extends Component
         return view('livewire.admin.laporan');
     }
     public function OpenLaporan(){
+        Alert::info('info', 'berhasil');
         $this->openLaporan = true;
     }
 }

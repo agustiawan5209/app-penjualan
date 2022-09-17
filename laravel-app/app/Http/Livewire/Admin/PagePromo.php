@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin;
 use App\Models\Promo;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Alert;
 
 class PagePromo extends Component
 {
@@ -47,6 +48,8 @@ class PagePromo extends Component
     }
     public function HapusModal($id)
     {
+        // dd('1');
+        Alert::success('message', 'Berhasil Di Edit');
         $promo = Promo::find($id);
         $this->itemID = $promo->id;
         $this->hapusItem = true;
@@ -57,7 +60,7 @@ class PagePromo extends Component
     public function create()
     {
         $this->validate([
-            'kode_promo' => 'required|unique:promo.kode_promo',
+            'kode_promo' => 'required',
             'tgl_mulai' => 'required',
             'tgl_kadaluarsa' => 'required',
             'max_user' => 'required',
@@ -70,7 +73,7 @@ class PagePromo extends Component
             'tgl_kadaluarsa' => $this->tgl_kadaluarsa,
             'max_user' => $this->max_user,
         ]);
-        session()->flash('message', 'Berhasil Di Tambah');
+        Alert::info('message', 'Berhasil Di Tambah');
         $this->itemAdd = false;
     }
     public function edit($id)
@@ -89,13 +92,13 @@ class PagePromo extends Component
             'tgl_kadaluarsa' => $this->tgl_kadaluarsa,
             'max_user' => $this->max_user,
         ]);
-        session()->flash('message', 'Berhasil Di Edit');
+        Alert::info('message', 'Berhasil Di Edit');
         $this->itemEdit = false;
     }
     public function delete($id)
     {
         Promo::where('id', $id)->delete();
-        session()->flash('message', 'Berhasil Di Edit');
+        Alert::info('message', 'Berhasil Di Edit');
         $this->itemHapus = false;
     }
     public function closeModal(){

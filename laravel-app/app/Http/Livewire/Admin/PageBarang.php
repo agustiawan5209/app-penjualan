@@ -8,7 +8,7 @@ use App\Models\Satuan;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
-use RealRashid\SweetAlert\Facades\Alert;
+use Alert;
 use Storage;
 
 class PageBarang extends Component

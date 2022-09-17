@@ -1,5 +1,6 @@
 <div>
-
+    @include('sweetalert::alert')
+    <br><br><br>
     <x-jet-secondary-button wire:click='OpenLaporan' class="shadow-sm shadow-white">Click Me!</x-jet-secondary-button>
 
     <x-jet-dialog-modal wire:model='openLaporan'>

@@ -18,7 +18,7 @@
     @livewireStyles
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" />
     <link rel="stylesheet" href="{{asset('@fortawesome/fontawesome-free/css/all.min.css')}}" />
-    <script src="{{asset('js/sweetalert.all.js')}}"></script>
+    <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
     <script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
 </head>
 
@@ -241,73 +241,50 @@
     @livewireScripts
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" charset="utf-8"></script>
-    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
-    <script type="text/javascript">
-        /* Make dynamic date appear */
-        (function () {
-          if (document.getElementById("get-current-year")) {
-            document.getElementById("get-current-year").innerHTML =
-              new Date().getFullYear();
-          }
-        })();
-        /* Sidebar - Side navigation menu on mobile/responsive mode */
-        function toggleNavbar(collapseID) {
-          document.getElementById(collapseID).classList.toggle("hidden");
-          document.getElementById(collapseID).classList.toggle("bg-white");
-          document.getElementById(collapseID).classList.toggle("m-2");
-          document.getElementById(collapseID).classList.toggle("py-3");
-          document.getElementById(collapseID).classList.toggle("px-6");
-        }
-        /* Function for dropdowns */
-        function openDropdown(event, dropdownID) {
-          let element = event.target;
-          while (element.nodeName !== "A") {
-            element = element.parentNode;
-          }
-          Popper.createPopper(element, document.getElementById(dropdownID), {
-            placement: "bottom-start"
-          });
-          document.getElementById(dropdownID).classList.toggle("hidden");
-          document.getElementById(dropdownID).classList.toggle("block");
-        }
-
-        var url = "{{url('stock/chart')}}";
-        var Years = new Array();
-        var Labels = new Array();
-        var Prices = new Array();
-        $(document).ready(function(){
-          $.get(url, function(response){
-            response.forEach(function(data){
-                Years.push(data.tgl_perolehan);
-                Labels.push(data.id);
-                Prices.push(data.harga);
-                console.log(data.updated_at)
-            });
-            var ctx = document.getElementById("bar-chart").getContext('2d');
-                var myChart = new Chart(ctx, {
-                  type: 'bar',
-                  data: {
-                      labels:Years,
-                      datasets: [{
-                          label: 'Infosys Price',
-                          data: Prices,
-                          borderWidth: 1
-                      }]
-                  },
-                  options: {
-                      scales: {
-                          yAxes: [{
-                              ticks: {
-                                  beginAtZero:true
-                              }
-                          }]
-                      }
-                  }
-              });
-          });
-        });
-    </script>
+    <footer class="block py-4">
+        <div class="container mx-auto px-4">
+            <hr class="mb-4 border-b-1 border-gray-200" />
+            <div class="flex flex-wrap items-center md:justify-between justify-center">
+                <div class="w-full md:w-4/12 px-4">
+                    <div class="text-sm text-gray-500 font-semibold py-1 text-center md:text-left">
+                        Copyright © <span id="get-current-year"></span>
+                        <a href="https://www.creative-tim.com?ref=njs-dashboard"
+                            class="text-gray-500 hover:text-gray-700 text-sm font-semibold py-1">
+                            Creative Tim
+                        </a>
+                    </div>
+                </div>
+                <div class="w-full md:w-8/12 px-4">
+                    <ul class="flex flex-wrap list-none md:justify-end justify-center">
+                        {{-- <li>
+                            <a href="https://www.creative-tim.com?ref=njs-dashboard"
+                                class="text-gray-600 hover:text-gray-800 text-sm font-semibold block py-1 px-3">
+                                Creative Tim
+                            </a>
+                        </li> --}}
+                        <li>
+                            <a href="https://www.creative-tim.com/presentation?ref=njs-dashboard"
+                                class="text-gray-600 hover:text-gray-800 text-sm font-semibold block py-1 px-3">
+                                Tentang Kmai
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://blog.creative-tim.com?ref=njs-dashboard"
+                                class="text-gray-600 hover:text-gray-800 text-sm font-semibold block py-1 px-3">
+                                Blog
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/creativetimofficial/notus-js/blob/main/LICENSE.md?ref=njs-dashboard"
+                                class="text-gray-600 hover:text-gray-800 text-sm font-semibold block py-1 px-3">
+                                MIT License
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>

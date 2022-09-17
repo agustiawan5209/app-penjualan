@@ -2,13 +2,16 @@
 
 namespace App\Actions\Fortify;
 
+use Carbon\Carbon;
 use App\Models\Team;
 use App\Models\User;
+use App\Models\UsesUserVoucher;
+use App\Models\Voucher;
+use Laravel\Jetstream\Jetstream;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
-use Laravel\Jetstream\Jetstream;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -54,5 +57,30 @@ class CreateNewUser implements CreatesNewUsers
             'name' => explode(' ', $user->name, 2)[0]."'s Team",
             'personal_team' => true,
         ]));
+    }
+    public function KlaimVoucher(User $user){
+
+        $voucher = Voucher::where('jenis_voucher', '1')->first();
+        $carbon_hours = Carbon::now()->add(10, 'hours')->toTimeString();
+        $carbon_date = Carbon::now()->format('Y-m-d');
+        // dd($voucher->);
+       if($voucher != null){
+        // foreach($voucher as $voucher){
+            UsesUserVoucher::create([
+                'user_id'=>$user->id,
+                'voucher_id'=>$voucher->id,
+                'status'=>  '1',
+                'tgl_kadaluarsa'=> $carbon_date,
+                'waktu'=> $carbon_hours,
+            ]);
+        // }
+
+        // Notification::send($user,new InvoicePaid([
+        //     'type'=> 'User Regis',
+        //     'body'=> $user->name . " Baru Saja Terdaftar",
+        //     'from'=> 'Admin',
+        // ]));
+       }
+
     }
 }

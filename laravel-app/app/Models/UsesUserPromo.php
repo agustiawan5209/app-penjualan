@@ -11,4 +11,11 @@ class UsesUserPromo extends Model
     protected $table= 'uses_user_promos';
     protected $fillable= ['user_id', 'promo_id','status'];
     protected $hidden = ['status'];
+
+    public function promo(){
+        return $this->hasOne(Promo::class, 'id', 'promo_id');
+    }
+    public function user(){
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
 }

@@ -1,4 +1,5 @@
 <div>
+    @include('sweetalert::alert')
     <div class="w-full py-10 block">
         <div class="mt-6 lg:mb-0 mb-6">
             <x-jet-dialog-modal wire:model='itemAdd'>
@@ -32,9 +33,7 @@
                 Diskon
             </a>
         </div>
-        @if (session()->has('message'))
-        <x-alert :message="session('message')" />
-        @endif
+
         <x-table>
             <thead>
                 <tr>
@@ -66,7 +65,7 @@
                         @if ($item->promo_nominal != null)
                             {{$item->promo_nominal}}
                         @elseif($item->promo_persen != null)
-                            {{$item->promo_nominal}}
+                            {{$item->promo_persen}}%
                         @endif
                     </x-td>
                     <x-td>{{$item->use_user}}</x-td>

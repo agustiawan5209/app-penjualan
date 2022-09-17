@@ -78,6 +78,7 @@ namespace App\Models{
  * @property int $jumlah_diskon
  * @property string $tgl_mulai
  * @property string $tgl_kadaluarsa
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Barang|null $barang
@@ -88,6 +89,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Diskon query()
  * @method static \Illuminate\Database\Eloquent\Builder|Diskon whereBarangId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Diskon whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Diskon whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Diskon whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Diskon whereJumlahDiskon($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Diskon whereTglKadaluarsa($value)
@@ -205,6 +207,7 @@ namespace App\Models{
  * @property int $sub_total Sub_total Dengan Di hitung Diskon
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\User|null $user
  * @method static \Database\Factories\PembayaranFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran newQuery()
@@ -474,6 +477,8 @@ namespace App\Models{
  * @property string $status
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Promo|null $promo
+ * @property-read \App\Models\User|null $user
  * @method static \Database\Factories\UsesUserPromoFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|UsesUserPromo newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|UsesUserPromo newQuery()
@@ -492,6 +497,8 @@ namespace App\Models{
 /**
  * App\Models\UsesUserVoucher
  *
+ * @property-read \App\Models\User|null $user
+ * @property-read \App\Models\Voucher|null $voucher
  * @method static \Database\Factories\UsesUserVoucherFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|UsesUserVoucher newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|UsesUserVoucher newQuery()

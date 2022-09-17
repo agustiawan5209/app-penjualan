@@ -86,7 +86,7 @@
                             </label>
                             <input type="date" wire:model='tgl_mulai'
                                 class="border-0 px-3 py-3 placeholder-blueGray-300 text-black bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
+                                >
                         </div>
                     </div>
                     <div class="w-full lg:w-12/12 px-4">
@@ -97,7 +97,7 @@
                             </label>
                             <input type="date" wire:model='tgl_kadaluarsa'
                                 class="border-0 px-3 py-3 placeholder-blueGray-300 text-black bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                value="New York">
+                              >
                         </div>
                     </div>
                 </div>

@@ -15,9 +15,11 @@ return new class extends Migration
     {
         Schema::create('uses_user_vouchers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('voucher_id')->constrained('vouchers');
-            $table->enum('status', ['0', '1']);
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('voucher_id')->constrained('vouchers')->onDelete('cascade');
+            $table->enum('status', ['1','2','3','4'])->comment('1 = user baru,2 = Belum ,3 = Terpakai, 4= Selesai');
+            $table->date('tgl_kadaluarsa')->nullable();
+            $table->time('waktu')->nullable();
             $table->timestamps();
         });
     }

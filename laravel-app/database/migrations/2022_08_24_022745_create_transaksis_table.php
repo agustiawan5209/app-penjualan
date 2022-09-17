@@ -15,9 +15,13 @@ return new class extends Migration
     {
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
-            $table->string('id_transaksi')->unique();
+            $table->string('ID_transaksi', 50);
             $table->date('tgl_transaksi');
-            $table->text('item');
+            $table->text('item_details');
+            $table->foreignId('barang_id');
+            $table->bigInteger('potongan');
+            $table->string('total');
+            $table->enum('status', ['0','1'])->default('0')->comment('0 = Diterima, 1 = Dikembalikan');
             $table->timestamps();
         });
     }
