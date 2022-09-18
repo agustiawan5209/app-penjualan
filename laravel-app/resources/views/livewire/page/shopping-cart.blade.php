@@ -124,7 +124,7 @@
                                         </div>
 
                                         <button type="button" class="btn btn-light btn-block btn-lg">
-                                            <div class="d-flex justify-content-between" wire:click.defer="BayarDetail"
+                                            <div class="d-flex justify-content-between"wire:click.defer="BayarDetail({{$potongan}}, {{$sub_total}}, {{$total_bayar}})"
                                                 data-toggle="modal" data-target=".bd-example-modal-lg">
                                                 {{-- <span class="mr-2">Rp. {{number_format($total_bayar, 0,2)}}</span> --}}
                                                 <span class=" ml-lg-1">Lakukan Pemesanan <i
@@ -132,7 +132,7 @@
                                             </div>
                                         </button>
                                         <button type="reset" class="btn btn-danger btn-block btn-lg">
-                                            <div class="d-flex justify-content-between" wire:click.defer="BayarDetail"
+                                            <div class="d-flex justify-content-between"
                                                 data-toggle="modal" data-target=".bd-example-modal-lg">
                                                 {{-- <span class="mr-2">Rp. {{number_format($total_bayar, 0,2)}}</span> --}}
                                                 <span class=" ml-lg-1">Batalkan <i
@@ -167,7 +167,7 @@
                                 aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
-                                        @include('page.invoice.invoice')
+                                        {{-- @include('page.invoice.invoice') --}}
                                     </div>
                                 </div>
                             </div>

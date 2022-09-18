@@ -126,11 +126,13 @@ class ShoppingCart extends Component
         return redirect()->route('Customer.Pembayaran');
     }
     public $bayardetail= false;
-    public function BayarDetail($cart, $potongan, $total){
+    public function BayarDetail( $potongan, $sub_total, $total_bayar){
+        $cart = Keranjang::where('user_id', Auth::user()->id)->get();
         session()->put('keranjang', [
             'item'=> $cart,
             'potongan'=> $potongan,
-            'total'=> $total,
+            'sub_total'=> $sub_total,
+            'total_bayar'=> $total_bayar,
         ]);
         return redirect()->route('Customer.Invoice');
     }
