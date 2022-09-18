@@ -151,8 +151,8 @@
                             </ul>
                         </li>
                         <li class="items-center">
-                            <a href="{{ route('Admin.Page-Diskon') }}"
-                                class="text-xs uppercase py-3 font-bold block {{request()->routeIs('Admin.Page-Diskon') ? ' bg-blue-darken text-white' :'text-gray-700 hover:text-gray-500'}}">
+                            <a href="{{ route('Admin.Page-Penjualan') }}"
+                                class="text-xs uppercase py-3 font-bold block {{request()->routeIs('Admin.Page-Penjualan') ? ' bg-blue-darken text-white' :'text-gray-700 hover:text-gray-500'}}">
                                 <i class=" mr-2 text-sm text-gray-300"></i>
                                 Penjualan
                             </a>

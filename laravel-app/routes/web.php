@@ -75,3 +75,6 @@ Route::get('contact' , function(){
 Route::get('shop-single' , function(){
     return view('shop-single');
 })->name('shop-single');
+Route::get("Promo-Diskon", function(){
+    return view('page.promo.index');
+})->name('Promo-Diskon');

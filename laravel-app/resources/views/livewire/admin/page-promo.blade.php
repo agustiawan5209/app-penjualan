@@ -17,21 +17,6 @@
                 type="button">
                 Tambah Promo
             </button>
-            <a href="{{route('Admin.Page-Promo')}}"
-                class="bg-white text-center text-black shadow-lg font-normal w-32 py-2 rounded-md items-center justify-center align-center outline-none focus:outline-none mr-2"
-                type="button">
-                Promo
-            </a>
-            <a href="{{route('Admin.Page-Voucher')}}"
-                class="bg-white text-center text-black shadow-lg font-normal w-32 py-2 rounded-md items-center justify-center align-center outline-none focus:outline-none mr-2"
-                type="button">
-                Voucher
-            </a>
-            <a href="{{route('Admin.Page-Diskon')}}"
-                class="bg-white text-center text-gray-800 shadow-lg font-normal w-32 py-2 rounded-md items-center justify-center align-center outline-none focus:outline-none mr-2"
-                type="button">
-                Diskon
-            </a>
         </div>
 
         <x-table>
@@ -115,5 +100,40 @@
 
 
     </div>
+    <x-jet-dialog-modal wire:model="itemEdit" maxWidth='2xl'>
+        <x-slot name="title">
+            @if (session()->has('message'))
+            <div class="bg-blue-500 border border-blue-400 text-gray-100 px-4 py-3 rounded relative" role="alert">
+                <strong class="font-bold">Message</strong>
+                <span class="block sm:inline">{{ session('message') }}</span>
+            </div>
+            @endif
+        </x-slot>
 
+        <x-slot name="content">
+            @include('page.promo.modal-edit')
+        </x-slot>>
+
+        <x-slot name="footer">
+        </x-slot>
+    </x-jet-dialog-modal>
+    <x-jet-dialog-modal wire:model="itemHapus">
+        <x-slot name="title">
+            Hapus Data Barang {{ $itemID }}
+        </x-slot>
+
+        <x-slot name="content">
+            Apakah Anda Yakin?
+        </x-slot>
+
+        <x-slot name="footer">
+            <x-jet-secondary-button wire:click="$toggle('itemHapus')" wire:loading.attr="disabled">
+                Batalkan
+            </x-jet-secondary-button>
+
+            <x-jet-danger-button class="ml-2" wire:click="delete({{ $itemID }})" wire:loading.attr="disabled">
+                Hapus
+            </x-jet-danger-button>
+        </x-slot>
+    </x-jet-dialog-modal>
 </div>

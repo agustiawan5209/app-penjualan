@@ -13,6 +13,11 @@ class PagePromo extends Component
 
     // item Search Dan Row
     public $search = "", $row = 10;
+       // Item Modal Promo
+       public $itemAdd = false, $itemEdit = false, $itemHapus = false, $itemID;
+       // field tabel promo
+       public $kode_promo, $promo_nominal = null, $promo_persen = null, $max_user, $use_user = null, $tgl_mulai, $tgl_kadaluarsa;
+
     public function render()
     {
         $Promo = Promo::orderBy('id', 'desc')->paginate($this->row);
@@ -25,10 +30,6 @@ class PagePromo extends Component
         return view('livewire.admin.page-promo', compact('Promo'));
     }
 
-    // Item Modal Promo
-    public $itemAdd = false, $itemEdit = false, $itemHapus = false, $itemID;
-    // field tabel promo
-    public $kode_promo, $promo_nominal = null, $promo_persen = null, $max_user, $use_user = null, $tgl_mulai, $tgl_kadaluarsa;
 
     public function TambahModal()
     {
@@ -37,19 +38,21 @@ class PagePromo extends Component
     public function EditModal($id)
     {
         $promo = Promo::find($id);
+        // dd($promo->id);
+        $this->itemID = $promo->id;
         $this->kode_promo = $promo->kode_promo;
         $this->promo_nominal = $promo->promo_nominal;
         $this->promo_persen = $promo->promo_persen;
         $this->tgl_mulai = $promo->tgl_mulai;
         $this->tgl_kadaluarsa = $promo->tgl_kadaluarsa;
         $this->max_user = $promo->max_user;
-        $this->itemID = $promo->itemID;
+        // dd($this->itemID);
         $this->itemEdit = true;
     }
     public function HapusModal($id)
     {
         // dd('1');
-        Alert::success('message', 'Berhasil Di Edit');
+        // Alert::success('message', 'Berhasil Di Edit');
         $promo = Promo::find($id);
         $this->itemID = $promo->id;
         $this->hapusItem = true;
@@ -79,7 +82,7 @@ class PagePromo extends Component
     public function edit($id)
     {
         $this->validate([
-            'kode_promo' => 'required|unique:promo.kode_promo',
+            'kode_promo' => 'required',
             'tgl_mulai' => 'required',
             'tgl_kadaluarsa' => 'required',
             'max_user' => 'required',

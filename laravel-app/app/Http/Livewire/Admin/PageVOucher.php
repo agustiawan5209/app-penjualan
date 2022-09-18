@@ -2,83 +2,184 @@
 
 namespace App\Http\Livewire\Admin;
 
+use Carbon\Carbon;
 use App\Models\Voucher;
+use App\Models\Barang;
 use Livewire\Component;
+use App\Models\Category;
+use App\Models\Katalog;
+use Livewire\WithPagination;
+use RealRashid\SweetAlert\Facades\Alert;
 
-class PageVOucher extends Component
+class PageVoucher extends Component
 {
+    use WithPagination;
+    public $row = 10;
+    public $search = "";
+    // field Tabel Voucher
+    public $kode_voucher, $diskon, $deskripsi, $Voucher_persen, $jumlah_pembelian, $jenis_voucher = 0, $use_user, $barang_id;
+    //item Modal dan Item ID
+    public $tambahItem = false, $itemID, $hapusItem = false, $editItem = false;
+
+    public function CekVoucherKadaluarsa()
+    {
+        $date = Carbon::now()->add(10, 'day')->format('Y-m-d');
+        $day = explode('-', $date);
+        return $date;
+    }
     public function render()
     {
-        return view('livewire.admin.page-v-oucher');
-    }
-    public $itemAdd = false, $itemEdit = false , $itemHapus = false, $itemID;
-    // field tabel promo
-    public $kode_voucher,$promo_nominal = null,$promo_persen = null,$max_user,$use_user = null,$tgl_mulai,$tgl_kadaluarsa;
+        // Cek Pengguna Voucher
+        $cek_jumlah_pengguna_Voucher = Voucher::whereNull('use_user')->get()->count();
+        // cek Voucher Terlaris
+        $cek_Voucher_terlaris = Voucher::max('use_user');
+        // dd([$cek_jumlah_pengguna_Voucher,$cek_Voucher_terlaris]);
+        // Melakukan Pengecekan Voucher Kadaluarsa
+        $date_kadaluarsa = Carbon::now()->add(10, 'day')->format('Y-m-d');
+        $date_now = Carbon::now()->format('Y-m-d');
+        // Mengambil Data dan Pencarian
+        $Voucher = Voucher::orderBy('id', 'desc')
+            ->paginate($this->row);
+        if ($this->search != null) {
+            $Voucher = Voucher::whereDate('tgl_kadaluarsa', '>', $date_now)
+                ->where('kode_voucher', 'like', '%' . $this->search . '%')
+                ->orderBy('id', 'desc')
+                ->paginate($this->row);
+        }
+        // Voucher Yang Pengguna sudah Maksimal
 
-    public function TambahModal()
-    {
-        $this->itemAdd = true;
+        return view('livewire.admin.page-v-oucher', [
+            'category' => Katalog::all(),
+            'barang' => Barang::all(),
+            'DataVoucher' => $Voucher,
+            'cek_jumlah_pengguna_Voucher' => $cek_jumlah_pengguna_Voucher,
+            'cek_Voucher_terlaris' => $cek_Voucher_terlaris,
+            'Voucher_max' => $this->get_max_Voucher(),
+        ]);
     }
-    public function EditModal($id)
+
+    /**
+     * get_max_Voucher
+     *  Ambil Data Max Voucher user
+     * @return void
+     */
+    public function get_max_Voucher()
     {
-        $promo = Voucher::find($id);
-        $this->kode_voucher = $promo->kode_voucher;
-        $this->promo_nominal = $promo->promo_nominal;
-        $this->promo_persen = $promo->promo_persen;
-        $this->tgl_mulai = $promo->tgl_mulai;
-        $this->tgl_kadaluarsa = $promo->tgl_kadaluarsa;
-        $this->max_user = $promo->max_user;
-        $this->itemID = $promo->itemID;
-        $this->itemEdit = true;
+        $max_user = 0;
+        $Voucher = Voucher::all();
+        if ($Voucher->count() > 0) {
+            foreach ($Voucher as $item) {
+                $Voucher_max = Voucher::where('use_user', '=', $item->max_user)->get();
+            }
+            if ($Voucher_max->count() < 1) {
+               $max_user = $Voucher_max = 0;
+            }else{
+               $max_user = $Voucher_max->count();
+            }
+        }
+        return $max_user;
     }
-    public function HapusModal($id)
+    /**
+     * CloseAllModal
+     * Close Modal
+     * @return void
+     */
+    public function CloseAllModal()
     {
-        $promo = Voucher::find($id);
-        $this->itemID = $promo->id;
+        $this->tambahItem = false;
+        $this->hapusItem = false;
+        $this->editItem = false;
+        $this->detailItem = false;
+    }
+    public function createModal()
+    {
+        $this->tambahItem = true;
+    }
+    // Crud
+    public function create()
+    {
+        $this->validate([
+            'kode_voucher' => 'required',
+            'diskon'=> 'required',
+            'jenis_voucher'=> 'required',
+        ]);
+        $Voucher = Voucher::create([
+            'kode_voucher' => $this->kode_voucher,
+            'deskripsi' => $this->deskripsi,
+            'barang_id'=> $this->barang_id,
+            'jenis_voucher' => $this->jenis_voucher,
+            'use_user' => '0',
+            'diskon' => $this->diskon,
+            'jumlah_pembelian'=>  $this->jumlah_pembelian,
+        ]);
+        Alert::success('message', 'Data Voucher Berhasil Di Tambah');
+        $this->CloseAllModal();
+    }
+    public function editModal($id)
+    {
+
+        $Voucher = Voucher::find($id);
+        // dd($Voucher);
+        $this->itemID = $Voucher->id;
+        $this->kode_voucher = $Voucher->kode_voucher;
+        $this->diskon = $Voucher->diskon;
+        $this->deskripsi = $Voucher->deskripsi;
+        $this->jenis_voucher = $Voucher->jenis_voucher;
+        $this->barang_id = $Voucher->barang_id;
+        $this->jumlah_pembelian = $Voucher->jumlah_pembelian;
+        $this->editItem = true;
+    }
+    public function edit($id)
+    {
+        $barang = $this->barang_id == "--" ?  $this->barang_id : null;
+        // dd([
+        //     $this->barang_id,
+        //     $this->category_id
+        // ]);
+        $Voucher = Voucher::where('id', $id)->update([
+            'kode_voucher' => $this->kode_voucher,
+            'deskripsi' => $this->deskripsi,
+            'barang_id'=> $this->barang_id,
+            'jenis_voucher' => $this->jenis_voucher,
+            'diskon' => $this->diskon,
+            'jumlah_pembelian'=>  $this->jumlah_pembelian,
+        ]);
+
+        Alert::success('message', "Voucher Berhasil Di Edit" );
+        $this->CloseAllModal();
+    }
+    public function hapusModal($id)
+    {
+        $Voucher = Voucher::find($id);
+        $this->itemID = $Voucher->id;
         $this->hapusItem = true;
     }
+    public function hapus($id)
+    {
+        $Voucher = Voucher::find($id)->delete();
+        Alert::success('message', "Voucher Berhasil Di Hapus");
+        $this->CloseAllModal();
+    }
+    // End Crud
 
+    // Item Page Voucher'
+    public $detailItem = false;
+    public $Voucher_laris_page = false;
+    public $Voucher_kadaluarsa_page = false;
+    public function detailModal($id)
+    {
 
-    // CRUD Tabel Promo
-    public function create(){
-        $this->validate([
-            'kode_voucher'=> 'required|unique:promo.kode_voucher',
-            'tgl_mulai'=> 'required',
-            'tgl_kadaluarsa'=> 'required',
-            'max_user'=> 'required',
-        ]);
-        Voucher::create([
-            'kode_voucher'=> $this->kode_voucher,
-            'promo_nominal'=> $this->promo_nominal,
-            'promo_persen'=> $this->promo_persen,
-            'tgl_mulai'=> $this->tgl_mulai,
-            'tgl_kadaluarsa'=> $this->tgl_kadaluarsa,
-            'max_user'=> $this->max_user,
-        ]);
-        session()->flash('message', 'Berhasil Di Tambah');
-        $this->itemAdd = false;
+        $Voucher = Voucher::find($id);
+        // dd($Voucher);
+        $this->itemID = $Voucher->id;
+        $this->kode_voucher = $Voucher->kode_voucher;
+        $this->diskon = $Voucher->diskon;
+        $this->deskripsi = $Voucher->deskripsi;
+        $this->jenis_voucher = $Voucher->jenis_voucher;
+        $this->use_user = $Voucher->use_user;
+        $this->barang_id = $Voucher->barang_id != null ? $Voucher->barang->nama_produk : null;
+        $this->jumlah_pembelian = $Voucher->jumlah_pembelian;
+        $this->detailItem = true;
     }
-    public function edit($id){
-        $this->validate([
-            'kode_voucher'=> 'required|unique:promo.kode_voucher',
-            'tgl_mulai'=> 'required',
-            'tgl_kadaluarsa'=> 'required',
-            'max_user'=> 'required',
-        ]);
-        Voucher::where('id', $id)->update([
-            'kode_voucher'=> $this->kode_voucher,
-            'promo_nominal'=> $this->promo_nominal,
-            'promo_persen'=> $this->promo_persen,
-            'tgl_mulai'=> $this->tgl_mulai,
-            'tgl_kadaluarsa'=> $this->tgl_kadaluarsa,
-            'max_user'=> $this->max_user,
-        ]);
-        session()->flash('message', 'Berhasil Di Edit');
-        $this->itemEdit = false;
-    }
-    public function delete($id){
-        Voucher::where('id',$id)->delete();
-        session()->flash('message', 'Berhasil Di Edit');
-        $this->itemHapus = false;
-    }
+
 }

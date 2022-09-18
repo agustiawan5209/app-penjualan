@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="{{ asset('css/templatemo.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/slick.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/slick-theme.css') }}">
+    <link rel="stylesheet" href="{{asset('css/main.css')}}">
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
@@ -93,7 +94,7 @@
                             <a class="nav-link" href="{{ route('contact') }}">Kontak</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('contact') }}">Promo/Diskon</a>
+                            <a class="nav-link" href="{{ route('Promo-Diskon') }}">Promo/Diskon</a>
                         </li>
                     </ul>
                 </div>

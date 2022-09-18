@@ -203,6 +203,17 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Ongkir
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|Ongkir newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Ongkir newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Ongkir query()
+ */
+	class Ongkir extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Pembayaran
  *
  * @property int $id
@@ -218,6 +229,7 @@ namespace App\Models{
  * @property string|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Ongkir|null $ongkir
  * @property-read \App\Models\User|null $user
  * @method static \Database\Factories\PembayaranFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran newModelQuery()
@@ -554,6 +566,7 @@ namespace App\Models{
  * @property string|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Barang|null $barang
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher query()

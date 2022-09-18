@@ -7,7 +7,7 @@
             <div class="relative flex flex-col min-w-0 break-words w-full mb-6  bg-white pt-5">
                 <div class="block w-full overflow-x-auto px-3">
 
-                    <table class="example" {{$attributes->merge(['class'=>'class="items-center w-full bg-transparent border-collapse"'])}}>
+                    <table  {{$attributes->merge(['class'=>'class="items-center w-full bg-transparent border-collapse"'])}}>
                         {{$slot}}
                     </table>
                 </div>
@@ -28,7 +28,7 @@
 
 <script>
     $(document).ready(function() {
-        $('.example').DataTable({
+        $('#example').DataTable({
 
         });
     });

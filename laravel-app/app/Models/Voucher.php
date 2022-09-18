@@ -9,7 +9,10 @@ class Voucher extends Model
 {
     use HasFactory;
     protected $table = 'vouchers';
-    protected $fillable = [
-        'kode_voucher','promo_nominal','promo_persen','max_user','use_user','tgl_mulai','tgl_kadaluarsa'
-    ];
+    protected $fillable = ['kode_voucher','barang_id', 'max_user', 'use_user',  'diskon','deskripsi', 'jumlah_pembelian', 'jenis_voucher'];
+    // protected $dates = ['deleted_at'];
+
+    public function barang(){
+        return $this->hasOne(Barang::class, 'id', 'barang_id');
+    }
 }
