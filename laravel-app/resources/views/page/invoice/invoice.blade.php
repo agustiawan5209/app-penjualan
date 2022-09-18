@@ -1,119 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    {{-- <link rel="stylesheet" href="{{ asset('css/styleall.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/templatemo.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/slick.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/slick-theme.css') }}"> --}}
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Invoice</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="./images/favicon.png" type="image/x-icon" />
+
+    <!-- Invoice styling -->
+    <style>
+        body {
+            font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+            text-align: center;
+            color: #777;
+        }
+
+        body h1 {
+            font-weight: 300;
+            margin-bottom: 0px;
+            padding-bottom: 0px;
+            color: #000;
+        }
+
+        body h3 {
+            font-weight: 300;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            font-style: italic;
+            color: #555;
+        }
+
+        body a {
+            color: #06f;
+        }
+
+        .invoice-box {
+            max-width: 800px;
+            margin: auto;
+            padding: 30px;
+            border: 1px solid #eee;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+            font-size: 16px;
+            line-height: 24px;
+            font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+            color: #555;
+        }
+
+        .invoice-box table {
+            width: 100%;
+            line-height: inherit;
+            text-align: left;
+            border-collapse: collapse;
+        }
+
+        .invoice-box table td {
+            padding: 5px;
+            vertical-align: top;
+        }
+
+        /* .invoice-box table tr td:nth-child(2) {
+            text-align: right;
+        } */
+
+        .invoice-box table tr.top table td {
+            padding-bottom: 20px;
+        }
+
+        .invoice-box table tr.top table td.title {
+            font-size: 45px;
+            line-height: 45px;
+            color: #333;
+        }
+
+        .invoice-box table tr.information table td {
+            padding-bottom: 40px;
+        }
+
+        .invoice-box table tr.heading td {
+            background: #bbbb;
+            border: 2px solid #bbbabb;
+        }
+       .heading-item  {
+            background: #bbbb;
+            border: 1px solid #cccc;
+        }
+
+        .invoice-box table tr.details td {
+            padding-bottom: 20px;
+        }
+
+        .invoice-box table tr.item td {
+            border: 1px solid #bbbb;
+        }
+        .total td{
+            border: 1px solid #000;
+            color: black;
+        }
+        @media only screen and (max-width: 600px) {
+            .invoice-box table tr.top table td {
+                width: 100%;
+                display: block;
+                text-align: center;
+            }
+
+            .invoice-box table tr.information table td {
+                width: 100%;
+                display: block;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <div class="container">
-        <div class="card">
-            <div class="card-header">
-                Detail Pesanan
-                <strong>{{date("Y-m-d")}}</strong>
-                {{-- <span class="float-right"> <strong>Status:</strong> Pending</span> --}}
-
-            </div>
-            <div class="card-body bg-primary">
-                <div class="row mb-4">
-                    <div class="col-sm-6">
-                        <h6 class="mb-3">Dari:</h6>
-                        <div>
-                            <strong>{{Auth::user()->name}}</strong>
-                        </div>
-                        <div>{{Auth::user()->email}}</div>
-                        <div>71-101 Szczecin, Poland</div>
-                        <div>Email: info@webz.com.pl</div>
-                        <div>Phone: +48 444 666 3333</div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <h6 class="mb-3">Ke:</h6>
-                        <div>
-                            <strong>Bob Mart</strong>
-                        </div>
-                        <div>Irsan Jaya</div>
-                        <div>43-190 Mikolow, Poland</div>
-                        <div>Email: marek@daniel.com</div>
-                        <div>Phone: +48 123 456 789</div>
-                    </div>
-
-
-
-                </div>
-
-                <div class="table-responsive-sm">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th class="center">#</th>
-                                <th>Item</th>
-                                {{-- <th>Description</th> --}}
-
-                                <th class="right">Harga</th>
-                                <th class="center">Jumlah</th>
-                                <th class="right">Total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($data['item'] as $keranjang)
-                                <tr>
-                                    <td class="center">{{$loop->iteration}}</td>
-                                    <td class="left strong">{{$keranjang->barang->nama_barang}}</td>
-                                    {{-- <td class="left">Extended License</td> --}}
-
-                                    <td class="right">{{$keranjang->total_awal}}</td>
-                                    <td class="center">{{$keranjang->quantity}}</td>
-                                    <td class="right">{{$keranjang->sub_total}}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
+    <div class="invoice-box">
+        <table>
+            <tr class="top">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td>
+                                ID Transaksi #: 123<br />
+                                Tanggal Transaksi: January 1, 2015<br />
+                            </td>
+                        </tr>
                     </table>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4 col-sm-5">
+                </td>
+            </tr>
 
-                    </div>
+            <tr class="information">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td>
+                                Pelanggan: <br>
+                                {{ Auth::user()->name }}<br />
+                                {{ Auth::user()->email }}<br />
+                                {{-- Sunnyville, TX 12345 --}}
+                            </td>
 
-                    <div class="col-lg-4 col-sm-5 ml-auto">
-                        <table class="table table-clear">
-                            <tbody>
-                                <tr>
-                                    <td class="left">
-                                        <strong>Subtotal</strong>
-                                    </td>
-                                    <td class="right">Rp. {{ number_format($data['sub_total'], 0, 2) }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="left">
-                                        <strong>Potongan</strong>
-                                    </td>
-                                    <td class="right">Rp. {{ number_format($data['potongan'], 0, 2) }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="left">
-                                        <strong>Total</strong>
-                                    </td>
-                                    <td class="right">
-                                        <strong>Rp. {{ number_format($data['total_bayar'], 0, 2) }}</strong>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                            <td>
+                                IrsanJaya<br />
+                                John Doe<br />
+                                {{-- john@example.com --}}
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr class="heading">
+                <td>Type Pembayran</td>
 
-                    </div>
+                <td>BANK #</td>
+            </tr>
 
-                </div>
+            <tr class="details">
+                <td>BRI</td>
 
-            </div>
-        </div>
+                <td>Total Bayar</td>
+            </tr>
+
+        </table>
+        <table >
+
+            <tr class="heading-item">
+                <th>#</th>
+                <th>Item</th>
+                <th>Harga</th>
+                <th>Jumlah</th>
+                <th>Potongan</th>
+                <th>Total</th>
+            </tr>
+            @foreach ($data['item'] as $item)
+                <tr class="item" style="border: 1px solid #bbbabb;">
+                    <td style="width: 10px;">{{$loop->iteration}}</td>
+                    <td>{{$item->barang->nama_barang}}</td>
+                    <td>{{$item->total_awal}}</td>
+                    <td>{{$item->quantity}}</td>
+                    <td>{{$item->diskon}}</td>
+                    <td>{{$item->sub_total}}</td>
+                </tr>
+            @endforeach
+            <tr class="total">
+                <td colspan="6" style="text-align: right;">Total: $385.00</td>
+            </tr>
+        </table>
     </div>
-
 </body>
+
 </html>

@@ -2,85 +2,81 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Promo;
+use App\Models\Barang;
 use App\Models\Keranjang;
+use App\Models\UsesUserPromo;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreKeranjangRequest;
 use App\Http\Requests\UpdateKeranjangRequest;
 
 class KeranjangController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function GetPromo($id_barang)
     {
-        //
+        $arr = [];
+        $barang = Barang::find($id_barang);
+        $user_promo = UsesUserPromo::where('user_id', Auth::user()->id)->where('status', '=','1')->get();
+        foreach ($user_promo as $item) {
+            $promo = Promo::where('id', $item->promo_id)->get();
+            foreach ($promo as $data) {
+                $arr[] = $data->id;
+            }
+        }
+        $count = count($arr);
+        $hasil = [];
+        for ($i = 0; $i < $count; $i++) {
+            $cek = Promo::where('id', $arr[$i])->get();
+            foreach ($cek as $item) {
+                if ($item->category_id == $barang->categories) {
+                    $hasil[] = $item->promo;
+                }
+                if ($item->promo_persen != null) {
+                    $hasil[] = $item->promo_persen;
+                }
+                // $hasil = [$barang_promo, $kategori_promo, $promo_kosong];
+            }
+        }
+        // dd($arr);
+        if ($hasil == null) {
+            $param = 0;
+        } else {
+            $param = array_sum($hasil);
+        }
+        // dd($param);
+        return $param;
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function GetPromoNominal($id_barang)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreKeranjangRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreKeranjangRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Keranjang  $keranjang
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Keranjang $keranjang)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Keranjang  $keranjang
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Keranjang $keranjang)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateKeranjangRequest  $request
-     * @param  \App\Models\Keranjang  $keranjang
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateKeranjangRequest $request, Keranjang $keranjang)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Keranjang  $keranjang
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Keranjang $keranjang)
-    {
-        //
+        $arr = [];
+        $barang = Barang::find($id_barang);
+        $user_promo = UsesUserPromo::where('user_id', Auth::user()->id)->get();
+        foreach ($user_promo as $item) {
+            $promo = Promo::where('id', $item->promo_id)->get();
+            foreach ($promo as $data) {
+                $arr[] = $data->id;
+            }
+        }
+        $count = count($arr);
+        $hasil = [];
+        for ($i = 0; $i < $count; $i++) {
+            $cek = Promo::where('id', $arr[$i])->get();
+            foreach ($cek as $item) {
+                if ($item->promo_nominal != null) {
+                    $hasil[] =  $item->promo_nominal;
+                }
+                if ($item->category_id == $barang->categories) {
+                    $hasil[] = $item->promo;
+                }
+                // $hasil = [$barang_promo, $kategori_promo, $promo_kosong];
+            }
+        }
+        // dd($arr);
+        if ($hasil == null) {
+            $param = 0;
+        } else {
+            $param = array_sum($hasil);
+        }
+        return $param;
     }
 }

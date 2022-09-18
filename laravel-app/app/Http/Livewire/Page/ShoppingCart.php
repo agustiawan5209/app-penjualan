@@ -126,6 +126,9 @@ class ShoppingCart extends Component
         return redirect()->route('Customer.Pembayaran');
     }
     public $bayardetail= false;
+    public function formBayar(){
+        $this->bayardetail = true;
+    }
     public function BayarDetail( $potongan, $sub_total, $total_bayar){
         $cart = Keranjang::where('user_id', Auth::user()->id)->get();
         session()->put('keranjang', [
@@ -136,4 +139,6 @@ class ShoppingCart extends Component
         ]);
         return redirect()->route('Customer.Invoice');
     }
+
+
 }

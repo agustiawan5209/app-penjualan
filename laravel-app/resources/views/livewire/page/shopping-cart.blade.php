@@ -6,77 +6,157 @@
                 <div class="card">
                     <div class="card-body p-4">
 
-                        <div class="row">
+                        @if ($bayardetail == false)
+                            <div class="row">
 
-                            <div class="col-lg-7">
-                                <h5 class="mb-3"><a href="{{ url()->previous() }}" class="text-body"><i
-                                            class="fas fa-long-arrow-alt-left me-2"></i>Continue shopping</a></h5>
-                                <hr>
+                                <div class="w-100">
+                                    <h5 class="mb-3"><a href="{{ url()->previous() }}" class="text-body"><i
+                                                class="fas fa-long-arrow-alt-left me-2"></i>Continue shopping</a></h5>
+                                    <hr>
 
-                                <div class="d-flex justify-content-between align-items-center mb-4">
-                                    <div>
-                                        <p class="mb-1">Detail Keranjang</p>
-                                        <p class="mb-0">Jumlah Keranjang {{ $cart->count() }}</p>
-                                    </div>
-                                    {{-- <div>
+                                    <div class="d-flex justify-content-between align-items-center mb-4">
+                                        <div>
+                                            <p class="mb-1">Detail Keranjang</p>
+                                            <p class="mb-0">Jumlah Keranjang {{ $cart->count() }}</p>
+                                        </div>
+                                        {{-- <div>
                                         <p class="mb-0"><span class="text-muted">Sort by:</span> <a href="#!"
                                                 class="text-body">price <i class="fas fa-angle-down mt-1"></i></a></p>
                                     </div> --}}
-                                </div>
+                                    </div>
 
-                                @foreach ($cart as $keranjang)
-                                    <div class="card mb-3">
-                                        <div class="card-body">
+                                    @foreach ($cart as $keranjang)
+                                        <div class="card mb-3">
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between">
+                                                    <div class="d-flex flex-row align-items-center">
+                                                        <div>
+                                                            <img src="{{ asset('upload/' . $keranjang->barang->gambar) }}"
+                                                                class="img-fluid rounded-3" alt="Shopping item"
+                                                                style="width: 65px;">
+                                                        </div>
+                                                        <div class="ms-3">
+                                                            <h5>{{ $keranjang->barang->nama_barang }}</h5>
+                                                            <p class="small mb-0">
+                                                                {{ $keranjang->barang->jenis->nama_jenis }},
+                                                                {{ $keranjang->barang->satuan->nama_satuan }}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex flex-row align-items-center">
+                                                        <div
+                                                            class="w-10 d-flex justify-content-center align-items-center">
+                                                            <button type="button"
+                                                                wire:click="MinusupdateCart({{ $keranjang->id }})"
+                                                                class="btn btn-sm bg-primary text-white">-</button>
+                                                            <input class="border-none bg-gray-50 w-50"
+                                                                value="{{ $keranjang->quantity }}" />
+                                                            <button type="button"
+                                                                wire:click="PlusupdateCart({{ $keranjang->id }})"
+                                                                class="btn btn-sm bg-primary text-white">+</button>
+                                                        </div>
+                                                        <div style="width: 80px;">
+                                                            <h5 class="mb-0">Rp
+                                                                {{ number_format($keranjang->sub_total) }}
+                                                            </h5>
+                                                        </div>
+                                                        <a href="#!" wire:click='removeCart({{ $keranjang->id }})'
+                                                            style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    @endforeach
+                                    <div class="w-full d-flex justify-content-end">
+                                        <div class="col-md-5">
                                             <div class="d-flex justify-content-between">
-                                                <div class="d-flex flex-row align-items-center">
-                                                    <div>
-                                                        <img src="{{ asset('upload/' . $keranjang->barang->gambar) }}"
-                                                            class="img-fluid rounded-3" alt="Shopping item"
-                                                            style="width: 65px;">
-                                                    </div>
-                                                    <div class="ms-3">
-                                                        <h5>{{ $keranjang->barang->nama_barang }}</h5>
-                                                        <p class="small mb-0">
-                                                            {{ $keranjang->barang->jenis->nama_jenis }},
-                                                            {{ $keranjang->barang->satuan->nama_satuan }}</p>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex flex-row align-items-center">
-                                                    <div class="w-10 d-flex justify-content-center align-items-center">
-                                                        <button type="button"
-                                                            wire:click="MinusupdateCart({{ $keranjang->id }})"
-                                                            class="btn btn-sm bg-primary text-white">-</button>
-                                                        <input class="border-none bg-gray-50 w-50"
-                                                            value="{{ $keranjang->quantity }}" />
-                                                        <button type="button"
-                                                            wire:click="PlusupdateCart({{ $keranjang->id }})"
-                                                            class="btn btn-sm bg-primary text-white">+</button>
-                                                    </div>
-                                                    <div style="width: 80px;">
-                                                        <h5 class="mb-0">Rp {{ number_format($keranjang->sub_total) }}
-                                                        </h5>
-                                                    </div>
-                                                    <a href="#!" wire:click='removeCart({{ $keranjang->id }})'
-                                                        style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
+                                                <p class="mb-2">Subtotal</p>
+                                                <p class="mb-2">Rp. {{ number_format($sub_total, 0, 2) }}</p>
+                                            </div>
 
-                                                </div>
+                                            <div class="d-flex justify-content-between">
+                                                <p class="mb-2">Potongan</p>
+                                                <p class="mb-2">Rp. {{ number_format($potongan, 0, 2) }}</p>
+                                            </div>
+
+                                            <div class="d-flex justify-content-between mb-4">
+                                                <p class="mb-2">Total Bayar</p>
+                                                <p class="mb-2">Rp. {{ number_format($total_bayar, 0, 2) }}</p>
                                             </div>
                                         </div>
                                     </div>
-                                @endforeach
+                                </div>
+
+                                {{-- Dialog Modal --}}
+                                <x-jet-dialog-modal wire:model='Keranjang'>
+                                    <x-slot name="title"></x-slot>
+                                    <x-slot name="content">
+                                        Apakah Anda Yakin?
+                                    </x-slot>
+                                    <x-slot name="footer">
+                                        <x-jet-button type='button' wire:model='removeCart({{ $itemID }})'>Ya
+                                        </x-jet-button>
+                                        <x-jet-danger-button type='button' wire:model="$toggle('Keranjang')"
+                                            wire:loading.attr='disabled'>Tidak</x-jet-danger-button>
+                                    </x-slot>
+                                </x-jet-dialog-modal>
+                                <!-- Button trigger modal -->
+
+                                <!-- Modal -->
+                                <button type="button" class="btn btn-primary  bg-blue-dark" wire:click="formBayar"
+                                    data-target=".bd-example-modal-lg">Lanjutkan Pembayaran</button>
+
+
                             </div>
-                            <div class="col-lg-5">
+                        @endif
+                        @if ($bayardetail)
+                            <div class="w-100 mt-10" style="margin-top: 50px;" wire:model.defer="bayardetail"
+                                wire:loading.class="opacity-25">
 
                                 <div class="card bg-blue-dark text-white rounded-3">
                                     <div class="card-body">
                                         <div class="d-flex justify-content-between align-items-center mb-4">
-                                            <h5 class="mb-0">Detail Transaksi</h5>
+                                            <h5 class="mb-0">Detail Pesanan</h5>
                                             <img src="{{ Auth::user()->profile_photo_url }}"
                                                 class="img-fluid rounded-3" style="width: 45px;" alt="Avatar">
                                         </div>
 
-                                        <form class="mt-4" enctype="multipart/form-data">
-
+                                        <form class="mt-4" enctype="multipart/form-data" x-data="{ Radio: '' }">
+                                            <div class="form-outline form-white mb-4 d-flex justify-content-around">
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                    <input type="radio" id="jenis_ongkir" name="jenis_ongkir"
+                                                        class="custom-control-input" x-model="Radio" value="Ambil">
+                                                    <label class="custom-control-label" for="jenis_ongkir">Ambil
+                                                        Sendiri</label>
+                                                </div>
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                    <input type="radio" id="customRadioInline2" name="jenis_ongkir"
+                                                        class="custom-control-input" x-model="Radio" value="Kirim">
+                                                    <label class="custom-control-label" for="customRadioInline2">Kirim
+                                                        Barang</label>
+                                                </div>
+                                            </div>
+                                            <h5 class="mb-0" x-show="Radio == 'Kirim'">Isi Form Untuk Pengiriman
+                                                Barang</h5>
+                                            <div class="form-outline form-white mb-4" x-show="Radio == 'Kirim'">
+                                                <label class="form-label" for="typeText">Kabupaten</label>
+                                                <input type="text" id="typeText"
+                                                    class="form-control form-control-lg" placeholder=".........."
+                                                    name="kabupaten" />
+                                            </div>
+                                            <div class="form-outline form-white mb-4 " x-show="Radio == 'Kirim'">
+                                                <label class="form-label" for="typeText">Kecamatan</label>
+                                                <input type="text" id="typeText"
+                                                    class="form-control form-control-lg" placeholder=".........."
+                                                    name="kecamatan" />
+                                            </div>
+                                            <div class="form-outline form-white mb-4" x-show="Radio == 'Kirim'">
+                                                <label class="form-label" for="typeText">Alamat</label>
+                                                <input type="text" id="typeText"
+                                                    class="form-control form-control-lg" placeholder=".........."
+                                                    name="alamat" />
+                                            </div>
                                             <div class="form-outline form-white mb-4">
                                                 <label class="form-label" for="typeName">Bukti Transaksi</label>
                                                 <input type="file" id="typeName"
@@ -88,7 +168,8 @@
                                                 <label class="form-label" for="typeText">Nama</label>
                                                 <input type="text" id="typeText"
                                                     class="form-control form-control-lg" siez="17"
-                                                    placeholder="1234 5678 9012 3457" minlength="19" maxlength="19" />
+                                                    placeholder="1234 5678 9012 3457" minlength="19"
+                                                    maxlength="19" />
                                             </div>
 
                                             <div class="row mb-4">
@@ -107,24 +188,52 @@
                                         </form>
 
                                         <hr class="my-4">
+                                        <table class="w-100 table table-active color-white">
 
-                                        <div class="d-flex justify-content-between">
-                                            <p class="mb-2">Subtotal</p>
-                                            <p class="mb-2">Rp. {{ number_format($sub_total, 0, 2) }}</p>
-                                        </div>
+                                            <tr class="heading-item text-white">
+                                                <th>#</th>
+                                                <th>Item</th>
+                                                <th>Harga</th>
+                                                <th>Jumlah</th>
+                                                <th>Total</th>
+                                            </tr>
+                                            @foreach ($cart as $item)
+                                                <tr class="item text-white" style="border: 1px solid #bbbabb;">
+                                                    <td style="width: 10px;">{{ $loop->iteration }}</td>
+                                                    <td>{{ $item->barang->nama_barang }}</td>
+                                                    <td>{{ $item->total_awal }}</td>
+                                                    <td>{{ $item->quantity }}</td>
+                                                    <td>{{ $item->sub_total }}</td>
+                                                </tr>
+                                            @endforeach
+                                            <tr class="">
+                                                <td colspan="4"
+                                                    class="mb-2 border-0 border-r border-white text-white">Subtotal
+                                                </td>
+                                                <td class="mb-2 text-white">Rp. {{ number_format($sub_total, 0, 2) }}
+                                                </td>
+                                            </tr>
 
-                                        <div class="d-flex justify-content-between">
-                                            <p class="mb-2">Potongan</p>
-                                            <p class="mb-2">Rp. {{ number_format($potongan, 0, 2) }}</p>
-                                        </div>
+                                            <tr class="">
+                                                <td colspan="4"
+                                                    class="mb-2 border-0 border-r border-white text-white">Potongan
+                                                </td>
+                                                <td class="mb-2 text-white">Rp. {{ number_format($potongan, 0, 2) }}
+                                                </td>
+                                            </tr>
 
-                                        <div class="d-flex justify-content-between mb-4">
-                                            <p class="mb-2">Total Bayar</p>
-                                            <p class="mb-2">Rp. {{ number_format($total_bayar, 0, 2) }}</p>
-                                        </div>
+                                            <tr class="">
+                                                <td colspan="4"
+                                                    class="mb-2 border-0 border-r border-white text-white">Total Bayar
+                                                </td>
+                                                <td class="mb-2 text-white">Rp.
+                                                    {{ number_format($total_bayar, 0, 2) }}</td>
+                                            </tr>
+                                        </table>
+
 
                                         <button type="button" class="btn btn-light btn-block btn-lg">
-                                            <div class="d-flex justify-content-between"wire:click.defer="BayarDetail({{$potongan}}, {{$sub_total}}, {{$total_bayar}})"
+                                            <div class="d-flex justify-content-between"wire:click.defer="BayarDetail({{ $potongan }}, {{ $sub_total }}, {{ $total_bayar }})"
                                                 data-toggle="modal" data-target=".bd-example-modal-lg">
                                                 {{-- <span class="mr-2">Rp. {{number_format($total_bayar, 0,2)}}</span> --}}
                                                 <span class=" ml-lg-1">Lakukan Pemesanan <i
@@ -132,8 +241,9 @@
                                             </div>
                                         </button>
                                         <button type="reset" class="btn btn-danger btn-block btn-lg">
-                                            <div class="d-flex justify-content-between"
-                                                data-toggle="modal" data-target=".bd-example-modal-lg">
+                                            <div class="d-flex justify-content-between" data-toggle="modal"
+                                                wire:click="$toggle('bayardetail')" wire:loading.attr='disabled'
+                                                data-target=".bd-example-modal-lg">
                                                 {{-- <span class="mr-2">Rp. {{number_format($total_bayar, 0,2)}}</span> --}}
                                                 <span class=" ml-lg-1">Batalkan <i
                                                         class="fas fa-long-arrow-alt-right ms-2"></i></span>
@@ -144,37 +254,7 @@
                                 </div>
 
                             </div>
-                            {{-- Dialog Modal --}}
-                            <x-jet-dialog-modal wire:model='Keranjang'>
-                                <x-slot name="title"></x-slot>
-                                <x-slot name="content">
-                                    Apakah Anda Yakin?
-                                </x-slot>
-                                <x-slot name="footer">
-                                    <x-jet-button type='button' wire:model='removeCart({{ $itemID }})'>Ya
-                                    </x-jet-button>
-                                    <x-jet-danger-button type='button' wire:model="$toggle('Keranjang')"
-                                        wire:loading.attr='disabled'>Tidak</x-jet-danger-button>
-                                </x-slot>
-                            </x-jet-dialog-modal>
-                            <!-- Button trigger modal -->
-
-                            <!-- Modal -->
-                            <button type="button" class="btn btn-primary" data-toggle="modal"
-                                data-target=".bd-example-modal-lg">Large modal</button>
-
-                            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
-                                aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                        {{-- @include('page.invoice.invoice') --}}
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
-
+                        @endif
                     </div>
                 </div>
             </div>
