@@ -24,7 +24,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-sans antialiased">
+<body class="font-sans antialiased bg-blue-darken">
 
     <noscript>You need to enable JavaScript to run this app.</noscript>
     @include('sweetalert::alert')
@@ -192,7 +192,7 @@
                 </div>
             </div>
         </nav>
-        <div class="relative md:ml-64 bg-gray-50">
+        <div class="relative md:ml-64 bg-transparent">
             <nav
                 class="absolute top-0 left-0 w-full z-10 bg-transparent md:flex-row md:flex-nowrap md:justify-start flex items-center p-4 shadow-sm shadow-white">
                 <div class="w-full mx-autp items-center flex justify-between md:flex-nowrap flex-wrap md:px-10 px-4">
@@ -234,7 +234,7 @@
                 </div>
             </nav>
             <!-- Header -->
-            <div class="relative bg-blue-darken md:pt-12 pb-12 pt-12">
+            <div class="relative  pt-12">
                 <div class="px-4 md:px-10 mx-auto w-full">
                     {{ $slot }}
                 </div>
@@ -248,7 +248,7 @@
     @livewireScripts
 
 
-    <footer class="block py-4 absolute bottom-0 right-0 w-full">
+    <footer class="block py-4 absolute bottom-0 right-0 w-full bg-white">
         <div class="container mx-auto px-4">
             <hr class="mb-4 border-b-1 border-gray-200" />
             <div class="flex flex-wrap items-center md:justify-between justify-center">

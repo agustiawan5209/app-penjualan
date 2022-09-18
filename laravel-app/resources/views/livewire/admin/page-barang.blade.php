@@ -121,7 +121,7 @@
                         </x-td>
                         <x-td>
                             {{-- {{$item->diskon}} --}}
-                            @if ($item->diskon == null)
+                            @if ($item->diskon->count() < 1)
                                 <button wire:click='TambahModalDiskon({{ $item->id }})'
                                     class="px-1 py-2 text-green-500 text-sm font-semibold">
                                     Diskon
