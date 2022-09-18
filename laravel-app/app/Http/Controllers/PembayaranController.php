@@ -47,11 +47,11 @@ class PembayaranController extends Controller
     public function GantiStatusPromo()
     {
         UsesUserPromo::where('user_id', '=', Auth::user()->id)->update([
-            'status' => '2',
+            'status' => '1',
         ]);
     }
 
-     /**
+    /**
      * receive
      * Melakukan Pengiriman data Ke Pembayaran
      * Dan
@@ -61,40 +61,37 @@ class PembayaranController extends Controller
      */
     public function receive(Request $request)
     {
+        $validasi = $request->validate([
+            'kabupaten' => 'required',
+            'kode_pos' => 'required',
+            'metode' => 'required',
+            'sub_total' => 'required',
+            'foto' => 'required',
+            'nama' => 'required',
+        ]);
         // dd(session('param'));
-        if (session()->has('param')) {
-            $validasi = $request->validate([
-                'name' => 'required',
-                'email' => 'required',
-                'kabupaten' => 'required',
-                'kode_pos' => 'required',
-                'metode' => 'required',
-                'sub_total' => 'required',
-                'foto' => 'required',
-            ]);
+        if (session()->has('keranjang')) {
             $param = [
-                'param' => session('param'),
+                'param' => session('keranjang'),
                 'request' => $request,
                 'file' => $this->uploadFile($request->foto),
             ];
             // dd($cek_file);
-            $pdf = Pdf::loadView('PDF.PDFpembayaran', $param);
-            $item_details = session('param');
+            $pdf = Pdf::loadView('page.invoice.index', $param);
+            $item_details = session('keranjang');
             $transaksi_id = $this->transaksi_id();
-            $this->createTransaksi($item_details['item_details'], $transaksi_id);
-            $this->createPayment($request, $item_details['item_details'], $pdf->download()->getOriginalContent(), $transaksi_id);
-           Keranjang::where('user_id', '=', Auth::user()->id)->delete();
+            $this->createTransaksi($item_details['item'], $transaksi_id);
+            $this->createPayment($request, $item_details['item'], $pdf->download()->getOriginalContent(), $transaksi_id);
+            Keranjang::where('user_id', '=', Auth::user()->id)->delete();
             session()->forget('param');
             $this->GantiStatusPromo();
             Alert::success('Pemesanan berhasil', 'Mohon Tunggu Proses Konfirmasi');
 
-            return redirect()
-                ->route('home');
+            return redirect()->route('home');
         } else {
             return redirect()->route('home');
         }
     }
-
 
     /**
      * createPayment
@@ -109,14 +106,14 @@ class PembayaranController extends Controller
     {
         $payment_status = '';
         $payment_type = '';
-        if ($request->foto == null && $request->metode == 'COD') {
-            $payment_status = '';
-            $payment_type = 'COD';
-        } elseif ($request->metode == 'BANK' && $request->foto != null) {
-            $random_name = $this->uploadFile($request->foto);
-            $payment_status = '2';
-            $payment_type = 'BANK';
-        }
+        // if ($request->foto == null && $request->metode == 'COD') {
+        //     $payment_status = '';
+        //     $payment_type = 'COD';
+        // } elseif ($request->metode == 'BANK' && $request->foto != null) {
+        //     $random_name = $this->uploadFile($request->foto);
+        //     $payment_status = '2';
+        //     $payment_type = 'BANK';
+        // }
         // Cek Pemilik Barang
         $arr = [];
         $cart = Keranjang::where('user_id', '=', Auth::user()->id)->get();
@@ -125,7 +122,8 @@ class PembayaranController extends Controller
         }
 
         for ($i = 0; $i < count($item_details); $i++) {
-            $exp = implode('/', $item_details[$i]);
+            $item_param = [$item_details[$i]->barang_id, $item_details[$i]->harga, $item_details[$i]->quantity, $item_details[$i]->sub_total];
+            $exp = implode('/', $item_param);
         }
         $permitted_chars = '01234567891011223344556677889900_abcdefghijklmnopqrstuvwxyz_ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         // Generate Transaksi ID
@@ -135,12 +133,12 @@ class PembayaranController extends Controller
         $namPDF = substr(str_shuffle($permitted_chars), 0, 7) . '.pdf';
         Storage::put('bukti/' . $namPDF, $pdf);
 
-       $payemnt =  Pembayaran::create([
+        $payemnt = Pembayaran::create([
             'user_id' => Auth::user()->id,
             'number' => Auth::user()->name . '_' . $this->generateUniqueNumber(),
             'total_price' => $request->sub_total,
-            'payment_status' => $payment_status,
-            'payment_type' => $payment_type,
+            'payment_status' => '1',
+            'payment_type' => 'BANK',
             'transaksi_id' => $ID_Transkasi,
             'pdf_url' => $namPDF,
             'tgl_transaksi' => Carbon::now()->format('Y-m-d'),
@@ -151,7 +149,7 @@ class PembayaranController extends Controller
         //     'body'=> Auth::user()->name . " Baru Saja Melakukan Pembayaran",
         //     'from'=> 'User='. Auth::user()->id,
         // ]));
-        $this->createOngkir($request, $ID_Transkasi);
+        // $this->createOngkir($request, $ID_Transkasi);
     }
 
     /**
@@ -163,11 +161,10 @@ class PembayaranController extends Controller
      */
     public function createOngkir($request, $ID_Transkasi)
     {
-
         $status = 0;
         if ($request->kabupaten == 'Kota Makassar' || $request->kabupaten == 'Kabupaten Gowa') {
             $harga = 12000;
-        }else{
+        } else {
             $harga = 0;
         }
         Ongkir::create([
@@ -191,44 +188,56 @@ class PembayaranController extends Controller
     public function createTransaksi($item_details = [], $transaksi_id)
     {
         $count = count($item_details);
+        $potongan_persen = 0;
+        $potongan_nominal = 0;
         // dd($item_details[1]);
         // Ambil Nilai Promo Dari CartController
         $cart = new KeranjangController();
         // Ambil Promo Persen
-        $promo_persen = $cart->GetPromo($item_details[0]['id_barang']);
+        $promo_persen = $cart->GetPromo();
         // Ambil Promo Nominal
-        $promo_nominal = $cart->GetPromoNominal($item_details[0]['id_barang']);
+        $promo_nominal = $cart->GetPromoNominal();
         // Melakukan Generate Random Number Pada Field ID_transaksi
 
         // Melakukan Perulanagan Untuk Membuat Field Dalam Tabel Transaksi
         for ($i = 0; $i < $count; $i++) {
             // dd($item_details[$i]);
             // Hapus VOcuher =
-            $v = Voucher::where('barang_id', '=', $item_details[$i]['id_barang'])->first();
+            $v = Voucher::where('barang_id', '=', $item_details[$i]['barang_id'])->first();
             //   dd($v);
             if ($v != null) {
-                UsesUserVoucher::where('voucher_id', $v->id)->update([
+                UsesUserVoucher::where('voucher_id', $v->id)->where('user_id', Auth::user()->id)->update([
                     'status' => '2',
                 ]);
             }
             // end Vocuher
-            $promo_persen = $cart->GetPromo($item_details[$i]['id_barang']);
-            $promo_nominal = $cart->GetPromoNominal($item_details[$i]['id_barang']);
+            $promo_persen = $cart->GetPromo($item_details[$i]['barang_id']);
+            $promo_nominal = $cart->GetPromoNominal($item_details[$i]['barang_id']);
+            $item_param = [
+                $item_details[$i]->barang_id,
+                // $item_details[$i]->harga,
+                $item_details[$i]->quantity,
+                $item_details[$i]->sub_total,
+            ];
+            // dd($item_details[$i]);
             // Jika Potongan sama Dengan 0 atau null maka potongan sama dengan harga jika tidak maka harga akan dipotong
-            $potongan = $promo_persen == 0 || $promo_persen == '' ? $promo_nominal : $item_details[$i]['harga_barang'] * ((int) $promo_persen / 100);
+            $potongan_nominal =  $promo_nominal ;
+            $potongan_persen = $item_details[$i]->sub_total * ((int) $promo_persen / 100);
+            $potongan = $potongan_nominal + $potongan_persen;
+
             Transaksi::create([
                 'ID_transaksi' => $transaksi_id,
                 'tgl_transaksi' => Carbon::now()->format('Y-m-d'),
-                'item_details' => implode(',', $item_details[$i]),
-                'barang_id' => $item_details[$i]['id_barang'],
+                'item_details' => implode(',', $item_param),
+                'barang_id' => $item_details[$i]->barang_id,
                 'potongan' => $potongan,
-                'total' => $item_details[$i]['harga_barang'] - $potongan,
+                'total' => $item_details[$i]->sub_total - $potongan,
             ]);
         }
         // Hapus Voucher Yang Memiliki Status 3
-        UsesUserVoucher::where('status', '=', '3')->update([
-            'status' => '4',
-        ]);
+        // UsesUserVoucher::where('status', '=', '3')->update([
+        //     'status' => '4',
+        // ]);
     }
 
     /**
@@ -236,10 +245,19 @@ class PembayaranController extends Controller
      * Membuat ID Transaksi
      * @return void
      */
-    public function transaksi_id(){
+    public function transaksi_id()
+    {
         $permitted_chars = '01234567891011223344556677889900_abcdefghijklmnopqrstuvwxyz_ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         do {
             $transaksi_id = substr(str_shuffle($permitted_chars), 0, 8);
+        } while (Pembayaran::where('transaksi_id', '=', $transaksi_id)->first());
+        return $transaksi_id;
+    }
+    public function generateUniqueNumber()
+    {
+        $permitted_chars = '01234567891011223344556677889900_abcdefghijklmnopqrstuvwxyz_ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        do {
+            $transaksi_id = substr(str_shuffle($permitted_chars), 0, 5);
         } while (Pembayaran::where('transaksi_id', '=', $transaksi_id)->first());
         return $transaksi_id;
     }

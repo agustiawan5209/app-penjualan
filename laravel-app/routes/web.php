@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PDFController;
+use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\StatusBarangController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UserController;
@@ -13,6 +14,7 @@ use App\Http\Livewire\Admin\PagePromo;
 use App\Http\Livewire\Admin\PageVOucher;
 use App\Http\Livewire\Page\HalamanUtama;
 use App\Http\Livewire\Page\PageDetailShop;
+use App\Http\Livewire\Page\PagePembayaran;
 use App\Http\Livewire\Page\PageShop;
 use App\Http\Livewire\Page\ShoppingCart;
 use App\Http\Livewire\PageSearchkatalog;
@@ -53,8 +55,10 @@ Route::middleware([
     // Akses User
     Route::group(['middleware' => 'role:Customer', 'prefix' => 'Customer', 'as' => 'Customer.'], function () {
         Route::get('Dashboard', UserDashboard::class)->name('Dashboard-User');
-        Route::get('receive', [TransaksiController::class, 'receive'])->name('Pembayaran');
+        Route::post('receive', [PembayaranController::class, 'receive'])->name('Pembayaran-Selesai');
+        // Route::get('Send', [PembayaranController::class, 'receive'])->name('Pembayaran-send');
         Route::get('invoice/Data-Pembayaran', [PDFController::class, 'invoice'])->name('Invoice');
+        Route::get("Pembayaran", PagePembayaran::class)->name('Page-Pembayaran');
     });
 
 

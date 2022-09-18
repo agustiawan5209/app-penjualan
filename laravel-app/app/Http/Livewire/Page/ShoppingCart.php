@@ -36,7 +36,7 @@ class ShoppingCart extends Component
     {
         $carbon = Carbon::now()->format('Y-m-d');
         $cart = Keranjang::where('user_id', Auth::user()->id)->get();
-        $this->potongan($cart);
+        $this->Diskon($cart);
         $this->quantity;
 
         return view('livewire.page.shopping-cart', [
@@ -44,7 +44,7 @@ class ShoppingCart extends Component
         ])->layout('layouts.guest');
     }
 
-    public function potongan($cart){
+    public function Diskon($cart){
         $arr = [];
         $subtotal = Keranjang::where('user_id', Auth::user()->id)->sum('sub_total');
         // dd($subtotal);
@@ -137,7 +137,7 @@ class ShoppingCart extends Component
             'sub_total'=> $sub_total,
             'total_bayar'=> $total_bayar,
         ]);
-        return redirect()->route('Customer.Invoice');
+        return redirect()->route('Customer.Page-Pembayaran');
     }
 
 
