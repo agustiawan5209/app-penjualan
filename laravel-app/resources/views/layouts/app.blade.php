@@ -248,7 +248,7 @@
     @livewireScripts
 
 
-    <footer class="block py-4">
+    <footer class="block py-4 absolute bottom-0 right-0 w-full">
         <div class="container mx-auto px-4">
             <hr class="mb-4 border-b-1 border-gray-200" />
             <div class="flex flex-wrap items-center md:justify-between justify-center">
