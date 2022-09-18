@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('pembayarans', function (Blueprint $table) {
             $table->id();
-            $table->id();
             $table->foreignId('user_id')->constrained('users')->onUpdate('cascade');
             $table->string('number', 16);
             $table->decimal('total_price', 10, 2);

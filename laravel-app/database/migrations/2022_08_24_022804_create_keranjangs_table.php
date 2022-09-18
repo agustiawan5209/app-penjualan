@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('quantity');
             $table->bigInteger('potongan_persen')->nullable();
             $table->bigInteger('potongan_nominal')->nullable();
+            $table->bigInteger('total_awal');
             $table->bigInteger('sub_total');
             $table->softDeletes();
             $table->timestamps();

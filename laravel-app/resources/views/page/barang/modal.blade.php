@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-            <form>
+            <form action="#">
                 <h6 class="text-white text-sm mt-3 mb-6 font-bold uppercase">
                   Barang
                 </h6>

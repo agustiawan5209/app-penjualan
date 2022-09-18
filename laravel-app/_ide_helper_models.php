@@ -47,6 +47,8 @@ namespace App\Models{
  * @property string $tgl_perolehan
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Diskon[] $diskon
+ * @property-read int|null $diskon_count
  * @property-read \App\Models\Jenis|null $jenis
  * @property-read \App\Models\Satuan|null $satuan
  * @method static \Database\Factories\BarangFactory factory(...$parameters)
@@ -150,6 +152,7 @@ namespace App\Models{
  * @property int $quantity
  * @property int|null $potongan_persen
  * @property int|null $potongan_nominal
+ * @property int $total_awal
  * @property int $sub_total
  * @property string|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -168,6 +171,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Keranjang wherePotonganPersen($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Keranjang whereQuantity($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Keranjang whereSubTotal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Keranjang whereTotalAwal($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Keranjang whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Keranjang whereUserId($value)
  */
@@ -202,9 +206,16 @@ namespace App\Models{
  * App\Models\Pembayaran
  *
  * @property int $id
- * @property string $metode
- * @property string $item_barang Dapatkan ID Barang Dari Keranjang
- * @property int $sub_total Sub_total Dengan Di hitung Diskon
+ * @property int $user_id
+ * @property string $number
+ * @property string $total_price
+ * @property string $payment_status 1 = Belum Di Bayar, 2 = Pembayaran Berhasil , 3 = Konfirmasi
+ * @property string|null $payment_type
+ * @property string|null $pdf_url
+ * @property string|null $transaksi_id
+ * @property string $tgl_transaksi
+ * @property string $item_details
+ * @property string|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\User|null $user
@@ -213,11 +224,18 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran query()
  * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran whereItemBarang($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran whereMetode($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran whereSubTotal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran whereItemDetails($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran whereNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran wherePaymentStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran wherePaymentType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran wherePdfUrl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran whereTglTransaksi($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran whereTotalPrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran whereTransaksiId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran whereUserId($value)
  */
 	class Pembayaran extends \Eloquent {}
 }
@@ -305,13 +323,19 @@ namespace App\Models{
  * App\Models\Slide
  *
  * @property int $id
+ * @property string $slide
+ * @property string $deskripsi
+ * @property string $thumbnail
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|Slide newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Slide newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Slide query()
  * @method static \Illuminate\Database\Eloquent\Builder|Slide whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Slide whereDeskripsi($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Slide whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Slide whereSlide($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Slide whereThumbnail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Slide whereUpdatedAt($value)
  */
 	class Slide extends \Eloquent {}
@@ -396,20 +420,28 @@ namespace App\Models{
  * App\Models\Transaksi
  *
  * @property int $id
- * @property string $id_transaksi
+ * @property string $ID_transaksi
  * @property string $tgl_transaksi
- * @property string $item
+ * @property string $item_details
+ * @property int $barang_id
+ * @property int $potongan
+ * @property string $total
+ * @property string $status 0 = Diterima, 1 = Dikembalikan
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Database\Factories\TransaksiFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Transaksi newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Transaksi newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Transaksi query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaksi whereBarangId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Transaksi whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaksi whereIDTransaksi($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Transaksi whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Transaksi whereIdTransaksi($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Transaksi whereItem($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaksi whereItemDetails($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaksi wherePotongan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaksi whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Transaksi whereTglTransaksi($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaksi whereTotal($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Transaksi whereUpdatedAt($value)
  */
 	class Transaksi extends \Eloquent {}

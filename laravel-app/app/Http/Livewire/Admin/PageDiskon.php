@@ -33,11 +33,11 @@ class PageDiskon extends Component
         ]);
     }
 
-    public function TambahModal()
+    public function TambahModalDsikon()
     {
         $this->addItem = true;
     }
-    public function EditModal($id)
+    public function EditModalDsikon($id)
     {
         $diskon = DIskon::find($id);
         $this->barang_id = $diskon->barang_id;
@@ -46,7 +46,7 @@ class PageDiskon extends Component
         $this->tgl_mulai = $diskon->tgl_mulai;
         $this->editItem = true;
     }
-    public function HapusModal($id)
+    public function HapusModalDsikon($id)
     {
         $diskon = DIskon::find($id);
         $this->itemID = $diskon->id;
@@ -54,7 +54,7 @@ class PageDiskon extends Component
     }
 
     // CRUD TABEL DISKON
-    public function create()
+    public function createDsikon()
     {
         $valid =   $this->validate([
             'barang_id' => 'required',
@@ -66,7 +66,7 @@ class PageDiskon extends Component
         session()->flash('message', 'Berhasil Di Tambah');
         $this->addItem = false;
     }
-    public function edit($id){
+    public function editDsikon($id){
         $valid =   $this->validate([
             'barang_id' => 'required',
             'jumlah_diskon' => 'required',
@@ -77,7 +77,7 @@ class PageDiskon extends Component
         session()->flash('message', 'Berhasil Di Edit');
         $this->editItem = false;
     }
-    public function delete($id){
+    public function deleteDsikon($id){
         DIskon::where('id',$id)->delete();
         session()->flash('message', 'Berhasil Di Hapus');
         $this->hapusItem = false;

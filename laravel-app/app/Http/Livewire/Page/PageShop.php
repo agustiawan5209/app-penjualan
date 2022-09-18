@@ -63,11 +63,12 @@ class PageShop extends Component
                         'user_id' => $userID,
                         'barang_id' => $barang->id,
                         'quantity' => 1,
+                        'total_awal' => $barang->harga,
                         'sub_total' => $barang->harga,
                     ]);
                     // dd($cat);
                     Alert::info('Pemesanan Berhasil Cek Pesanan Anda', 'info');
-                    return redirect('/');
+                    return redirect()->route('Keranjang');
                 }
             }
         } else {

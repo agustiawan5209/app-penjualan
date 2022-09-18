@@ -11,7 +11,7 @@ class Keranjang extends Model
     public $timestamps = true;
     protected $table = 'keranjangs';
     protected $fillable = [
-        'quantity','sub_total','user_id','barang_id','potongan_nominal','potongan_persen',
+        'quantity','sub_total','user_id','barang_id','potongan_nominal','potongan_persen','total_awal',
     ];
     protected $hidden = [
 

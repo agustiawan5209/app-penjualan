@@ -34,24 +34,30 @@ class ShoppingCart extends Component
 
     public function render()
     {
-        $arr = [];
         $carbon = Carbon::now()->format('Y-m-d');
         $cart = Keranjang::where('user_id', Auth::user()->id)->get();
-        $subtotal = Keranjang::sum('sub_total');
-        $quantity = Keranjang::sum('quantity');
+        $this->potongan($cart);
+        $this->quantity;
+
+        return view('livewire.page.shopping-cart', [
+            'cart' => $cart,
+        ])->layout('layouts.guest');
+    }
+
+    public function potongan($cart){
+        $arr = [];
+        $subtotal = Keranjang::where('user_id', Auth::user()->id)->sum('sub_total');
+        // dd($subtotal);
+        $quantity = Keranjang::where('user_id', Auth::user()->id)->sum('quantity');
         // $diskon_kadaluarsa = Diskon::whereDate('tgl_kadaluarsa', '<' , $carbon)->delete();
-        $this->sub_total = $subtotal * $quantity;
+        $this->sub_total = $subtotal ;
         foreach ($cart as $keranjang) {
             $arr[] = Diskon::where('barang_id', $keranjang->barang_id)->sum('jumlah_diskon');
         }
         $jumlah_diskon = (int) array_sum($arr);
         $this->diskon = ($jumlah_diskon / 100) * $this->sub_total ;
         $this->potongan = $this->diskon - $this->promo - $this->voucher;
-
-        $this->total_bayar = $this->sub_total - $this->potongan;
-        return view('livewire.page.shopping-cart', [
-            'cart' => $cart,
-        ])->layout('layouts.guest');
+       $this->total_bayar = $this->sub_total - $this->potongan;
     }
     public function show($id)
     {
@@ -75,12 +81,13 @@ class ShoppingCart extends Component
     public function PlusupdateCart($id)
     {
         $cart = Keranjang::find($id);
-        $cat = Keranjang::where('id', $id)->update([
-            'quantity' => $cart->quantity + 1,
-        ]);
-        if ($cat) {
+        if($cart->barang->stock <= $this->quantity){
+            $this->quantity = $cart->barang->stock;
+        }else{
+            $this->quantity++;
             Keranjang::where('id', $id)->update([
-                'sub_total' => $cart->quantity * $cart->barang->harga,
+                'quantity' => $this->quantity ,
+                'sub_total'=> $this->quantity * $cart->total_awal,
             ]);
         }
 
@@ -89,19 +96,42 @@ class ShoppingCart extends Component
     public function MinusupdateCart($id)
     {
         $cart = Keranjang::find($id);
-        $cat = Keranjang::where('id', $id)->update([
-            'quantity' => $cart->quantity - 1,
-        ]);
-        if ($cat) {
+
+        if($this->quantity <= 1){
+            $this->quantity = 1;
+
+        }else{
+            $this->quantity--;
             Keranjang::where('id', $id)->update([
-                'sub_total' => $cart->quantity * $cart->barang->harga,
+                'quantity' => $this->quantity ,
+                'sub_total'=> $this->quantity * $cart->total_awal,
             ]);
         }
 
         // $this->emit('cartUpdated');
     }
+    public function quantityChange($id){
+        $cart = Keranjang::find($id);
+        $cat = Keranjang::where('id', $id)->update([
+            'quantity' => $this->quantity ,
+        ]);
+        // if ($cat) {
+        //     Keranjang::where('id', $id)->update([
+        //         'sub_total' => $cart->quantity * $cart->barang->harga,
+        //     ]);
+        // }
+    }
     public function CheckOut()
     {
         return redirect()->route('Customer.Pembayaran');
+    }
+    public $bayardetail= false;
+    public function BayarDetail($cart, $potongan, $total){
+        session()->put('keranjang', [
+            'item'=> $cart,
+            'potongan'=> $potongan,
+            'total'=> $total,
+        ]);
+        return redirect()->route('Customer.Invoice');
     }
 }

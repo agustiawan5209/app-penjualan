@@ -15,15 +15,15 @@
     @vite(['resources/js/app.js'])
     <script src="{{ asset('js/sweetalert.all.js') }}"></script>
 
-    <link rel="stylesheet" href="{{asset('css/styleall.css')}}">
-    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{asset('css/templatemo.min.css')}}">
-    <link rel="stylesheet" href="{{asset('css/slick.min.css')}}">
-    <link rel="stylesheet" href="{{asset('css/slick-theme.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/styleall.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/templatemo.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/slick.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/slick-theme.css') }}">
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
-    <link rel="stylesheet" href="{{asset('css/fontawesome.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/fontawesome.min.css') }}">
 
     <!-- Load map styles -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
@@ -41,10 +41,10 @@
             <div class="w-100 d-flex justify-content-between">
                 <div>
                     <i class="fa fa-envelope mx-2"></i>
-                    <a class="navbar-sm-brand text-light text-decoration-none"
-                        href="{{route('login')}}">Masuk</a>
+                    <a class="navbar-sm-brand text-light text-decoration-none" href="{{ route('login') }}">Masuk</a>
                     <i class="fa fa-phone mx-2"></i>
-                    <a class="navbar-sm-brand text-light text-decoration-none" href="{{route('register')}}">Daftar</a>
+                    <a class="navbar-sm-brand text-light text-decoration-none"
+                        href="{{ route('register') }}">Daftar</a>
                 </div>
                 <div>
                     <a class="text-light" href="https://fb.com/templatemo" target="_blank" rel="sponsored"><i
@@ -154,7 +154,9 @@
             <div class="row">
 
                 <div class="col-md-4 pt-5">
-                    <h2 class="h2 text-orange-dark border-bottom pb-3 border-light logo"><span class="text-orange-dark">Irsan</span><span class="text-blue-dark">Jaya</span> <span class="text-white">Shop</span></h2>
+                    <h2 class="h2 text-orange-dark border-bottom pb-3 border-light logo"><span
+                            class="text-orange-dark">Irsan</span><span class="text-blue-dark">Jaya</span> <span
+                            class="text-white">Shop</span></h2>
                     <ul class="list-unstyled text-light footer-link-list">
                         <li>
                             <i class="fas fa-map-marker-alt fa-fw"></i>
@@ -250,12 +252,21 @@
     <!-- End Footer -->
 
     <!-- Start Script -->
-    <script src="{{asset('js/jquery-1.11.0.min.js')}}"></script>
-    <script src="{{asset('js/jquery-migrate-1.2.1.min.js')}}"></script>
-    <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{asset('js/templatemo.js')}}"></script>
-    <script src="{{asset('js/custom.js')}}"></script>
-    <script src="{{asset('js/slick.min.js')}}"></script>
+    <script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-migrate-1.2.1.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('js/templatemo.js') }}"></script>
+    <script src="{{ asset('js/custom.js') }}"></script>
+    <script src="{{ asset('js/slick.min.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
     <!-- End Script -->
     <script>
         $('#carousel-related-product').slick({

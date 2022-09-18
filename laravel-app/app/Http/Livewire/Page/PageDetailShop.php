@@ -38,12 +38,13 @@ class PageDetailShop extends Component
                 'user_id'=> $userID,
                 'barang_id'=>$barang->id,
                 'quantity'=> $this->count,
-                'sub_total'=> $barang->harga,
+                'total_awal'=> $barang->harga,
+                'sub_total'=> $barang->harga * $this->count,
               ]);
                 // dd($cat);
                 $this->count = 1;
-                toast('Signed in successfully','success')->timerProgressBar();
-                return redirect('/')->route('Keranjang')->withToastSuccess('Task Created Successfully!')->timerProgressBar();
+                toast('Barang Berhasil Dimasukan Keranjang','success')->timerProgressBar();
+                return redirect('/')->route('Keranjang');
             }
         } else {
             Alert::error('Akses Ditolak', 'Silahkan Login terlebih Dahulu');

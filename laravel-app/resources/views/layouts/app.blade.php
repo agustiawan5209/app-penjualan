@@ -12,24 +12,24 @@
     <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
 
     <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <!-- Styles -->
     @livewireStyles
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" />
-    <link rel="stylesheet" href="{{asset('@fortawesome/fontawesome-free/css/all.min.css')}}" />
-    <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
-    <script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
+    <link rel="stylesheet" href="{{ asset('@fortawesome/fontawesome-free/css/all.min.css') }}" />
+    <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
+    <script src="{{ asset('js/sweetalert.all.js') }}"></script>
+
+    <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="font-sans antialiased">
 
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    @if (session()->has('message'))
-    <x-alert :message="session('message')" />
-    @endif
+    @include('sweetalert::alert')
     <div id="root">
-        <nav
+        <nav x-data="{ Dropdown: false }"
             class="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
             <div
                 class="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto">
@@ -39,15 +39,15 @@
                     <i class="fas fa-bars"></i>
                 </button>
                 <a class="md:block text-left md:pb-2 text-gray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-                    href="{{route('Admin.Dashboard-Admin')}}">
-                    Selamat Datang {{Auth::user()->name}}
+                    href="{{ route('Admin.Dashboard-Admin') }}">
+                    Selamat Datang {{ Auth::user()->name }}
                 </a>
                 <ul class="md:hidden items-center flex flex-wrap list-none">
                     <li class="inline-block relative">
-                        <a class="text-gray-500 block py-1 px-3" href="#pablo"
-                            onclick="openDropdown(event,'notification-dropdown')"><i class="fas fa-bell"></i></a>
+                        <a class="text-gray-500 block py-1 px-3" href="#pablo" x-on:click="Dropdown = ! Dropdown"><i
+                                class="fas fa-bell"></i></a>
                         <div class="hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
-                            id="notification-dropdown">
+                            id="notification-dropdown" x-show="Dropdown">
                             <a href="#pablo"
                                 class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700">Action</a><a
                                 href="#pablo"
@@ -62,17 +62,16 @@
                         </div>
                     </li>
                     <li class="inline-block relative">
-                        <a class="text-gray-500 block" href="#pablo"
-                            onclick="openDropdown(event,'user-responsive-dropdown')">
+                        <a class="text-gray-500 block" href="#pablo" x-on:click="Dropdown = ! Dropdown">
                             <div class="items-center flex">
                                 <span
                                     class="w-12 h-12 text-sm text-white bg-gray-200 inline-flex items-center justify-center rounded-full"><img
                                         alt="..." class="w-full rounded-full align-middle border-none shadow-lg"
-                                        src="{{ Auth::user()->profile_photo_url}}" /></span>
+                                        src="{{ Auth::user()->profile_photo_url }}" /></span>
                             </div>
                         </a>
                         <div class="hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
-                            id="user-responsive-dropdown">
+                            id="user-responsive-dropdown" x-show="Dropdown">
                             <a href="#pablo"
                                 class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700">Action</a><a
                                 href="#pablo"
@@ -93,8 +92,8 @@
                         <div class="flex flex-wrap">
                             <div class="w-6/12">
                                 <a class="md:block text-left md:pb-2 text-gray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-                                    href="../../index.html">
-                                    Notus Tailwind JS
+                                    href="/">
+                                    IrsanJaya
                                 </a>
                             </div>
                             <div class="w-6/12 flex justify-end">
@@ -114,48 +113,56 @@
                     </form>
                     <!-- Divider -->
                     <hr class="my-4 md:min-w-full" />
-                    <!-- Heading -->
-                    <h6
-                        class="md:min-w-full text-gray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-                        Admin Layout Pages
-                    </h6>
                     <!-- Navigation -->
 
                     <ul class="md:flex-col md:min-w-full flex flex-col list-none">
-                        <li class="items-center">
-                            <a href="{{route('Admin.Dashboard-Admin')}}"
-                                class="text-xs uppercase py-3 font-bold block text-blue-darken hover:text-blue-darken">
+                        <li class="items-center  ">
+                            <a href="{{ route('Admin.Dashboard-Admin') }}"
+                                class="text-xs uppercase py-3 font-bold block {{request()->routeIs('Admin.Dashboard-Admin') ? ' bg-blue-darken text-white' :'text-gray-700 hover:text-gray-500'}}">
                                 <i class="fas fa-tv mr-2 text-sm opacity-75"></i>
                                 Dashboard
                             </a>
                         </li>
-                        <li class="items-center">
-                            <a href="{{route('Admin.Page-Barang')}}"
-                                class="text-xs uppercase py-3 font-bold block text-gray-700 hover:text-gray-500">
-                                <i class="fas fa-tools mr-2 text-sm text-gray-300"></i>
+                        <li class="items-center" x-data="{Master : false}">
+                            <a href="#" @click="Master =! Master"
+                                class="text-xs uppercase py-3 font-bold block {{request()->routeIs('Admin.Page-Barang') || request()->routeIs('Admin.Page-Promo') || request()->routeIs('Admin.Page-Voucher') ? ' bg-blue-darken text-white' :'text-gray-700 hover:text-gray-500'}}">
+                                <i class=" mr-2 text-sm text-gray-300"></i>
                                 Master Barang
                             </a>
+                            <ul class="md:flex-col md:min-w-full flex flex-col list-none bg-blue-darken" x-show="Master" x-transition>
+                                <li class="items-center">
+                                    <a href="{{ route('Admin.Page-Barang') }}"
+                                        class="text-xs uppercase py-3 px-3 font-bold block text-white hover:text-white">
+                                        Kelola Barang
+                                    </a>
+                                </li>
+                                <li class="items-center">
+                                    <a href="{{ route('Admin.Page-Promo') }}"
+                                        class="text-xs uppercase py-3 px-3 font-bold block text-white hover:text-white">
+                                        Promo
+                                    </a>
+                                </li>
+                                <li class="items-center">
+                                    <a href="{{ route('Admin.Page-Voucher') }}"
+                                        class="text-xs uppercase py-3 px-3 font-bold block text-white hover:text-white">
+                                        Voucher
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="items-center">
-                            <a href="{{route('Admin.Page-Diskon')}}"
-                                class="text-xs uppercase py-3 font-bold block text-gray-700 hover:text-gray-500">
-                                <i class="fas fa-tools mr-2 text-sm text-gray-300"></i>
-                                Diskon
-                            </a>
-                        </li>
-                        <li class="items-center">
-                            <a href="{{route('Admin.Page-Diskon')}}"
-                                class="text-xs uppercase py-3 font-bold block text-gray-700 hover:text-gray-500">
-                                <i class="fas fa-tools mr-2 text-sm text-gray-300"></i>
+                            <a href="{{ route('Admin.Page-Diskon') }}"
+                                class="text-xs uppercase py-3 font-bold block {{request()->routeIs('Admin.Page-Diskon') ? ' bg-blue-darken text-white' :'text-gray-700 hover:text-gray-500'}}">
+                                <i class=" mr-2 text-sm text-gray-300"></i>
                                 Penjualan
                             </a>
                         </li>
 
 
                         <li class="items-center">
-                            <a href="{{route('Admin.Laporan')}}"
-                                class="text-xs uppercase py-3 font-bold block text-gray-700 hover:text-gray-500">
-                                <i class="fas fa-tools mr-2 text-sm text-gray-300"></i>
+                            <a href="{{ route('Admin.Laporan') }}"
+                                class="text-xs uppercase py-3 font-bold block {{request()->routeIs('Admin.Laporan') ? ' bg-blue-darken text-white' :'text-gray-700 hover:text-gray-500'}}">
+                                <i class=" mr-2 text-sm text-gray-300"></i>
                                 Laporan
                             </a>
                         </li>
@@ -164,21 +171,21 @@
                     <!-- Divider -->
                     <hr class="my-4 md:min-w-full" />
                     <!-- Heading -->
-                    <h6
-                        class="md:min-w-full text-gray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
+                    <h6 class="md:min-w-full text-gray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
                         Auth Layout Pages
                     </h6>
                     <!-- Navigation -->
 
                     <ul class="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
                         <li class="items-center">
-                           <form action="{{route('logout')}}" method="POST">
-                            @csrf
-                            <button type='submit'
-                            class="text-gray-700 hover:text-gray-500 text-xs uppercase py-3 font-bold block">
-                            <i class="fas fa-fingerprint text-gray-300 mr-2 text-sm"></i>
-                            Logout
-                        </button></form>
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type='submit'
+                                    class=" text-gray-700 hover:text-gray-500 text-xs uppercase py-3 font-bold block">
+                                    <i class="fas fa-fingerprint text-gray-300 mr-2 text-sm"></i>
+                                    Logout
+                                </button>
+                            </form>
                         </li>
 
                     </ul>
@@ -201,16 +208,16 @@
                         </div>
                     </form>
                     <ul class="flex-col md:flex-row list-none items-center hidden md:flex">
-                        <a class="text-gray-500 block" href="#pablo" onclick="openDropdown(event,'user-dropdown')">
+                        <a class="text-gray-500 block" href="#" x-on:click="Dropdown = ! Dropdown">
                             <div class="items-center flex">
-                                <span
+                                <span x-text="Dropdown"
                                     class="w-12 h-12 text-sm text-white bg-gray-200 inline-flex items-center justify-center rounded-full"><img
                                         alt="..." class="w-full rounded-full align-middle border-none shadow-lg"
-                                        src="{{Auth::user()->profile_photo_url}}" /></span>
+                                        src="{{ Auth::user()->profile_photo_url }}" /> </span>
                             </div>
                         </a>
                         <div class="hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
-                            id="user-dropdown">
+                            id="user-dropdown" x-show="Dropdown">
                             <a href="#pablo"
                                 class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700">Action</a><a
                                 href="#pablo"
@@ -229,7 +236,7 @@
             <!-- Header -->
             <div class="relative bg-blue-darken md:pt-12 pb-12 pt-12">
                 <div class="px-4 md:px-10 mx-auto w-full">
-                   {{$slot}}
+                    {{ $slot }}
                 </div>
             </div>
 

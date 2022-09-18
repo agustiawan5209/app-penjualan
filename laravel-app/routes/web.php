@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\StatusBarangController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UserController;
@@ -53,6 +54,7 @@ Route::middleware([
     Route::group(['middleware' => 'role:Customer', 'prefix' => 'Customer', 'as' => 'Customer.'], function () {
         Route::get('Dashboard', UserDashboard::class)->name('Dashboard-User');
         Route::get('receive', [TransaksiController::class, 'receive'])->name('Pembayaran');
+        Route::get('invoice/Data-Pembayaran', [PDFController::class, 'invoice'])->name('Invoice');
     });
 
 
