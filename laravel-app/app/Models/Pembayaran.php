@@ -20,4 +20,7 @@ class Pembayaran extends Model
     {
         return $this->hasOne(User::class , 'id', 'user_id');
     }
+    public function transaksi(){
+        return $this->hasMany(Transaksi::class, 'ID_transaksi', 'transaksi_id');
+    }
 }

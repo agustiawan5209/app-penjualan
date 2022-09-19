@@ -7,7 +7,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
 
@@ -15,13 +16,12 @@
 
     <!-- Styles -->
     @livewireStyles
+    <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" />
     <link rel="stylesheet" href="{{ asset('@fortawesome/fontawesome-free/css/all.min.css') }}" />
-    <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
     <script src="{{ asset('js/sweetalert.all.js') }}"></script>
 
-    <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
 </head>
 
 <body class="font-sans antialiased bg-blue-darken">
@@ -192,7 +192,7 @@
                 </div>
             </div>
         </nav>
-        <div class="relative md:ml-64 bg-transparent">
+        <div class="relative md:ml-64 bg-transparent pb-20">
             <nav
                 class="absolute top-0 left-0 w-full z-10 bg-transparent md:flex-row md:flex-nowrap md:justify-start flex items-center p-4 shadow-sm shadow-white">
                 <div class="w-full mx-autp items-center flex justify-between md:flex-nowrap flex-wrap md:px-10 px-4">
@@ -248,7 +248,7 @@
     @livewireScripts
 
 
-    <footer class="block py-4 absolute bottom-0 right-0 w-full bg-white">
+    <footer class="py-4 static bottom-0 right-0 w-full bg-white">
         <div class="container mx-auto px-4">
             <hr class="mb-4 border-b-1 border-gray-200" />
             <div class="flex flex-wrap items-center md:justify-between justify-center">

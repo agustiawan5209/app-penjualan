@@ -3,7 +3,7 @@
     <div class="" x-data="{ jenisVoucher: {{ $jenis_voucher }}, }">
         <div class="max-w-full px-3  lg:flex-none">
             <div class="flex flex-wrap -mx-3">
-                <div class="max-w-full px-3 mb-6 lg:mb-0 lg:w-full lg:flex-none">
+                <div class="max-w-full mb-6 lg:mb-0 lg:w-full lg:flex-none">
                     <div
                         class="relative flex flex-col min-w-0 mt-6 break-words bg-white border-0 border-transparent border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
                         <div class="p-4 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
@@ -20,23 +20,8 @@
                         </div>
                         <div class="flex-auto px-0 pt-0 pb-2">
                             <div class="p-0 overflow-x-auto">
-                                <div class="px-3 block sm:flex sm:justify-between">
-                                    <div class=" p-3">
-                                        <select name="row" wire:model='row'
-                                            class=" w-20 px-2 border-none ring-none active:ring-0 rounded-md text-gray-400 text-base">
-                                            <option value="10">10</option>
-                                            <option value="20">20</option>
-                                            <option value="50">50</option>
-                                            <option value="100">100</option>
-                                        </select>
-                                    </div>
-                                    <div class="">
-                                        <input type="search" wire:model='search'
-                                            class="rounded-lg bg-transparent ring-blue-400 border-blue-400 active:border-blue-500 active:border-spacing-1"
-                                            placeholder="Pencarian">
-                                    </div>
-                                </div>
                                 <x-table>
+                                    <x-slot name="filter"></x-slot>
                                     <thead class="align-bottom">
                                         <tr>
                                             <x-th>

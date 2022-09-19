@@ -20,6 +20,7 @@
         </div>
 
         <x-table>
+            <x-slot name="filter"></x-slot>
             <thead>
                 <tr>
                     <x-th>No.</x-th>

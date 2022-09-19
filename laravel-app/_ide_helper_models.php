@@ -205,9 +205,15 @@ namespace App\Models{
 /**
  * App\Models\Ongkir
  *
+ * @property int $id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|Ongkir newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Ongkir newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Ongkir query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Ongkir whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Ongkir whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Ongkir whereUpdatedAt($value)
  */
 	class Ongkir extends \Eloquent {}
 }
@@ -230,6 +236,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Ongkir|null $ongkir
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Transaksi[] $transaksi
+ * @property-read int|null $transaksi_count
  * @property-read \App\Models\User|null $user
  * @method static \Database\Factories\PembayaranFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran newModelQuery()
@@ -557,28 +565,26 @@ namespace App\Models{
  *
  * @property int $id
  * @property string $kode_voucher
- * @property int|null $promo_nominal
- * @property int|null $promo_persen
- * @property int|null $max_user
+ * @property int $diskon
+ * @property int|null $barang_id
+ * @property int|null $jumlah_pembelian
+ * @property string $deskripsi
+ * @property string $jenis_voucher 0 = Umum, 1 = User Baru, 2 = User Membeli Lebih Dari 3, 3 = Barang
  * @property int|null $use_user
- * @property string $tgl_mulai
- * @property string $tgl_kadaluarsa
- * @property string|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Barang|null $barang
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereBarangId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereDeskripsi($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereDiskon($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereJenisVoucher($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereJumlahPembelian($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereKodeVoucher($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereMaxUser($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Voucher wherePromoNominal($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Voucher wherePromoPersen($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereTglKadaluarsa($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereTglMulai($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereUseUser($value)
  */

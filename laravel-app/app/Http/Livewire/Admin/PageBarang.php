@@ -17,7 +17,7 @@ class PageBarang extends Component
     use WithPagination;
     use WithFileUploads;
     // item Search Dan Row
-    public $search = "", $row = 10;
+    public $search = "", $row = 10, $order = 'asc';
     // Item FIeld Table
     // Barang
 
@@ -26,12 +26,12 @@ class PageBarang extends Component
 
     public function render()
     {
-        $barang = Barang::orderBy('id', 'desc')->paginate($this->row);
+        $barang = Barang::orderBy('id', $this->order)->paginate($this->row);
         if ($this->search != null) {
             $barang = Barang::where('kode_barang', 'like', '%' . $this->search . '%')
                 ->orWhere('harga', 'like', '%' .  $this->search . '%')
                 ->orWhereDate('tgl_perolehan', 'like', '%' . $this->search . '%')
-                ->orderBy('id', 'desc')->paginate($this->row);
+                ->orderBy('id', $this->order)->paginate($this->row);
         }
         $jenis = Jenis::all();
         $satuan = Satuan::all();
