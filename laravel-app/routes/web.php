@@ -13,6 +13,7 @@ use App\Http\Livewire\Admin\PagePenjualan;
 use App\Http\Livewire\Admin\PagePromo;
 use App\Http\Livewire\Admin\PageVOucher;
 use App\Http\Livewire\Item\DetailItemPage;
+use App\Http\Livewire\Item\PagePengiriman;
 use App\Http\Livewire\Page\HalamanUtama;
 use App\Http\Livewire\Page\PageDetailShop;
 use App\Http\Livewire\Page\PagePembayaran;
@@ -63,6 +64,7 @@ Route::middleware([
         Route::get("Pembayaran", PagePembayaran::class)->name('Page-Pembayaran');
     });
     Route::get('Detail-Item/{idItem}', DetailItemPage::class)->name('detail-item-transaksi');
+    Route::get('Pengiriman-Barang', PagePengiriman::class)->name('Page-Pengiriman');
 
 
 });

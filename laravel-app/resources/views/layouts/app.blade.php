@@ -157,6 +157,13 @@
                                 Penjualan
                             </a>
                         </li>
+                        <li class="items-center">
+                            <a href="{{ route('Page-Pengiriman') }}"
+                                class="text-xs uppercase py-3 font-bold block {{request()->routeIs('Page-Pengiriman') ? ' bg-blue-darken text-white' :'text-gray-700 hover:text-gray-500'}}">
+                                <i class=" mr-2 text-sm text-gray-300"></i>
+                                Pengiriman Barang
+                            </a>
+                        </li>
 
 
                         <li class="items-center">
@@ -248,8 +255,8 @@
     @livewireScripts
 
 
-    <footer class="py-4 static bottom-0 right-0 w-full bg-white">
-        <div class="container mx-auto px-4">
+    <footer class="py-4 absolute bottom-0 w-full bg-white">
+        <div class="container mx-auto px-4 static">
             <hr class="mb-4 border-b-1 border-gray-200" />
             <div class="flex flex-wrap items-center md:justify-between justify-center">
                 <div class="w-full md:w-4/12 px-4">
