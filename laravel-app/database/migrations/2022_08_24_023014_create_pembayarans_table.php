@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('transaksi_id')->nullable();
             $table->date('tgl_transaksi');
             $table->string('item_details',300);
+            $table->enum('metode_pengiriman',['1', '2'])->comment('1 = Ongkir, 2= Ambil Sendiri');
             $table->softDeletes();
             $table->timestamps();
         });

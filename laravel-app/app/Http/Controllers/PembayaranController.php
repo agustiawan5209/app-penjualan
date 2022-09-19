@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\Barang;
+use App\Models\Ongkir;
 use App\Models\Voucher;
 use App\Models\Keranjang;
 use App\Models\Transaksi;
@@ -17,7 +19,6 @@ use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\StorePembayaranRequest;
 use App\Http\Requests\UpdatePembayaranRequest;
-use App\Models\Ongkir;
 
 class PembayaranController extends Controller
 {
@@ -109,11 +110,9 @@ class PembayaranController extends Controller
         // if ($request->foto == null && $request->metode == 'COD') {
         //     $payment_status = '';
         //     $payment_type = 'COD';
-        // } elseif ($request->metode == 'BANK' && $request->foto != null) {
-        //     $random_name = $this->uploadFile($request->foto);
-        //     $payment_status = '2';
-        //     $payment_type = 'BANK';
-        // }
+        // } else
+
+        $random_name = $this->uploadFile($request->foto);
         // Cek Pemilik Barang
         $arr = [];
         $cart = Keranjang::where('user_id', '=', Auth::user()->id)->get();
@@ -143,6 +142,7 @@ class PembayaranController extends Controller
             'pdf_url' => $namPDF,
             'tgl_transaksi' => Carbon::now()->format('Y-m-d'),
             'item_details' => $exp,
+            'metode_pengiriman'=> $request->metode,
         ]);
         // Notification::send($payemnt,new InvoicePaid([
         //     'type'=> 'payment',
@@ -213,6 +213,7 @@ class PembayaranController extends Controller
             // end Vocuher
             $promo_persen = $cart->GetPromo($item_details[$i]['barang_id']);
             $promo_nominal = $cart->GetPromoNominal($item_details[$i]['barang_id']);
+            $barang = Barang::where('id',$item_details[$i]['barang_id'])->first();
             $item_param = [
                 $item_details[$i]->barang_id,
                 // $item_details[$i]->harga,
@@ -221,9 +222,11 @@ class PembayaranController extends Controller
             ];
             // dd($item_details[$i]);
             // Jika Potongan sama Dengan 0 atau null maka potongan sama dengan harga jika tidak maka harga akan dipotong
-            $potongan_nominal =  $promo_nominal ;
-            $potongan_persen = $item_details[$i]->sub_total * ((int) $promo_persen / 100);
-            $potongan = $potongan_nominal + $potongan_persen;
+            // $potongan_nominal =  $promo_nominal ;
+            // $potongan_persen = $item_details[$i]->sub_total * ((int) $promo_persen / 100);
+            if($barang->diskon != null ||$barang->diskon != "" ){
+                $potongan = $barang->diskon->jumlah_diskon;
+            }
 
             Transaksi::create([
                 'ID_transaksi' => $transaksi_id,

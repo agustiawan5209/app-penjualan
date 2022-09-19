@@ -16,6 +16,7 @@
                 <x-th>Nama</x-th>
                 <x-th>Tanggal Transaksi</x-th>
                 <x-th>Metode Pembayaran</x-th>
+                <x-th>Metode Pengiriman</x-th>
                 <x-th>Total</x-th>
                 <x-th>Detail</x-th>
                 <x-th>Status</x-th>
@@ -28,6 +29,13 @@
                     <x-td>{{ $pembayaran->user->name }}</x-td>
                     <x-td>{{ $pembayaran->created_at }}</x-td>
                     <x-td>{{ $pembayaran->payment_type }}</x-td>
+                    <x-td>
+                        @if ($pembayaran->metode_pengiriman == 1)
+                            Kirim Barang
+                        @else
+                            Ambil Sendiri
+                        @endif
+                    </x-td>
                     <x-td>Rp. {{ number_format($pembayaran->total_price,0,2) }}</x-td>
                     <x-td>
                         <x-jet-button type="button" wire:click='detailItem({{$pembayaran->id}})'>Detail Item</x-jet-button>

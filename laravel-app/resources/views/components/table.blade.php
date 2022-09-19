@@ -24,14 +24,13 @@
                     <option value="asc">asc</option>
                     <option value="desc">desc</option>
                 </select>
-                <button
+                <select
                     class="border border-gray-300 rounded-md text-gray-600 px-3 py-[9px] bg-white hover:border-gray-400 focus:outline-none text-xs focus:ring-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M19 13l-7 7-7-7m14-8l-7 7-7-7" />
-                    </svg>
-                </button>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
             </div>
         </div>
         <div class="mt-6 overflow-x-auto">

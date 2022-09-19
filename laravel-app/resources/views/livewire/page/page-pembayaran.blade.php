@@ -10,40 +10,40 @@
                 </div>
 
                 <form action="{{ route('Customer.Pembayaran-Selesai') }}" id="submitPay" method="POST" class="mt-4"
-                    enctype="multipart/form-data" x-data="{ Radio: '' }">
+                    enctype="multipart/form-data" x-data="{ Radio: 0, }">
                     @csrf
                     <div class="form-outline form-white mb-4 d-flex justify-content-around">
                         <div class="custom-control custom-radio custom-control-inline">
                             <input type="radio" id="metode" name="metode" class="custom-control-input "
-                                x-model="Radio" value="Ambil">
+                                x-model="Radio" value="2">
                             <label class="custom-control-label" for="metode">Ambil
                                 Sendiri</label>
                         </div>
                         <div class="custom-control custom-radio custom-control-inline">
                             <input type="radio" id="customRadioInline2" name="metode"
-                                class="custom-control-input" x-model="Radio" value="Kirim">
+                                class="custom-control-input" x-model="Radio" value="1">
                             <label class="custom-control-label" for="customRadioInline2">Kirim
                                 Barang</label>
                         </div>
                     </div>
-                    <h5 class="mb-0" x-show="Radio == 'Kirim'">Isi Form Untuk Pengiriman
+                    <h5 class="mb-0" x-show="Radio == 1">Isi Form Untuk Pengiriman
                         Barang</h5>
-                    <div class="form-outline form-white mb-4" x-show="Radio == 'Kirim'">
+                    <div class="form-outline form-white mb-4" x-show="Radio == 1">
                         <label class="form-label" for="typeText">Kabupaten</label>
                         <input type="text" id="typeText" class="form-control form-control-lg"
                             placeholder=".........." name="kabupaten" />
                     </div>
-                    <div class="form-outline form-white mb-4 " x-show="Radio == 'Kirim'">
+                    <div class="form-outline form-white mb-4 " x-show="Radio == 1">
                         <label class="form-label" for="typeText">Kecamatan</label>
                         <input type="text" id="typeText" class="form-control form-control-lg"
                             placeholder=".........." name="kecamatan" />
                     </div>
-                    <div class="form-outline form-white mb-4 " x-show="Radio == 'Kirim'">
+                    <div class="form-outline form-white mb-4 " x-show="Radio == 1">
                         <label class="form-label" for="typeText">Kode Pos</label>
                         <input type="text" id="typeText" class="form-control form-control-lg"
                             placeholder=".........." name="kode_pos" />
                     </div>
-                    <div class="form-outline form-white mb-4" x-show="Radio == 'Kirim'">
+                    <div class="form-outline form-white mb-4" x-show="Radio == 1">
                         <label class="form-label" for="typeText">Alamat</label>
                         <input type="text" id="typeText" class="form-control form-control-lg"
                             placeholder=".........." name="alamat" />

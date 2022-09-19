@@ -9,7 +9,7 @@ class Pembayaran extends Model
 {
     use HasFactory;
     protected $table = 'pembayarans';
-    protected $fillable = ['user_id','number', 'total_price', 'payment_status', 'payment_type', 'payment_code', 'pdf_url', 'transaksi_id', 'snap_token', 'item_details', 'tgl_transaksi'];
+    protected $fillable = ['user_id','number', 'total_price', 'metode_pengiriman','payment_status', 'payment_type', 'payment_code', 'pdf_url', 'transaksi_id', 'snap_token', 'item_details', 'tgl_transaksi'];
     protected $hidden = ['payment_status', 'payment_type', 'payment_code', 'pdf_url', 'transaksi_id', 'snap_token'];
 
 

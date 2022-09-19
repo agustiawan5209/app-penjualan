@@ -449,6 +449,7 @@ namespace App\Models{
  * @property string $status 0 = Diterima, 1 = Dikembalikan
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Barang|null $barang
  * @method static \Database\Factories\TransaksiFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Transaksi newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Transaksi newQuery()
