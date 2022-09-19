@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('status_barangs', function (Blueprint $table) {
             $table->id();
-            $table->string('status');
-            $table->string('detail');
+            $table->foreignId('ongkir_id')->nullable();
+            $table->foreignId('pembayaran_id')->nullable();
+            $table->string('ket', 50)->nullable();
             $table->timestamps();
         });
     }
