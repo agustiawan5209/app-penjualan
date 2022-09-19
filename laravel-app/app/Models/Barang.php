@@ -9,7 +9,7 @@ class Barang extends Model
 {
     use HasFactory;
     protected $table = 'barangs';
-    protected $fillable = ['gambar', 'kode_barang', 'jenis_id', 'harga', 'deskripsi', 'satuan_id', 'tgl_perolehan'];
+    protected $fillable = ['gambar', 'nama_barang','kode_barang', 'jenis_id', 'harga', 'stock','deskripsi', 'satuan_id', 'tgl_perolehan'];
     public $timestamps = true;
 
     public function satuan()

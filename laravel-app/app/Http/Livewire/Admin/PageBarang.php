@@ -10,6 +10,7 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 use Alert;
+use App\Models\Katalog;
 use Storage;
 
 class PageBarang extends Component
@@ -17,11 +18,13 @@ class PageBarang extends Component
     use WithPagination;
     use WithFileUploads;
     // item Search Dan Row
-    public $search = "", $row = 10, $order = 'asc';
+    public $search = '',
+        $row = 10,
+        $order = 'asc';
     // Item FIeld Table
     // Barang
-
-    public $gambar, $kode_barang, $jenis_id, $satuan_id, $harga, $deskripsi, $tgl_perolehan, $itemID, $nama_barang ,$stock;
+    public $katalog = [];
+    public $gambar, $kode_barang, $jenis_id, $satuan_id, $harga, $deskripsi, $tgl_perolehan, $itemID, $nama_barang, $stock;
     public $updateFoto;
 
     public function render()
@@ -29,32 +32,34 @@ class PageBarang extends Component
         $barang = Barang::orderBy('id', $this->order)->paginate($this->row);
         if ($this->search != null) {
             $barang = Barang::where('kode_barang', 'like', '%' . $this->search . '%')
-                ->orWhere('harga', 'like', '%' .  $this->search . '%')
+                ->orWhere('harga', 'like', '%' . $this->search . '%')
                 ->orWhereDate('tgl_perolehan', 'like', '%' . $this->search . '%')
-                ->orderBy('id', $this->order)->paginate($this->row);
+                ->orderBy('id', $this->order)
+                ->paginate($this->row);
         }
         $jenis = Jenis::all();
         $satuan = Satuan::all();
         return view('livewire.admin.page-barang', compact('barang', 'satuan', 'jenis'));
     }
 
-
     /*
-    * FUngsi Modal Barang
-    * Edit Hapus Tambah
-    */
-    public $itemTambah = false, $itemHapus = false, $itemEdit = false;
-    public function closeModal(){
+     * FUngsi Modal Barang
+     * Edit Hapus Tambah
+     */
+    public $itemTambah = false,
+        $itemHapus = false,
+        $itemEdit = false;
+    public function closeModal()
+    {
         $this->itemEdit = false;
         $this->itemHapus = false;
-        $this->itemTambah =false;
+        $this->itemTambah = false;
         $this->itemID = null;
         $this->addItemDiskon = false;
     }
     public function TambahModal()
     {
         $this->itemTambah = true;
-        alert()->info('message', 'Berhasil Ditambah');
     }
 
     public function HapusModal($id)
@@ -79,29 +84,35 @@ class PageBarang extends Component
         $this->itemEdit = true;
     }
 
+    public function cekKatalog()
+    {
+        dd($this->katalog);
+    }
 
     /*
-    * Fungsi CRUD Barang
-    */
+     * Fungsi CRUD Barang
+     */
     public function create()
     {
-        $valid =   $this->validate([
+        $valid = $this->validate([
             'gambar' => 'image|max:2040',
-            'nama_barang'=> 'required',
+            'nama_barang' => 'required',
             'jenis_id' => 'required',
             'satuan_id' => 'required',
             'harga' => 'required',
             'deskripsi' => 'required',
             'tgl_perolehan' => 'required',
-            'stock'=>'required',
+            'stock' => 'required',
         ]);
+        // dd($this->katalog);
+
         $kode = Barang::max('kode_barang');
         if ($kode == null) {
-            $book_id = "PB-001";
+            $book_id = 'PB-001';
         }
         // dd($kode);
-        $huruf = "PB";
-        $urutan = (int)substr($kode, 3, 3);
+        $huruf = 'PB';
+        $urutan = (int) substr($kode, 3, 3);
         $urutan++;
         if ($urutan < 10) {
             $book_id = $huruf . '-00' . $urutan;
@@ -113,7 +124,7 @@ class PageBarang extends Component
             $random = bcrypt($nama) . '.' . $this->gambar->getClientOriginalExtension();
             $this->gambar->storeAs('upload/', $nama);
         }
-        $barang = Barang::insert([
+        $barang = Barang::create([
             'gambar' => $nama,
             'kode_barang' => $book_id,
             'jenis_id' => $this->jenis_id,
@@ -124,15 +135,29 @@ class PageBarang extends Component
             'tgl_perolehan' => $this->tgl_perolehan,
             'stock' => $this->stock,
         ]);
-        Alert::info('message', $barang ? 'Berhasil Ditambah' : "Gagal");
+        for ($i = 0; $i < count($this->katalog); $i++) {
+            Katalog::create([
+                'barang_id'=> $barang->id,
+                'nama_katalog' => $this->katalog[$i],
+            ]);
+        }
+        Alert::info('message', 'Berhasil Ditambah');
         $this->itemTambah = false;
+        $this->gambar = null;
+        $this->katalog = [];
+        $this->deskripsi = null;
+        $this->nama_barang = null;
+        $this->tgl_perolehan = null;
+        $this->jumlah_diskon = null;
+        $this->jenis_id = null;
+        $this->satuan_id = null;
     }
     public function edit($id)
     {
-        $valid =   $this->validate([
+        $valid = $this->validate([
             // 'gambar' => 'image|max:2040',
             // 'kode_barang'=> 'required',
-            'nama_barang'=>'required',
+            'nama_barang' => 'required',
             'jenis_id' => 'required',
             'satuan_id' => 'required',
             'harga' => 'required',
@@ -146,7 +171,7 @@ class PageBarang extends Component
             $random = bcrypt($nama) . '.' . $this->gambar->getClientOriginalExtension();
             $this->gambar->storeAs('upload', $random);
         }
-        $barang = Barang::where('id',$id)->update([
+        $barang = Barang::where('id', $id)->update([
             'gambar' => $random,
             // 'kode_barang' => $this->kode_barang,
             'jenis_id' => $this->jenis_id,
@@ -157,7 +182,7 @@ class PageBarang extends Component
             'stock' => $this->stock,
         ]);
         $this->itemEdit = false;
-       Alert::info('message', 'Berhasil Di Edit');
+        Alert::info('message', 'Berhasil Di Edit');
     }
     public function delete($id)
     {
@@ -166,10 +191,11 @@ class PageBarang extends Component
         $this->itemHapus = false;
     }
 
-
     // Crud Jenis
     // itemJenis
-    public $addJenis = false, $editJenis = false, $hapusJenis = false;
+    public $addJenis = false,
+        $editJenis = false,
+        $hapusJenis = false;
     // field tabel jenis;
     public $nama_Jenis;
     public function tambahJenis()
@@ -192,7 +218,7 @@ class PageBarang extends Component
     public function createJenis()
     {
         $this->validate([
-            'nama_Jenis'=> 'required'
+            'nama_Jenis' => 'required',
         ]);
         Jenis::create([
             'nama_jenis' => $this->nama_Jenis,
@@ -214,7 +240,9 @@ class PageBarang extends Component
     // Satuan
     // Crud Satuan
     // itemSatuan
-    public $addSatuan = false, $editSatuan = false, $hapusSatuan = false;
+    public $addSatuan = false,
+        $editSatuan = false,
+        $hapusSatuan = false;
     // field tabel Satuan;
     public $nama_Satuan;
     public function tambahSatuan()
@@ -253,7 +281,6 @@ class PageBarang extends Component
         $this->hapusSatuan = false;
     }
 
-
     /**
      * Fungsi Update Diskom
      */
@@ -286,7 +313,7 @@ class PageBarang extends Component
     // CRUD TABEL DISKON
     public function createDiskon($barang_id)
     {
-        $valid =   $this->validate([
+        $valid = $this->validate([
             // 'barang_id' => 'required',
             'jumlah_diskon' => 'required',
             'tgl_mulai' => 'required',
@@ -295,17 +322,17 @@ class PageBarang extends Component
         // $data = array_push($barang_id, $valid);
         // dd($valid);
         $diskon = DIskon::create([
-            'barang_id'=> $barang_id,
+            'barang_id' => $barang_id,
             'jumlah_diskon' => $this->jumlah_diskon,
             'tgl_mulai' => $this->tgl_mulai,
             'tgl_kadaluarsa' => $this->tgl_kadaluarsa,
         ]);
         Alert::success('message', 'Berhasil Di Tambah');
         $this->closeModal();
-
     }
-    public function editDiskon($id){
-        $valid =   $this->validate([
+    public function editDiskon($id)
+    {
+        $valid = $this->validate([
             // 'barang_id' => 'required',
             'jumlah_diskon' => 'required',
             'tgl_mulai' => 'required',
@@ -320,10 +347,10 @@ class PageBarang extends Component
         $this->addItemDiskon = false;
         Alert::success('message', 'Berhasil Di Edit');
     }
-    public function deleteDiskon($id){
-        DIskon::where('id',$id)->delete();
+    public function deleteDiskon($id)
+    {
+        DIskon::where('id', $id)->delete();
         Alert::success('message', 'Berhasil Di Hapus');
         $this->hapusItem = false;
     }
-
 }
