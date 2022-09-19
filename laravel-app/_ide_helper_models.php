@@ -50,6 +50,7 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Diskon[] $diskon
  * @property-read int|null $diskon_count
  * @property-read \App\Models\Jenis|null $jenis
+ * @property-read \App\Models\Katalog|null $katalog
  * @property-read \App\Models\Satuan|null $satuan
  * @method static \Database\Factories\BarangFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Barang newModelQuery()
@@ -128,12 +129,14 @@ namespace App\Models{
  * App\Models\Katalog
  *
  * @property int $id
+ * @property int $barang_id
  * @property string $nama_katalog
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|Katalog newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Katalog newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Katalog query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Katalog whereBarangId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Katalog whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Katalog whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Katalog whereNamaKatalog($value)
@@ -223,15 +226,17 @@ namespace App\Models{
  * App\Models\Pembayaran
  *
  * @property int $id
+ * @property string|null $transaksi_id
  * @property int $user_id
+ * @property string|null $nama
  * @property string $number
  * @property string $total_price
  * @property string $payment_status 1 = Belum Di Bayar, 2 = Pembayaran Berhasil , 3 = Konfirmasi
  * @property string|null $payment_type
  * @property string|null $pdf_url
- * @property string|null $transaksi_id
  * @property string $tgl_transaksi
  * @property string $item_details
+ * @property string $metode_pengiriman 1 = Ongkir, 2= Ambil Sendiri
  * @property string|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -247,6 +252,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran whereItemDetails($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran whereMetodePengiriman($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran whereNama($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran whereNumber($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran wherePaymentStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran wherePaymentType($value)
