@@ -1,6 +1,8 @@
 <div>
 @include('sweetalert::alert')
     <!-- Card stats -->
+    {{-- @include('') --}}
+
     <div class="flex flex-wrap py-10">
         <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
             <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">

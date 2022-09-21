@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class UsesUserVoucher extends Model
 {
     use HasFactory;
-    protected $table= 'uses_user_vocuhers';
+    protected $table= 'uses_user_vouchers';
     protected $fillable= ['user_id', 'voucher_id','status'];
     protected $hidden = ['status'];
 

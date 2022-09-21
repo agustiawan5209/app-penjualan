@@ -29,12 +29,17 @@ class PageBarang extends Component
 
     public function render()
     {
-        $barang = Barang::orderBy('id', $this->order)->paginate($this->row);
+        $barang = Barang::orderBy('id', $this->order)
+        ->with(['satuan', 'jenis','diskon'])
+        ->limit(10)->paginate($this->row);
         if ($this->search != null) {
             $barang = Barang::where('kode_barang', 'like', '%' . $this->search . '%')
                 ->orWhere('harga', 'like', '%' . $this->search . '%')
                 ->orWhereDate('tgl_perolehan', 'like', '%' . $this->search . '%')
                 ->orderBy('id', $this->order)
+                ->with('satuan')
+                ->with('jenis')
+                ->with('diskon')
                 ->paginate($this->row);
         }
         $jenis = Jenis::all();
@@ -48,7 +53,8 @@ class PageBarang extends Component
      */
     public $itemTambah = false,
         $itemHapus = false,
-        $itemEdit = false;
+        $itemEdit = false,
+        $itemDetail = false;
     public function closeModal()
     {
         $this->itemEdit = false;
@@ -80,13 +86,24 @@ class PageBarang extends Component
         $this->deskripsi = $barang->deskripsi;
         $this->tgl_perolehan = $barang->tgl_perolehan;
         $this->stock = $barang->stock;
-
         $this->itemEdit = true;
     }
 
-    public function cekKatalog()
+    public function DetailModal($id)
     {
-        dd($this->katalog);
+        $barang = Barang::find($id);
+        $this->itemID = $barang->id;
+        $this->updateFoto = $barang->gambar;
+        $this->nama_barang = $barang->nama_barang;
+        $this->jenis_id = $barang->jenis->nama_jenis;
+        $this->satuan_id = $barang->satuan->nama_satuan;
+        $this->harga = $barang->harga;
+        $this->deskripsi = $barang->deskripsi;
+        $this->tgl_perolehan = $barang->tgl_perolehan;
+        $this->stock = $barang->stock;
+        // Ambil Katalog
+        $this->katalog = Katalog::where('barang_id', $id)->get();
+        $this->itemDetail = true;
     }
 
     /*

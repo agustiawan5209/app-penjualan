@@ -209,13 +209,27 @@ namespace App\Models{
  * App\Models\Ongkir
  *
  * @property int $id
+ * @property string $transaksi_id
+ * @property string|null $tgl_pengiriman
+ * @property int|null $harga
+ * @property string $kode_pos
+ * @property string $kabupaten
+ * @property string $detail_alamat
+ * @property string $status 0= kosong ,1= belum dikirim, 2=dikirim, 3=konfirmasi admin, 4=konfirmasi user, 5 = Pesanan Diterima
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|Ongkir newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Ongkir newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Ongkir query()
  * @method static \Illuminate\Database\Eloquent\Builder|Ongkir whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Ongkir whereDetailAlamat($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Ongkir whereHarga($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Ongkir whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Ongkir whereKabupaten($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Ongkir whereKodePos($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Ongkir whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Ongkir whereTglPengiriman($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Ongkir whereTransaksiId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Ongkir whereUpdatedAt($value)
  */
 	class Ongkir extends \Eloquent {}
@@ -373,17 +387,19 @@ namespace App\Models{
  * App\Models\StatusBarang
  *
  * @property int $id
- * @property string $status
- * @property string $detail
+ * @property int|null $ongkir_id
+ * @property int|null $pembayaran_id
+ * @property string|null $ket
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|StatusBarang newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|StatusBarang newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|StatusBarang query()
  * @method static \Illuminate\Database\Eloquent\Builder|StatusBarang whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|StatusBarang whereDetail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|StatusBarang whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|StatusBarang whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatusBarang whereKet($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatusBarang whereOngkirId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StatusBarang wherePembayaranId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|StatusBarang whereUpdatedAt($value)
  */
 	class StatusBarang extends \Eloquent {}
@@ -557,12 +573,28 @@ namespace App\Models{
 /**
  * App\Models\UsesUserVoucher
  *
+ * @property int $id
+ * @property int $user_id
+ * @property int $voucher_id
+ * @property string $status 1 = user baru,2 = Belum ,3 = Terpakai, 4= Selesai
+ * @property string|null $tgl_kadaluarsa
+ * @property string|null $waktu
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\User|null $user
  * @property-read \App\Models\Voucher|null $voucher
  * @method static \Database\Factories\UsesUserVoucherFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|UsesUserVoucher newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|UsesUserVoucher newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|UsesUserVoucher query()
+ * @method static \Illuminate\Database\Eloquent\Builder|UsesUserVoucher whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UsesUserVoucher whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UsesUserVoucher whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UsesUserVoucher whereTglKadaluarsa($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UsesUserVoucher whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UsesUserVoucher whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UsesUserVoucher whereVoucherId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UsesUserVoucher whereWaktu($value)
  */
 	class UsesUserVoucher extends \Eloquent {}
 }

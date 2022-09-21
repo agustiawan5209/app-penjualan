@@ -115,65 +115,67 @@
                     <hr class="my-4 md:min-w-full" />
                     <!-- Navigation -->
 
-                    <ul class="md:flex-col md:min-w-full flex flex-col list-none">
-                        <li class="items-center  ">
-                            <a href="{{ route('Admin.Dashboard-Admin') }}"
-                                class="text-xs uppercase py-3 font-bold block {{request()->routeIs('Admin.Dashboard-Admin') ? ' bg-blue-darken text-white' :'text-gray-700 hover:text-gray-500'}}">
-                                <i class="fas fa-tv mr-2 text-sm opacity-75"></i>
-                                Dashboard
-                            </a>
-                        </li>
-                        <li class="items-center" x-data="{Master : false}">
-                            <a href="#" @click="Master =! Master"
-                                class="text-xs uppercase py-3 font-bold block {{request()->routeIs('Admin.Page-Barang') || request()->routeIs('Admin.Page-Promo') || request()->routeIs('Admin.Page-Voucher') ? ' bg-blue-darken text-white' :'text-gray-700 hover:text-gray-500'}}">
-                                <i class=" mr-2 text-sm text-gray-300"></i>
-                                Master Barang
-                            </a>
-                            <ul class="md:flex-col md:min-w-full flex flex-col list-none bg-blue-darken" x-show="Master" x-transition>
-                                <li class="items-center">
-                                    <a href="{{ route('Admin.Page-Barang') }}"
-                                        class="text-xs uppercase py-3 px-3 font-bold block text-white hover:text-white">
-                                        Kelola Barang
-                                    </a>
-                                </li>
-                                <li class="items-center">
-                                    <a href="{{ route('Admin.Page-Promo') }}"
-                                        class="text-xs uppercase py-3 px-3 font-bold block text-white hover:text-white">
-                                        Promo
-                                    </a>
-                                </li>
-                                <li class="items-center">
-                                    <a href="{{ route('Admin.Page-Voucher') }}"
-                                        class="text-xs uppercase py-3 px-3 font-bold block text-white hover:text-white">
-                                        Voucher
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="items-center">
-                            <a href="{{ route('Admin.Page-Penjualan') }}"
-                                class="text-xs uppercase py-3 font-bold block {{request()->routeIs('Admin.Page-Penjualan') ? ' bg-blue-darken text-white' :'text-gray-700 hover:text-gray-500'}}">
-                                <i class=" mr-2 text-sm text-gray-300"></i>
-                                Penjualan
-                            </a>
-                        </li>
-                        <li class="items-center">
-                            <a href="{{ route('Page-Pengiriman') }}"
-                                class="text-xs uppercase py-3 font-bold block {{request()->routeIs('Page-Pengiriman') ? ' bg-blue-darken text-white' :'text-gray-700 hover:text-gray-500'}}">
-                                <i class=" mr-2 text-sm text-gray-300"></i>
-                                Pengiriman Barang
-                            </a>
-                        </li>
+                    @can ('Manage-Admin', User::class)
+                        <ul class="md:flex-col md:min-w-full flex flex-col list-none">
+                            <li class="items-center  ">
+                                <a href="{{ route('Admin.Dashboard-Admin') }}"
+                                    class="text-xs uppercase py-3 font-bold block {{request()->routeIs('Admin.Dashboard-Admin') ? ' bg-blue-darken text-white' :'text-gray-700 hover:text-gray-500'}}">
+                                    <i class="fas fa-tv mr-2 text-sm opacity-75"></i>
+                                    Dashboard
+                                </a>
+                            </li>
+                            <li class="items-center" x-data="{Master : false}">
+                                <a href="#" @click="Master =! Master"
+                                    class="text-xs uppercase py-3 font-bold block {{request()->routeIs('Admin.Page-Barang') || request()->routeIs('Admin.Page-Promo') || request()->routeIs('Admin.Page-Voucher') ? ' bg-blue-darken text-white' :'text-gray-700 hover:text-gray-500'}}">
+                                    <i class=" mr-2 text-sm text-gray-300"></i>
+                                    Master Barang
+                                </a>
+                                <ul class="md:flex-col md:min-w-full flex flex-col list-none bg-blue-darken" x-show="Master" x-transition>
+                                    <li class="items-center">
+                                        <a href="{{ route('Admin.Page-Barang') }}"
+                                            class="text-xs uppercase py-3 px-3 font-bold block text-white hover:text-white">
+                                            Kelola Barang
+                                        </a>
+                                    </li>
+                                    <li class="items-center">
+                                        <a href="{{ route('Admin.Page-Promo') }}"
+                                            class="text-xs uppercase py-3 px-3 font-bold block text-white hover:text-white">
+                                            Promo
+                                        </a>
+                                    </li>
+                                    <li class="items-center">
+                                        <a href="{{ route('Admin.Page-Voucher') }}"
+                                            class="text-xs uppercase py-3 px-3 font-bold block text-white hover:text-white">
+                                            Voucher
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="items-center">
+                                <a href="{{ route('Admin.Page-Penjualan') }}"
+                                    class="text-xs uppercase py-3 font-bold block {{request()->routeIs('Admin.Page-Penjualan') ? ' bg-blue-darken text-white' :'text-gray-700 hover:text-gray-500'}}">
+                                    <i class=" mr-2 text-sm text-gray-300"></i>
+                                    Penjualan
+                                </a>
+                            </li>
+                            <li class="items-center">
+                                <a href="{{ route('Page-Pengiriman') }}"
+                                    class="text-xs uppercase py-3 font-bold block {{request()->routeIs('Page-Pengiriman') ? ' bg-blue-darken text-white' :'text-gray-700 hover:text-gray-500'}}">
+                                    <i class=" mr-2 text-sm text-gray-300"></i>
+                                    Pengiriman Barang
+                                </a>
+                            </li>
 
 
-                        <li class="items-center">
-                            <a href="{{ route('Admin.Laporan') }}"
-                                class="text-xs uppercase py-3 font-bold block {{request()->routeIs('Admin.Laporan') ? ' bg-blue-darken text-white' :'text-gray-700 hover:text-gray-500'}}">
-                                <i class=" mr-2 text-sm text-gray-300"></i>
-                                Laporan
-                            </a>
-                        </li>
-                    </ul>
+                            <li class="items-center">
+                                <a href="{{ route('Admin.Laporan') }}"
+                                    class="text-xs uppercase py-3 font-bold block {{request()->routeIs('Admin.Laporan') ? ' bg-blue-darken text-white' :'text-gray-700 hover:text-gray-500'}}">
+                                    <i class=" mr-2 text-sm text-gray-300"></i>
+                                    Laporan
+                                </a>
+                            </li>
+                        </ul>
+                    @endcan
 
                     <!-- Divider -->
                     <hr class="my-4 md:min-w-full" />
@@ -206,12 +208,8 @@
                     {{-- <a class="text-white text-sm uppercase hidden lg:inline-block font-semibold"
                         href="#">IrsanJaya</a> --}}
                     <form class="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3">
-                        <div class="relative flex w-full flex-wrap items-stretch">
-                            <span
-                                class="z-10 h-full leading-snug font-normal absolute text-center text-gray-300 absolute bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3"><i
-                                    class="fas fa-search"></i></span>
-                            <input type="text" placeholder="Search here..."
-                                class="border-0 px-3 py-3 placeholder-gray-300 text-gray-600 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:ring w-full pl-10" />
+                        <div class="relative flex w-full">
+                            <livewire:item.notification-menu>
                         </div>
                     </form>
                     <ul class="flex-col md:flex-row list-none items-center hidden md:flex">
@@ -255,7 +253,7 @@
     @livewireScripts
 
 
-    <footer class="py-4 absolute bottom-0 w-full bg-white">
+    <footer class="py-4 static bottom-0 w-full bg-white ">
         <div class="container mx-auto px-4 static">
             <hr class="mb-4 border-b-1 border-gray-200" />
             <div class="flex flex-wrap items-center md:justify-between justify-center">

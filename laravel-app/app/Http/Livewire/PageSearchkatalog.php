@@ -27,7 +27,7 @@ class PageSearchkatalog extends Component
 
     public function render()
     {
-        $produk = Barang::where('jenis_id', $this->itemID)->get();
+        $produk = Barang::where('jenis_id', $this->itemID)->with(['satuan', 'jenis','diskon'])->get();
         $jenis = Jenis::all();
         return view('livewire.page-searchkatalog', [
             'produk' => $produk,

@@ -197,6 +197,7 @@ return [
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
 
     ],
 
@@ -215,6 +216,7 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+        'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
     ])->toArray(),
 
 ];

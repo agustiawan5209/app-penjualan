@@ -190,6 +190,7 @@ class PembayaranController extends Controller
         $count = count($item_details);
         $potongan_persen = 0;
         $potongan_nominal = 0;
+        $potongan = 0;
         // dd($item_details[1]);
         // Ambil Nilai Promo Dari CartController
         $cart = new KeranjangController();
@@ -224,7 +225,7 @@ class PembayaranController extends Controller
             // Jika Potongan sama Dengan 0 atau null maka potongan sama dengan harga jika tidak maka harga akan dipotong
             // $potongan_nominal =  $promo_nominal ;
             // $potongan_persen = $item_details[$i]->sub_total * ((int) $promo_persen / 100);
-            if($barang->diskon != null ||$barang->diskon != "" ){
+            if($barang->diskon->count() > 0){
                 $potongan = $barang->diskon->jumlah_diskon;
             }
 

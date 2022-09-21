@@ -35,7 +35,7 @@ class PageShop extends Component
 
     public function render()
     {
-        $produk = Barang::all();
+        $produk = Barang::with(['satuan', 'jenis','diskon'])->get();
         $jenis = Jenis::all();
         return view('livewire.page.page-shop', [
             'produk' => $produk,
