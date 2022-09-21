@@ -9,10 +9,11 @@ use App\Models\Voucher;
 use App\Models\UsesUserVoucher;
 use Laravel\Jetstream\Jetstream;
 use App\Notifications\InvoicePaid;
+use App\Notifications\OffersNotification;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Notification;
+use Notification;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 
 class CreateNewUser implements CreatesNewUsers
@@ -85,14 +86,14 @@ class CreateNewUser implements CreatesNewUsers
             ]);
             // }
 
-            Notification::send(
-                $user,
-                new InvoicePaid([
-                    'type' => 'User Regis',
-                    'body' => $user->name . ' Baru Saja Terdaftar',
-                    'from' => 'Admin',
-                ]),
-            );
+            $offerData = [
+                'type' => 'User Regis',
+                'body' => $user->name . ' Baru Saja Terdaftar',
+                'from' => 'Admin',
+            ];
+
+            event(new InvoicePaid($offerData));
+
         }
     }
 }

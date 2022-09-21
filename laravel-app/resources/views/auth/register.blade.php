@@ -7,18 +7,7 @@
                         <div class="row g-0">
                             <div class=" d-flex align-items-center">
                                 <div class="card-body p-4 p-lg-5 text-black">
-                                    @if ($errors->any())
-                                        <div {{ $attributes }}>
-                                            <div class="font-medium text-red-600">
-                                                {{ __('Whoops! Terjadi Kesalahan.') }}</div>
-
-                                            <ul class="mt-3 list-disc list-inside text-sm text-red-600">
-                                                @foreach ($errors->all() as $error)
-                                                    <li>{{ $error }}</li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    @endif
+                                    <x-jet-validation-errors />
                                     <form action="{{ route('register') }}" method="POST">
                                         @csrf
                                         <div class="d-flex align-items-center mb-3 pb-1">

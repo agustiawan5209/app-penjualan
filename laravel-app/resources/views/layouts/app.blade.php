@@ -208,7 +208,7 @@
                     {{-- <a class="text-white text-sm uppercase hidden lg:inline-block font-semibold"
                         href="#">IrsanJaya</a> --}}
                     <form class="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3">
-                        <div class="relative flex w-full">
+                        <div class="relative flex w-full flex-wrap items-stretch">
                             <livewire:item.notification-menu>
                         </div>
                     </form>

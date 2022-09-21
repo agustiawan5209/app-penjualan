@@ -8,17 +8,13 @@ use Livewire\Component;
 class NotificationMenu extends Component
 {
     public $notif = false;
+    // public $notif_user;
     public function render()
     {
-        // sleep(0);
-        $user = User::all();
-        // dd($user->notifications );
+        sleep(0);
+        $notif_user = User::all();
 
-        return view('livewire.item.notification-menu' ,[
-            'user'=> $user,
-        ]);
-    }
-    public function notify(){
-        return $this->notif = true;
+        // dd($notif_user->notifications());
+        return view('livewire.item.notification-menu',['notif_user'=> $notif_user]);
     }
 }

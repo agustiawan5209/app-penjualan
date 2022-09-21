@@ -87,3 +87,6 @@ Route::get('shop-single' , function(){
 Route::get("Promo-Diskon", function(){
     return view('page.promo.index');
 })->name('Promo-Diskon');
+
+
+Route::get('/send-notification', [UserController::class, 'sendOfferNotification']);

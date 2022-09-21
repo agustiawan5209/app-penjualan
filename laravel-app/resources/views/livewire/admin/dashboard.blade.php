@@ -1,5 +1,5 @@
 <div>
-@include('sweetalert::alert')
+    @include('sweetalert::alert')
     <!-- Card stats -->
     {{-- @include('') --}}
 
@@ -124,38 +124,16 @@
 </div>
 <div class="py-8">
     <div class="flex flex-wrap">
-        {{-- <div class="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
-            <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-gray-700">
-                <div class="rounded-t mb-0 px-4 py-3 bg-black">
-                    <div class="flex flex-wrap items-center">
-                        <div class="relative w-full max-w-full flex-grow flex-1">
-                            <h6 class="uppercase text-blueGray-100 mb-1 text-xs font-semibold">
-                                Overview
-                            </h6>
-                            <h2 class="text-blue-darken text-xl font-semibold">
-                                Sales value
-                            </h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-4 flex-auto">
-                    <!-- Chart -->
-                    <div class="relative h-350-px">
-                        <canvas id="line-chart"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
         <div class="w-full xl:w-4/12 px-4">
             <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
                 <div class="rounded-t mb-0 px-4 py-3 bg-transparent">
                     <div class="flex flex-wrap items-center">
                         <div class="relative w-full max-w-full flex-grow flex-1">
                             <h6 class="uppercase text-blue-darken mb-1 text-xs font-semibold">
-                                Performance
+                                Diagram
                             </h6>
                             <h2 class="text-blue-darken text-xl font-semibold">
-                                Total orders
+                                Total Penjualan
                             </h2>
                         </div>
                     </div>
@@ -173,71 +151,68 @@
     <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
     <script type="text/javascript">
         /* Make dynamic date appear */
-        (function () {
-          if (document.getElementById("get-current-year")) {
-            document.getElementById("get-current-year").innerHTML =
-              new Date().getFullYear();
-          }
+        (function() {
+            if (document.getElementById("get-current-year")) {
+                document.getElementById("get-current-year").innerHTML =
+                    new Date().getFullYear();
+            }
         })();
         /* Sidebar - Side navigation menu on mobile/responsive mode */
         function toggleNavbar(collapseID) {
-          document.getElementById(collapseID).classList.toggle("hidden");
-          document.getElementById(collapseID).classList.toggle("bg-white");
-          document.getElementById(collapseID).classList.toggle("m-2");
-          document.getElementById(collapseID).classList.toggle("py-3");
-          document.getElementById(collapseID).classList.toggle("px-6");
+            document.getElementById(collapseID).classList.toggle("hidden");
+            document.getElementById(collapseID).classList.toggle("bg-white");
+            document.getElementById(collapseID).classList.toggle("m-2");
+            document.getElementById(collapseID).classList.toggle("py-3");
+            document.getElementById(collapseID).classList.toggle("px-6");
         }
         /* Function for dropdowns */
         function openDropdown(event, dropdownID) {
-          let element = event.target;
-          while (element.nodeName !== "A") {
-            element = element.parentNode;
-          }
-          Popper.createPopper(element, document.getElementById(dropdownID), {
-            placement: "bottom-start"
-          });
-          document.getElementById(dropdownID).classList.toggle("hidden");
-          document.getElementById(dropdownID).classList.toggle("block");
+            let element = event.target;
+            while (element.nodeName !== "A") {
+                element = element.parentNode;
+            }
+            Popper.createPopper(element, document.getElementById(dropdownID), {
+                placement: "bottom-start"
+            });
+            document.getElementById(dropdownID).classList.toggle("hidden");
+            document.getElementById(dropdownID).classList.toggle("block");
         }
 
-        var url = "{{url('stock/chart')}}";
+        var url = "{{ url('stock/chart') }}";
         var Years = new Array();
         var Labels = new Array();
         var Prices = new Array();
-        $(document).ready(function(){
-          $.get(url, function(response){
-            response.forEach(function(data){
-                Years.push(data.tgl_perolehan);
-                Labels.push(data.id);
-                Prices.push(data.harga);
-                console.log(data.updated_at)
-            });
-            var ctx = document.getElementById("bar-chart").getContext('2d');
+        $(document).ready(function() {
+            $.get(url, function(response) {
+                response.forEach(function(data) {
+                    Years.push(data.tgl_perolehan);
+                    Labels.push(data.id);
+                    Prices.push(data.harga);
+                    console.log(data.updated_at)
+                });
+                var ctx = document.getElementById("bar-chart").getContext('2d');
                 var myChart = new Chart(ctx, {
-                  type: 'bar',
-                  data: {
-                      labels:Years,
-                      datasets: [{
-                          label: 'Infosys Price',
-                          data: Prices,
-                          borderWidth: 1
-                      }]
-                  },
-                  options: {
-                      scales: {
-                          yAxes: [{
-                              ticks: {
-                                  beginAtZero:true
-                              }
-                          }]
-                      }
-                  }
-              });
-          });
+                    type: 'bar',
+                    data: {
+                        labels: Years,
+                        datasets: [{
+                            label: 'Infosys Price',
+                            data: Prices,
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                });
+            });
         });
     </script>
-    <script>
-
-    </script>
+    <script></script>
 </div>
-
