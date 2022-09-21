@@ -35,7 +35,7 @@ class ShoppingCart extends Component
     public function render()
     {
         $carbon = Carbon::now()->format('Y-m-d');
-        $cart = Keranjang::where('user_id', Auth::user()->id)->get();
+        $cart = Keranjang::with(['barang.jenis','barang.satuan','barang.katalog'])->where('user_id', Auth::user()->id)->get();
         $this->Diskon($cart);
         $this->quantity;
 

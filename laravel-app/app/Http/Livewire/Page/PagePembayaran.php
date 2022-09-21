@@ -2,8 +2,10 @@
 
 namespace App\Http\Livewire\Page;
 
-use App\Http\Controllers\KeranjangController;
 use Livewire\Component;
+use App\Models\Keranjang;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\KeranjangController;
 
 class PagePembayaran extends Component
 {
@@ -20,7 +22,7 @@ class PagePembayaran extends Component
         $total_potongan = array_sum([$potongan_persen, $potongan_nominal, $data['potongan']]);
         // dd($total_potongan);
         return view('livewire.page.page-pembayaran', [
-            'cart'=> $data['item'],
+            'cart'=> Keranjang::with(['barang.jenis','barang.satuan','barang.katalog'])->where('user_id', Auth::user()->id)->get(),
             'potongan'=> $total_potongan,
             'sub_total'=>$data['sub_total'],
             'total_bayar'=> $data['total_bayar'] - $total_potongan,

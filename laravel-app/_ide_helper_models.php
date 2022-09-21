@@ -218,6 +218,7 @@ namespace App\Models{
  * @property string $status 0= kosong ,1= belum dikirim, 2=dikirim, 3=konfirmasi admin, 4=konfirmasi user, 5 = Pesanan Diterima
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\User|null $user
  * @method static \Illuminate\Database\Eloquent\Builder|Ongkir newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Ongkir newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Ongkir query()
@@ -392,6 +393,7 @@ namespace App\Models{
  * @property string|null $ket
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Ongkir|null $ongkir
  * @method static \Illuminate\Database\Eloquent\Builder|StatusBarang newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|StatusBarang newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|StatusBarang query()

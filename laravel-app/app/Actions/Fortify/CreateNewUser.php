@@ -46,6 +46,14 @@ class CreateNewUser implements CreatesNewUsers
                 function (User $user) {
                     $this->createTeam($user);
                     $this->KlaimVoucher($user);
+                    $offerData = [
+                        'type' => 'User Regis',
+                        'body' => $user->name . ' Baru Saja Terdaftar',
+                        'from' => 'Admin',
+                    ];
+
+                    Notification::send($user, new InvoicePaid($offerData));
+
                 },
             );
         });
@@ -86,13 +94,6 @@ class CreateNewUser implements CreatesNewUsers
             ]);
             // }
 
-            $offerData = [
-                'type' => 'User Regis',
-                'body' => $user->name . ' Baru Saja Terdaftar',
-                'from' => 'Admin',
-            ];
-
-            event(new InvoicePaid($offerData));
 
         }
     }

@@ -24,6 +24,7 @@ class PageBarang extends Component
     // Item FIeld Table
     // Barang
     public $katalog = [];
+    public $dataKatalog = [];
     public $gambar, $kode_barang, $jenis_id, $satuan_id, $harga, $deskripsi, $tgl_perolehan, $itemID, $nama_barang, $stock;
     public $updateFoto;
 

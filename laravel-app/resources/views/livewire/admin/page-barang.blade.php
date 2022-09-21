@@ -95,10 +95,12 @@
                                     <div class="flex-1 pl-1">
                                         <div class="font-medium dark:text-white">Katalog</div>
                                         <div class="text-gray-600 dark:text-gray-200 text-sm">
-                                            @foreach ((object) $katalog as $item)
-                                                <span
-                                                    class="bg-blue-300 rounded-sm p-1 text-gray-800">{{ $item->nama_katalog }}</span>
-                                            @endforeach
+                                            @if ($dataKatalog != null)
+                                                @foreach ((object) $dataKatalog as $item)
+                                                    <span
+                                                        class="bg-blue-300 rounded-sm p-1 text-gray-800">{{ $item->nama_katalog }}</span>
+                                                @endforeach
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

@@ -31,7 +31,10 @@
                     <x-td>{{ $pembayaran->payment_type }}</x-td>
                     <x-td>
                         @if ($pembayaran->metode_pengiriman == 1)
-                            Kirim Barang
+                            Kirim Barang <br>
+                            <a wire:click='ongkirModal({{$pembayaran->id}})' href="#_" class="inline-block px-5 py-2 mx-auto text-white bg-blue-600 rounded-full hover:bg-blue-700 md:mx-0">
+                                Buat Pengiriman
+                                </a>
                         @else
                             Ambil Sendiri
                         @endif
@@ -72,6 +75,99 @@
             </x-jet-danger-button>
         </x-slot>
     </x-jet-confirmation-modal>
+    <x-jet-dialog-modal wire:model='ongkirItem'>
+        <x-slot name="title">
+        </x-slot>
+
+        <x-slot name="content">
+            <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 overflow-y-auto">
+                @csrf
+                <div class="mb-6">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                        Nama Produk
+                    </label>
+                    <input
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        wire:model='item_details' id="password" type="text" disabled placeholder="******************">
+                    @error('item_details')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                        ID Transaksi
+                    </label>
+                    <input
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        wire:model='transaksi_id' id="password" type="text" disabled placeholder="******************">
+                    @error('transaksi_id')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                        Tgl Pengiriman
+                    </label>
+                    <input
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        wire:model='tgl_pengiriman' id="password" type="date" placeholder="******************">
+                    @error('tgl_pengiriman')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                        Harga Ongkir
+                    </label>
+                    <input
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        wire:model.defer="harga" type="number" placeholder="******************">
+                    @error('harga')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                        detail Alamat
+                    </label>
+                    <textarea id="" cols="30" rows="10"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline">{{$detail_alamat}} ,{{$kode_pos}} ,{{$kabupaten}} ,
+             </textarea>
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                        Status
+                    </label>
+                    <select id="countries" wire:model='status'
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option value="">--Pilih Status Pengiriman--</option>
+                        <option value="1">Belum Dikirim</option>
+                        <option value="2">Terkirim</option>
+                    </select>
+                    @error('kategori_produk')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                    @enderror
+                </div>
+
+
+            </form>
+        </x-slot>
+
+        <x-slot name="footer">
+            <div class="flex items-center justify-between">
+                <button wire:click='createOngkir'
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    type="button">
+                    Tambah
+                </button>
+                <button wire:click='$toggle("ongkirItem")'
+                    class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    type="button">
+                    Close
+                </button>
+            </div>
+        </x-slot>
+    </x-jet-dialog-modal>
 </div>
 
 </div>

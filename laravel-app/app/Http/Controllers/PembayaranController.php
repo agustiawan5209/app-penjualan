@@ -63,8 +63,8 @@ class PembayaranController extends Controller
     public function receive(Request $request)
     {
         $validasi = $request->validate([
-            'kabupaten' => 'required',
-            'kode_pos' => 'required',
+            // 'kabupaten' => 'required',
+            // 'kode_pos' => 'required',
             'metode' => 'required',
             'sub_total' => 'required',
             'foto' => 'required',
@@ -134,6 +134,7 @@ class PembayaranController extends Controller
 
         $payemnt = Pembayaran::create([
             'user_id' => Auth::user()->id,
+            'nama'=> $request->nama,
             'number' => Auth::user()->name . '_' . $this->generateUniqueNumber(),
             'total_price' => $request->sub_total,
             'payment_status' => '1',
@@ -142,7 +143,7 @@ class PembayaranController extends Controller
             'pdf_url' => $namPDF,
             'tgl_transaksi' => Carbon::now()->format('Y-m-d'),
             'item_details' => $exp,
-            'metode_pengiriman'=> $request->metode,
+            'metode_pengiriman' => $request->metode,
         ]);
         // Notification::send($payemnt,new InvoicePaid([
         //     'type'=> 'payment',
@@ -150,6 +151,9 @@ class PembayaranController extends Controller
         //     'from'=> 'User='. Auth::user()->id,
         // ]));
         // $this->createOngkir($request, $ID_Transkasi);
+        if($request->metode == 1){
+            $this->createOngkir($request, $ID_Transkasi);
+        }
     }
 
     /**
@@ -190,7 +194,7 @@ class PembayaranController extends Controller
         $count = count($item_details);
         $potongan_persen = 0;
         $potongan_nominal = 0;
-        $potongan = 0;
+        $potongan = [0];
         // dd($item_details[1]);
         // Ambil Nilai Promo Dari CartController
         $cart = new KeranjangController();
@@ -207,35 +211,43 @@ class PembayaranController extends Controller
             $v = Voucher::where('barang_id', '=', $item_details[$i]['barang_id'])->first();
             //   dd($v);
             if ($v != null) {
-                UsesUserVoucher::where('voucher_id', $v->id)->where('user_id', Auth::user()->id)->update([
-                    'status' => '2',
-                ]);
+                UsesUserVoucher::where('voucher_id', $v->id)
+                    ->where('user_id', Auth::user()->id)
+                    ->update([
+                        'status' => '2',
+                    ]);
             }
             // end Vocuher
             $promo_persen = $cart->GetPromo($item_details[$i]['barang_id']);
             $promo_nominal = $cart->GetPromoNominal($item_details[$i]['barang_id']);
-            $barang = Barang::where('id',$item_details[$i]['barang_id'])->first();
+            $barang = Barang::with('diskon')
+                ->where('id', $item_details[$i]['barang_id'])
+                ->first();
             $item_param = [
-                $item_details[$i]->barang_id,
-                // $item_details[$i]->harga,
-                $item_details[$i]->quantity,
-                $item_details[$i]->sub_total,
+               'barang_id'=> $item_details[$i]->barang_id,
+               'total_awal'=> $item_details[$i]->total_awal,
+               'jumlah'=> $item_details[$i]->quantity,
+               'sub_total'=> $item_details[$i]->sub_total,
             ];
             // dd($item_details[$i]);
             // Jika Potongan sama Dengan 0 atau null maka potongan sama dengan harga jika tidak maka harga akan dipotong
             // $potongan_nominal =  $promo_nominal ;
             // $potongan_persen = $item_details[$i]->sub_total * ((int) $promo_persen / 100);
-            if($barang->diskon->count() > 0){
-                $potongan = $barang->diskon->jumlah_diskon;
+            // dd($barang->diskon->jumlah_diskon);
+            if ($barang->diskon != null) {
+                foreach ($barang->diskon as $item) {
+                    $potongan[] = $item->jumlah_diskon;
+                }
             }
+            $total_potongan = $item_details[$i]->total_awal * (array_sum($potongan) / 100);
 
             Transaksi::create([
                 'ID_transaksi' => $transaksi_id,
                 'tgl_transaksi' => Carbon::now()->format('Y-m-d'),
                 'item_details' => implode(',', $item_param),
                 'barang_id' => $item_details[$i]->barang_id,
-                'potongan' => $potongan,
-                'total' => $item_details[$i]->sub_total - $potongan,
+                'potongan' => $total_potongan,
+                'total' => $item_details[$i]->sub_total - $total_potongan,
             ]);
         }
         // Hapus Voucher Yang Memiliki Status 3
