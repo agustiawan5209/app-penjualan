@@ -24,7 +24,7 @@
 
 </head>
 
-<body class="font-sans antialiased bg-blue-darken overflow-hidden">
+<body class="font-sans antialiased bg-blue-darken">
 
     <noscript>You need to enable JavaScript to run this app.</noscript>
     @include('sweetalert::alert')
@@ -115,68 +115,7 @@
                     <hr class="my-4 md:min-w-full" />
                     <!-- Navigation -->
 
-                    @can ('Manage-Admin', User::class)
-                        <ul class="md:flex-col md:min-w-full flex flex-col list-none">
-                            <li class="items-center  ">
-                                <a href="{{ route('Admin.Dashboard-Admin') }}"
-                                    class="text-xs uppercase py-3 font-bold block {{request()->routeIs('Admin.Dashboard-Admin') ? ' bg-blue-darken text-white' :'text-gray-700 hover:text-gray-500'}}">
-                                    <i class="fas fa-tv mr-2 text-sm opacity-75"></i>
-                                    Dashboard
-                                </a>
-                            </li>
-                            <li class="items-center" x-data="{Master : false}">
-                                <a href="#" @click="Master =! Master"
-                                    class="text-xs uppercase py-3 font-bold block {{request()->routeIs('Admin.Page-Barang') || request()->routeIs('Admin.Page-Promo') || request()->routeIs('Admin.Page-Voucher') ? ' bg-blue-darken text-white' :'text-gray-700 hover:text-gray-500'}}">
-                                    <i class=" mr-2 text-sm text-gray-300"></i>
-                                    Master Barang
-                                </a>
-                                <ul class="md:flex-col md:min-w-full flex flex-col list-none bg-blue-darken" x-show="Master" x-transition>
-                                    <li class="items-center">
-                                        <a href="{{ route('Admin.Page-Barang') }}"
-                                            class="text-xs uppercase py-3 px-3 font-bold block text-white hover:text-white">
-                                            Kelola Barang
-                                        </a>
-                                    </li>
-                                    <li class="items-center">
-                                        <a href="{{ route('Admin.Page-Promo') }}"
-                                            class="text-xs uppercase py-3 px-3 font-bold block text-white hover:text-white">
-                                            Promo
-                                        </a>
-                                    </li>
-                                    <li class="items-center">
-                                        <a href="{{ route('Admin.Page-Voucher') }}"
-                                            class="text-xs uppercase py-3 px-3 font-bold block text-white hover:text-white">
-                                            Voucher
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="items-center">
-                                <a href="{{ route('Admin.Page-Penjualan') }}"
-                                    class="text-xs uppercase py-3 font-bold block {{request()->routeIs('Admin.Page-Penjualan') ? ' bg-blue-darken text-white' :'text-gray-700 hover:text-gray-500'}}">
-                                    <i class=" mr-2 text-sm text-gray-300"></i>
-                                    Penjualan
-                                </a>
-                            </li>
-                            <li class="items-center">
-                                <a href="{{ route('Page-Pengiriman') }}"
-                                    class="text-xs uppercase py-3 font-bold block {{request()->routeIs('Page-Pengiriman') ? ' bg-blue-darken text-white' :'text-gray-700 hover:text-gray-500'}}">
-                                    <i class=" mr-2 text-sm text-gray-300"></i>
-                                    Pengiriman Barang
-                                </a>
-                            </li>
-
-
-                            <li class="items-center">
-                                <a href="{{ route('Admin.Laporan') }}"
-                                    class="text-xs uppercase py-3 font-bold block {{request()->routeIs('Admin.Laporan') ? ' bg-blue-darken text-white' :'text-gray-700 hover:text-gray-500'}}">
-                                    <i class=" mr-2 text-sm text-gray-300"></i>
-                                    Laporan
-                                </a>
-                            </li>
-                        </ul>
-                    @endcan
-
+                   @include('layouts.sidebar')
                     <!-- Divider -->
                     <hr class="my-4 md:min-w-full" />
                     <!-- Heading -->
@@ -207,11 +146,11 @@
                 <div class="w-full mx-autp items-center flex justify-between md:flex-nowrap flex-wrap md:px-10 px-4">
                     {{-- <a class="text-white text-sm uppercase hidden lg:inline-block font-semibold"
                         href="#">IrsanJaya</a> --}}
-                    <form class="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3">
+                    {{-- <form class="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3">
                         <div class="relative flex w-full flex-wrap items-stretch">
                             <livewire:item.notification-menu>
                         </div>
-                    </form>
+                    </form> --}}
                     <ul class="flex-col md:flex-row list-none items-center hidden md:flex">
                         <a class="text-gray-500 block" href="#" x-on:click="Dropdown = ! Dropdown">
                             <div class="items-center flex">
@@ -246,6 +185,50 @@
             </div>
 
         </div>
+        <footer class="py-4 absolute -z-0  bottom-0 w-full bg-white ">
+            <div class="container mx-auto px-4 static">
+                <hr class="mb-4 border-b-1 border-gray-200" />
+                <div class="flex flex-wrap items-center md:justify-between justify-center">
+                    <div class="w-full md:w-4/12 px-4">
+                        <div class="text-sm text-gray-500 font-semibold py-1 text-center md:text-left">
+                            Copyright © <span id="get-current-year"></span>
+                            <a href="https://www.creative-tim.com?ref=njs-dashboard"
+                                class="text-gray-500 hover:text-gray-700 text-sm font-semibold py-1">
+                                Creative Tim
+                            </a>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-8/12 px-4">
+                        <ul class="flex flex-wrap list-none md:justify-end justify-center">
+                            {{-- <li>
+                                <a href="https://www.creative-tim.com?ref=njs-dashboard"
+                                    class="text-gray-600 hover:text-gray-800 text-sm font-semibold block py-1 px-3">
+                                    Creative Tim
+                                </a>
+                            </li> --}}
+                            <li>
+                                <a href="https://www.creative-tim.com/presentation?ref=njs-dashboard"
+                                    class="text-gray-600 hover:text-gray-800 text-sm font-semibold block py-1 px-3">
+                                    Tentang Kmai
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://blog.creative-tim.com?ref=njs-dashboard"
+                                    class="text-gray-600 hover:text-gray-800 text-sm font-semibold block py-1 px-3">
+                                    Blog
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/creativetimofficial/notus-js/blob/main/LICENSE.md?ref=njs-dashboard"
+                                    class="text-gray-600 hover:text-gray-800 text-sm font-semibold block py-1 px-3">
+                                    MIT License
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
 
     @stack('modals')
@@ -253,50 +236,7 @@
     @livewireScripts
 
 
-    <footer class="py-4 static bottom-0 w-full bg-white ">
-        <div class="container mx-auto px-4 static">
-            <hr class="mb-4 border-b-1 border-gray-200" />
-            <div class="flex flex-wrap items-center md:justify-between justify-center">
-                <div class="w-full md:w-4/12 px-4">
-                    <div class="text-sm text-gray-500 font-semibold py-1 text-center md:text-left">
-                        Copyright © <span id="get-current-year"></span>
-                        <a href="https://www.creative-tim.com?ref=njs-dashboard"
-                            class="text-gray-500 hover:text-gray-700 text-sm font-semibold py-1">
-                            Creative Tim
-                        </a>
-                    </div>
-                </div>
-                <div class="w-full md:w-8/12 px-4">
-                    <ul class="flex flex-wrap list-none md:justify-end justify-center">
-                        {{-- <li>
-                            <a href="https://www.creative-tim.com?ref=njs-dashboard"
-                                class="text-gray-600 hover:text-gray-800 text-sm font-semibold block py-1 px-3">
-                                Creative Tim
-                            </a>
-                        </li> --}}
-                        <li>
-                            <a href="https://www.creative-tim.com/presentation?ref=njs-dashboard"
-                                class="text-gray-600 hover:text-gray-800 text-sm font-semibold block py-1 px-3">
-                                Tentang Kmai
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://blog.creative-tim.com?ref=njs-dashboard"
-                                class="text-gray-600 hover:text-gray-800 text-sm font-semibold block py-1 px-3">
-                                Blog
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://github.com/creativetimofficial/notus-js/blob/main/LICENSE.md?ref=njs-dashboard"
-                                class="text-gray-600 hover:text-gray-800 text-sm font-semibold block py-1 px-3">
-                                MIT License
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
+
 </body>
 
 </html>

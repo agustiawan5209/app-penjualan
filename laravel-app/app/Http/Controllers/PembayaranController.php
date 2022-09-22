@@ -69,7 +69,7 @@ class PembayaranController extends Controller
             // 'kode_pos' => 'required',
             'metode' => 'required',
             'sub_total' => 'required',
-            'foto' => ['image', 'max:5000'],
+            'foto' => ['image', 'max:5000','mimes:png,jpg'],
             'nama' => 'required',
         ]);
         // dd(session('param'));
@@ -84,13 +84,15 @@ class PembayaranController extends Controller
             $transaksi_id = $this->transaksi_id();
             $pdf = Pdf::loadView('page.invoice.invoice', ['data'=> session('keranjang'), 'request'=> $request, 'file' => $this->uploadFile($request->foto), 'transaksi_id'=> $transaksi_id])->setPaper('a4', 'landscape');
             $item_details = session('keranjang');
-            $this->createTransaksi($item_details['item'], $transaksi_id);
             $this->createPayment($request, $item_details['item'], $pdf->download()->getOriginalContent(), $transaksi_id);
+            $this->createTransaksi($item_details['item'], $transaksi_id);
             Keranjang::where('user_id', '=', Auth::user()->id)->delete();
             session()->forget('param');
             $this->GantiStatusPromo();
 
             Alert::success('Berhasil', "Pemesanan Barang Berhasil, Mohon Tunggu Konfirmasi");
+            return redirect()->route('home');
+        }else{
             return redirect()->route('home');
         }
     }

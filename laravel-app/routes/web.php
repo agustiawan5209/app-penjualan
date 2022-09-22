@@ -20,7 +20,10 @@ use App\Http\Livewire\Page\PagePembayaran;
 use App\Http\Livewire\Page\PageShop;
 use App\Http\Livewire\Page\ShoppingCart;
 use App\Http\Livewire\PageSearchkatalog;
+use App\Http\Livewire\Pesanan;
 use App\Http\Livewire\User\Dashboard as UserDashboard;
+use App\Http\Livewire\User\PageKirimanBarang;
+use App\View\Components\User\PagePesananCustomer;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,7 +45,8 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('/dashboard', [UserController::class, 'Index'])->name('dashboard');
-
+    Route::get('Detail-Item/{idItem}', DetailItemPage::class)->name('detail-item-transaksi');
+    Route::get('Pengiriman-Barang', PagePengiriman::class)->name('Page-Pengiriman');
 
     // Akses Admin
     Route::group(['middleware' => 'role:Admin', 'prefix' => 'Admin', 'as'=> 'Admin.'], function () {
@@ -62,9 +66,12 @@ Route::middleware([
         // Route::get('Send', [PembayaranController::class, 'receive'])->name('Pembayaran-send');
         Route::get('invoice/Data-Pembayaran', [PDFController::class, 'invoice'])->name('Invoice');
         Route::get("Pembayaran", PagePembayaran::class)->name('Page-Pembayaran');
+
+        // Dashboard Admin
+        Route::get('Data-Pesanan', Pesanan::class)->name("Pesanan");
+        Route::get('Data-Kiriman Barang', PageKirimanBarang::class)->name('Kiriman-Barang');
     });
-    Route::get('Detail-Item/{idItem}', DetailItemPage::class)->name('detail-item-transaksi');
-    Route::get('Pengiriman-Barang', PagePengiriman::class)->name('Page-Pengiriman');
+
 
 
 });

@@ -12,7 +12,7 @@ class Ongkir extends Model
     use HasFactory;
 
     public function payment(){
-        return $this->hasOne(Payment::class, 'transaksi_id','transaksi_id');
+        return $this->hasOne(Pembayaran::class, 'transaksi_id','transaksi_id');
     }
     public function user()
     {

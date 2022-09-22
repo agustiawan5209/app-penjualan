@@ -1,10 +1,11 @@
 <div>
-    @if ($status)
+    @if ($statusItem)
         <div class="z-50">
             <livewire:item.page-status-barang :barang_id="null" :ongkir_id="$itemID" :status="$status">
         </div>
 
     @endif
+    @include('sweetalert::alert')
     <x-table>
         <x-slot name="filter"></x-slot>
         <thead>
@@ -16,6 +17,7 @@
                 <x-th>Alamat</x-th>
                 <x-th>Detail</x-th>
                 <x-th>Status</x-th>
+                <x-th>Ubah Status</x-th>
             </tr>
         </thead>
         <tbody>
@@ -31,7 +33,28 @@
                             <x-jet-button wire:click='detailOngkir({{$item->id}})'>Detail</x-jet-button>
                         </x-td>
                         <x-td>
-                            <x-jet-button wire:click='lihatStatus({{ $item->id }})'>Status</x-jet-button>
+                            @if ($item->status == 1)
+                                <span wire:click='lihatStatus({{$item->id}})'
+                                    class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-900">Belum
+                                    Dikirim</span>
+                            @elseif ($item->status == 2)
+                                <span wire:click='lihatStatus({{$item->id}})'
+                                    class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-900">Dalam Pengiriman</span>
+                            @elseif ($item->status == 3)
+                                <span wire:click='lihatStatus({{$item->id}})'
+                                    class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-900">Diterima</span>
+                            @elseif ($item->status == 4)
+                                <span wire:click='lihatStatus({{$item->id}})'
+                                    class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-900">Selesai</span>
+                            @endif
+                        </x-td>
+                        <x-td>
+                           @if ($item->status == 3 || $item->status == 1 || $item->status == 2 || $item->status == 0)
+                             <x-jet-button wire:click='gantiStatus({{ $item->id }})'>Edit</x-jet-button>
+                             @else
+                                <span wire:click='lihatStatus({{$item->id}})'
+                                    class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-900">Selesai</span>
+                           @endif
                         </x-td>
                     </tr>
                 @endforeach
@@ -194,27 +217,33 @@
             </x-jet-danger-button>
         </x-slot>
     </x-jet-confirmation-modal>
-    <x-jet-dialog-modal wire:model='statusItem'>
+    @if($StatusEditItem)
+    <x-jet-dialog-modal wire:model='StatusEditItem'>
         <x-slot name="title">
             Konfirmasi Status?
         </x-slot>
         <x-slot name="content" class="w-full">
-            {{-- <livewire:item.page-status-barang :barang_id='0' :ongkir_id='$itemID' :status='1'> --}}
-            @if ($status != 4)
+            @if ($status != 4 || $status != 5 || $status != 3)
+            @can('Manage-Admin')
                 <div class="w-full h-max px-4 py-2 ">
-                    <x-jet-label for='ket'>Ganti Status Pengiriman</x-jet-label>
+                    <x-jet-label class="text-white" for='ket'>Ganti Status Pengiriman</x-jet-label>
                     <select wire:model='status'
                         class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
                         <option value="1">Belum Dikirim</option>
                         <option value="2">Dikirim</option>
-                        <option value="3">Pesanan Diterima</option>
+                        <option value="4">Pesanan Diterima</option>
                     </select>
                 </div>
-                <div class="mb-4">
-                    <x-jet-label for='ket'>Keterangan</x-jet-label>
-                    <x-jet-input wire:model="ket"/>
+                <div class="mb-4 w-full h-max px-4">
+                    <x-jet-label class="text-white" for='ket'>Keterangan</x-jet-label>
+                    <input wire:model="ket"
+                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" />
                 </div>
-            @endif
+                <x-jet-button wire:click='status({{$ItemID}})'>
+                    Simpan
+                </x-jet-button>
+                @endcan
+                @endif
         </x-slot>
         <x-slot name="footer">
             @if ($status !=4)
@@ -222,9 +251,10 @@
                     Simpan
                 </x-jet-button>
             @endif
-            <x-jet-danger-button wire:click="$toggle('statusItem')" wire:loading.attr='disabled'>
+            <x-jet-danger-button wire:click="$toggle('StatusEditItem')" wire:loading.attr='disabled'>
                 Tutup
             </x-jet-danger-button>
         </x-slot>
     </x-jet-dialog-modal>
+    @endif
 </div>

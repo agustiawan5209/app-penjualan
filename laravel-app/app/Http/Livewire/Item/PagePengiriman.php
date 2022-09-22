@@ -7,6 +7,7 @@ use App\Models\Ongkir;
 use Livewire\Component;
 use App\Models\Pembayaran;
 use App\Models\StatusBarang;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PagePengiriman extends Component
 {
@@ -16,7 +17,7 @@ class PagePengiriman extends Component
     public $itemDetail = false;
     public $ongkirItem = false;
     public $hapusItem = false;
-    public $statusItem = false;
+    public $statusItem = false, $StatusEditItem = false, $ongkir_status;
     public $ItemID;
     public $tgl_pengiriman, $harga, $kode_pos, $kabupaten, $detail_alamat, $transaksi_id, $item_details;
     public $user;
@@ -27,8 +28,11 @@ class PagePengiriman extends Component
         return view('livewire.item.page-pengiriman', compact('ongkir'));
     }
     public function lihatStatus($id){
+        $ongkir = Ongkir::find($id);
         $this->itemID = $id;
-        $this->status = true;
+        $this->statusItem = true;
+        $this->ongkir_status = $ongkir->status;
+
     }
     public function tglPengiriman()
     {
@@ -144,7 +148,7 @@ class PagePengiriman extends Component
         $this->post = StatusBarang::where('ongkir_id', '=', $this->ItemID)->get();
 
         // dd($this->post);
-        $this->statusItem = true;
+        $this->StatusEditItem = true;
 
     }
     public function status($id)
@@ -167,7 +171,7 @@ class PagePengiriman extends Component
             'ongkir_id' => $ongkir->id,
             'ket' => $msg,
         ]);
-        session()->flash('message', $ongkir ? 'Berhasil Di Update' : 'Gagal Di Update');
-        $this->statusItem = false;
+        Alert::success('message','Berhasil Di Update' );
+        $this->StatusEditItem = false;
     }
 }
