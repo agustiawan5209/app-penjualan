@@ -104,7 +104,7 @@
     <x-jet-dialog-modal wire:model="itemEdit" maxWidth='2xl'>
         <x-slot name="title">
             @if (session()->has('message'))
-            <div class="bg-blue-500 border border-blue-400 text-gray-100 px-4 py-3 rounded relative" role="alert">
+            <div class="bg-red-500 border border-red-400 text-gray-100 px-4 py-3 rounded relative" role="alert">
                 <strong class="font-bold">Message</strong>
                 <span class="block sm:inline">{{ session('message') }}</span>
             </div>

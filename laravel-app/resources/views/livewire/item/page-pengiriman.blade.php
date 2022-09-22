@@ -35,17 +35,17 @@
                         <x-td>
                             @if ($item->status == 1)
                                 <span wire:click='lihatStatus({{$item->id}})'
-                                    class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-900">Belum
+                                    class="bg-red-100 text-red-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-red-200 dark:text-red-900">Belum
                                     Dikirim</span>
                             @elseif ($item->status == 2)
                                 <span wire:click='lihatStatus({{$item->id}})'
-                                    class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-900">Dalam Pengiriman</span>
+                                    class="bg-red-100 text-red-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-red-200 dark:text-red-900">Dalam Pengiriman</span>
                             @elseif ($item->status == 3)
                                 <span wire:click='lihatStatus({{$item->id}})'
-                                    class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-900">Diterima</span>
+                                    class="bg-red-100 text-red-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-red-200 dark:text-red-900">Diterima</span>
                             @elseif ($item->status == 4)
                                 <span wire:click='lihatStatus({{$item->id}})'
-                                    class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-900">Selesai</span>
+                                    class="bg-red-100 text-red-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-red-200 dark:text-red-900">Selesai</span>
                             @endif
                         </x-td>
                         <x-td>
@@ -53,7 +53,7 @@
                              <x-jet-button wire:click='gantiStatus({{ $item->id }})'>Edit</x-jet-button>
                              @else
                                 <span wire:click='lihatStatus({{$item->id}})'
-                                    class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-900">Selesai</span>
+                                    class="bg-red-100 text-red-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-red-200 dark:text-red-900">Selesai</span>
                            @endif
                         </x-td>
                     </tr>
@@ -172,7 +172,7 @@
                         Status
                     </label>
                     <select id="countries" wire:model='status'
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500">
                         <option value="">--Pilih Status Pengiriman--</option>
                         <option value="1">Belum Dikirim</option>
                         <option value="2">Terkirim</option>
@@ -188,7 +188,7 @@
         <x-slot name="footer">
             <div class="flex items-center justify-between">
                 <button wire:click='edit({{$ItemID}})'
-                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     type="button">
                     Simpan
                 </button>
@@ -228,7 +228,7 @@
                 <div class="w-full h-max px-4 py-2 ">
                     <x-jet-label class="text-white" for='ket'>Ganti Status Pengiriman</x-jet-label>
                     <select wire:model='status'
-                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-red-500 focus:outline-none">
                         <option value="1">Belum Dikirim</option>
                         <option value="2">Dikirim</option>
                         <option value="4">Pesanan Diterima</option>
@@ -237,7 +237,7 @@
                 <div class="mb-4 w-full h-max px-4">
                     <x-jet-label class="text-white" for='ket'>Keterangan</x-jet-label>
                     <input wire:model="ket"
-                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none" />
+                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-red-500 focus:outline-none" />
                 </div>
                 <x-jet-button wire:click='status({{$ItemID}})'>
                     Simpan

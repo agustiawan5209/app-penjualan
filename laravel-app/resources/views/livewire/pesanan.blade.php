@@ -38,7 +38,7 @@
                             @endif
                         </x-td>
                         <x-td> <a href="{{ asset('bukti/' . $pembayaran->pdf_url) }}" target="_blank"
-                                class="inline-block px-5 py-2 mx-auto text-white bg-blue-600 rounded-full hover:bg-blue-700 md:mx-0">
+                                class="inline-block px-5 py-2 mx-auto text-white bg-red-600 rounded-full hover:bg-red-700 md:mx-0">
                                 Invoice
                             </a></x-td>
                         <x-td>

@@ -26,7 +26,7 @@
                 <table class="w-full border border-collapse table-auto">
                     <thead class="">
                         <tr class="text-base font-bold text-left bg-gray-50">
-                            <th class="px-4 py-3 border-b-2 border-blue-500">Pengguna</th>
+                            <th class="px-4 py-3 border-b-2 border-red-500">Pengguna</th>
                             <th class="px-4 py-3 border-b-2 border-green-500">Tanggal Pengiriman</th>
                             <th class="px-4 py-3 border-b-2 border-red-500">Status Pengiriman</th>
                             <th class="px-4 py-3 text-center border-b-2 border-yellow-500 sm:text-left">Detail
@@ -48,7 +48,7 @@
                                                 </div>
                                                 <div class="flex-1 pl-1">
                                                     <div class="font-medium dark:text-white">{{ Auth::user()->name }}</div>
-                                                    <div class="text-sm text-blue-600 dark:text-gray-200">
+                                                    <div class="text-sm text-red-600 dark:text-gray-200">
                                                         {{ Auth::user()->email }}
                                                     </div>
                                                 </div>
@@ -59,17 +59,17 @@
                                             <td class="px-4 py-4">
                                                 @if ($ongkir->status == 1)
                                                     <span
-                                                        class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-900">Belum
+                                                        class="bg-red-100 text-red-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-red-200 dark:text-red-900">Belum
                                                         Dikirim</span>
                                                 @elseif ($ongkir->status == 2)
                                                     <span
-                                                        class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-900">Dalam Pengiriman</span>
+                                                        class="bg-red-100 text-red-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-red-200 dark:text-red-900">Dalam Pengiriman</span>
                                                 @elseif ($ongkir->status == 3)
                                                     <span
-                                                        class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-900">Diterima</span>
+                                                        class="bg-red-100 text-red-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-red-200 dark:text-red-900">Diterima</span>
                                                 @elseif ($ongkir->status == 4)
                                                     <span
-                                                        class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-900">Selesai</span>
+                                                        class="bg-red-100 text-red-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-red-200 dark:text-red-900">Selesai</span>
                                                 @endif
                                             </td>
                                             <td class="px-4 py-4">
@@ -83,7 +83,7 @@
                                     <td colspan="5">
                                         <div class="flex-1 pl-1 justify-center text-center">
                                             <div class="font-medium dark:text-white">Data Kosong</div>
-                                            <div class="text-sm text-blue-600 dark:text-gray-200">
+                                            <div class="text-sm text-red-600 dark:text-gray-200">
                                                 Lakukan Pemesanan
                                             </div>
                                         </div>
@@ -95,7 +95,7 @@
                                 <td colspan="5">
                                     <div class="flex-1 pl-1 justify-center text-center">
                                         <div class="font-medium dark:text-white">Data Kosong</div>
-                                        <div class="text-sm text-blue-600 dark:text-gray-200">
+                                        <div class="text-sm text-red-600 dark:text-gray-200">
                                             Lakukan Pemesanan
                                         </div>
                                     </div>
@@ -109,7 +109,7 @@
                 <table class="w-full border border-collapse table-auto">
                     <thead class="">
                         <tr class="text-base font-bold text-left bg-gray-50">
-                            <th class="px-4 py-3 border-b-2 border-blue-500">Pengguna</th>
+                            <th class="px-4 py-3 border-b-2 border-red-500">Pengguna</th>
                             <th class="px-4 py-3 border-b-2 border-green-500">Tanggal Pengiriman</th>
                             <th class="px-4 py-3 border-b-2 border-red-500">Status Pengiriman</th>
                             <th class="px-4 py-3 text-center border-b-2 border-yellow-500 sm:text-left">Detail
@@ -132,7 +132,7 @@
                                                 </div>
                                                 <div class="flex-1 pl-1">
                                                     <div class="font-medium dark:text-white">{{ Auth::user()->name }}</div>
-                                                    <div class="text-sm text-blue-600 dark:text-gray-200">
+                                                    <div class="text-sm text-red-600 dark:text-gray-200">
                                                         {{ Auth::user()->email }}
                                                     </div>
                                                 </div>
@@ -143,17 +143,17 @@
                                             <td class="px-4 py-4">
                                                 @if ($ongkir->status == 1)
                                                     <span
-                                                        class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-900">Belum
+                                                        class="bg-red-100 text-red-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-red-200 dark:text-red-900">Belum
                                                         Dikirim</span>
                                                 @elseif ($ongkir->status == 2)
                                                     <span
-                                                        class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-900">Dalam Pengiriman</span>
+                                                        class="bg-red-100 text-red-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-red-200 dark:text-red-900">Dalam Pengiriman</span>
                                                 @elseif ($ongkir->status == 3)
                                                     <span
-                                                        class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-900">Diterima</span>
+                                                        class="bg-red-100 text-red-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-red-200 dark:text-red-900">Diterima</span>
                                                 @elseif ($ongkir->status == 4)
                                                     <span
-                                                        class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-900">Selesai</span>
+                                                        class="bg-red-100 text-red-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-red-200 dark:text-red-900">Selesai</span>
                                                 @endif
                                             </td>
                                             <td class="px-4 py-4">
@@ -167,7 +167,7 @@
                                     <td colspan="5">
                                         <div class="flex-1 pl-1 justify-center text-center">
                                             <div class="font-medium dark:text-white">Data Kosong</div>
-                                            <div class="text-sm text-blue-600 dark:text-gray-200">
+                                            <div class="text-sm text-red-600 dark:text-gray-200">
                                                 Lakukan Pemesanan
                                             </div>
                                         </div>
@@ -179,7 +179,7 @@
                                 <td colspan="5">
                                     <div class="flex-1 pl-1 justify-center text-center">
                                         <div class="font-medium dark:text-white">Data Kosong</div>
-                                        <div class="text-sm text-blue-600 dark:text-gray-200">
+                                        <div class="text-sm text-red-600 dark:text-gray-200">
                                             Lakukan Pemesanan
                                         </div>
                                     </div>

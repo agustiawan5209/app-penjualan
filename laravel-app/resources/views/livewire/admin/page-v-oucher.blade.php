@@ -58,7 +58,7 @@
                                                     <x-td>{{ $item->deskripsi }}</x-td>
                                                     <x-td>
                                                         <a href="#_" wire:click='detailModal({{ $item->id }})'
-                                                            class="inline-block px-2 py-1 text-sm mx-auto text-white bg-blue-500 rounded-full hover:bg-blue-600 md:mx-0">
+                                                            class="inline-block px-2 py-1 text-sm mx-auto text-white bg-red-500 rounded-full hover:bg-red-600 md:mx-0">
                                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
                                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -109,7 +109,7 @@
         <x-jet-dialog-modal wire:model="tambahItem" maxWidth='2xl'>
             <x-slot name="title">
                 @if (session()->has('message'))
-                    <div class="bg-blue-500 border border-blue-400 text-gray-100 px-4 py-3 rounded relative" role="alert">
+                    <div class="bg-red-500 border border-red-400 text-gray-100 px-4 py-3 rounded relative" role="alert">
                         <strong class="font-bold">Message</strong>
                         <span class="block sm:inline">{{ session('message') }}</span>
                     </div>
@@ -124,7 +124,7 @@
                             <div class="flex items-center">
                                 <p class="mb-0 dark:text-white/80">Tambah Voucher</p>
                                 <button type="button" wire:click='CloseAllModal'
-                                    class="inline-block px-8 py-2 mb-4 ml-auto font-bold leading-normal text-center text-white align-middle transition-all ease-in bg-blue-500 border-0 rounded-lg shadow-md cursor-pointer text-size-xs tracking-tight-rem hover:shadow-xs hover:-translate-y-px active:opacity-85">X</button>
+                                    class="inline-block px-8 py-2 mb-4 ml-auto font-bold leading-normal text-center text-white align-middle transition-all ease-in bg-red-500 border-0 rounded-lg shadow-md cursor-pointer text-size-xs tracking-tight-rem hover:shadow-xs hover:-translate-y-px active:opacity-85">X</button>
                             </div>
                         </div>
                         <form class="flex-auto p-6">
@@ -136,7 +136,7 @@
                                             class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Kode
                                             Voucher</label>
                                         <input type="text" wire:model="kode_voucher"
-                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-red-500 focus:outline-none">
                                         @error('kode_voucher')
                                             <span class="text-sm text-red-500 italic">{{ $message }}</span>
                                         @enderror
@@ -149,7 +149,7 @@
                                             Voucher
                                         </label>
                                         <input type="text" wire:model="diskon"
-                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-red-500 focus:outline-none">
                                         @error('diskon')
                                             <span class="text-sm text-red-500 italic">{{ $message }}</span>
                                         @enderror
@@ -163,7 +163,7 @@
 
                                         </label>
                                         <select id="countries" wire:model='jenis_voucher' x-model="jenisVoucher"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500">
                                             <option value="">--Masukkan Jenis Voucher--</option>
                                             <option value="0">Umum</option>
                                             <option value="1">Pengguna Baru</option>
@@ -183,7 +183,7 @@
                                             Jumlah Pembelian Produk
                                         </label>
                                         <input type="text" wire:model="jumlah_pembelian"
-                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-red-500 focus:outline-none">
                                         @error('diskon')
                                             <span class="text-sm text-red-500 italic">{{ $message }}</span>
                                         @enderror
@@ -197,7 +197,7 @@
                                             Produk
                                         </label>
                                         <select id="countries" wire:model='barang_id'
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500">
                                             <option value="0">--Pilih Produk--</option>
                                             @foreach ($barang as $item)
                                                 <option value="{{ $item->id }}">{{ $item->nama_produk }}</option>
@@ -218,7 +218,7 @@
                                         <label for="tgl_mulai"
                                             class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Deskripsi</label>
                                         <textarea type="text" wire:model="deskripsi"
-                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none"></textarea>
+                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-red-500 focus:outline-none"></textarea>
                                     </div>
                                 </div>
                                 <div class="flex flex-wrap justify-center items-center mx-auto">
@@ -238,7 +238,7 @@
         <x-jet-dialog-modal wire:model="editItem" maxWidth='2xl'>
             <x-slot name="title">
                 @if (session()->has('message'))
-                    <div class="bg-blue-500 border border-blue-400 text-gray-100 px-4 py-3 rounded relative"
+                    <div class="bg-red-500 border border-red-400 text-gray-100 px-4 py-3 rounded relative"
                         role="alert">
                         <strong class="font-bold">Message</strong>
                         <span class="block sm:inline">{{ session('message') }}</span>
@@ -254,7 +254,7 @@
                             <div class="flex items-center">
                                 <p class="mb-0 dark:text-white/80">Edit Voucher</p>
                                 <button type="button" wire:click='CloseAllModal'
-                                    class="inline-block px-8 py-2 mb-4 ml-auto font-bold leading-normal text-center text-white align-middle transition-all ease-in bg-blue-500 border-0 rounded-lg shadow-md cursor-pointer text-size-xs tracking-tight-rem hover:shadow-xs hover:-translate-y-px active:opacity-85">X</button>
+                                    class="inline-block px-8 py-2 mb-4 ml-auto font-bold leading-normal text-center text-white align-middle transition-all ease-in bg-red-500 border-0 rounded-lg shadow-md cursor-pointer text-size-xs tracking-tight-rem hover:shadow-xs hover:-translate-y-px active:opacity-85">X</button>
                             </div>
                         </div>
                         <form class="flex-auto p-6">
@@ -266,7 +266,7 @@
                                             class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Kode
                                             Voucher</label>
                                         <input type="text" wire:model="kode_voucher"
-                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-red-500 focus:outline-none">
                                         @error('kode_voucher')
                                             <span class="text-sm text-red-500 italic">{{ $message }}</span>
                                         @enderror
@@ -279,7 +279,7 @@
                                             Voucher
                                         </label>
                                         <input type="text" wire:model="diskon"
-                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-red-500 focus:outline-none">
                                         @error('diskon')
                                             <span class="text-sm text-red-500 italic">{{ $message }}</span>
                                         @enderror
@@ -293,7 +293,7 @@
 
                                         </label>
                                         <select id="countries" wire:model='jenis_voucher' x-model="jenisVoucher"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500">
                                             <option value="">--Masukkan Jenis Voucher--</option>
                                             <option value="0" {{$jenis_voucher == 0 ? 'selected' : ''}}>Umum</option>
                                             <option value="1" {{$jenis_voucher == 1 ? 'selected' : ''}}>Pengguna Baru</option>
@@ -313,7 +313,7 @@
                                             Jumlah Pembelian Produk
                                         </label>
                                         <input type="text" wire:model="jumlah_pembelian"
-                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-red-500 focus:outline-none">
                                         @error('jumlah_pembelian')
                                             <span class="text-sm text-red-500 italic">{{ $message }}</span>
                                         @enderror
@@ -327,7 +327,7 @@
                                             Produk
                                         </label>
                                         <select id="countries" wire:model='barang_id'
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500">
                                             <option value="0">--Pilih Produk--</option>
                                             @foreach ($barang as $item)
                                                 <option value="{{ $item->id }}">{{ $item->nama_produk }}</option>
@@ -351,7 +351,7 @@
                                         <label for="tgl_mulai"
                                             class="inline-block mb-2 ml-1 font-bold text-size-xs text-slate-700 dark:text-white/80">Deskripsi</label>
                                         <textarea type="text" wire:model="deskripsi"
-                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none"></textarea>
+                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-size-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-red-500 focus:outline-none"></textarea>
                                     </div>
                                 </div>
                                 <div class="flex flex-wrap justify-center items-center mx-auto">

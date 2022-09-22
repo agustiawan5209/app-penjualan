@@ -72,7 +72,8 @@ Route::middleware([
         Route::get('Data-Kiriman Barang', PageKirimanBarang::class)->name('Kiriman-Barang');
     });
 
-
+    // Laporan
+    Route::get('Laporan/{start}/{end}', [PDFController::class, 'LaporanPenjualan'])->name("Laporan");
 
 });
 Route::get('stock/chart',[StatusBarangController::class, 'chart']);

@@ -84,7 +84,7 @@
                                 </x-forms.td>
                                 <x-forms.td>
                                     <a href="#_" wire:click='detail({{ $item->id }})'
-                                        class="inline-block px-2 py-1 text-sm mx-auto text-white bg-blue-500 rounded-full hover:bg-blue-600 md:mx-0">
+                                        class="inline-block px-2 py-1 text-sm mx-auto text-white bg-red-500 rounded-full hover:bg-red-600 md:mx-0">
                                         Detail
                                     </a>
                                 </x-forms.td>
@@ -147,7 +147,7 @@
                                 </x-forms.td>
                                 <x-forms.td>
                                     <a href="#_" wire:click='detail({{ $item->id }})'
-                                        class="inline-block px-2 py-1 text-sm mx-auto text-white bg-blue-500 rounded-full hover:bg-blue-600 md:mx-0">
+                                        class="inline-block px-2 py-1 text-sm mx-auto text-white bg-red-500 rounded-full hover:bg-red-600 md:mx-0">
                                         Detail
                                     </a>
                                 </x-forms.td>

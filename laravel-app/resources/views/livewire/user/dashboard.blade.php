@@ -5,10 +5,10 @@
                 <div class="flex-auto p-4">
                     <div class="flex flex-wrap">
                         <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
-                            <h5 class="text-blue-darken uppercase font-bold text-xs">
+                            <h5 class="text-red-darken uppercase font-bold text-xs">
                                 Traffic
                             </h5>
-                            <span class="font-semibold text-xl text-blue-darken">
+                            <span class="font-semibold text-xl text-red-darken">
                                 350,897
                             </span>
                         </div>
@@ -35,10 +35,10 @@
                 <div class="flex-auto p-4">
                     <div class="flex flex-wrap">
                         <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
-                            <h5 class="text-blue-darken uppercase font-bold text-xs">
+                            <h5 class="text-red-darken uppercase font-bold text-xs">
                                 New users
                             </h5>
-                            <span class="font-semibold text-xl text-blue-darken">
+                            <span class="font-semibold text-xl text-red-darken">
                                 2,356
                             </span>
                         </div>
@@ -63,16 +63,16 @@
                 <div class="flex-auto p-4">
                     <div class="flex flex-wrap">
                         <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
-                            <h5 class="text-blue-darken uppercase font-bold text-xs">
+                            <h5 class="text-red-darken uppercase font-bold text-xs">
                                 Sales
                             </h5>
-                            <span class="font-semibold text-xl text-blue-darken">
+                            <span class="font-semibold text-xl text-red-darken">
                                 924
                             </span>
                         </div>
                         <div class="relative w-auto pl-4 flex-initial">
                             <div
-                                class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-blue-darken">
+                                class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-red-darken">
                                 <i class="fas fa-users"></i>
                             </div>
                         </div>
@@ -91,16 +91,16 @@
                 <div class="flex-auto p-4">
                     <div class="flex flex-wrap">
                         <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
-                            <h5 class="text-blue-darken uppercase font-bold text-xs">
+                            <h5 class="text-red-darken uppercase font-bold text-xs">
                                 Performance
                             </h5>
-                            <span class="font-semibold text-xl text-blue-darken">
+                            <span class="font-semibold text-xl text-red-darken">
                                 49,65%
                             </span>
                         </div>
                         <div class="relative w-auto pl-4 flex-initial">
                             <div
-                                class="text-blue-darken p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-lightBlue-500">
+                                class="text-red-darken p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-lightBlue-500">
                                 <i class="fas fa-percent"></i>
                             </div>
                         </div>

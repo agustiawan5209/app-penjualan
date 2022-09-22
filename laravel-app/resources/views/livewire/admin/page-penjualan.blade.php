@@ -34,7 +34,7 @@
                             @if ($pembayaran->metode_pengiriman == 1)
                                 Kirim Barang <br>
                                 <a wire:click='ongkirModal({{ $pembayaran->id }})' href="#_"
-                                    class="inline-block px-5 py-2 mx-auto text-white bg-blue-600 rounded-full hover:bg-blue-700 md:mx-0">
+                                    class="inline-block px-5 py-2 mx-auto text-white bg-red-600 rounded-full hover:bg-red-700 md:mx-0">
                                     Buat Pengiriman
                                 </a>
                             @else
@@ -46,19 +46,19 @@
                             <x-jet-button type="button" wire:click='detailItem({{ $pembayaran->id }})'>Detail Item
                             </x-jet-button>
                             <a href="{{ asset('bukti/' . $pembayaran->pdf_url) }}" target="_blank"
-                                class="inline-block px-5 py-2 mx-auto text-white bg-blue-600 rounded-full hover:bg-blue-700 md:mx-0">
+                                class="inline-block px-5 py-2 mx-auto text-white bg-red-600 rounded-full hover:bg-red-700 md:mx-0">
                                 Invoice
                             </a>
                         </x-td>
                         <x-td>
                             @if ($pembayaran->payment_status == 1)
                                 <button type="button" wire:click='konfirmasiModal({{ $pembayaran->id }})'
-                                    class="inline-block px-5 py-2 mx-auto text-white bg-blue-600 rounded-full hover:bg-blue-700 md:mx-0">
+                                    class="inline-block px-5 py-2 mx-auto text-white bg-red-600 rounded-full hover:bg-red-700 md:mx-0">
                                     Belum Dikonfirmasi
                                 </button>
                             @else
                                 <button type="button"
-                                    class="inline-block px-5 py-2 mx-auto text-white bg-blue-600 rounded-full hover:bg-blue-700 md:mx-0">
+                                    class="inline-block px-5 py-2 mx-auto text-white bg-red-600 rounded-full hover:bg-red-700 md:mx-0">
                                     Dikonfirmasi
                                 </button>
                             @endif
@@ -148,7 +148,7 @@
                             Status
                         </label>
                         <select id="countries" wire:model='status'
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500">
                             <option value="">--Pilih Status Pengiriman--</option>
                             <option value="1">Belum Dikirim</option>
                             <option value="2">Terkirim</option>
@@ -165,7 +165,7 @@
             <x-slot name="footer">
                 <div class="flex items-center justify-between">
                     <button wire:click='createOngkir'
-                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                         type="button">
                         Tambah
                     </button>

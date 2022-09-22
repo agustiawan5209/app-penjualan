@@ -13,8 +13,8 @@
             <div class="inline-flex items-center justify-between w-full">
                 <h3 class="font-bold text-xl sm:text-2xl text-gray-800 dark:text-white">Notifications</h3>
                 <button type="button" wire:click="$toggle('notif')" wire:loading.attr='disabled'
-                    class="inline-flex text-xs sm:text-sm bg-white px-2 sm:px-3 py-2 text-blue-500 items-center rounded font-medium
-             shadow border focus:outline-none transform active:scale-75 transition-transform duration-700 hover:bg-blue-500
+                    class="inline-flex text-xs sm:text-sm bg-white px-2 sm:px-3 py-2 text-red-500 items-center rounded font-medium
+             shadow border focus:outline-none transform active:scale-75 transition-transform duration-700 hover:bg-red-500
               hover:text-white hover:-translate-y-1 hover:scale-110 dark:text-gray-800 dark:hover:bg-gray-100">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 sm:mr-2" viewBox="0 0 20 20"
                         fill="currentColor">

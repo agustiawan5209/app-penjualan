@@ -3,7 +3,7 @@
         <div class="rounded-t bg-white mb-0 px-6 py-6">
             <div class="text-center flex justify-between">
                 <button wire:click='closeModal'
-                    class="bg-blue-darken text-white active:bg-blue-darken font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                    class="bg-red-darken text-white active:bg-red-darken font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                     type="button">
                     x
                 </button>

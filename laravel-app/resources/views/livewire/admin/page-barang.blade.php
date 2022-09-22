@@ -98,7 +98,7 @@
                                             @if ($dataKatalog != null)
                                                 @foreach ((object) $dataKatalog as $item)
                                                     <span
-                                                        class="bg-blue-300 rounded-sm p-1 text-gray-800">{{ $item->nama_katalog }}</span>
+                                                        class="bg-red-300 rounded-sm p-1 text-gray-800">{{ $item->nama_katalog }}</span>
                                                 @endforeach
                                             @endif
                                         </div>
@@ -129,7 +129,7 @@
                     <div class="rounded-t bg-white mb-0 px-6 py-6">
                         <div class="text-center flex justify-between">
                             <button wire:click='closeModal'
-                                class="bg-blue-darken text-white active:bg-blue-darken font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                class="bg-red-darken text-white active:bg-red-darken font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button">
                                 x
                             </button>
@@ -351,7 +351,7 @@
                     <div class="rounded-t bg-white mb-0 px-6 py-6">
                         <div class="text-center flex justify-between">
                             <button wire:click='closeModal'
-                                class="bg-blue-darken text-white active:bg-blue-darken font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                class="bg-red-darken text-white active:bg-red-darken font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button">
                                 x
                             </button>
@@ -609,7 +609,7 @@
                             <x-td>{{ $item->jenis->nama_jenis }}</x-td>
                             <x-td>
                                 <button wire:click='DetailModal({{ $item->id }})'
-                                    class="px-1 py-2 text-blue-500 text-sm font-semibold">
+                                    class="px-1 py-2 text-red-500 text-sm font-semibold">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                         <path stroke-linecap="round" stroke-linejoin="round"
