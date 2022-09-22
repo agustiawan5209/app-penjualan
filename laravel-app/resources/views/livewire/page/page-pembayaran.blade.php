@@ -5,6 +5,7 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <h5 class="mb-0">Detail Pesanan</h5>
+                    <x-jet-validation-errors></x-jet-validation-errors>
                     <img src="{{ Auth::user()->profile_photo_url }}" class="img-fluid rounded-3" style="width: 45px;"
                         alt="Avatar">
                 </div>
@@ -14,7 +15,7 @@
                     @csrf
                     <div class="form-outline form-white mb-4 d-flex justify-content-around">
                         <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" id="metode" name="metode" class="custom-control-input "
+                            <input type="radio" id="metode" checked name="metode" class="custom-control-input "
                                 x-model="Radio" value="2">
                             <label class="custom-control-label" for="metode">Ambil
                                 Sendiri</label>

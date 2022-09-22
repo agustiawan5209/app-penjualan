@@ -198,7 +198,7 @@
                         datasets: [{
                             label: 'Infosys Price',
                             data: Prices,
-                            borderWidth: 1
+                            borderWidth: 1,
                         }]
                     },
                     options: {
@@ -208,7 +208,23 @@
                                     beginAtZero: true
                                 }
                             }]
-                        }
+                        },tooltip: {
+                callbacks: {
+                    labelColor: function(context) {
+                        return {
+                            borderColor: 'rgb(0, 0, 255)',
+                            backgroundColor: 'rgb(255, 0, 0)',
+                            borderWidth: 2,
+                            borderDash: [2, 2],
+                            borderRadius: 2,
+                        };
+                    },
+                    labelTextColor: function(context) {
+                        return '#543453';
+                    }
+                }
+            }
+
                     }
                 });
             });

@@ -55,6 +55,10 @@ class PageShop extends Component
                 $cart = Keranjang::where('user_id', Auth::user()->id)
                     ->where('barang_id', '=', $id)
                     ->get();
+                   $br =  Barang::find($id);
+                   Barang::find($id)->update([
+                    'stock'=> $br->stock - 1,
+                   ]);
                 // dd($cart);
                 if ($cart->count() > 0) {
                     Alert::warning('Gagal', 'Barang Sudah Dalam Keranjang');

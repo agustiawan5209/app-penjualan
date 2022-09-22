@@ -41,6 +41,10 @@ class PageDetailShop extends Component
                 'total_awal'=> $barang->harga,
                 'sub_total'=> $barang->harga * $this->count,
               ]);
+              $br =  Barang::find($id);
+              Barang::find($id)->update([
+               'stock'=> $br->stock - $this->count,
+              ]);
                 // dd($cat);
                 $this->count = 1;
                 toast('Barang Berhasil Dimasukan Keranjang','success')->timerProgressBar();

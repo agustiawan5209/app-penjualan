@@ -4,17 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Pembayaran extends Model
 {
     use HasFactory;
+    use Notifiable;
     protected $table = 'pembayarans';
     protected $fillable = ['user_id','number', 'total_price', 'metode_pengiriman','payment_status', 'payment_type', 'payment_code', 'pdf_url', 'transaksi_id', 'nama', 'item_details', 'tgl_transaksi'];
     protected $hidden = ['payment_status', 'payment_type', 'payment_code', 'pdf_url', 'transaksi_id', 'snap_token'];
 
 
     public function ongkir(){
-        return $this->belongsTo(ongkir::class, 'transaksi_id','transaksi_id');
+        return $this->hasOne(ongkir::class, 'transaksi_id','transaksi_id');
     }
     public function user()
     {

@@ -7,10 +7,12 @@ use App\Models\Ongkir;
 use App\Models\Pembayaran;
 use App\Models\StatusBarang;
 use Livewire\Component;
+use Livewire\WithPagination;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PagePenjualan extends Component
 {
+    use WithPagination;
     public $search = '';
     public $row = 10;
     public $order = 'desc';
@@ -18,18 +20,20 @@ class PagePenjualan extends Component
     public $item;
     public $deleteItem = false, $detail_transaksi = false;
     // ongkir item
-    public $tgl_pengiriman, $harga, $kode_pos, $kabupaten, $detail_alamat, $status, $transaksi_id, $user_name, $item_details;
+    public $tgl_pengiriman, $harga, $kode_pos, $kabupaten, $detail_alamat, $pdf_url,$status, $transaksi_id, $user_name, $item_details;
     public $produk, $jumlah ,$ket;
     public $ongkirItem = false;
     public function konfirmasiModal($id)
     {
         $this->item = $id;
         $this->deleteItem = true;
+        $br = Pembayaran::find($id);
+        $this->pdf_url= $br->pdf_url;
     }
     public function konfirmasi($id)
     {
         Pembayaran::find($id)->update(['payment_status' => '2']);
-        Alert::success('Info', 'Pembayaran Berhasil Di Ganti');
+        Alert::success('Info', 'Pembayaran Berhasil Di Konfirmasi');
         $this->deleteItem = false;
     }
 

@@ -14,9 +14,11 @@ use Illuminate\Http\Request;
 use App\Models\UsesUserPromo;
 use App\Models\UsesUserVoucher;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Notifications\InvoicePaid;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
+use Notification;
 use App\Http\Requests\StorePembayaranRequest;
 use App\Http\Requests\UpdatePembayaranRequest;
 
@@ -67,7 +69,7 @@ class PembayaranController extends Controller
             // 'kode_pos' => 'required',
             'metode' => 'required',
             'sub_total' => 'required',
-            'foto' => 'required',
+            'foto' => ['image', 'max:5000'],
             'nama' => 'required',
         ]);
         // dd(session('param'));
@@ -77,19 +79,18 @@ class PembayaranController extends Controller
                 'request' => $request,
                 'file' => $this->uploadFile($request->foto),
             ];
+
             // dd($cek_file);
-            $pdf = Pdf::loadView('page.invoice.index', $param);
-            $item_details = session('keranjang');
             $transaksi_id = $this->transaksi_id();
+            $pdf = Pdf::loadView('page.invoice.invoice', ['data'=> session('keranjang'), 'request'=> $request, 'file' => $this->uploadFile($request->foto), 'transaksi_id'=> $transaksi_id])->setPaper('a4', 'landscape');
+            $item_details = session('keranjang');
             $this->createTransaksi($item_details['item'], $transaksi_id);
             $this->createPayment($request, $item_details['item'], $pdf->download()->getOriginalContent(), $transaksi_id);
             Keranjang::where('user_id', '=', Auth::user()->id)->delete();
             session()->forget('param');
             $this->GantiStatusPromo();
-            Alert::success('Pemesanan berhasil', 'Mohon Tunggu Proses Konfirmasi');
 
-            return redirect()->route('home');
-        } else {
+            Alert::success('Berhasil', "Pemesanan Barang Berhasil, Mohon Tunggu Konfirmasi");
             return redirect()->route('home');
         }
     }
@@ -145,15 +146,16 @@ class PembayaranController extends Controller
             'item_details' => $exp,
             'metode_pengiriman' => $request->metode,
         ]);
-        // Notification::send($payemnt,new InvoicePaid([
-        //     'type'=> 'payment',
-        //     'body'=> Auth::user()->name . " Baru Saja Melakukan Pembayaran",
-        //     'from'=> 'User='. Auth::user()->id,
-        // ]));
+        Notification::send($payemnt,new InvoicePaid([
+            'type'=> 'payment',
+            'body'=> Auth::user()->name . " Baru Saja Melakukan Pembayaran",
+            'from'=> 'User='. Auth::user()->id,
+        ]));
         // $this->createOngkir($request, $ID_Transkasi);
         if($request->metode == 1){
             $this->createOngkir($request, $ID_Transkasi);
         }
+
     }
 
     /**

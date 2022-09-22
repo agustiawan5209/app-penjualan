@@ -24,7 +24,7 @@
 
 </head>
 
-<body class="font-sans antialiased bg-blue-darken">
+<body class="font-sans antialiased bg-blue-darken overflow-hidden">
 
     <noscript>You need to enable JavaScript to run this app.</noscript>
     @include('sweetalert::alert')

@@ -123,8 +123,8 @@
                     <table>
                         <tr>
                             <td>
-                                ID Transaksi #: 123<br />
-                                Tanggal Transaksi: January 1, 2015<br />
+                                ID Transaksi #: {{$transaksi_id}}<br />
+                                Tanggal Transaksi: {{$request->tgl_transaksi}}<br />
                             </td>
                         </tr>
                     </table>
@@ -160,9 +160,15 @@
             </tr>
 
             <tr class="details">
-                <td>BRI</td>
+                <td>Metode Pengiriman</td>
 
-                <td>Total Bayar</td>
+                <td>
+                    @if ($request->metode == 1)
+                        Di Kirim
+                    @else
+                        Ambil Sendiri
+                    @endif
+                </td>
             </tr>
 
         </table>
@@ -175,6 +181,9 @@
                 <th>Jumlah</th>
                 <th>Potongan</th>
                 <th>Total</th>
+                @php
+                    $total = array()
+                @endphp
             </tr>
             @foreach ($data['item'] as $item)
                 <tr class="item" style="border: 1px solid #bbbabb;">
@@ -184,13 +193,33 @@
                     <td>{{$item->quantity}}</td>
                     <td>{{$item->diskon}}</td>
                     <td>{{$item->sub_total}}</td>
+                    @php
+                        array_push($total, $item->sub_total)
+                    @endphp
                 </tr>
             @endforeach
             <tr class="total">
-                <td colspan="6" style="text-align: right;">Total: $385.00</td>
+                <td colspan="6" style="text-align: right;">Total: Rp. {{number_format(array_sum($total))}}</td>
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Bukti</td>
+                <td>@if ($file != null)
+                    <h3 class="text-underline">BUKTI PEMBAYARAN</h3>
+                    <br>
+                    <img class="bukti-bayar" src="{{public_path('bukti/'.$file)}}" width="100" alt="">
+                @else
+                    <h3 class="text-underline">DALAM PROSES</h3>
+                @endif</td>
             </tr>
         </table>
     </div>
+
 </body>
 
 </html>

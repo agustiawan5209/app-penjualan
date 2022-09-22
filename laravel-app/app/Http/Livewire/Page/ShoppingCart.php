@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Page;
 
+use App\Models\Barang;
 use App\Models\Diskon;
 use App\Models\Keranjang;
 use Carbon\Carbon;
@@ -69,7 +70,11 @@ class ShoppingCart extends Component
     }
     public function removeCart($id)
     {
-        Keranjang::find($id)->delete();
+       $kr =  Keranjang::find($id);
+        $barang= Barang::find($kr->barang_id);
+        Barang::find($barang->id)->update([
+            'stock'=> $barang->stock + $kr->quantity,
+        ]);
         Alert::success('Berhasil', 'Berhasil Di Hapus !');
     }
 

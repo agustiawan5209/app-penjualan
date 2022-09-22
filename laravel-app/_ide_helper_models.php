@@ -255,6 +255,8 @@ namespace App\Models{
  * @property string|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @property-read int|null $notifications_count
  * @property-read \App\Models\Ongkir|null $ongkir
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Transaksi[] $transaksi
  * @property-read int|null $transaksi_count
