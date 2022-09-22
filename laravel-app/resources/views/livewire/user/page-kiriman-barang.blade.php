@@ -114,6 +114,7 @@
                             <th class="px-4 py-3 border-b-2 border-red-500">Status Pengiriman</th>
                             <th class="px-4 py-3 text-center border-b-2 border-yellow-500 sm:text-left">Detail
                             </th>
+                            <th class="px-4 py-3 border-b-2 border-purple-500">Pengembalian</th>
                         </tr>
                     </thead>
                     <tbody class="text-sm font-normal text-gray-700">

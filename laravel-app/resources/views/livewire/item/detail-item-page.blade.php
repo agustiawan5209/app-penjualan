@@ -29,7 +29,7 @@
                     <x-td>
                        {{$item->barang->nama_barang  }}
                     </x-td>
-                    <x-td>{{$jumlah[1]}}</x-td>
+                    <x-td>{{$jumlah[2]}}</x-td>
                     <x-td>
                        {{$item->potongan}}
                     </x-td>

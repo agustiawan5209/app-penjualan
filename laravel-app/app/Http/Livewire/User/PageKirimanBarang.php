@@ -3,10 +3,12 @@
 namespace App\Http\Livewire\User;
 
 use App\Models\Ongkir;
-use App\Models\Pembayaran;
-use App\Models\Transaksi;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use App\Models\Transaksi;
+use App\Models\Pembayaran;
+use App\Models\Pengembalian;
+use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PageKirimanBarang extends Component
 {
@@ -59,5 +61,29 @@ class PageKirimanBarang extends Component
             'belum_terkirim' => $belum_terkirim,
             'belum_konfirmasi'=> $belum_konfirmasi,
         ]);
+    }
+    public function create()
+    {
+        $this->validate([
+            'updatefoto' => ['required', 'image', 'max:2040'],
+            'alasan' => ['required', 'string'],
+            'kondisi' => ['required'],
+            // 'status'=> ['required'],
+        ]);
+
+        $nama = $this->updatefoto->getClientOriginalName();
+        $ext = $this->updatefoto->getClientOriginalExtension();
+        $randomName = 'P-' . $nama;
+        $this->updatefoto->storeAs('upload', $randomName);
+        Pengembalian::create([
+            'transaksi_id' => $this->itemID,
+            'gambar' => $randomName,
+            'alasan' => $this->alasan,
+            'kondisi' => $this->kondisi,
+            'kondisi_lain' => $this->kondisi_lain,
+            'status' => '1',
+        ]);
+        Alert::info('Dalam Proses', 'Harap Menunggu Konfirmasi Dari Pemilik');
+        $this->modalItem = false;
     }
 }
