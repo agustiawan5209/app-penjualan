@@ -2,7 +2,7 @@
 <link href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css" rel="stylesheet" />
 
 @include('sweetalert::alert')
-<div class="items-center w-full py-4 mx-auto my-10 bg-white rounded-lg shadow-md ">
+<div class="items-center w-full py-4 mx-auto mb-10 bg-white rounded-lg shadow-md ">
     <div class="container mx-auto">
         <div
             class="flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:justify-between w-full px-4 mb-2 mt-4 items-center">

@@ -36,7 +36,7 @@
            @if ($startDate != null && $maxDate != null)
              <div class="flex justify-between w-full px-4 py-2">
                  <div class="text-lg font-bold">
-                   Order History
+                   Laporan Penjualan
                  </div>
                  <a href="{{route('Laporan', ['start'=> $startDate, 'end'=> $maxDate])}}" class="px-2 py-2 text-white bg-red-500 rounded-md hover:bg-red-600">
                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -60,26 +60,34 @@
                         </x-tr>
                     </thead>
                     <tbody>
-                        @foreach ($pembayaran as $transaksi)
-                        <x-tr wire:loading.class='"opacity-50'>
-                            <x-td>{{ $loop->iteration }}</x-td>
-                            <x-td>{{ $transaksi->pembayaran->user->name }}</x-td>
-                            <x-td>{{ $transaksi->pembayaran->user->email }}</x-td>
-                            <x-td>{{ $transaksi->pembayaran->nama }}</x-td>
-                            <x-td>{{ $transaksi->tgl_transaksi }}</x-td>
-                            <x-td>
-                               {{$transaksi->barang->nama_barang}}
-                            </x-td>
-                            <x-td>{{ number_format($transaksi->total,0,2) }}</x-td>
-                            @php
-                                $total[] = $transaksi->total;
-                            @endphp
-                        </x-tr>
-                    @endforeach
-                    <x-tr>
-                        <x-td colspan="5">Total Penjualan</x-td>
-                        <x-td colspan="2">Rp. {{number_format(array_sum($total))}}</x-td>
-                    </x-tr>
+                       @if ($pembayaran->count() > 0)
+                         @foreach ($pembayaran as $transaksi)
+                         <x-tr wire:loading.class='"opacity-50'>
+                             <x-td>{{ $loop->iteration }}</x-td>
+                             <x-td>{{ $transaksi->pembayaran->user->name }}</x-td>
+                             <x-td>{{ $transaksi->pembayaran->user->email }}</x-td>
+                             <x-td>{{ $transaksi->pembayaran->nama }}</x-td>
+                             <x-td>{{ $transaksi->tgl_transaksi }}</x-td>
+                             <x-td>
+                                {{$transaksi->barang->nama_barang}}
+                             </x-td>
+                             <x-td>{{ number_format($transaksi->total,0,2) }}</x-td>
+                             @php
+                                 $total[] = $transaksi->total;
+                             @endphp
+                         </x-tr>
+                     @endforeach
+                     <x-tr>
+                         <x-td colspan="5">Total Penjualan</x-td>
+                         <x-td colspan="2">Rp. {{number_format(array_sum($total))}}</x-td>
+                     </x-tr>
+                     @else
+                     <x-tr>
+                        <x-td colspan="7">
+                            Kosong
+                        </x-td>
+                     </x-tr>
+                       @endif
                     </tbody>
                 </table>
             </div>
