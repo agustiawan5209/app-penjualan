@@ -25,6 +25,6 @@ class Barang extends Model
         return $this->hasMany(Diskon::class, 'barang_id', 'id');
     }
     public function katalog(){
-        return $this->belongsTo(Katalog::class, 'barang_id', 'id');
+        return $this->hasMany(Katalog::class, 'barang_id', 'id');
     }
 }

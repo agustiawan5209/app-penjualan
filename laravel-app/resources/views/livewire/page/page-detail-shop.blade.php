@@ -124,7 +124,7 @@
                                 </li>
                             </ul> --}}
 
-                            <h6>Description:</h6>
+                            <h6>Deskripsi:</h6>
                             <p>{{$barang->deskripsi}}.</p>
                             {{-- <ul class="list-inline">
                                 <li class="list-inline-item">
@@ -133,33 +133,18 @@
                                 <li class="list-inline-item">
                                     <p class="text-muted"><strong>White / Black</strong></p>
                                 </li>
-                            </ul>
-
-                            <h6>Specification:</h6>
-                            <ul class="list-unstyled pb-3">
-                                <li>Lorem ipsum dolor sit</li>
-                                <li>Amet, consectetur</li>
-                                <li>Adipiscing elit,set</li>
-                                <li>Duis aute irure</li>
-                                <li>Ut enim ad minim</li>
-                                <li>Dolore magna aliqua</li>
-                                <li>Excepteur sint</li>
                             </ul> --}}
+
+                            <h6>Katalog:</h6>
+                            <ul class="list-unstyled pb-3">
+                                @foreach ( (object) $barang->katalog as $katalog)
+                                            <li class="list-inline-item"><span class="btn btn-orange-dark btn-size">{{$katalog->nama_katalog}}</span></li>
+                                            @endforeach
+                            </ul>
 
                             <form action="" method="GET">
                                 <input type="hidden" name="product-title" value="Activewear">
                                 <div class="row">
-                                    {{-- <div class="col-auto">
-                                        <ul class="list-inline pb-3">
-                                            <li class="list-inline-item">Size :
-                                                <input type="hidden" name="product-size" id="product-size" value="S">
-                                            </li>
-                                            <li class="list-inline-item"><span class="btn btn-orange-dark btn-size">S</span></li>
-                                            <li class="list-inline-item"><span class="btn btn-orange-dark btn-size">M</span></li>
-                                            <li class="list-inline-item"><span class="btn btn-orange-dark btn-size">L</span></li>
-                                            <li class="list-inline-item"><span class="btn btn-orange-dark btn-size">XL</span></li>
-                                        </ul>
-                                    </div> --}}
                                     <div class="col-auto">
                                         <ul class="list-inline pb-3">
                                             <li class="list-inline-item text-right">
@@ -190,7 +175,7 @@
     </section>
     <!-- Close Content -->
 
-    {{-- <!-- Start Article -->
+    <!-- Start Article -->
     <section class="py-5">
         <div class="container">
             <div class="row text-left p-2 pb-3">
@@ -198,9 +183,9 @@
             </div>
 
             <!--Start Carousel Wrapper-->
-            <div id="carousel-related-product">
+            <div class=" row">
 
-                <div class="p-2 pb-3">
+                <div class=" col-md-3">
                     <div class="product-wap card rounded-0">
                         <div class="card rounded-0">
                             <img class="card-img rounded-0 img-fluid" src="img/shop_08.jpg">
@@ -238,7 +223,7 @@
                     </div>
                 </div>
 
-                <div class="p-2 pb-3">
+                <div class=" col-md-3">
                     <div class="product-wap card rounded-0">
                         <div class="card rounded-0">
                             <img class="card-img rounded-0 img-fluid" src="img/shop_09.jpg">
@@ -276,7 +261,7 @@
                     </div>
                 </div>
 
-                <div class="p-2 pb-3">
+                <div class=" col-md-3">
                     <div class="product-wap card rounded-0">
                         <div class="card rounded-0">
                             <img class="card-img rounded-0 img-fluid" src="img/shop_10.jpg">
@@ -314,7 +299,7 @@
                     </div>
                 </div>
 
-                <div class="p-2 pb-3">
+                <div class=" col-md-3">
                     <div class="product-wap card rounded-0">
                         <div class="card rounded-0">
                             <img class="card-img rounded-0 img-fluid" src="img/shop_11.jpg">
@@ -352,7 +337,7 @@
                     </div>
                 </div>
 
-                <div class="p-2 pb-3">
+                <div class=" col-md-3">
                     <div class="product-wap card rounded-0">
                         <div class="card rounded-0">
                             <img class="card-img rounded-0 img-fluid" src="img/shop_08.jpg">
@@ -390,7 +375,7 @@
                     </div>
                 </div>
 
-                <div class="p-2 pb-3">
+                <div class=" col-md-3">
                     <div class="product-wap card rounded-0">
                         <div class="card rounded-0">
                             <img class="card-img rounded-0 img-fluid" src="img/shop_09.jpg">
@@ -428,7 +413,7 @@
                     </div>
                 </div>
 
-                <div class="p-2 pb-3">
+                <div class=" col-md-3">
                     <div class="product-wap card rounded-0">
                         <div class="card rounded-0">
                             <img class="card-img rounded-0 img-fluid" src="img/shop_10.jpg">
@@ -466,7 +451,7 @@
                     </div>
                 </div>
 
-                <div class="p-2 pb-3">
+                <div class=" col-md-3">
                     <div class="product-wap card rounded-0">
                         <div class="card rounded-0">
                             <img class="card-img rounded-0 img-fluid" src="img/shop_11.jpg">
@@ -504,7 +489,7 @@
                     </div>
                 </div>
 
-                <div class="p-2 pb-3">
+                <div class=" col-md-3">
                     <div class="product-wap card rounded-0">
                         <div class="card rounded-0">
                             <img class="card-img rounded-0 img-fluid" src="img/shop_08.jpg">
@@ -542,7 +527,7 @@
                     </div>
                 </div>
 
-                <div class="p-2 pb-3">
+                <div class=" col-md-3">
                     <div class="product-wap card rounded-0">
                         <div class="card rounded-0">
                             <img class="card-img rounded-0 img-fluid" src="img/shop_09.jpg">
@@ -580,7 +565,7 @@
                     </div>
                 </div>
 
-                <div class="p-2 pb-3">
+                <div class=" col-md-3">
                     <div class="product-wap card rounded-0">
                         <div class="card rounded-0">
                             <img class="card-img rounded-0 img-fluid" src="img/shop_10.jpg">
@@ -618,7 +603,7 @@
                     </div>
                 </div>
 
-                <div class="p-2 pb-3">
+                <div class=" col-md-3">
                     <div class="product-wap card rounded-0">
                         <div class="card rounded-0">
                             <img class="card-img rounded-0 img-fluid" src="img/shop_11.jpg">
@@ -661,5 +646,5 @@
 
         </div>
     </section>
-    <!-- End Article --> --}}
+    <!-- End Article -->
 </div>

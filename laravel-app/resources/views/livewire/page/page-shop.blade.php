@@ -67,9 +67,9 @@
                                         <div
                                             class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                             <ul class="list-unstyled">
-                                                <li><a class="btn btn-blue-dark text-white"
+                                                {{-- <li><a class="btn btn-blue-dark text-white"
                                                         href="{{ route('shop-single') }}"><i
-                                                            class="far fa-heart"></i></a></li>
+                                                            class="far fa-heart"></i></a></li> --}}
                                                 <li><a class="btn btn-blue-dark text-white mt-2"
                                                         href="#Detail/{{ $barang->id }}"
                                                         wire:click='ShowDetail({{ $barang->id }})'><i
@@ -130,18 +130,7 @@
     @endforeach
 </div>
 <div div="row">
-    <ul class="pagination pagination-lg justify-content-end">
-        <li class="page-item disabled">
-            <a class="page-link active rounded-0 mr-3 shadow-sm border-top-0 border-left-0" href="#"
-                tabindex="-1">1</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="#">2</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark" href="#">3</a>
-        </li>
-    </ul>
+   {{$produk->links('pagination::tailwind')}}
 </div>
 </div>
 
@@ -150,7 +139,7 @@
 <!-- End Content -->
 
 <!-- Start Brands -->
-<section class="bg-light py-5">
+{{-- <section class="bg-light py-5">
     <div class="container my-4">
         <div class="row text-center py-3">
             <div class="col-lg-6 m-auto">
@@ -263,7 +252,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 <!--End Brands-->
 
 @endif

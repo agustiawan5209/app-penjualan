@@ -50,7 +50,8 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Diskon[] $diskon
  * @property-read int|null $diskon_count
  * @property-read \App\Models\Jenis|null $jenis
- * @property-read \App\Models\Katalog|null $katalog
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Katalog[] $katalog
+ * @property-read int|null $katalog_count
  * @property-read \App\Models\Satuan|null $satuan
  * @method static \Database\Factories\BarangFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Barang newModelQuery()
@@ -218,6 +219,7 @@ namespace App\Models{
  * @property string $status 0= kosong ,1= belum dikirim, 2=dikirim, 3=konfirmasi admin, 4=konfirmasi user, 5 = Pesanan Diterima
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Pembayaran|null $payment
  * @property-read \App\Models\User|null $user
  * @method static \Illuminate\Database\Eloquent\Builder|Ongkir newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Ongkir newQuery()
@@ -241,17 +243,17 @@ namespace App\Models{
  * App\Models\Pembayaran
  *
  * @property int $id
- * @property string|null $transaksi_id
+ * @property string $transaksi_id
  * @property int $user_id
  * @property string|null $nama
- * @property string $number
- * @property string $total_price
+ * @property string $no_telpon
  * @property string $payment_status 1 = Belum Di Bayar, 2 = Pembayaran Berhasil , 3 = Konfirmasi
  * @property string|null $payment_type
  * @property string|null $pdf_url
  * @property string $tgl_transaksi
  * @property string $item_details
  * @property string $metode_pengiriman 1 = Ongkir, 2= Ambil Sendiri
+ * @property string $total_price
  * @property string|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -271,7 +273,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran whereItemDetails($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran whereMetodePengiriman($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran whereNama($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran whereNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran whereNoTelpon($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran wherePaymentStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran wherePaymentType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran wherePdfUrl($value)
@@ -282,6 +284,41 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Pembayaran whereUserId($value)
  */
 	class Pembayaran extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Pengembalian
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property int $transaksi_id
+ * @property string $gambar
+ * @property string $alasan
+ * @property string $kondisi 1 =Paket Tidak sama, 2 = Produk Rusak,  3 = Pembungkus Paket Sobek/Rusak, 4 = Paket Salah , 5 = alasan lain
+ * @property string|null $kondisi_lain
+ * @property string $status 0 = default, 1 = Ditolak, 2 = Diterima, 3= selesai
+ * @property string|null $admin_ket
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Transaksi|null $transaksi
+ * @property-read \App\Models\User|null $user
+ * @method static \Illuminate\Database\Eloquent\Builder|Pengembalian newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Pengembalian newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Pengembalian query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Pengembalian whereAdminKet($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pengembalian whereAlasan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pengembalian whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pengembalian whereGambar($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pengembalian whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pengembalian whereKondisi($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pengembalian whereKondisiLain($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pengembalian whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pengembalian whereTransaksiId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pengembalian whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pengembalian whereUserId($value)
+ */
+	class Pengembalian extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -477,6 +514,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Barang|null $barang
+ * @property-read \App\Models\Pembayaran|null $pembayaran
  * @method static \Database\Factories\TransaksiFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Transaksi newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Transaksi newQuery()
