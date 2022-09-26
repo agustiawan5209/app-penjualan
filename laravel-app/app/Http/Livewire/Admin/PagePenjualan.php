@@ -101,27 +101,33 @@ class PagePenjualan extends Component
         if ($this->status == 0) {
             $this->status = '2';
         }
+        // dd($this->harga);
         $ongkir = ongkir::where('transaksi_id', '=', $this->transaksi_id)->first();
-        $ongkir->update([
-            'tgl_pengiriman' => $this->tgl_pengiriman,
-            'harga' => $this->harga,
-            'status' => $this->status,
-        ]);
-        $msg = $this->ket;
-        if ($this->ket != null) {
-            if ($this->status == 1) {
-                $msg = 'Belum Terkirim';
-            } elseif ($this->status == 2) {
-                $msg = 'Dalam Pengiriman';
-            } elseif ($this->status == 3) {
-                $msg = 'Pembayaran Di Konfirmasi';
+        if($this->harga != null){
+            $ongkir->update([
+                'tgl_pengiriman' => $this->tgl_pengiriman,
+                'harga' => $this->harga,
+                'status' => $this->status,
+            ]);
+            $msg = $this->ket;
+            if ($this->ket != null) {
+                if ($this->status == 1) {
+                    $msg = 'Belum Terkirim';
+                } elseif ($this->status == 2) {
+                    $msg = 'Dalam Pengiriman';
+                } elseif ($this->status == 3) {
+                    $msg = 'Pembayaran Di Konfirmasi';
+                }
             }
+            StatusBarang::create([
+                'ongkir_id' => $ongkir->id,
+                'ket' => $msg,
+            ]);
+            Alert::success("Berhasil", 'Pengiriman Berhasil Di Tambah');
+        }else{
+            Alert::warning("Gagal", 'Pengiriman Gagal Di Tambah');
+
         }
-        StatusBarang::create([
-            'ongkir_id' => $ongkir->id,
-            'ket' => $msg,
-        ]);
         $this->ongkirItem = false;
-        Alert::success("Berhasil", 'Pengiriman Berhasil Di Tambah');
     }
 }

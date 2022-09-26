@@ -157,7 +157,7 @@
                     </label>
                     <input
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                        wire:model="harga" type="text" placeholder="******************">
+                        wire:model.defer="harga" type="text" placeholder="******************">
                     @error('harga')
                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                     @enderror

@@ -110,9 +110,10 @@ class PagePengiriman extends Component
     {
         $this->validate([
             'tgl_pengiriman' => 'required|date',
-            'harga' => "required",
+            'harga' => "required|integer",
             'status' => "required",
         ]);
+        dd($this->harga);
         $ongkir = Ongkir::where('id', '=', $id)->update([
             'tgl_pengiriman' => $this->tgl_pengiriman,
             'harga' => $this->harga,
