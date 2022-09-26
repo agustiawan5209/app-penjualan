@@ -12,4 +12,7 @@ class Katalog extends Model
     public $fillable = [
         'barang_id','nama_katalog'
     ];
+    public function barang(){
+        return $this->hasOne(Barang::class, 'id', 'barang_id');
+    }
 }

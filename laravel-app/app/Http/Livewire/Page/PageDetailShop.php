@@ -18,8 +18,13 @@ class PageDetailShop extends Component
     public function render()
     {
         $barang = Barang::find($this->itemID);
+        $barang_lain = Barang::whereNotIn('id',[ $barang->id])
+        ->where('jenis_id', '=', $barang->jenis_id)
+        // ->orWhere('satuan_id', '=', $barang->satuan_id)
+        ->get();
         return view('livewire.page.page-detail-shop',[
             'barang'=> $barang,
+            'barang_lain'=> $barang_lain,
         ])->layout('layouts.guest');
     }
     public function addToCart($id)
