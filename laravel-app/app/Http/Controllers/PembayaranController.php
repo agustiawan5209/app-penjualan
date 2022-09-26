@@ -138,7 +138,7 @@ class PembayaranController extends Controller
         $payemnt = Pembayaran::create([
             'user_id' => Auth::user()->id,
             'nama'=> $request->nama,
-            'number' => Auth::user()->name . '_' . $this->generateUniqueNumber(),
+            'no_telpon' => Auth::user()->name . '_' ,
             'total_price' => $request->sub_total,
             'payment_status' => '1',
             'payment_type' => 'BANK',

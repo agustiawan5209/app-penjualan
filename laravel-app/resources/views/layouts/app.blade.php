@@ -30,7 +30,7 @@
     @include('sweetalert::alert')
     <div id="root" x-data="{ Dropdown: false }">
         <nav
-            class="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
+            class="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl @can('Manage-Customer') bg-red-darken @endcan @can('Manage-Admin') bg-white @endcan flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
             <div
                 class="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto">
                 <button
@@ -38,7 +38,7 @@
                     type="button" onclick="toggleNavbar('example-collapse-sidebar')">
                     <i class="fas fa-bars"></i>
                 </button>
-                <a class="md:block text-left md:pb-2 text-gray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
+                <a class="md:block text-left md:pb-2 @can('Manage-Customer') text-white @endcan @can('Manage-Admin') text-red-darken @endcan mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
                     href="{{ route('Admin.Dashboard-Admin') }}">
                     Selamat Datang {{ Auth::user()->name }}
                 </a>
@@ -105,12 +105,12 @@
                             </div>
                         </div>
                     </div>
-                    <form class="mt-6 mb-4 md:hidden">
+                    {{-- <form class="mt-6 mb-4 md:hidden">
                         <div class="mb-3 pt-0">
                             <input type="text" placeholder="Search"
                                 class="border-0 px-3 py-2 h-12 border border-solid border-gray-500 placeholder-gray-300 text-gray-600 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal" />
                         </div>
-                    </form>
+                    </form> --}}
                     <!-- Divider -->
                     <hr class="my-4 md:min-w-full" />
                     <!-- Navigation -->
@@ -132,30 +132,7 @@
                             <livewire:item.notification-menu>
                         </div>
                     </form> --}}
-                    <ul class="flex-col md:flex-row list-none items-center hidden md:flex">
-                        <a class="text-gray-500 block" href="#" x-on:click="Dropdown = ! Dropdown">
-                            <div class="items-center flex">
-                                <span
-                                    class="w-12 h-12 text-sm text-white bg-gray-200 inline-flex items-center justify-center rounded-full"><img
-                                        alt="..." class="w-full rounded-full align-middle border-none shadow-lg"
-                                        src="{{ Auth::user()->profile_photo_url }}" /> </span>
-                            </div>
-                        </a>
-                        <div
-                            class="flex justify-start items-center ml-2  bg-white text-base z-50 float-left  list-none text-left rounded shadow-lg min-w-48">
-                            <a href="{{route('profile.show')}}"
-                                class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700">Profil</a>
-                            <div class="h-0 my-2 border border-solid border-gray-100"></div>
-                            <form action="{{ route('logout') }}" method="POST"
-                                class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700">
-                                @csrf
-                                <button type='submit'
-                                    class=" text-gray-700 hover:text-gray-500 text-xs uppercase py-3 font-bold block">
 
-                                    Logout
-                                </button>
-                        </div>
-                    </ul>
                 </div>
             </nav>
             <!-- Header -->
