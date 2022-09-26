@@ -21,9 +21,12 @@ use App\Http\Livewire\Page\PageShop;
 use App\Http\Livewire\Page\ShoppingCart;
 use App\Http\Livewire\PageSearchkatalog;
 use App\Http\Livewire\Pesanan;
+use App\Http\Livewire\Setting\MetodeBayar;
+use App\Http\Livewire\Setting\SlideSetting;
 use App\Http\Livewire\User\Dashboard as UserDashboard;
 use App\Http\Livewire\User\PageKirimanBarang;
 use App\View\Components\User\PagePesananCustomer;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -57,6 +60,8 @@ Route::middleware([
         Route::get('Page-Penjualan', PagePenjualan::class)->name('Page-Penjualan');
         Route::get('Page-Promo', PagePromo::class)->name('Page-Promo');
         Route::get('Page-Voucher', PageVOucher::class)->name('Page-Voucher');
+        Route::get('Metode-bayar', MetodeBayar::class)->name('Metode-Bayar');
+        Route::get('Slide-Setting', SlideSetting::class)->name('Slide-setting');
 
     });
     // Akses User
@@ -78,9 +83,13 @@ Route::middleware([
 });
 Route::get('stock/chart',[StatusBarangController::class, 'chart']);
 Route::get('Keranjang', ShoppingCart::class)->name('Keranjang');
-Route::get('shop' , PageShop::class)->name('shop');
+Route::get('shop' , function(Request $request){
+    $jenis = $request->jenis;
+    return view('shop', compact('jenis'));
+})->name('shop');
 Route::get('katalog/{id}/{nama_jenis}' , PageSearchkatalog::class)->name('katalog');
 Route::get('Detail/{itemID}', PageDetailShop::class)->name('Shop-detail');
+
 
 
 Route::get('about' , function(){

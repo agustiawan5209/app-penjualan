@@ -1,7 +1,7 @@
 <div>
-    <div class="w-100 mt-10" style="margin-top: 50px;" wire:model.defer="bayardetail" wire:loading.class="opacity-25">
+    <div class="w-100 mt-10 row" style="margin-top: 50px;" wire:model.defer="bayardetail" wire:loading.class="opacity-25">
 
-        <div class="card bg-blue-dark text-white rounded-3">
+        <div class="card bg-blue-dark text-white rounded-3 col-md-7">
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <h5 class="mb-0">Detail Pesanan</h5>
@@ -21,8 +21,8 @@
                                 Sendiri</label>
                         </div>
                         <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" id="customRadioInline2" name="metode"
-                                class="custom-control-input" x-model="Radio" value="1">
+                            <input type="radio" id="customRadioInline2" name="metode" class="custom-control-input"
+                                x-model="Radio" value="1">
                             <label class="custom-control-label" for="customRadioInline2">Kirim
                                 Barang</label>
                         </div>
@@ -56,11 +56,12 @@
 
                     <div class="form-outline form-white mb-4 has-validation">
                         <label class="form-label" for="namaUser">Nama</label>
-                        <input type="text" id="namaUser" name="nama" class="form-control form-control-lg " :old="$nama"/>
+                        <input type="text" id="namaUser" name="nama" class="form-control form-control-lg "
+                            :old="$nama" />
                         @error('nama')
-                        <div id="namaUser" class="text-danger">
-                            Masukkan Nama
-                        </div>
+                            <div id="namaUser" class="text-danger">
+                                Masukkan Nama
+                            </div>
                         @enderror
                     </div>
 
@@ -115,7 +116,7 @@
                             </td>
                             <td class="mb-2 text-white">Rp.
                                 {{ number_format($total_bayar, 0, 2) }}</td>
-                                <input type="hidden" name="sub_total" value="{{$total_bayar}}">
+                            <input type="hidden" name="sub_total" value="{{ $total_bayar }}">
                         </tr>
                     </table>
 
@@ -136,6 +137,34 @@
                 </form>
             </div>
         </div>
+        <div class="col-md-5" x-data="{no: 0}">
+            @foreach ($bank as $item)
+            <div class="card" >
+                    <div class="card-header">
 
+                        <div class="row pointer-event" @click="no = {{$item->id}}">
+                            <div class="col-md-6">
+                                <span>{{$item->nama_bank}}</span>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    <div class="card-body" x-show="no == {{$item->id}}">
+                        <div class="form-group">
+                            <label for="cc-number" class="control-label">Nama Pemilik</label>
+                            <label for="cc-number" class="control-label">  :{{$item->nama_pemilik}}</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="cc-number" class="control-label">No Rek</label>
+                            <label for="cc-number" class="control-label">  :{{$item->no_rek}}</label>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+        </div>
     </div>
+</div>
 </div>

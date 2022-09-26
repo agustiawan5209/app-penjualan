@@ -3,7 +3,7 @@
         <li class="items-center  ">
             <a href="{{ route('Admin.Dashboard-Admin') }}"
                 class="text-xs uppercase py-3 font-bold block {{ request()->routeIs('Admin.Dashboard-Admin') ? ' bg-red-darken text-white' : 'text-gray-700 hover:text-gray-500' }}">
-                <i class="fas fa-tv mr-2 text-sm opacity-75"></i>
+                <i class="mr-2 text-sm opacity-75"></i>
                 Dashboard
             </a>
         </li>
@@ -102,25 +102,65 @@
         </li>
     @endcan
     <li class="items-center">
-       <hr class="my-2 border-white">
+       <hr class="my-2 border-red-darken">
     </li>
 
 </ul>
-<ul class="md:flex-col md:min-w-full flex flex-col list-none">
-    <li class="items-center">
+@can ('Manage-Admin', User::class)
+    <ul class="md:flex-col md:min-w-full flex flex-col list-none">
+        <li class="items-center">
+            <a href="{{ route('profile.show') }}"
+            class="text-xs uppercase py-3 font-bold block {{ request()->routeIs('profile.show') ? ' bg-red-darken text-white' : 'text-gray-700 hover:text-gray-500' }}">
+            <i class="mr-2 text-sm opacity-75"></i>
+            Setting
+        </a>
+        </li>
+        <li class="items-center">
+            <a href="{{ route('Admin.Metode-Bayar') }}"
+            class="text-xs uppercase py-3 font-bold block {{ request()->routeIs('Admin.Metode-Bayar') ? ' bg-red-darken text-white' : 'text-gray-700 hover:text-gray-500' }}">
+            <i class="mr-2 text-sm opacity-75"></i>
+            Bank
+        </a>
+        </li>
+        <li class="items-center">
+            <a href="{{ route('Admin.Slide-setting') }}"
+            class="text-xs uppercase py-3 font-bold block {{ request()->routeIs('Admin.Slide-setting') ? ' bg-red-darken text-white' : 'text-gray-700 hover:text-gray-500' }}">
+            <i class="mr-2 text-sm opacity-75"></i>
+            Slide Setting
+        </a>
+        </li>
+        <li class="items-center">
+            <form action="{{ route('logout') }}" method="POST"
+                    class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700">
+                    @csrf
+                    <button type='submit'
+                        class=" text-gray-700 hover:text-gray-500 text-xs uppercase py-3 font-bold block">
+
+                        Logout
+                    </button>
+                </form>
+        </li>
+
+    </ul>
+@endcan
+@can ('Manage-Customer', User::class)
+    <ul class="md:flex-col md:min-w-full flex flex-col list-none">
         <a href="{{ route('profile.show') }}"
-                class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700">Profil</a>
-    </li>
-    <li class="items-center">
-        <form action="{{ route('logout') }}" method="POST"
-                class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700">
-                @csrf
-                <button type='submit'
-                    class=" text-gray-700 hover:text-gray-500 text-xs uppercase py-3 font-bold block">
+        class="text-xs uppercase py-3 font-bold block {{ request()->routeIs('profile.show') ? ' bg-red-darken text-white' : 'text-gray-700 hover:text-gray-500' }}">
+        <i class="mr-2 text-sm opacity-75"></i>
+        Setting
+    </a>
+        <li class="items-center">
+            <form action="{{ route('logout') }}" method="POST"
+                    class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-white">
+                    @csrf
+                    <button type='submit'
+                        class=" text-white hover:text-gray-500 text-xs uppercase py-3 font-bold block">
 
-                    Logout
-                </button>
-            </form>
-    </li>
+                        Logout
+                    </button>
+                </form>
+        </li>
 
-</ul>
+    </ul>
+@endcan

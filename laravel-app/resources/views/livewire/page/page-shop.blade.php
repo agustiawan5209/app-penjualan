@@ -9,10 +9,15 @@
                 <div class="col-lg-3">
                     <h1 class="h2 pb-4">Categories</h1>
                     <ul class="list-unstyled templatemo-accordion">
+                        <li class="pb-3">
+                            <a class="collapsed d-flex justify-content-between text-decoration-none" href="{{route('shop', ['jenis'=> null])}}">
+                                Semua
+                                <i class="fa fa-fw fa-chevron-circle-down mt-1"></i>
+                            </a>
+                        </li>
                         @foreach ($jenis as $jenis)
                             <li class="pb-3">
-                                <a class="collapsed d-flex justify-content-between text-decoration-none"
-                                    href="#">
+                                <a class="collapsed d-flex justify-content-between text-decoration-none" href="{{route('shop', ['jenis'=> $jenis->id])}}">
                                     {{ $jenis->nama_jenis }}
                                     <i class="fa fa-fw fa-chevron-circle-down mt-1"></i>
                                 </a>
@@ -115,22 +120,24 @@
                                                 </li>
                                             </ul>
                                             <div class=" d-flex justify-content-between flex-row-reverse">
-                                                <p class="text-left font-bold mb-0 text-danger text-decoration-line-through">
+                                                <p
+                                                    class="text-left font-bold mb-0 text-danger text-decoration-line-through">
                                                     @php
-                                                        $hasil = $barang->harga * (array_sum($card_potongan) /100);
+                                                        $hasil = $barang->harga * (array_sum($card_potongan) / 100);
                                                     @endphp
                                                     {{ number_format($hasil, 0, 2) }} %</p>
                                         @endif
-                                        <p class="text-left font-bold mb-0">Rp. {{ number_format($barang->harga, 0, 2) }}
+                                        <p class="text-left font-bold mb-0">Rp.
+                                            {{ number_format($barang->harga, 0, 2) }}
                                         </p>
                                     </div>
                                 </div>
                             </div>
-                    </div>
-    @endforeach
+                            @endforeach
+                        </div>
 </div>
 <div div="row">
-   {{$produk->links('pagination::tailwind')}}
+    {{ $produk->links('pagination::tailwind') }}
 </div>
 </div>
 

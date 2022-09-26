@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Keranjang;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\KeranjangController;
+use App\Models\Bank;
 
 class PagePembayaran extends Component
 {
@@ -26,6 +27,7 @@ class PagePembayaran extends Component
             'potongan'=> $total_potongan,
             'sub_total'=>$data['sub_total'],
             'total_bayar'=> $data['total_bayar'] - $total_potongan,
+            'bank' => Bank::all(),
         ])->layout('components.layout.pay');
     }
 

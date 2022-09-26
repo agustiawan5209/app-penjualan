@@ -18,7 +18,8 @@ class PageShop extends Component
 
     // get Param URL
     public $nama_jenis;
-    public function mount(){
+    public function mount($nama_jenis){
+        $this->nama_jenis = $nama_jenis;
     }
     /**
      * ShowDetail
@@ -37,6 +38,11 @@ class PageShop extends Component
     {
         $produk = Barang::with(['satuan', 'jenis','diskon'])->paginate(10);
         $jenis = Jenis::all();
+        if($this->nama_jenis != null){
+            $produk = Barang::with(['satuan', 'jenis','diskon'])
+            ->where('jenis_id', '=', $this->nama_jenis)
+            ->paginate(10);
+        }
         return view('livewire.page.page-shop', [
             'produk' => $produk,
             'jenis' => $jenis,
