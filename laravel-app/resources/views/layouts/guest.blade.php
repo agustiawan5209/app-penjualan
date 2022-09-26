@@ -41,13 +41,20 @@
         <div class="container text-light">
             <div class="w-100 d-flex justify-content-between">
                 <div>
-                    <i class="fa fa-envelope mx-2"></i>
-                    <a class="navbar-sm-brand text-light text-decoration-none" href="{{ route('login') }}">Masuk</a>
-                    <i class="fa fa-phone mx-2"></i>
+                   @if (Route::has('login'))
+                     @auth
+                        {{-- <i class="fa fa-envelope mx-2"></i> --}}
+                        <a class="navbar-sm-brand text-light text-decoration-none" href="{{ route('login') }}">Masuk</a>
+                        {{-- <i class="fa fa-phone mx-2"></i> --}}
+                        <a class="navbar-sm-brand text-light text-decoration-none"
+                            href="{{ route('register') }}">Daftar</a>
+                    @else
                     <a class="navbar-sm-brand text-light text-decoration-none"
-                        href="{{ route('register') }}">Daftar</a>
+                            href="{{ route('dashboard') }}">Dashboard</a>
+                     @endauth
+                   @endif
                 </div>
-                <div>
+                {{-- <div>
                     <a class="text-light" href="https://fb.com/templatemo" target="_blank" rel="sponsored"><i
                             class="fab fa-facebook-f fa-sm fa-fw me-2"></i></a>
                     <a class="text-light" href="https://www.instagram.com/" target="_blank"><i
@@ -56,7 +63,7 @@
                             class="fab fa-twitter fa-sm fa-fw me-2"></i></a>
                     <a class="text-light" href="https://www.linkedin.com/" target="_blank"><i
                             class="fab fa-linkedin fa-sm fa-fw"></i></a>
-                </div>
+                </div> --}}
             </div>
         </div>
     </nav>
@@ -99,7 +106,7 @@
                     </ul>
                 </div>
                 <div class="navbar align-self-center d-flex">
-                    <div class="d-lg-none flex-sm-fill mt-3 mb-4 col-7 col-sm-auto pr-3">
+                    {{-- <div class="d-lg-none flex-sm-fill mt-3 mb-4 col-7 col-sm-auto pr-3">
                         <div class="input-group">
                             <input type="text" class="form-control" id="inputMobileSearch" placeholder="Search ...">
                             <div class="input-group-text">
@@ -110,7 +117,7 @@
                     <a class="nav-icon d-none d-lg-inline text-blue-darken" href="#" data-bs-toggle="modal"
                         data-bs-target="#templatemo_search">
                         <i class="fa fa-fw fa-search text-blue-darken mr-2"></i>
-                    </a>
+                    </a> --}}
                     <a class="nav-icon position-relative text-decoration-none" href="{{ route('Keranjang') }}">
                         <i class="fa fa-fw fa-cart-arrow-down text-blue-darken mr-1"></i>
                         {{-- <span
