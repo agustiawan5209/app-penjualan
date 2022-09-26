@@ -24,7 +24,9 @@ class PagePengiriman extends Component
     public $ket, $post;
     public function render()
     {
-        $ongkir = Ongkir::orderBy('id', $this->order)->paginate($this->row);
+        $ongkir = Ongkir::orderBy('id', $this->order)
+        ->whereNotNull('tgl_pengiriman')
+        ->paginate($this->row);
         return view('livewire.item.page-pengiriman', compact('ongkir'));
     }
     public function lihatStatus($id){

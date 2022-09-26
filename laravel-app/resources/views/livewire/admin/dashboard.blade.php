@@ -2,7 +2,30 @@
     @include('sweetalert::alert')
     <!-- Card stats -->
     {{-- @include('') --}}
-
+    @if ($notif_user->count()> 0)
+        @foreach ($notif_user as $user)
+            @foreach ($user->unreadNotifications as $notification)
+                @if ($notification->data['type'] == 'User Regis')
+                    <div class="mt-2 px-6 py-4 bg-white rounded-lg shadow w-full">
+                        <div class=" inline-flex items-center justify-between w-full">
+                            <div class="inline-flex items-center">
+                                <img src="https://cdn-icons-png.flaticon.com/512/893/893257.png" alt="Messages Icon"
+                                    class="w-6 h-6 mr-3">
+                                <h3 class="font-bold text-base text-gray-800">{{ $notification->data['type'] }}</h3>
+                            </div>
+                            <p class="text-xs text-gray-500">
+                               {{$notification->created_at}}
+                               <x-jet-danger-button wire:click='read({{$user->id}})'>X</x-jet-danger-button>
+                            </p>
+                        </div>
+                        <p class="mt-1 text-sm">
+                            {{ $notification->data['body'] }}
+                        </p>
+                    </div>
+                @endif
+            @endforeach
+        @endforeach
+    @endif
     <div class="flex flex-wrap py-10">
         <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
             <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
@@ -10,10 +33,10 @@
                     <div class="flex flex-wrap">
                         <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
                             <h5 class="text-red-darken uppercase font-bold text-xs">
-                                Traffic
+                                Penjualan
                             </h5>
                             <span class="font-semibold text-xl text-red-darken">
-                                350,897
+                               Rp. {{number_format($penjualan,0,2)}}
                             </span>
                         </div>
                         <div class="relative w-auto pl-4 flex-initial">
@@ -23,14 +46,14 @@
                             </div>
                         </div>
                     </div>
-                    <p class="text-sm text-white mt-4">
+                    {{-- <p class="text-sm text-white mt-4">
                         <span class="text-emerald-500 mr-2">
                             <i class="fas fa-arrow-up"></i> 3.48%
                         </span>
                         <span class="whitespace-nowrap">
                             Since last month
                         </span>
-                    </p>
+                    </p> --}}
                 </div>
             </div>
         </div>
@@ -40,10 +63,10 @@
                     <div class="flex flex-wrap">
                         <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
                             <h5 class="text-red-darken uppercase font-bold text-xs">
-                                New users
+                                Jumlah Pengguna
                             </h5>
                             <span class="font-semibold text-xl text-red-darken">
-                                2,356
+                                {{$user_use}}
                             </span>
                         </div>
                         <div class="relative w-auto pl-4 flex-initial">
@@ -53,12 +76,12 @@
                             </div>
                         </div>
                     </div>
-                    <p class="text-sm text-white mt-4">
+                    {{-- <p class="text-sm text-white mt-4">
                         <span class="text-red-500 mr-2">
                             <i class="fas fa-arrow-down "></i> 3.48%
                         </span>
                         <span class="whitespace-nowrap"> Since last week </span>
-                    </p>
+                    </p> --}}
                 </div>
             </div>
         </div>
@@ -68,10 +91,10 @@
                     <div class="flex flex-wrap">
                         <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
                             <h5 class="text-red-darken uppercase font-bold text-xs">
-                                Sales
+                                Jumlah Barang
                             </h5>
                             <span class="font-semibold text-xl text-red-darken">
-                                924
+                                {{$jm_barang}}
                             </span>
                         </div>
                         <div class="relative w-auto pl-4 flex-initial">
@@ -81,12 +104,12 @@
                             </div>
                         </div>
                     </div>
-                    <p class="text-sm text-white mt-4">
+                    {{-- <p class="text-sm text-white mt-4">
                         <span class="text-orange-500 mr-2">
                             <i class="fas fa-arrow-down"></i> 1.10%
                         </span>
                         <span class="whitespace-nowrap"> Since yesterday </span>
-                    </p>
+                    </p> --}}
                 </div>
             </div>
         </div>
@@ -208,22 +231,23 @@
                                     beginAtZero: true
                                 }
                             }]
-                        },tooltip: {
-                callbacks: {
-                    labelColor: function(context) {
-                        return {
-                            borderColor: 'rgb(0, 0, 255)',
-                            backgroundColor: 'rgb(255, 0, 0)',
-                            borderWidth: 2,
-                            borderDash: [2, 2],
-                            borderRadius: 2,
-                        };
-                    },
-                    labelTextColor: function(context) {
-                        return '#543453';
-                    }
-                }
-            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                labelColor: function(context) {
+                                    return {
+                                        borderColor: 'rgb(0, 0, 255)',
+                                        backgroundColor: 'rgb(255, 0, 0)',
+                                        borderWidth: 2,
+                                        borderDash: [2, 2],
+                                        borderRadius: 2,
+                                    };
+                                },
+                                labelTextColor: function(context) {
+                                    return '#543453';
+                                }
+                            }
+                        }
 
                     }
                 });

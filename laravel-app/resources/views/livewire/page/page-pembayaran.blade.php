@@ -1,6 +1,6 @@
 <div>
-    <div class="w-100 mt-10 row" style="margin-top: 50px;" wire:model.defer="bayardetail" wire:loading.class="opacity-25">
-
+    @include('sweetalert::alert')
+    <div class="w-100 mt-10 row" style="margin-top: 50px;" >
         <div class="card bg-blue-dark text-white rounded-3 col-md-7">
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center mb-4">
@@ -137,14 +137,15 @@
                 </form>
             </div>
         </div>
-        <div class="col-md-5" x-data="{no: 0}">
-            @foreach ($bank as $item)
-            <div class="card" >
+
+        <div class="col-md-5" x-data="{ no: 0 }">
+            <div class="">
+                <form class="card">
                     <div class="card-header">
 
-                        <div class="row pointer-event" @click="no = {{$item->id}}">
+                        <div class="row pointer-event">
                             <div class="col-md-6">
-                                <span>{{$item->nama_bank}}</span>
+                                <span>Promo</span>
 
                             </div>
 
@@ -152,18 +153,41 @@
                         </div>
 
                     </div>
-                    <div class="card-body" x-show="no == {{$item->id}}">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="cc-number" class="control-label">Masukkan Kode Promo</label>
+                            <input type="text" class="form-control" wire:model='kode_promo'>
+                        </div>
+                    </div>
+                    <button type="button" wire:click='CekPromo'>Cek</button>
+                </form>
+            </div>
+            @foreach ($bank as $item)
+                <div class="card">
+                    <div class="card-header">
+
+                        <div class="row pointer-event" @click="no = {{ $item->id }}">
+                            <div class="col-md-6">
+                                <span>{{ $item->nama_bank }}</span>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    <div class="card-body" x-show="no == {{ $item->id }}">
                         <div class="form-group">
                             <label for="cc-number" class="control-label">Nama Pemilik</label>
-                            <label for="cc-number" class="control-label">  :{{$item->nama_pemilik}}</label>
+                            <label for="cc-number" class="control-label"> :{{ $item->nama_pemilik }}</label>
                         </div>
                         <div class="form-group">
                             <label for="cc-number" class="control-label">No Rek</label>
-                            <label for="cc-number" class="control-label">  :{{$item->no_rek}}</label>
+                            <label for="cc-number" class="control-label"> :{{ $item->no_rek }}</label>
                         </div>
                     </div>
                 </div>
-                @endforeach
+            @endforeach
         </div>
     </div>
 </div>

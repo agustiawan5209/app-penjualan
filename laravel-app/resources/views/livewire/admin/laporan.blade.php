@@ -49,37 +49,37 @@
             <div class="mt-6 overflow-x-auto">
                 <table class="w-full table-auto">
                     <thead class="">
-                        <x-tr class="text-xs p-1">
+                        <tr class="text-xs p-1">
                             <x-th>No.</x-th>
                             <x-th>Pengguna</x-th>
                             <x-th>Email</x-th>
                             <x-th>Tanggal Pembelian</x-th>
+                            {{-- <x-th>Pesanan</x-th> --}}
                             <x-th>Pesanan</x-th>
-                            <x-th>Metode</x-th>
                             <x-th>Total</x-th>
-                        </x-tr>
+                        </tr>
                     </thead>
                     <tbody>
                        @if ($pembayaran->count() > 0)
-                         @foreach ($pembayaran as $transaksi)
-                         <x-tr wire:loading.class='"opacity-50'>
+                         @foreach ($pembayaran as $pembayaran)
+                         <tr wire:loading.class='"opacity-50'>
                              <x-td>{{ $loop->iteration }}</x-td>
-                             <x-td>{{ $transaksi->pembayaran->user->name }}</x-td>
-                             <x-td>{{ $transaksi->pembayaran->user->email }}</x-td>
-                             <x-td>{{ $transaksi->pembayaran->nama }}</x-td>
-                             <x-td>{{ $transaksi->tgl_transaksi }}</x-td>
+                             <x-td>{{ $pembayaran->user->name }}</x-td>
+                             <x-td>{{ $pembayaran->user->email }}</x-td>
+                             {{-- <x-td>{{ $pembayaran->nama }}</x-td> --}}
+                             <x-td>{{ $pembayaran->tgl_transaksi }}</x-td>
                              <x-td>
-                                {{$transaksi->barang->nama_barang}}
+                                {{$pembayaran->item_details}}
                              </x-td>
-                             <x-td>{{ number_format($transaksi->total,0,2) }}</x-td>
+                             <x-td>{{ number_format($pembayaran->total_price,0,2) }}</x-td>
                              @php
-                                 $total[] = $transaksi->total;
+                                 $total_price[] = $pembayaran->total_price;
                              @endphp
-                         </x-tr>
+                         </tr>
                      @endforeach
                      <x-tr>
-                         <x-td colspan="5">Total Penjualan</x-td>
-                         <x-td colspan="2">Rp. {{number_format(array_sum($total))}}</x-td>
+                         <x-td colspan="4">Total Penjualan</x-td>
+                         <x-td colspan="2">Rp. {{number_format(array_sum($total_price),0,2)}}</x-td>
                      </x-tr>
                      @else
                      <x-tr>

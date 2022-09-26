@@ -17,7 +17,7 @@
                     <x-th>Nama</x-th>
                     <x-th>Tanggal Transaksi</x-th>
                     <x-th>Metode Pembayaran</x-th>
-                    <x-th>Metode Pengiriman</x-th>
+                    <x-th>Jenis Pengiriman</x-th>
                     <x-th>Total</x-th>
                     <x-th>Detail</x-th>
                     <x-th>Status</x-th>
@@ -31,19 +31,30 @@
                         <x-td>{{ $pembayaran->created_at }}</x-td>
                         <x-td>{{ $pembayaran->payment_type }}</x-td>
                         <x-td>
-                            @if ($pembayaran->metode_pengiriman == 1)
-                                Kirim Barang <br>
-                                <a wire:click='ongkirModal({{ $pembayaran->id }})' href="#_"
-                                    class="inline-block px-5 py-2 mx-auto text-white bg-red-600 rounded-full hover:bg-red-700 md:mx-0">
-                                    Buat Pengiriman
-                                </a>
-                            @else
-                                Ambil Sendiri
-                            @endif
+                          @if ($pembayaran->payment_status == 2)
+                              @if ($pembayaran->metode_pengiriman == 1)
+
+                                  {{-- {{$pembayaran->ongkir->count()}} --}}
+                                  @if($pembayaran->ongkir->tgl_pengiriman != null)
+                                  Cek Pengiriman Barang <br>
+                                  @else
+                                  Kirim Barang <br>
+                                  <a wire:click='ongkirModal({{ $pembayaran->id }})' href="#_"
+                                      class="inline-block px-5 py-2 mx-auto text-white bg-red-600 rounded-full hover:bg-red-700 md:mx-0">
+                                      Buat Pengiriman
+                                  </a>
+                                  @endif
+                              @else
+                                  Ambil Sendiri
+                              @endif
+
+                        @else
+                             Lakukan Konfirmasi
+                          @endif
                         </x-td>
                         <x-td>Rp. {{ number_format($pembayaran->total_price, 0, 2) }}</x-td>
                         <x-td>
-                            <x-jet-button type="button" wire:click='detailItem({{ $pembayaran->id }})'>Detail Item
+                            <x-jet-button type="button" wire:click='detailItem({{ $pembayaran->id }})' class="bg-blue-400 hover:bg-blue-500">Detail Item
                             </x-jet-button>
                             <a href="{{ asset('bukti/' . $pembayaran->pdf_url) }}" target="_blank"
                                 class="inline-block px-5 py-2 mx-auto text-white bg-red-600 rounded-full hover:bg-red-700 md:mx-0">
@@ -58,7 +69,7 @@
                                 </button>
                             @else
                                 <button type="button"
-                                    class="inline-block px-5 py-2 mx-auto text-white bg-red-600 rounded-full hover:bg-red-700 md:mx-0">
+                                    class="inline-block px-5 py-2 mx-auto text-white bg-green-600 rounded-full hover:bg-green-700 md:mx-0">
                                     Dikonfirmasi
                                 </button>
                             @endif

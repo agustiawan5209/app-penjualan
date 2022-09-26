@@ -14,7 +14,7 @@ class UserController extends Controller
             return redirect()->route('Admin.Dashboard-Admin', ['id' => $user->created_at])->withToastSuccess('Selamat Datang '. $user->name);
         }
         if (Gate::allows('Manage-Customer', $user)) {
-            return redirect()->route('Customer.Dashboard-User', ['id' => $user->created_at])->withToastSuccess('Selamat Datang '. $user->name);
+            return redirect()->route('home', ['id' => $user->created_at])->withToastSuccess('Selamat Datang '. $user->name);
         }
     }
     public function sendOfferNotification() {

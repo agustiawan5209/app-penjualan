@@ -78,6 +78,7 @@ class CreateNewUser implements CreatesNewUsers
     public function KlaimVoucher(User $user)
     {
         $voucher = Voucher::where('jenis_voucher', '1')->first();
+
         $carbon_hours = Carbon::now()
             ->add(10, 'hours')
             ->toTimeString();
@@ -92,6 +93,7 @@ class CreateNewUser implements CreatesNewUsers
                 'tgl_kadaluarsa' => $carbon_date,
                 'waktu' => $carbon_hours,
             ]);
+            $voucher->increment('use_user', 1);
             // }
 
 

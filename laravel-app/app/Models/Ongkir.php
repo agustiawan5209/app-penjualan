@@ -11,7 +11,7 @@ class Ongkir extends Model
     protected $fillable = ['transaksi_id','tgl_pengiriman','alamat', 'kode_pos', 'kabupaten', 'detail_alamat','status'];
     use HasFactory;
 
-    public function payment(){
+    public function pembayaran(){
         return $this->hasOne(Pembayaran::class, 'transaksi_id','transaksi_id');
     }
     public function user()

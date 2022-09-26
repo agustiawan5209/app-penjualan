@@ -77,6 +77,7 @@ class PageBarang extends Component
     }
     public function EditModal($id)
     {
+        $this->katalog = [];
         $barang = Barang::find($id);
         $this->itemID = $barang->id;
         $this->updateFoto = $barang->gambar;
@@ -87,6 +88,9 @@ class PageBarang extends Component
         $this->deskripsi = $barang->deskripsi;
         $this->tgl_perolehan = $barang->tgl_perolehan;
         $this->stock = $barang->stock;
+        foreach($barang->katalog as $item){
+            array_push($this->katalog, $item->nama_katalog);
+        }
         $this->itemEdit = true;
     }
 
@@ -201,6 +205,12 @@ class PageBarang extends Component
             'tgl_perolehan' => $this->tgl_perolehan,
             'stock' => $this->stock,
         ]);
+        for ($i = 0; $i < count($this->katalog); $i++) {
+            Katalog::create([
+                'barang_id'=> $id,
+                'nama_katalog' => $this->katalog[$i],
+            ]);
+        }
         $this->itemEdit = false;
         Alert::info('message', 'Berhasil Di Edit');
     }

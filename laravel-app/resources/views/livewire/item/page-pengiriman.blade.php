@@ -11,6 +11,8 @@
         <thead>
             <tr>
                 <x-th>No.</x-th>
+                <x-th>Pengguna.</x-th>
+
                 <x-th>ID Transaksi</x-th>
                 <x-th>harga</x-th>
                 <x-th>Tgl Pengiriman</x-th>
@@ -25,6 +27,7 @@
                 @foreach ($ongkir as $item)
                     <tr>
                         <x-td>{{ ($ongkir->currentpage() - 1) * $ongkir->perpage() + $loop->index + 1 }}</x-td>
+                        <x-td>{{ $item->pembayaran->user->name }}</x-td>
                         <x-td>{{ $item->transaksi_id }}</x-td>
                         <x-td>{{ $item->harga }}</x-td>
                         <x-td>{{ $item->tgl_pengiriman }}</x-td>

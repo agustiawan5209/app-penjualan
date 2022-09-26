@@ -124,7 +124,7 @@ class PembayaranController extends Controller
         }
 
         for ($i = 0; $i < count($item_details); $i++) {
-            $item_param = [$item_details[$i]->barang_id, $item_details[$i]->harga, $item_details[$i]->quantity, $item_details[$i]->sub_total];
+            $item_param = [$item_details[$i]->nama_barang, $item_details[$i]->harga, $item_details[$i]->quantity, $item_details[$i]->sub_total];
             $exp = implode('/', $item_param);
         }
         $permitted_chars = '01234567891011223344556677889900_abcdefghijklmnopqrstuvwxyz_ABCDEFGHIJKLMNOPQRSTUVWXYZ';

@@ -23,6 +23,11 @@ class PageKirimanBarang extends Component
         $this->itemID = $id;
         $this->statusItem = true;
     }
+    public function detailItem($id){
+        $pembayaran = Pembayaran::find($id);
+
+        return redirect()->route('detail-item-transaksi', ['idItem'=> $pembayaran->transaksi_id])->with('toast_success', 'Detail Pembayaran!');
+    }
     public function render()
     {
         $terkirim = '';

@@ -14,7 +14,7 @@
                 </svg>
                 <input
                     class="w-full bg-gray-100 outline-none border-transparent focus:border-transparent focus:ring-0 rounded-lg text-sm"
-                    type="text" placeholder="Search a product..." wire:model='search' />
+                    type="text" placeholder="Cari........." wire:model='search' />
             </div>
             <div class="flex-row space-x-2 items-center ">
                 {{ $filter }}

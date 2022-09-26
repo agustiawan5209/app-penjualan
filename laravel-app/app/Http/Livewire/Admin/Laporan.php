@@ -13,9 +13,9 @@ class Laporan extends Component
     public $startDate, $maxDate;
     public function render()
     {
-        $pembayaran = Transaksi::all();
+        $pembayaran = Pembayaran::all();
         if($this->startDate != null && $this->maxDate != null){
-            $pembayaran = Transaksi::whereBetween('tgl_transaksi', [$this->startDate, $this->maxDate])->get();
+            $pembayaran = Pembayaran::whereBetween('tgl_transaksi', [$this->startDate, $this->maxDate])->get();
 
             // dd($pembayaran);
         }

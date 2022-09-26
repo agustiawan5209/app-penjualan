@@ -27,6 +27,7 @@
                     <thead class="">
                         <tr class="text-base font-bold text-left bg-gray-50">
                             <th class="px-4 py-3 border-b-2 border-red-500">Pengguna</th>
+                            <th class="px-4 py-3 border-b-2 border-red-500">Detail Pesanan</th>
                             <th class="px-4 py-3 border-b-2 border-green-500">Tanggal Pengiriman</th>
                             <th class="px-4 py-3 border-b-2 border-red-500">Status Pengiriman</th>
                             <th class="px-4 py-3 text-center border-b-2 border-yellow-500 sm:text-left">Detail
@@ -53,6 +54,10 @@
                                                     </div>
                                                 </div>
                                             </td>
+                                            <x-td>
+                                                <x-jet-button type="button" wire:click='detailItem({{ $ongkir->pembayaran->id }})'>Detail Item
+                                                </x-jet-button>
+                                            </x-td>
                                             <td class="px-4 py-4">
                                                 {{ $ongkir->tgl_pengiriman }}
                                             </td>
@@ -158,6 +163,9 @@
                                             </td>
                                             <td class="px-4 py-4">
                                                 <x-jet-button wire:click='lihatStatus({{$ongkir->id}})'>Status</x-jet-button>
+                                            </td>
+                                            <td>
+                                                Pengembalian
                                             </td>
                                         </tr>
                                     @endif
