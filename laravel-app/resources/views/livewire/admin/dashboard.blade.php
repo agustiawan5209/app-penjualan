@@ -5,7 +5,7 @@
     @if ($notif_user->count()> 0)
         @foreach ($notif_user as $user)
             @foreach ($user->unreadNotifications as $notification)
-                @if ($notification->data['type'] == 'User Regis')
+                {{-- @if ($notification->data['type'] == 'User Regis') --}}
                     <div class="mt-2 px-6 py-4 bg-white rounded-lg shadow w-full">
                         <div class=" inline-flex items-center justify-between w-full">
                             <div class="inline-flex items-center">
@@ -22,7 +22,31 @@
                             {{ $notification->data['body'] }}
                         </p>
                     </div>
-                @endif
+                {{-- @endif --}}
+            @endforeach
+        @endforeach
+    @endif
+    @if ($notif_bayar->count()> 0)
+        @foreach ($notif_bayar as $bayar)
+            @foreach ($bayar->unreadNotifications as $notification)
+                {{-- @if ($notification->data['type'] == 'User Regis') --}}
+                    <div class="mt-2 px-6 py-4 bg-white rounded-lg shadow w-full">
+                        <div class=" inline-flex items-center justify-between w-full">
+                            <div class="inline-flex items-center">
+                                <img src="https://cdn-icons-png.flaticon.com/512/893/893257.png" alt="Messages Icon"
+                                    class="w-6 h-6 mr-3">
+                                <h3 class="font-bold text-base text-gray-800">{{ $notification->data['type'] }}</h3>
+                            </div>
+                            <p class="text-xs text-gray-500">
+                               {{$notification->created_at}}
+                               <x-jet-danger-button wire:click='readBayar({{$bayar->id}})'>X</x-jet-danger-button>
+                            </p>
+                        </div>
+                        <p class="mt-1 text-sm">
+                            {{ $notification->data['body'] }}
+                        </p>
+                    </div>
+                {{-- @endif --}}
             @endforeach
         @endforeach
     @endif
@@ -132,14 +156,14 @@
                             </div>
                         </div>
                     </div>
-                    <p class="text-sm text-white mt-4">
+                    {{-- <p class="text-sm text-white mt-4">
                         <span class="text-emerald-500 mr-2">
                             <i class="fas fa-arrow-up"></i> 12%
                         </span>
                         <span class="whitespace-nowrap">
                             Since last month
                         </span>
-                    </p>
+                    </p> --}}
                 </div>
             </div>
         </div>

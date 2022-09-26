@@ -22,9 +22,10 @@ class Dashboard extends Component
         $name = Auth::user()->name;
         // $data = $this->SetDataChart()
         $notif_user = User::all();
+        $notif_bayar = Pembayaran::all();
 
         // return $data;
-        return view('livewire.admin.dashboard', compact('name', 'notif_user'),[
+        return view('livewire.admin.dashboard', compact('name', 'notif_user', 'notif_bayar'),[
             'penjualan'=> $this->penjualan(),
             'user_use'=> $this->user_use(),
             'jm_barang'=> $this->barang(),
@@ -32,7 +33,10 @@ class Dashboard extends Component
     }
 
     public function read($id){
-        User::find($id)->unreadNotifications()->update(['read_at' => now()]);
+        User::find($id)->notifications()->delete();
+    }
+    public function readBayar($id){
+        Pembayaran::find($id)->notifications()->delete();
     }
 
     public function penjualan(){
