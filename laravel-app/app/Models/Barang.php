@@ -20,10 +20,10 @@ class Barang extends Model
     {
         return $this->hasOne(Jenis::class, 'id', 'jenis_id');
     }
-    public function diskon()
-    {
-        return $this->belongsTo(Diskon::class, 'barang_id', 'id');
-    }
+    // public function diskon()
+    // {
+    //     return $this->belongsTo(Diskon::class, 'barang_id', 'id');
+    // }
     public function katalog(){
         return $this->hasMany(Katalog::class, 'barang_id', 'id');
     }
