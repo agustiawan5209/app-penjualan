@@ -7,11 +7,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
-
+    <link rel="stylesheet" href="{{asset('build/assets/app.70c88c20.css')}}">
+    <script src="{{asset('build/assets/app.b4b86c71.js')}}"></script>
     <!-- Scripts -->
 
     <!-- Styles -->

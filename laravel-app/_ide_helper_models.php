@@ -19,12 +19,14 @@ namespace App\Models{
  * @property string $no_rek
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string|null $nama_pemilik
  * @method static \Illuminate\Database\Eloquent\Builder|Bank newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Bank newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Bank query()
  * @method static \Illuminate\Database\Eloquent\Builder|Bank whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Bank whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Bank whereNamaBank($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Bank whereNamaPemilik($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Bank whereNoRek($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Bank whereUpdatedAt($value)
  */
@@ -47,8 +49,7 @@ namespace App\Models{
  * @property string $tgl_perolehan
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Diskon[] $diskon
- * @property-read int|null $diskon_count
+ * @property-read \App\Models\Diskon|null $diskon
  * @property-read \App\Models\Jenis|null $jenis
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Katalog[] $katalog
  * @property-read int|null $katalog_count
@@ -134,6 +135,7 @@ namespace App\Models{
  * @property string $nama_katalog
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Barang|null $barang
  * @method static \Illuminate\Database\Eloquent\Builder|Katalog newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Katalog newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Katalog query()
@@ -219,7 +221,7 @@ namespace App\Models{
  * @property string $status 0= kosong ,1= belum dikirim, 2=dikirim, 3=konfirmasi admin, 4=konfirmasi user, 5 = Pesanan Diterima
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Pembayaran|null $payment
+ * @property-read \App\Models\Pembayaran|null $pembayaran
  * @property-read \App\Models\User|null $user
  * @method static \Illuminate\Database\Eloquent\Builder|Ongkir newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Ongkir newQuery()
