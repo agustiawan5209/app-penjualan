@@ -450,6 +450,37 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\TableDiskon
+ *
+ * @property int $id
+ * @property int $barang_id
+ * @property int $jumlah_diskon
+ * @property string $tgl_mulai
+ * @property string $tgl_kadaluarsa
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Barang|null $barang
+ * @method static \Illuminate\Database\Eloquent\Builder|TableDiskon newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|TableDiskon newQuery()
+ * @method static \Illuminate\Database\Query\Builder|TableDiskon onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|TableDiskon query()
+ * @method static \Illuminate\Database\Eloquent\Builder|TableDiskon whereBarangId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TableDiskon whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TableDiskon whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TableDiskon whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TableDiskon whereJumlahDiskon($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TableDiskon whereTglKadaluarsa($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TableDiskon whereTglMulai($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TableDiskon whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|TableDiskon withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|TableDiskon withoutTrashed()
+ */
+	class TableDiskon extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Team
  *
  * @property int $id

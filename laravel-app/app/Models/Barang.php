@@ -9,7 +9,7 @@ class Barang extends Model
 {
     use HasFactory;
     protected $table = 'barangs';
-    protected $fillable = ['gambar', 'nama_barang','kode_barang', 'jenis_id', 'harga', 'stock','deskripsi', 'satuan_id', 'tgl_perolehan', 'diskon_id'];
+    protected $fillable = ['gambar', 'nama_barang','kode_barang', 'jenis_id', 'harga', 'stock','deskripsi', 'satuan_id', 'tgl_perolehan'];
     public $timestamps = true;
 
     public function satuan()
@@ -22,7 +22,7 @@ class Barang extends Model
     }
     public function diskon()
     {
-        return $this->hasOne(Diskon::class, 'id', 'diskon_id');
+        return $this->hasMany(TableDiskon::class, 'barang_id', 'id');
     }
     public function katalog(){
         return $this->hasMany(Katalog::class, 'barang_id', 'id');
