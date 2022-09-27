@@ -22,7 +22,7 @@ class Barang extends Model
     }
     public function diskon()
     {
-        return $this->hasManyThrough(Diskon::class, 'barang_id', 'id');
+        return $this->morphOne(Diskon::class, 'barang_id')->latestOfMany();
     }
     public function katalog(){
         return $this->hasMany(Katalog::class, 'barang_id', 'id');
