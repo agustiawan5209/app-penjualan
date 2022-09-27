@@ -31,8 +31,7 @@ class PageBarang extends Component
     public function render()
     {
         $barang = Barang::orderBy('id', $this->order)
-        ->with(['satuan', 'jenis','diskon'])
-        ->limit(10)->paginate($this->row);
+        ->with(['satuan', 'jenis','diskon'])->paginate($this->row);
         if ($this->search != null) {
             $barang = Barang::where('kode_barang', 'like', '%' . $this->search . '%')
                 ->orWhere('harga', 'like', '%' . $this->search . '%')
