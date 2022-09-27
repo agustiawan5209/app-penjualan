@@ -9,7 +9,7 @@ class Barang extends Model
 {
     use HasFactory;
     protected $table = 'barangs';
-    protected $fillable = ['gambar', 'nama_barang','kode_barang', 'jenis_id', 'harga', 'stock','deskripsi', 'satuan_id', 'tgl_perolehan'];
+    protected $fillable = ['gambar', 'nama_barang','kode_barang', 'jenis_id', 'harga', 'stock','deskripsi', 'satuan_id', 'tgl_perolehan', 'diskon_id'];
     public $timestamps = true;
 
     public function satuan()
@@ -22,7 +22,7 @@ class Barang extends Model
     }
     public function diskon()
     {
-        return $this->morphOne(Diskon::class, 'barang_id')->latestOfMany();
+        return $this->hasOne(Diskon::class, 'id', 'diskon_id');
     }
     public function katalog(){
         return $this->hasMany(Katalog::class, 'barang_id', 'id');
