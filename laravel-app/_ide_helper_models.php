@@ -49,7 +49,6 @@ namespace App\Models{
  * @property string $tgl_perolehan
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Diskon|null $diskon
  * @property-read \App\Models\Jenis|null $jenis
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Katalog[] $katalog
  * @property-read int|null $katalog_count
