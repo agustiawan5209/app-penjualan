@@ -22,7 +22,7 @@ class Barang extends Model
     }
     public function diskon()
     {
-        return $this->belongsTo('App\Diskon', 'barang_id', 'id');
+        return $this->belongsTo(Diskon::class, 'barang_id', 'id');
     }
     public function katalog(){
         return $this->hasMany(Katalog::class, 'barang_id', 'id');
