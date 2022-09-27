@@ -12,6 +12,7 @@ class Diskon extends Model
     use SoftDeletes;
     protected $table = 'diskons';
     protected $fillable = ['barang_id', 'jumlah_diskon','tgl_mulai', 'tgl_kadaluarsa'];
+
     public function barang(){
         return $this->hasOne(Barang::class, 'id', 'barang_id');
     }
