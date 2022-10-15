@@ -6,8 +6,8 @@
            <div class="relative h-full text-center text-white container mx-auto px-4 z-2 mb-24">
               <div class="justify-center flex flex-wrap -mx-4">
                  <div class="px-12 px-4 relative w-full md:w-8/12">
-                    <h1 class="text-5xl font-bold leading-tight mt-0 mb-2">Check our latest items!</h1>
-                    <p class="text-xl leading-relaxed opacity-75 mt-1 mb-4">Shop now and find your special suits, t-shirts and trousers. Many designers just launched their Autumn/Winter 2021 Collection!</p>
+                    <h1 class="text-5xl font-bold leading-tight mt-0 mb-2">Irsan Jaya Shop</h1>
+                    <p class="text-xl leading-relaxed opacity-75 mt-1 mb-4">Website Toko Penjualan Bahan Bangunan. Semua Tersedia Disini</p>
                     <a href="{{route('shop')}}" class="inline-block outline-none focus:outline-none align-middle transition-all duration-150 ease-in-out uppercase border border-solid font-bold last:mr-0 mr-2  text-white bg-red-500 border-red-500 active:bg-red-600 active:border-red-600 text-sm px-6 py-2 shadow hover:shadow-lg rounded-md"><i class="fas fa-shopping-cart mr-1"></i> Start shopping</a>
                  </div>
               </div>

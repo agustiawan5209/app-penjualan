@@ -23,10 +23,10 @@
                         <div class="text-orange-500"><i class="mr-1 fas fa-star"></i><i class="mr-1 fas fa-star"></i><i
                                 class="mr-1 fas fa-star"></i><i class="mr-1 fas fa-star"></i><i
                                 class="mr-1 fas fa-star-half-alt"></i><a href="https://www.creative-tim.com"
-                                class="inline text-sm ml-1 text-blueGray-700 hover:text-blueGray-500">7</a></div>
+                                class="inline text-sm ml-1 text-reddarken-700 hover:text-reddarken-500">7</a></div>
                     </div>
                     <h2 class="text-3xl font-normal mt-2 mb-2">Rp. {{number_format($barang->harga,0,2)}}</h2>
-                    <p class="text-blueGray-500">{{$barang->deskripsi}}</p>
+                    <p class="text-reddarken-500">{{$barang->deskripsi}}</p>
                     <div class="mt-12 mb-6 flex flex-wrap -mx-4">
                         <div class="px-4 relative w-full lg:w-6/12">
                             @foreach ($barang->katalog as $item)
@@ -43,7 +43,7 @@
                                         class="inline-block outline-none focus:outline-none align-middle transition-all duration-150 ease-in-out uppercase border border-solid font-bold last:mr-0 mr-2  text-white bg-orange-500 border-orange-500 active:bg-orange-600 active:border-orange-600 text-sm px-6 py-2 shadow hover:shadow-lg rounded-md" wire:click='countminus'>-</button></div>
                                 <div class="mr-2">
                                     <div class="mb-3 pt-0"><input type="text"
-                                            class="border-blueGray-300 px-3 py-2 text-sm  w-full placeholder-blueGray-200 text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200 "
+                                            class="border-reddarken-300 px-3 py-2 text-sm  w-full placeholder-reddarken-200 text-reddarken-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200 "
                                             wire:model="count"></div>
                                 </div>
                                 <div><button
@@ -58,11 +58,11 @@
         </div>
     </section>
     <div class="w-full">
-        <section class="relative pb-12 mt-12 bg-blueGray-100 pt-20">
+        <section class="relative pb-12 mt-12 bg-reddarken-100 pt-20">
             <div class="container mx-auto px-4">
                 <div class="mb-12 flex flex-wrap -mx-4 justify-start">
                     <div class="px-4 relative w-full lg:w-8/12 text-left">
-                        <h2 class="text-4xl font-bold mt-0 mb-1 text-blueGray-700">Produk Yang Mirip</h2>
+                        <h2 class="text-4xl font-bold mt-0 mb-1 text-reddarken-700">Produk Yang Mirip</h2>
                     </div>
                 </div>
                 <div class="flex flex-wrap -mx-4">
@@ -79,7 +79,7 @@
                                 <h5 class=" text-xs md:text-2xl font-bold mt-0"><a href="javascript:;"
                                         class="">{{$item->nama_barang}}</a></h5>
                                 <h5 class="text-xs md:text-sm">Jenis :{{$item->jenis->nama_jenis}}</h5>
-                                <span class="text-blueGray-700 text-xs md:text-lg">Rp.
+                                <span class="text-reddarken-700 text-xs md:text-lg">Rp.
                                     {{number_format($item->harga,0,2)}}</span>
                             </div>
                         </div>

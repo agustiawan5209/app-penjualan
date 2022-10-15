@@ -34,6 +34,6 @@ class Pesanan extends Component
         }
         return view('livewire.pesanan',[
             'bayar'=>   $bayar ,
-        ]);
+        ])->layout('livewire.layout.customer');
     }
 }

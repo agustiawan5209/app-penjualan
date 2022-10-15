@@ -65,7 +65,7 @@ class PageKirimanBarang extends Component
             'diterima' => $diterima,
             'belum_terkirim' => $belum_terkirim,
             'belum_konfirmasi'=> $belum_konfirmasi,
-        ]);
+        ])->layout('livewire.layout.customer');
     }
     public function create()
     {

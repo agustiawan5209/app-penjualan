@@ -1,5 +1,5 @@
 <div class="w-full px-4">
-    <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
+    <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-reddarken-100 border-0">
         <div class="rounded-t bg-white mb-0 px-6 py-6">
             <div class="text-center flex justify-between">
                 <button wire:click='closeModal'
@@ -22,7 +22,7 @@
                                 Gambar
                             </label>
                             <input type="file" wire:model='gambar'
-                                class="border-0 px-3 py-3 placeholder-blueGray-300 bg-white text-black  rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                class="border-0 px-3 py-3 placeholder-reddarken-300 bg-white text-black  rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                 value="lucky.jesse">
                         </div>
                     </div>
@@ -49,7 +49,7 @@
                                 Jenis
                             </label>
                             <select wire:model='jenis_id'
-                                class="border-0 px-3 py-3 placeholder-blueGray-300  rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                                class="border-0 px-3 py-3 placeholder-reddarken-300  rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
                                 <option value="--">--</option>
                                 @foreach ($jenis as $item)
                                 <option value="{{$item->id}}">{{$item->nama_jenis}}</option>
@@ -67,7 +67,7 @@
                                 Satuan
                             </label>
                             <select wire:model='satuan_id'
-                                class="border-0 px-3 py-3 placeholder-blueGray-300  rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                                class="border-0 px-3 py-3 placeholder-reddarken-300  rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
                                 <option value="--">--</option>
                                 @foreach ($satuan as $item)
                                 <option value="{{$item->id}}">{{$item->nama_satuan}}</option>
@@ -79,7 +79,7 @@
                         </div>
                     </div>
                 </div>
-                <hr class="mt-6 border-b-1 border-blueGray-300">
+                <hr class="mt-6 border-b-1 border-reddarken-300">
                 <h6 class="text-white text-sm mt-3 mb-6 font-bold uppercase">
                     Masukkan Katalog Barang
                 </h6>
@@ -129,7 +129,7 @@
                                 Nama Barang
                             </label>
                             <input type="text" wire:model='nama_barang'
-                                class="border-0 px-3 py-3 placeholder-blueGray-300  rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                class="border-0 px-3 py-3 placeholder-reddarken-300  rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                 value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
                                 @error('nama_barang')
                                     <span class="text-white">{{$message}}</span>
@@ -143,7 +143,7 @@
                                 Harga
                             </label>
                             <input type="text" wire:model='harga'
-                                class="border-0 px-3 py-3 placeholder-blueGray-300  rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                class="border-0 px-3 py-3 placeholder-reddarken-300  rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                 value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
                                 @error('harga')
                                 <span class="text-white">{{$message}}</span>
@@ -157,7 +157,7 @@
                                 Jumlah Stock
                             </label>
                             <input type="text" wire:model='stock'
-                                class="border-0 px-3 py-3 placeholder-blueGray-300  rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                class="border-0 px-3 py-3 placeholder-reddarken-300  rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                 value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
                                 @error('stock')
                                 <span class="text-white">{{$message}}</span>
@@ -171,7 +171,7 @@
                                 Tanggal Pembelian
                             </label>
                             <input type="date" wire:model='tgl_perolehan'
-                                class="border-0 px-3 py-3 placeholder-blueGray-300  rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                class="border-0 px-3 py-3 placeholder-reddarken-300  rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                 value="New York">
                                 @error('tgl_perolehan')
                                 <span class="text-white">{{$message}}</span>
@@ -185,7 +185,7 @@
                                 Deskripsi
                             </label>
                             <input type="text" wire:model='deskripsi'
-                                class="border-0 px-3 py-3 placeholder-blueGray-300  rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                class="border-0 px-3 py-3 placeholder-reddarken-300  rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                 value="United States">
                                 @error('deskripsi')
                                 <span class="text-white">{{$message}}</span>
