@@ -1,6 +1,6 @@
 <div class="w-full">
    @include('livewire.katalog')
-    <section class="relative pb-12 mt-12 bg-blueGray-100 pt-20">
+    <section class="relative pb-12 mt-4 bg-gray-100 pt-20">
         <div class="container mx-auto px-4">
             <div class="mb-12 flex flex-wrap -mx-4 justify-start">
                 <div class="px-4 relative w-full lg:w-8/12 text-left">
@@ -21,7 +21,7 @@
                             <h5 class=" text-xs md:text-2xl font-bold mt-0"><a href="javascript:;"
                                     class="">{{$item->nama_barang}}</a></h5>
                             <h5 class="text-xs md:text-sm">Jenis :{{$item->jenis->nama_jenis}}</h5>
-                            <span class="text-blueGray-700 text-xs md:text-lg">Rp.
+                            <span class="text-gray-700 text-xs md:text-lg">Rp.
                                 {{number_format($item->harga,0,2)}}</span>
                         </div>
                     </div>
