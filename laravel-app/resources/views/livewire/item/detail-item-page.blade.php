@@ -31,9 +31,9 @@
                     </x-td>
                     <x-td>{{$jumlah[2]}}</x-td>
                     <x-td>
-                       {{$item->potongan}}
+                       Rp. {{number_format($item->potongan,0,2)}}
                     </x-td>
-                    <x-td>{{$item->total}}</x-td>
+                    <x-td>Rp. {{number_format($item->total,0,2)}}</x-td>
                 </tr>
 
                 @endforeach

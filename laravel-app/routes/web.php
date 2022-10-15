@@ -80,7 +80,7 @@ Route::middleware([
     });
 
     // Laporan
-    Route::get('Laporan/{start}/{end}', [PDFController::class, 'LaporanPenjualan'])->name("Laporan");
+    Route::get('Laporan/', [PDFController::class, 'LaporanPenjualan'])->name("Laporan");
 
 });
 Route::get('stock/chart',[StatusBarangController::class, 'chart']);

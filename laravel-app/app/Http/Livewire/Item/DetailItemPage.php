@@ -22,6 +22,6 @@ class DetailItemPage extends Component
             ->where('ID_transaksi', 'like', '%'. $this->search .'%')
             ->paginate($this->row);
         }
-        return view('livewire.item.detail-item-page',compact('transaksi'));
+        return view('livewire.item.detail-item-page',compact('transaksi'))->layout('livewire.layout.customer');
     }
 }

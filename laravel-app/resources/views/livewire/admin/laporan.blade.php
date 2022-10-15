@@ -33,7 +33,6 @@
                         placeholder="Select date end">
                 </div>
             </div>
-           @if ($startDate != null && $maxDate != null)
              <div class="flex justify-between w-full px-4 py-2">
                  <div class="text-lg font-bold">
                    Laporan Penjualan
@@ -45,7 +44,6 @@
                    </svg>
                  </a>
                </div>
-           @endif
             <div class="mt-6 overflow-x-auto">
                 <table class="w-full table-auto">
                     <thead class="">

@@ -15,8 +15,11 @@ class PDFController extends Controller
         $pdf = Pdf::loadView('page.invoice.invoice', [ 'data'=> $data]);
         return $pdf->stream('invoice.pdf');
     }
-    public function LaporanPenjualan($start, $end){
-        $bayar = Pembayaran::with(['transaksi', 'user'])->whereBetween('tgl_transaksi', [$start, $end])->get();
+    public function LaporanPenjualan(Request $request){
+        $bayar = Pembayaran::with(['transaksi', 'user'])->whereBetween('tgl_transaksi', [$request->start, $request->end])->get();
+        if($request->start == "" && $request->end == ''){
+            $bayar= Pembayaran::with(['transaksi', 'user'])->get();
+        }
         $pdf = Pdf::loadView('page.invoice.pdf', [ 'data'=> $bayar]);
         return $pdf->stream('Penjualan.pdf');
     }
