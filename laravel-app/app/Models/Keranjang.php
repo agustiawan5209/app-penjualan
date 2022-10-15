@@ -24,4 +24,7 @@ class Keranjang extends Model
     public function user(){
         return $this->hasOne(User::class, 'id', 'user_id');
     }
+    public function hargaBarang($value){
+        return "Rp.". number_format($value,0,2);
+    }
 }

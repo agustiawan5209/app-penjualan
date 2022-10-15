@@ -1,157 +1,93 @@
 <div>
     <!-- Open Content -->
     @include('sweetalert::alert')
-    <section class="bg-light">
-        <div class="container pb-5">
-            <div class="row">
-                <div class="col-lg-5 mt-5">
-                    <div class="card mb-3">
-                        <img class="card-img img-fluid" src="{{asset('upload/'. $barang->gambar)}}" alt="Card image cap" id="product-detail">
-                    </div>
-                </div>
-                <!-- col end -->
-                <div class="col-lg-7 mt-5">
-                    <div class="card">
-                        <div class="card-body">
-                            <h1 class="h2">{{$barang->nama_barang}}</h1>
-                            <p class="h3 py-2">{{number_format($barang->harga, 0,2)}}</p>
-                            <h6>Deskripsi:</h6>
-                            <p>{{$barang->deskripsi}}.</p>
-                            {{-- <ul class="list-inline">
-                                <li class="list-inline-item">
-                                    <h6>Avaliable Color :</h6>
-                                </li>
-                                <li class="list-inline-item">
-                                    <p class="text-muted"><strong>White / Black</strong></p>
-                                </li>
-                            </ul> --}}
 
-                            <h6>Katalog:</h6>
-                            <ul class="list-unstyled pb-3">
-                                @foreach ( (object) $barang->katalog as $katalog)
-                                            <li class="list-inline-item"><span class="btn btn-orange-dark btn-size">{{$katalog->nama_katalog}}</span></li>
-                                            @endforeach
-                            </ul>
-
-                            <form action="" method="GET">
-                                <input type="hidden" name="product-title" value="Activewear">
-                                <div class="row">
-                                    <div class="col-auto">
-                                        <ul class="list-inline pb-3">
-                                            <li class="list-inline-item text-right">
-                                                Jumlah
-                                                <input type="hidden" name="product-quanity" id="product-quanity" value="1">
-                                            </li>
-                                            <li class="list-inline-item"><span class="btn btn-blue-dark" id="btn-minus" wire:click='countminus'>-</span></li>
-                                            <li class="list-inline-item"><span class="badge bg-secondary" id="var-value" >{{$count}}</span></li>
-                                            <li class="list-inline-item"><span class="btn btn-blue-dark" id="btn-plus" wire:click='countplus'>+</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="row pb-3">
-                                    {{-- <div class="col d-grid">
-                                        <button type="button" class="btn btn-blue-dark btn-lg" name="button" value="buy">Beli</button>
-                                    </div> --}}
-                                    <div class="col d-grid">
-                                        <button type="button"  wire:click='addToCart({{$barang->id}})' class="btn btn-blue-dark btn-lg" name="button" value="addtocard">Masukan Keranjang</button>
-                                    </div>
-                                </div>
-                            </form>
+    <section class="relative ">
+        <div class="container mx-auto px-4 pt-4 shadow-xl">
+            <div class="flex flex-wrap -mx-4">
+                <div class="mx-auto px-4 relative w-full lg:w-6/12 w-full md:w-full">
+                    <div class="relative">
+                        <div class="relative w-full overflow-hidden">
+                            <div class="w-full p-12 transform duration-500 transition-all ease-in-out mx-auto block">
+                                <img alt="..."
+                                    src="{{ asset('upload/'. $barang->gambar)}}"
+                                    class="w-full h-auto mx-auto">
+                            </div>
 
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-    <!-- Close Content -->
-
-    <!-- Start Article -->
-    <section class="py-5">
-        <div class="container">
-            <div class="row text-left p-2 pb-3">
-                <h4>Related Products</h4>
-            </div>
-
-            <!--Start Carousel Wrapper-->
-            <div class=" row">
-
-                @foreach ($barang_lain as $barang)
-                            <div class="col-md-3">
-                                <div class="card mb-4 product-wap rounded-0">
-                                    <div class="card rounded-0">
-                                        <img class="card-img rounded-0 img-fluid"
-                                            src="{{ asset('upload/' . $barang->gambar) }}">
-                                        <div
-                                            class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                            <ul class="list-unstyled">
-                                                {{-- <li><a class="btn btn-blue-dark text-white"
-                                                        href="{{ route('shop-single') }}"><i
-                                                            class="far fa-heart"></i></a></li> --}}
-                                                <li><a class="btn btn-blue-dark text-white mt-2"
-                                                        href="#Detail/{{ $barang->id }}"
-                                                        wire:click='ShowDetail({{ $barang->id }})'><i
-                                                            class="far fa-eye"></i></a></li>
-                                                <li><a class="btn btn-blue-dark text-white mt-2" href="#Cart"
-                                                        wire:click='addToCart({{ $barang->id }})'><i
-                                                            class="fas fa-cart-plus"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <a href="{{ route('shop-single') }}"
-                                            class="h3 text-decoration-none">{{ $barang->nama_barang }}</a>
-                                        <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-                                            <li>{{ $barang->jenis->nama_jenis }}//{{ $barang->satuan->nama_satuan }}/XL
-                                            </li>
-                                            <li class="pt-2">
-                                                <span
-                                                    class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
-                                                <span
-                                                    class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
-                                                <span
-                                                    class="product-color-dot color-dot-black float-left rounded-circle ml-1"></span>
-                                                <span
-                                                    class="product-color-dot color-dot-light float-left rounded-circle ml-1"></span>
-                                                <span
-                                                    class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
-                                            </li>
-                                        </ul>
-                                        @php
-                                            $card_potongan = [0];
-                                        @endphp
-                                        @if ($barang->diskon->count() > 0)
-                                            <ul class="list-unstyled d-flex justify-content-end mb-1">
-                                                <li>
-                                                    @foreach ($barang->diskon as $item)
-                                                        Potongan
-                                                        {{ $item->jumlah_diskon }}%
-                                                        @php
-                                                            $card_potongan[] = $item->jumlah_diskon;
-                                                        @endphp
-                                                    @endforeach
-                                                </li>
-                                            </ul>
-                                            <div class=" d-flex justify-content-between flex-row-reverse">
-                                                <p
-                                                    class="text-left font-bold mb-0 text-danger text-decoration-line-through">
-                                                    @php
-                                                        $hasil = $barang->harga * (array_sum($card_potongan) / 100);
-                                                    @endphp
-                                                    {{ number_format($hasil, 0, 2) }} %</p>
-                                        @endif
-                                        <p class="text-left font-bold mb-0">Rp.
-                                            {{ number_format($barang->harga, 0, 2) }}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
+                <div class="mr-auto px-4 relative w-full lg:w-6/12 w-full md:w-full">
+                    <h2 class="text-3xl font-bold leading-tight mt-0 mb-0">{{$barang->nama_barang}}</h2>
+                    <div class="pt-2">
+                        <div class="text-orange-500"><i class="mr-1 fas fa-star"></i><i class="mr-1 fas fa-star"></i><i
+                                class="mr-1 fas fa-star"></i><i class="mr-1 fas fa-star"></i><i
+                                class="mr-1 fas fa-star-half-alt"></i><a href="https://www.creative-tim.com"
+                                class="inline text-sm ml-1 text-blueGray-700 hover:text-blueGray-500">7</a></div>
+                    </div>
+                    <h2 class="text-3xl font-normal mt-2 mb-2">Rp. {{number_format($barang->harga,0,2)}}</h2>
+                    <p class="text-blueGray-500">{{$barang->deskripsi}}</p>
+                    <div class="mt-12 mb-6 flex flex-wrap -mx-4">
+                        <div class="px-4 relative w-full lg:w-6/12">
+                            @foreach ($barang->katalog as $item)
+                                <label class="inline-block mb-2">{{$item->nama_katalog}}</label>
                             @endforeach
 
+                        </div>
+                    </div>
+                    <div class="mb-6 flex flex-wrap -mx-4">
+                        <div class="px-4 relative w-full lg:w-5/12">
+                            <label class="inline-block mb-2" >Jumlah</label>
+                            <div class="relative inline-flex flex-row w-full items-stretch">
+                                <div class="mr-2"><button
+                                        class="inline-block outline-none focus:outline-none align-middle transition-all duration-150 ease-in-out uppercase border border-solid font-bold last:mr-0 mr-2  text-white bg-orange-500 border-orange-500 active:bg-orange-600 active:border-orange-600 text-sm px-6 py-2 shadow hover:shadow-lg rounded-md" wire:click='countminus'>-</button></div>
+                                <div class="mr-2">
+                                    <div class="mb-3 pt-0"><input type="text"
+                                            class="border-blueGray-300 px-3 py-2 text-sm  w-full placeholder-blueGray-200 text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200 "
+                                            wire:model="count"></div>
+                                </div>
+                                <div><button
+                                        class="inline-block outline-none focus:outline-none align-middle transition-all duration-150 ease-in-out uppercase border border-solid font-bold last:mr-0 mr-2  text-white bg-orange-500 border-orange-500 active:bg-orange-600 active:border-orange-600 text-sm px-6 py-2 shadow hover:shadow-lg rounded-md" wire:click='countplus'>+</button></div>
+                            </div>
+                        </div>
+                    </div>
+                    <button
+                        class="inline-block outline-none focus:outline-none align-middle transition-all duration-150 ease-in-out uppercase border border-solid font-bold last:mr-0 mr-2  text-white bg-orange-500 border-orange-500 active:bg-orange-600 active:border-orange-600 text-sm px-6 py-2 shadow hover:shadow-lg rounded-md" wire:click='addToCart({{$barang->id}})'>Keranjang <i class="fas fa-shopping-cart"></i></button>
+                </div>
             </div>
-
-
         </div>
     </section>
-    <!-- End Article -->
+    <div class="w-full">
+        <section class="relative pb-12 mt-12 bg-blueGray-100 pt-20">
+            <div class="container mx-auto px-4">
+                <div class="mb-12 flex flex-wrap -mx-4 justify-start">
+                    <div class="px-4 relative w-full lg:w-8/12 text-left">
+                        <h2 class="text-4xl font-bold mt-0 mb-1 text-blueGray-700">Produk Yang Mirip</h2>
+                    </div>
+                </div>
+                <div class="flex flex-wrap -mx-4">
+                    @foreach ($barang_lain as $item)
+                    <div class="px-4 relative w-1/2 md:w-3/12 shadow-lg cursor-pointer" wire:click="ShowDetail({{$item->id}})">
+                        <div class="relative flex flex-col min-w-0 break-words w-full bg-transparent">
+                            <div>
+                                {{-- <div class="h-8 text-center"><span
+                                        class="text-teal-500 bg-teal-200 text-xs font-bold inline-block py-1 uppercase uppercase last:mr-0 mr-1 leading-tight rounded px-2">new
+                                        collection</span></div> --}}
+                                <img alt="..." src="{{asset('upload/'. $item->gambar)}}" class="w-full p-6">
+                            </div>
+                            <div class="p-6 flex-auto text-left">
+                                <h5 class=" text-xs md:text-2xl font-bold mt-0"><a href="javascript:;"
+                                        class="">{{$item->nama_barang}}</a></h5>
+                                <h5 class="text-xs md:text-sm">Jenis :{{$item->jenis->nama_jenis}}</h5>
+                                <span class="text-blueGray-700 text-xs md:text-lg">Rp.
+                                    {{number_format($item->harga,0,2)}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
 </div>

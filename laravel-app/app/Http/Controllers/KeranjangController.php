@@ -16,7 +16,7 @@ class KeranjangController extends Controller
     {
         $arr = [];
         // $barang = Barang::find($id_barang);
-        $user_promo = UsesUserPromo::where('user_id', Auth::user()->id)->where('status', '=','0')->get();
+        $user_promo = UsesUserPromo::where('user_id', Auth::user()->id)->where('status', '=','1')->get();
         // dd($user_promo);
         foreach ($user_promo as $item) {
             $promo = Promo::where('id', $item->promo_id)->get();
@@ -49,7 +49,7 @@ class KeranjangController extends Controller
     {
         $arr = [];
         // $barang = Barang::find($id_barang);
-        $user_promo = UsesUserPromo::where('user_id', Auth::user()->id)->where('status', '=','0')->get();
+        $user_promo = UsesUserPromo::where('user_id', Auth::user()->id)->where('status', '=','1')->get();
         foreach ($user_promo as $item) {
             $promo = Promo::where('id', $item->promo_id)->get();
             foreach ($promo as $data) {

@@ -5,6 +5,7 @@ use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\StatusBarangController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UsesUserPromoController;
 use App\Http\Livewire\Admin\Dashboard;
 use App\Http\Livewire\Admin\Laporan;
 use App\Http\Livewire\Admin\PageBarang;
@@ -41,6 +42,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', HalamanUtama::class)->name('home');
+Route::post('Kode/Promo', [UsesUserPromoController::class, 'CekPromoUser'])->name('masukan-kode-promo');
 
 Route::middleware([
     'auth:sanctum',

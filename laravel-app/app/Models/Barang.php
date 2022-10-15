@@ -27,4 +27,11 @@ class Barang extends Model
     public function katalog(){
         return $this->hasMany(Katalog::class, 'barang_id', 'id');
     }
+    public function ulasan(){
+        return $this->hasMany(ulasan::class, 'barang_id', 'id');
+    }
+
+    public function hargaBarang($value){
+        return "Rp.". number_format($value,0,2);
+    }
 }

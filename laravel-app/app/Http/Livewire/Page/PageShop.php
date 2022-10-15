@@ -30,8 +30,7 @@ class PageShop extends Component
      */
     public function ShowDetail($id)
     {
-        $this->showDetail = true;
-        $this->itemID = $id;
+        return redirect()->route('Shop-detail', ['itemID'=> $id]);
     }
 
     public function render()

@@ -69,8 +69,9 @@ class PembayaranController extends Controller
             // 'kode_pos' => 'required',
             'metode' => 'required',
             'sub_total' => 'required',
-            'foto' => ['image', 'max:5000','mimes:png,jpg'],
+            'foto' => ['required','image', 'max:5000','mimes:png,jpg'],
             'nama' => 'required',
+            'tgl_transaksi' => ['required', 'date'],
         ]);
         // dd(session('param'));
         if (session()->has('keranjang')) {
@@ -87,7 +88,7 @@ class PembayaranController extends Controller
             $this->createPayment($request, $item_details['item'], $pdf->download()->getOriginalContent(), $transaksi_id);
             $this->createTransaksi($item_details['item'], $transaksi_id);
             Keranjang::where('user_id', '=', Auth::user()->id)->delete();
-            session()->forget('param');
+            session()->forget('keranjang');
             $this->GantiStatusPromo();
 
             Alert::success('Berhasil', "Pemesanan Barang Berhasil, Mohon Tunggu Konfirmasi");
@@ -138,7 +139,7 @@ class PembayaranController extends Controller
         $payemnt = Pembayaran::create([
             'user_id' => Auth::user()->id,
             'nama'=> $request->nama,
-            'no_telpon' => Auth::user()->name . '_' ,
+            'no_telpon' => $request->no_telpon,
             'total_price' => $request->sub_total,
             'payment_status' => '1',
             'payment_type' => 'BANK',

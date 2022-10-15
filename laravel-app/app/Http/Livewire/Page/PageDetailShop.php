@@ -73,4 +73,9 @@ class PageDetailShop extends Component
             $this->count = 1;
         }
     }
+
+    public function ShowDetail($id)
+    {
+        return redirect()->route('Shop-detail', ['itemID'=> $id]);
+    }
 }

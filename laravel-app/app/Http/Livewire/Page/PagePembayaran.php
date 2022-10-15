@@ -15,6 +15,12 @@ use RealRashid\SweetAlert\Facades\Alert;
 class PagePembayaran extends Component
 {
     public $kode_promo;
+
+    public function mount(){
+        if(!session()->has('keranjang')){
+            abort(401);
+        }
+    }
     public function render()
     {
         $data = session('keranjang');
@@ -27,8 +33,9 @@ class PagePembayaran extends Component
         $potongan_nominal = $this->hitungPotonganNominal($arr_nominal);
         $total_potongan = array_sum([$potongan_persen, $potongan_nominal, $data['potongan']]);
         // dd($total_potongan);
+
         return view('livewire.page.page-pembayaran', [
-            'cart'=> Keranjang::with(['barang.jenis','barang.satuan','barang.katalog'])->where('user_id', Auth::user()->id)->get(),
+            'cart'=> Keranjang::with(['barang.jenis','barang.satuan','barang.katalog','barang'])->where('user_id', Auth::user()->id)->get(),
             'potongan'=> $total_potongan,
             'sub_total'=>$data['sub_total'],
             'total_bayar'=> $data['total_bayar'] - $total_potongan,

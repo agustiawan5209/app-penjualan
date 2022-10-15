@@ -1,269 +1,41 @@
 <div>
-
-    @include('sweetalert::alert')
-    @if ($showDetail == false)
-        <!-- Start Content -->
-        <div class="container py-5">
-            <div class="row">
-
-                <div class="col-lg-3">
-                    <h1 class="h2 pb-4">Categories</h1>
-                    <ul class="list-unstyled templatemo-accordion">
-                        <li class="pb-3">
-                            <a class="collapsed d-flex justify-content-between text-decoration-none" href="{{route('shop', ['jenis'=> null])}}">
-                                Semua
-                                <i class="fa fa-fw fa-chevron-circle-down mt-1"></i>
-                            </a>
-                        </li>
-                        @foreach ($jenis as $jenis)
-                            <li class="pb-3">
-                                <a class="collapsed d-flex justify-content-between text-decoration-none" href="{{route('shop', ['jenis'=> $jenis->id])}}">
-                                    {{ $jenis->nama_jenis }}
-                                    <i class="fa fa-fw fa-chevron-circle-down mt-1"></i>
-                                </a>
-                            </li>
-                        @endforeach
-                        {{-- <li class="pb-3">
-                          <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
-                              Product
-                              <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
-                          </a>
-                          <ul id="collapseThree" class="collapse list-unstyled pl-3">
-                              <li><a class="text-decoration-none" href="#">Bag</a></li>
-                              <li><a class="text-decoration-none" href="#">Sweather</a></li>
-                              <li><a class="text-decoration-none" href="#">Sunglass</a></li>
-                          </ul>
-                      </li> --}}
-                    </ul>
+    <div class="w-full">
+        @include('livewire.katalog')
+        <section class="relative py-12">
+            <div class="container mx-auto px-4">
+                <div class="mb-12">
+                    <div class="flex flex-wrap -mx-4 justify-start">
+                        <div class="px-4 relative w-full text-left">
+                            <span
+                                class="text-blueGray-500 bg-blueGray-100 text-xs font-bold inline-block py-1 uppercase uppercase last:mr-0 mr-1 leading-tight rounded px-2">Produk</span>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="col-lg-9">
-                    <div class="row">
-                        {{-- <div class="col-md-6">
-                          <ul class="list-inline shop-top-menu pb-3 pt-1">
-                              <li class="list-inline-item">
-                                  <a class="h3 text-dark text-decoration-none mr-3" href="#">All</a>
-                              </li>
-                              <li class="list-inline-item">
-                                  <a class="h3 text-dark text-decoration-none mr-3" href="#">Men's</a>
-                              </li>
-                              <li class="list-inline-item">
-                                  <a class="h3 text-dark text-decoration-none" href="#">Women's</a>
-                              </li>
-                          </ul>
-                      </div> --}}
-                        <div class="col-md-6 pb-4">
-                            <div class="d-flex">
-                                <select class="form-control">
-                                    <option>Featured</option>
-                                    <option>A to Z</option>
-                                    <option>Item</option>
-                                </select>
+                <div class="flex flex-wrap -mx-4">
+                    @foreach ($produk as $item)
+                    <div class="px-4 relative w-1/2 md:w-3/12 shadow-lg cursor-pointer" wire:click="ShowDetail({{$item->id}})">
+                        <div class="relative flex flex-col min-w-0 break-words w-full bg-transparent">
+                            <div>
+                                {{-- <div class="h-8 text-center"><span
+                                        class="text-teal-500 bg-teal-200 text-xs font-bold inline-block py-1 uppercase uppercase last:mr-0 mr-1 leading-tight rounded px-2">new
+                                        collection</span></div> --}}
+                                <img alt="..." src="{{asset('upload/'. $item->gambar)}}" class="w-full p-6">
+                            </div>
+                            <div class="p-6 flex-auto text-left">
+                                <h5 class=" text-xs md:text-2xl font-bold mt-0"><a href="javascript:;"
+                                        class="">{{$item->nama_barang}}</a></h5>
+                                <h5 class="text-xs md:text-sm">Jenis :{{$item->jenis->nama_jenis}}</h5>
+                                <span class="text-blueGray-700 text-xs md:text-lg">Rp.
+                                    {{number_format($item->harga,0,2)}}</span>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        @foreach ($produk as $barang)
-                            <div class="col-md-4">
-                                <div class="card mb-4 product-wap rounded-0">
-                                    <div class="card rounded-0">
-                                        <img class="card-img rounded-0 img-fluid"
-                                            src="{{ asset('upload/' . $barang->gambar) }}">
-                                        <div
-                                            class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                            <ul class="list-unstyled">
-                                                {{-- <li><a class="btn btn-blue-dark text-white"
-                                                        href="{{ route('shop-single') }}"><i
-                                                            class="far fa-heart"></i></a></li> --}}
-                                                <li><a class="btn btn-blue-dark text-white mt-2"
-                                                        href="#Detail/{{ $barang->id }}"
-                                                        wire:click='ShowDetail({{ $barang->id }})'><i
-                                                            class="far fa-eye"></i></a></li>
-                                                <li><a class="btn btn-blue-dark text-white mt-2" href="#Cart"
-                                                        wire:click='addToCart({{ $barang->id }})'><i
-                                                            class="fas fa-cart-plus"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <a href="{{ route('shop-single') }}"
-                                            class="h3 text-decoration-none">{{ $barang->nama_barang }}</a>
-                                        <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-                                            <li>{{ $barang->jenis->nama_jenis }}//{{ $barang->satuan->nama_satuan }}/XL
-                                            </li>
-                                            <li class="pt-2">
-                                                <span
-                                                    class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
-                                                <span
-                                                    class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
-                                                <span
-                                                    class="product-color-dot color-dot-black float-left rounded-circle ml-1"></span>
-                                                <span
-                                                    class="product-color-dot color-dot-light float-left rounded-circle ml-1"></span>
-                                                <span
-                                                    class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
-                                            </li>
-                                        </ul>
-                                        @php
-                                            $card_potongan = [0];
-                                        @endphp
-                                        @if ($barang->diskon->count() > 0)
-                                            <ul class="list-unstyled d-flex justify-content-end mb-1">
-                                                <li>
-                                                    @foreach ($barang->diskon as $item)
-                                                        Potongan
-                                                        {{ $item->jumlah_diskon }}%
-                                                        @php
-                                                            $card_potongan[] = $item->jumlah_diskon;
-                                                        @endphp
-                                                    @endforeach
-                                                </li>
-                                            </ul>
-                                            <div class=" d-flex justify-content-between flex-row-reverse">
-                                                <p
-                                                    class="text-left font-bold mb-0 text-danger text-decoration-line-through">
-                                                    @php
-                                                        $hasil = $barang->harga * (array_sum($card_potongan) / 100);
-                                                    @endphp
-                                                    {{ number_format($hasil, 0, 2) }} %</p>
-                                        @endif
-                                        <p class="text-left font-bold mb-0">Rp.
-                                            {{ number_format($barang->harga, 0, 2) }}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            @endforeach
-                        </div>
-</div>
-<div div="row">
-    {{ $produk->links('pagination::tailwind') }}
-</div>
-</div>
-
-</div>
-</div>
-<!-- End Content -->
-
-<!-- Start Brands -->
-{{-- <section class="bg-light py-5">
-    <div class="container my-4">
-        <div class="row text-center py-3">
-            <div class="col-lg-6 m-auto">
-                <h1 class="h1">Our Brands</h1>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    Lorem ipsum dolor sit amet.
-                </p>
-            </div>
-            <div class="col-lg-9 m-auto tempaltemo-carousel">
-                <div class="row d-flex flex-row">
-                    <!--Controls-->
-                    <div class="col-1 align-self-center">
-                        <a class="h1" href="#multi-item-example" role="button" data-bs-slide="prev">
-                            <i class="text-light fas fa-chevron-left"></i>
-                        </a>
-                    </div>
-                    <!--End Controls-->
-
-                    <!--Carousel Wrapper-->
-                    <div class="col">
-                        <div class="carousel slide carousel-multi-item pt-2 pt-md-0" id="multi-item-example"
-                            data-bs-ride="carousel">
-                            <!--Slides-->
-                            <div class="carousel-inner product-links-wap" role="listbox">
-
-                                <!--First slide-->
-                                <div class="carousel-item active">
-                                    <div class="row">
-                                        <div class="col-3 p-md-5">
-                                            <a href="#"><img class="img-fluid brand-img" src="img/brand_01.png"
-                                                    alt="Brand Logo"></a>
-                                        </div>
-                                        <div class="col-3 p-md-5">
-                                            <a href="#"><img class="img-fluid brand-img" src="img/brand_02.png"
-                                                    alt="Brand Logo"></a>
-                                        </div>
-                                        <div class="col-3 p-md-5">
-                                            <a href="#"><img class="img-fluid brand-img" src="img/brand_03.png"
-                                                    alt="Brand Logo"></a>
-                                        </div>
-                                        <div class="col-3 p-md-5">
-                                            <a href="#"><img class="img-fluid brand-img" src="img/brand_04.png"
-                                                    alt="Brand Logo"></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--End First slide-->
-
-                                <!--Second slide-->
-                                <div class="carousel-item">
-                                    <div class="row">
-                                        <div class="col-3 p-md-5">
-                                            <a href="#"><img class="img-fluid brand-img" src="img/brand_01.png"
-                                                    alt="Brand Logo"></a>
-                                        </div>
-                                        <div class="col-3 p-md-5">
-                                            <a href="#"><img class="img-fluid brand-img" src="img/brand_02.png"
-                                                    alt="Brand Logo"></a>
-                                        </div>
-                                        <div class="col-3 p-md-5">
-                                            <a href="#"><img class="img-fluid brand-img" src="img/brand_03.png"
-                                                    alt="Brand Logo"></a>
-                                        </div>
-                                        <div class="col-3 p-md-5">
-                                            <a href="#"><img class="img-fluid brand-img" src="img/brand_04.png"
-                                                    alt="Brand Logo"></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--End Second slide-->
-
-                                <!--Third slide-->
-                                <div class="carousel-item">
-                                    <div class="row">
-                                        <div class="col-3 p-md-5">
-                                            <a href="#"><img class="img-fluid brand-img" src="img/brand_01.png"
-                                                    alt="Brand Logo"></a>
-                                        </div>
-                                        <div class="col-3 p-md-5">
-                                            <a href="#"><img class="img-fluid brand-img" src="img/brand_02.png"
-                                                    alt="Brand Logo"></a>
-                                        </div>
-                                        <div class="col-3 p-md-5">
-                                            <a href="#"><img class="img-fluid brand-img" src="img/brand_03.png"
-                                                    alt="Brand Logo"></a>
-                                        </div>
-                                        <div class="col-3 p-md-5">
-                                            <a href="#"><img class="img-fluid brand-img" src="img/brand_04.png"
-                                                    alt="Brand Logo"></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--End Third slide-->
-
-                            </div>
-                            <!--End Slides-->
-                        </div>
-                    </div>
-                    <!--End Carousel Wrapper-->
-
-                    <!--Controls-->
-                    <div class="col-1 align-self-center">
-                        <a class="h1" href="#multi-item-example" role="button" data-bs-slide="next">
-                            <i class="text-light fas fa-chevron-right"></i>
-                        </a>
-                    </div>
-                    <!--End Controls-->
+                    @endforeach
+                    <div class="mx-auto mt-12"><button
+                            class="inline-block outline-none focus:outline-none align-middle transition-all duration-150 ease-in-out uppercase border border-solid font-bold last:mr-0 mr-2  text-white bg-pink-500 border-pink-500 active:bg-pink-600 active:border-pink-600 text-sm px-6 py-2 shadow hover:shadow-lg rounded-md">Load
+                            more...</button></div>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
-</section> --}}
-<!--End Brands-->
-
-@endif
-@if ($showDetail == true)
-    <livewire:page.page-detail-shop :itemID='$itemID'>
-@endif
 </div>
