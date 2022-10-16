@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{asset('build/assets/app.dc55f305.css')}}">
+    <script src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
     @livewireScripts
 </head>
 
