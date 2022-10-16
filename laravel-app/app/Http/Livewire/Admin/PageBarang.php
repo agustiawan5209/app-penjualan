@@ -31,7 +31,7 @@ class PageBarang extends Component
     public function render()
     {
         $barang = Barang::orderBy('id', $this->order)
-        ->with(['satuan', 'jenis'])->paginate($this->row);
+            ->with(['satuan', 'jenis'])->paginate($this->row);
         if ($this->search != null) {
             $barang = Barang::where('kode_barang', 'like', '%' . $this->search . '%')
                 ->orWhere('harga', 'like', '%' . $this->search . '%')
@@ -86,7 +86,7 @@ class PageBarang extends Component
         $this->deskripsi = $barang->deskripsi;
         $this->tgl_perolehan = $barang->tgl_perolehan;
         $this->stock = $barang->stock;
-        foreach($barang->katalog as $item){
+        foreach ($barang->katalog as $item) {
             array_push($this->katalog, $item->nama_katalog);
         }
         $this->itemEdit = true;
@@ -159,7 +159,7 @@ class PageBarang extends Component
         ]);
         for ($i = 0; $i < count($this->katalog); $i++) {
             Katalog::create([
-                'barang_id'=> $barang->id,
+                'barang_id' => $barang->id,
                 'nama_katalog' => $this->katalog[$i],
             ]);
         }
@@ -205,7 +205,7 @@ class PageBarang extends Component
         ]);
         for ($i = 0; $i < count($this->katalog); $i++) {
             Katalog::create([
-                'barang_id'=> $id,
+                'barang_id' => $id,
                 'nama_katalog' => $this->katalog[$i],
             ]);
         }
@@ -225,7 +225,7 @@ class PageBarang extends Component
         $editJenis = false,
         $hapusJenis = false;
     // field tabel jenis;
-    public $nama_Jenis;
+    public $nama_Jenis, $gambar_jenis;
     public function tambahJenis()
     {
         $this->addJenis = true;
@@ -248,13 +248,29 @@ class PageBarang extends Component
         $this->validate([
             'nama_Jenis' => 'required',
         ]);
+        $nama = $this->gambar_jenis->getClientOriginalName();
+        $this->gambar_jenis->storeAs('upload/jenis', $nama);
         Jenis::create([
+            'gambar' => $this->gambar_jenis,
             'nama_jenis' => $this->nama_Jenis,
         ]);
     }
     public function editJenis($id)
     {
+        $this->validate([
+            'nama_Jenis' => 'required',
+        ]);
+        $jns = Jenis::find($id);
+        if ($this->gambar_jenis != null) {
+            if (Storage::exists('upload/jenis/' . $jns->gambar)) {
+                $nama = $this->gambar_jenis->getClientOriginalName();
+
+                Storage::delete('upload/jenis/' . $jns->gambar);
+                $this->gambar_jenis->storeAs('upload/jenis', $nama);
+            }
+        }
         Jenis::where('id', $id)->update([
+            'gambar' => $this->gambar_jenis,
             'nama_jenis' => $this->nama_Jenis,
         ]);
         $this->editJenis = false;

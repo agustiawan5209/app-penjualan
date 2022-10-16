@@ -6,7 +6,14 @@
                 <div class="rounded-t mb-0 px-4 py-3 border-0">
                     <div class="flex flex-wrap items-center">
                         <form class="relative w-full px-4 max-w-full flex-grow flex-1">
-                            <x-jet-input  type="text" wire:model='nama_Jenis' />
+                            <div class="mb-3">
+                                <x-jet-label for='gambar_jenis'>Gambar</x-jet-label>
+                                <x-jet-input  type="file" wire:model='gambar_Jenis' />
+                            </div>
+                            <div class="mb-3">
+                                <x-jet-label for='nama_jenis'>Nama Jenis</x-jet-label>
+                                <x-jet-input  type="text" wire:model='nama_Jenis' />
+                            </div>
                             @if ($editJenis == false)
                                 <x-jet-button type='button' wire:click='createJenis'>Tambah</x-jet-button>
                             @elseif($editJenis == true)

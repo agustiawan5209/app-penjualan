@@ -10,7 +10,7 @@ class Jenis extends Model
     use HasFactory;
     protected $table = 'jenis';
     protected $fillable =[
-        'nama_jenis',
+        'nama_jenis','gambar'
     ];
 
     public function barang(){

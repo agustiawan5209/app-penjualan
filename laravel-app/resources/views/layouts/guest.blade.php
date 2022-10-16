@@ -13,8 +13,8 @@
 
     <!-- Scripts -->
     {{-- @vite(['resources/js/app.js', 'resources/css/app.css']) --}}
-    <link rel="stylesheet" href="{{asset('build/assets/app.dc55f305.css')}}">
-    <script src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
     <script src="{{ asset('js/sweetalert.all.js') }}"></script>
 
     @livewireStyles
@@ -29,7 +29,7 @@
             <div class="flex flex-col md:flex-row md:justify-between md:items-center">
                 <div class="flex justify-between items-center">
                     <div class="flex items-center">
-                        <a class="text-gray-800 text-xl font-bold md:text-2xl hover:text-gray-700" href="#">Brand</a>
+                        <a class="text-gray-800 text-xl font-bold md:text-2xl hover:text-gray-700" href="#"><x-jet-application-logo /></a>
 
                         <!-- Search input on desktop screen -->
                         <div class="mx-10 hidden md:block">

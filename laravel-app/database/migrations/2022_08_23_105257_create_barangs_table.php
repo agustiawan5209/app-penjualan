@@ -22,7 +22,7 @@ return new class extends Migration
             $table->integer('stock');
             $table->string('deskripsi', 100);
             $table->foreignId('satuan_id');
-            $table->foreignId('jenis_id');
+            $table->foreignId('jenis_id')->nullable();
             $table->date('tgl_perolehan');
             $table->timestamps();
         });

@@ -12,7 +12,8 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+                sans: ['sans-serif', ...defaultTheme.fontFamily.sans],
+                Times: ['Times new Roman'],
             },
             colors: {
                 'reddarken': '#274D6B',

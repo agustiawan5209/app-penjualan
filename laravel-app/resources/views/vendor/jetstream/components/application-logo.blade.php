@@ -1,1 +1,1 @@
-<span class="text-orange-dark" style="font-size: 3rem; font-weight: 700;">Irsan</span><span class="text-red-dark" style="font-size: 3rem; font-weight: 700;">Jaya</span>
+<span class=" text-red-600 font-Times font-bold ">Irsan</span>&nbsp;<span class="text-red-600 font-Times font-bold">Jaya</span>
