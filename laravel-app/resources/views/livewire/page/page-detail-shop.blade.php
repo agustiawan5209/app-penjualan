@@ -3,7 +3,7 @@
     @include('sweetalert::alert')
 
     <section class="relative ">
-        <div class="container mx-auto px-4 pt-4 shadow-xl">
+        <div class="container mx-auto px-4 py-4 shadow-xl">
             <div class="flex flex-wrap -mx-4">
                 <div class="mx-auto px-4 relative w-full lg:w-6/12 w-full md:w-full">
                     <div class="relative">
@@ -19,15 +19,16 @@
                 </div>
                 <div class="mr-auto px-4 relative w-full lg:w-6/12 w-full md:w-full">
                     <h2 class="text-3xl font-bold leading-tight mt-0 mb-0">{{$barang->nama_barang}}</h2>
-                    <div class="pt-2">
+                    {{-- <div class="pt-2">
                         <div class="text-orange-500"><i class="mr-1 fas fa-star"></i><i class="mr-1 fas fa-star"></i><i
                                 class="mr-1 fas fa-star"></i><i class="mr-1 fas fa-star"></i><i
                                 class="mr-1 fas fa-star-half-alt"></i><a href="https://www.creative-tim.com"
                                 class="inline text-sm ml-1 text-reddarken-700 hover:text-reddarken-500">7</a></div>
-                    </div>
+                    </div> --}}
                     <h2 class="text-3xl font-normal mt-2 mb-2">Rp. {{number_format($barang->harga,0,2)}}</h2>
-                    <p class="text-reddarken-500">{{$barang->deskripsi}}</p>
-                    <div class="mt-12 mb-6 flex flex-wrap -mx-4">
+                    <p class="text-reddarken-500 border-b"> Keterangan : {{$barang->deskripsi}}</p>
+                    <div class="mt-12 mb-6 flex flex-wrap -mx-4 border-b">
+                        <label class="inline-block mb-2" >Katalog : </label>
                         <div class="px-4 relative w-full lg:w-6/12">
                             @foreach ($barang->katalog as $item)
                                 <label class="inline-block mb-2">{{$item->nama_katalog}}</label>
@@ -37,7 +38,6 @@
                     </div>
                     <div class="mb-6 flex flex-wrap -mx-4">
                         <div class="px-4 relative w-full lg:w-5/12">
-                            <label class="inline-block mb-2" >Jumlah</label>
                             <div class="relative inline-flex flex-row w-full items-stretch">
                                 <div class="mr-2"><button
                                         class="inline-block outline-none focus:outline-none align-middle transition-all duration-150 ease-in-out uppercase border border-solid font-bold last:mr-0 mr-2  text-white bg-orange-500 border-orange-500 active:bg-orange-600 active:border-orange-600 text-sm px-6 py-2 shadow hover:shadow-lg rounded-md" wire:click='countminus'>-</button></div>

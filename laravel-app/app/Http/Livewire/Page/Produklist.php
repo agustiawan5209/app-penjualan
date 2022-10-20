@@ -23,5 +23,9 @@ class Produklist extends Component
             'jenis'=> $jenis,
         ])->layout('layouts.guest');
     }
+    public function ShowDetail($id)
+    {
+        return redirect()->route('Shop-detail', ['itemID'=> $id]);
+    }
 
 }

@@ -27,14 +27,14 @@
 
 <body class="overflow-x-hidden">
     <!-- component -->
-    <header x-data="{ isOpen: false }" class="bg-gray-700 shadow-lg fixed top-0 z-[1000] w-full ">
+    <header x-data="{ isOpen: false }" class="bg-orange-500 shadow-lg fixed top-0 z-[1000] w-full ">
         <nav class="container mx-auto px-6 py-3">
             <div class="flex flex-col md:flex-row md:justify-between md:items-center">
                 <div class="flex justify-between items-center">
                     <div class="flex items-center">
-                        <a class="text-gray-800 text-xl font-bold md:text-2xl bg-white rounded-full px-3 group-hover:bg-white"
+                        <a class="text-gray-800 font-Times text-xl font-bold md:text-2xl bg-white rounded-full px-3 group-hover:bg-white"
                             href="#">
-                            <x-jet-application-logo />
+                            Irsan Jaya
                         </a>
 
                         <!-- Search input on desktop screen -->
@@ -67,20 +67,20 @@
                 <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
                 <div class="md:flex items-center" :class="isOpen ? 'block' : 'hidden'">
                     <div class="flex flex-col mt-2 md:flex-row md:mt-0 md:mx-1">
-                        <a class="my-1 text-sm text-white leading-5 hover:text-red-600 hover:underline md:mx-4 md:my-0"
+                        <a class="my-1 text-sm font-bold text-white leading-5 hover:text-red-600 hover:underline md:mx-4 md:my-0"
                             href="{{ route('home') }}">Home</a>
-                        <a class="my-1 text-sm text-white leading-5 hover:text-red-600 hover:underline md:mx-4 md:my-0"
+                        <a class="my-1 text-sm font-bold text-white leading-5 hover:text-red-600 hover:underline md:mx-4 md:my-0"
                             href="{{ route('shop') }}">Belanja</a>
-                        <a class="my-1 text-sm text-white leading-5 hover:text-red-600 hover:underline md:mx-4 md:my-0"
+                        <a class="my-1 text-sm font-bold text-white leading-5 hover:text-red-600 hover:underline md:mx-4 md:my-0"
                             href="{{ route('Promo-Diskon') }}">Promo</a>
-                        <a class="my-1 text-sm text-white leading-5 hover:text-red-600 hover:underline md:mx-4 md:my-0"
+                        <a class="my-1 text-sm font-bold text-white leading-5 hover:text-red-600 hover:underline md:mx-4 md:my-0"
                             href="{{ route('Keranjang') }}">Keranjang</a>
                     </div>
 
                     <div class="flex items-center py-2 -mx-1 md:mx-0">
                         <a class="block w-1/2 px-3 py-2 mx-1 rounded text-center text-sm bg-gray-500 font-medium text-white leading-5 hover:bg-blue-600 md:mx-2 md:w-auto"
                             href="{{ route('login') }}">Login</a>
-                        <a class="block w-1/2 px-3 py-2 mx-1 rounded text-center text-sm bg-blue-500 font-medium text-white leading-5 hover:bg-blue-600 md:mx-0 md:w-auto"
+                        <a class="block w-1/2 px-3 py-2 mx-1 rounded text-center text-sm bg-orange-500 font-medium text-white leading-5 hover:bg-orange-600 md:mx-0 md:w-auto"
                             href="{{ route('register') }}">Daftar Gratis</a>
                     </div>
 
