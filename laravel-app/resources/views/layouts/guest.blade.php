@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.2/dist/flowbite.min.css" /> --}}
 </head>
 
-<body class="overflow-hidden">
+<body class="overflow-x-hidden">
     <!-- component -->
     <header x-data="{ isOpen: false }" class="bg-gray-700 shadow-lg fixed top-0 z-[1000] w-full ">
         <nav class="container mx-auto px-6 py-3">
@@ -107,62 +107,8 @@
                     <polygon class="text-reddarken-100 fill-current" points="2560 0 2560 100 0 100"></polygon>
                 </svg>
             </div>
-            <div class="relative bg-reddarken-100 pt-8 pb-6">
+            <div class="relative bg-slate-100 pt-8 pb-6">
                 <div class="container mx-auto px-4">
-                    <div class="flex flex-wrap text-center lg:text-left">
-                        <div class="w-full lg:w-6/12 px-4">
-                            <h4 class="text-xl mt-4 font-bold">Let's keep in touch!</h4>
-                            <h5 class="mt-1 mb-2 text-reddarken-500">Find us on any of these platforms, we respond 1-2
-                                business days.</h5>
-                            <div class="mt-6 lg:mb-0 mb-6"><a href="https://twitter.com/CreativeTim/" target="_blank"
-                                    class="bg-white text-twitter-regular shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 inline-flex"
-                                    type="button"><i class="fab fa-twitter"></i></a><a
-                                    href="https://www.facebook.com/CreativeTim/" target="_blank"
-                                    class="bg-white text-facebook-regular shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 inline-flex"
-                                    type="button"><i class="fab fa-facebook"></i></a><a
-                                    href="https://dribbble.com/creativetim" target="_blank"
-                                    class="bg-white text-dribbble-regular shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 inline-flex"
-                                    type="button"><i class="fab fa-dribbble"></i></a><a
-                                    href="https://github.com/creativetimofficial" target="_blank"
-                                    class="bg-white text-github-regular shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 inline-flex"
-                                    type="button"><i class="fab fa-github"></i></a></div>
-                        </div>
-                        <div class="w-full lg:w-6/12 px-4">
-                            <div class="flex flex-wrap items-top mb-6">
-                                <div class="w-full lg:w-4/12 px-4 ml-auto">
-                                    <span class="block uppercase text-xs font-bold mb-2">Useful Links</span>
-                                    <ul class="list-unstyled"><a
-                                            href="https://www.creative-tim.com/presentation?npr-landing-1"
-                                            target="_blank"
-                                            class="text-reddarken-500 hover:text-reddarken-700 block pb-2 text-sm">About
-                                            Us</a><a href="https://www.creative-tim.com/blog?npr-landing-1"
-                                            target="_blank"
-                                            class="text-reddarken-500 hover:text-reddarken-700 block pb-2 text-sm">Blog</a><a
-                                            href="https://github.com/creativetimofficial" target="_blank"
-                                            class="text-reddarken-500 hover:text-reddarken-700 block pb-2 text-sm">Github</a><a
-                                            href="https://www.creative-tim.com/templates/free?npr-landing-1"
-                                            target="_blank"
-                                            class="text-reddarken-500 hover:text-reddarken-700 block pb-2 text-sm">Free
-                                            Products</a></ul>
-                                </div>
-                                <div class="w-full lg:w-4/12 px-4 ml-auto">
-                                    <span class="block uppercase text-xs font-bold mb-2">Other Resources</span>
-                                    <ul class="list-unstyled"><a
-                                            href="https://www.creative-tim.com/license?npr-landing-1" target="_blank"
-                                            class="text-reddarken-500 hover:text-reddarken-700 block pb-2 text-sm">License</a><a
-                                            href="https://www.creative-tim.com/terms?npr-landing-1" target="_blank"
-                                            class="text-reddarken-500 hover:text-reddarken-700 block pb-2 text-sm">Terms
-                                            &amp; Conditions</a><a
-                                            href="https://www.creative-tim.com/privacy?npr-landing-1" target="_blank"
-                                            class="text-reddarken-500 hover:text-reddarken-700 block pb-2 text-sm">Privacy
-                                            Policy</a><a href="https://www.creative-tim.com/contact-us?npr-landing-1"
-                                            target="_blank"
-                                            class="text-reddarken-500 hover:text-reddarken-700 block pb-2 text-sm">Contact
-                                            Us</a></ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <hr class="my-6 border-reddarken-200">
                     <div class="flex flex-wrap items-center md:justify-between justify-center">
                         <div class="w-full md:w-4/12 px-4 mx-auto text-center">
@@ -185,16 +131,17 @@
             var owl = $('.owl-carousel');
             owl.owlCarousel({
                 loop: true,
+                autoplay:false,
                 nav: true,
                 animateIn : true,
                 margin: 10,
-                lazyload: true,
+                autoplayHoverPause : true,
                 responsive: {
                     0: {
-                        items: 1
+                        items: 3
                     },
                     600: {
-                        items: 3
+                        items: 4
                     },
                     960: {
                         items: 5
