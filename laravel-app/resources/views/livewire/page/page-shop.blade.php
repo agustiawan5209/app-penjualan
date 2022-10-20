@@ -13,7 +13,7 @@
                 </div>
                 <div class="flex flex-wrap -mx-4 gap-4">
                     @foreach ($produk as $item)
-                    <div class="px-4 relative w-1/2 md:w-3/12 shadow-inner cursor-pointer" wire:click="ShowDetail({{$item->id}})">
+                    <div class=" relative w-1/2 md:w-[30%] shadow-lg cursor-pointe bg-white" wire:click="ShowDetail({{$item->id}})">
                         <div class="relative flex flex-col min-w-0 break-words w-full bg-transparent">
                             <div>
                                 {{-- <div class="h-8 text-center"><span
@@ -21,11 +21,11 @@
                                         collection</span></div> --}}
                                 <img alt="..." src="{{asset('upload/'. $item->gambar)}}" class="w-full p-6">
                             </div>
-                            <div class="p-6 flex-auto text-left">
-                                <h5 class=" text-xs md:text-2xl font-bold mt-0"><a href="javascript:;"
-                                        class="">{{$item->nama_barang}}</a></h5>
+                            <div class="py-6 px-5 flex-auto text-left bg-orange-400">
+                                <h5 class=" text-xs md:text-2xl text-center font-bold mt-0 bg-white"><a href="javascript:;"
+                                        class="text-black  w-full border-b border-white">{{$item->nama_barang}}</a></h5>
                                 <h5 class="text-xs md:text-sm">Jenis :{{$item->jenis->nama_jenis}}</h5>
-                                <span class="text-reddarken-700 text-xs md:text-lg">Rp.
+                                <span class="text-white text-xs md:text-lg">Rp.
                                     {{number_format($item->harga,0,2)}}</span>
                             </div>
                         </div>
