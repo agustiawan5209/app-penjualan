@@ -18,14 +18,14 @@
     <script src="{{ asset('js/sweetalert.all.js') }}"></script>
 
     @livewireStyles
-    <link rel="stylesheet" href="{{asset('css/owl.carousel.css')}}">
-    <link rel="stylesheet" href="{{asset('css/owl.theme.default.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
 
     {{--
     <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.2/dist/flowbite.min.css" /> --}}
 </head>
 
-<body>
+<body class="overflow-hidden">
     <!-- component -->
     <header x-data="{ isOpen: false }" class="bg-gray-700 shadow-lg fixed top-0 z-[1000] w-full ">
         <nav class="container mx-auto px-6 py-3">
@@ -40,11 +40,11 @@
                         <!-- Search input on desktop screen -->
                         <div class="mx-10 hidden md:block">
                             {{-- {{route('shop', ['jenis'=> $item->id])}} --}}
-                            <form action="{{route('shop')}}" method="get">
+                            <form action="{{ route('shop') }}" method="get">
                                 @csrf
                                 <input type="search"
-                                class="w-32 lg:w-64 px-4 py-3 leading-tight text-sm text-gray-700 bg-gray-100 rounded-md placeholder-gray-500 border border-transparent focus:outline-none focus:bg-white focus:shadow-outline focus:border-blue-400"
-                                placeholder="Search" name="jenis" aria-label="Search">
+                                    class="w-32 lg:w-64 px-4 py-3 leading-tight text-sm text-gray-700 bg-gray-100 rounded-md placeholder-gray-500 border border-transparent focus:outline-none focus:bg-white focus:shadow-outline focus:border-blue-400"
+                                    placeholder="Search" name="jenis" aria-label="Search">
                                 <button type="submit" class=" bg-white p-2 rounded-sm">Cari</button>
                             </form>
                         </div>
@@ -68,20 +68,20 @@
                 <div class="md:flex items-center" :class="isOpen ? 'block' : 'hidden'">
                     <div class="flex flex-col mt-2 md:flex-row md:mt-0 md:mx-1">
                         <a class="my-1 text-sm text-white leading-5 hover:text-red-600 hover:underline md:mx-4 md:my-0"
-                            href="{{route('home')}}">Home</a>
+                            href="{{ route('home') }}">Home</a>
                         <a class="my-1 text-sm text-white leading-5 hover:text-red-600 hover:underline md:mx-4 md:my-0"
-                            href="{{route('shop')}}">Belanja</a>
+                            href="{{ route('shop') }}">Belanja</a>
                         <a class="my-1 text-sm text-white leading-5 hover:text-red-600 hover:underline md:mx-4 md:my-0"
-                            href="{{route('Promo-Diskon')}}">Promo</a>
+                            href="{{ route('Promo-Diskon') }}">Promo</a>
                         <a class="my-1 text-sm text-white leading-5 hover:text-red-600 hover:underline md:mx-4 md:my-0"
-                            href="{{route('Keranjang')}}">Keranjang</a>
+                            href="{{ route('Keranjang') }}">Keranjang</a>
                     </div>
 
                     <div class="flex items-center py-2 -mx-1 md:mx-0">
                         <a class="block w-1/2 px-3 py-2 mx-1 rounded text-center text-sm bg-gray-500 font-medium text-white leading-5 hover:bg-blue-600 md:mx-2 md:w-auto"
-                            href="{{route('login')}}">Login</a>
+                            href="{{ route('login') }}">Login</a>
                         <a class="block w-1/2 px-3 py-2 mx-1 rounded text-center text-sm bg-blue-500 font-medium text-white leading-5 hover:bg-blue-600 md:mx-0 md:w-auto"
-                            href="{{route('register')}}">Daftar Gratis</a>
+                            href="{{ route('register') }}">Daftar Gratis</a>
                     </div>
 
                     <!-- Search input on mobile screen -->
@@ -99,7 +99,7 @@
     <main class="content mt-16 pt-3">
         {{ $slot }}
     </main>
-    <div class="w-full">
+    <div class="w-full relative bottom-0">
         <footer class="bg-gray-500">
             <div class="w-full pointer-events-none overflow-hidden h-70-px" style="transform: translateZ(0px);">
                 <svg class="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg"
@@ -177,43 +177,44 @@
     <!-- Start Footer -->
     @stack('modal')
     @livewireScripts
-    <script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
-    <script src="{{asset('js/owl.carousel.js')}}"></script>
-    <script src="{{asset('js/owl.lazyload.js')}}"></script>
+    <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('js/owl.carousel.js') }}"></script>
+    <script src="{{ asset('js/owl.lazyload.js') }}"></script>
     <script>
-        $(document).ready(function(){
+        $(document).ready(function() {
             var owl = $('.owl-carousel');
-owl.owlCarousel({
-    loop:true,
-    nav:true,
-    margin:10,
-    lazyload :true,
-    responsive:{
-        0:{
-            items:1
-        },
-        600:{
-            items:3
-        },
-        960:{
-            items:5
-        },
-        1200:{
-            items:6
-        }
-    },
-    smartSpeed : 2000,
-    dragEndSpeed : true,
-});
-owl.on('mousewheel', '.owl-stage', function (e) {
-    if (e.deltaY>0) {
-        owl.trigger('next.owl');
-    } else {
-        owl.trigger('prev.owl');
-    }
-    e.preventDefault();
-});
-});
+            owl.owlCarousel({
+                loop: true,
+                nav: true,
+                animateIn : true,
+                margin: 10,
+                lazyload: true,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 3
+                    },
+                    960: {
+                        items: 5
+                    },
+                    1200: {
+                        items: 6
+                    }
+                },
+                smartSpeed: 2000,
+                dragEndSpeed: true,
+            });
+            owl.on('mousewheel', '.owl-stage', function(e) {
+                if (e.deltaY > 0) {
+                    owl.trigger('next.owl');
+                } else {
+                    owl.trigger('prev.owl');
+                }
+                e.preventDefault();
+            });
+        });
     </script>
 </body>
 
