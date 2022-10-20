@@ -26,7 +26,7 @@ class PageBarang extends Component
     public $katalog = [];
     public $dataKatalog = [];
     public $gambar, $kode_barang, $jenis_id, $satuan_id, $harga, $deskripsi, $tgl_perolehan, $itemID, $nama_barang, $stock;
-    public $updateFoto;
+    public $updateFoto, $gambar_jenis;
 
     public function render()
     {
@@ -225,7 +225,7 @@ class PageBarang extends Component
         $editJenis = false,
         $hapusJenis = false;
     // field tabel jenis;
-    public $nama_Jenis, $gambar_jenis;
+    public $nama_Jenis;
     public function tambahJenis()
     {
         $this->addJenis = true;
@@ -251,14 +251,17 @@ class PageBarang extends Component
         $nama = $this->gambar_jenis->getClientOriginalName();
         $this->gambar_jenis->storeAs('upload/jenis', $nama);
         Jenis::create([
-            'gambar' => $this->gambar_jenis,
+            'gambar' => $nama,
             'nama_jenis' => $this->nama_Jenis,
         ]);
+        Alert::success("Info", 'Berhasil Di Tambah');
+
     }
     public function editJenis($id)
     {
         $this->validate([
             'nama_Jenis' => 'required',
+            'gambar_jenis' => ['required', 'image'],
         ]);
         $jns = Jenis::find($id);
         if ($this->gambar_jenis != null) {
@@ -267,12 +270,16 @@ class PageBarang extends Component
 
                 Storage::delete('upload/jenis/' . $jns->gambar);
                 $this->gambar_jenis->storeAs('upload/jenis', $nama);
+            } else {
+                $nama = $this->gambar_jenis->getClientOriginalName();
+                $this->gambar_jenis->storeAs('upload/jenis', $nama);
             }
         }
         Jenis::where('id', $id)->update([
-            'gambar' => $this->gambar_jenis,
+            'gambar' => $nama,
             'nama_jenis' => $this->nama_Jenis,
         ]);
+        Alert::success("Info", 'Berhasil Di Edit');
         $this->editJenis = false;
     }
     public function hapusJenis($id)

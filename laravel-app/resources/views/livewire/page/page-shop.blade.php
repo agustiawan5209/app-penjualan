@@ -32,7 +32,7 @@
                     </div>
                     @endforeach
                     @if ($produk->count() == 10)
-                        <div class="mx-auto mt-12"><button
+                        <div class="mx-auto mt-12"><button wire:click="loadmore"
                                 class="inline-block outline-none focus:outline-none align-middle transition-all duration-150 ease-in-out uppercase border border-solid font-bold last:mr-0 mr-2  text-white bg-pink-500 border-pink-500 active:bg-pink-600 active:border-pink-600 text-sm px-6 py-2 shadow hover:shadow-lg rounded-md">Load
                                 more...</button></div>
                     @endif

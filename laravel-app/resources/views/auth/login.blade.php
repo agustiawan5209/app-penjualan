@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <div class="container mx-auto flex justify-center">
+    <div class="container mx-auto flex justify-center pt-10">
         <div class="w-full md:w-1/2">
             <form action="{{route('login')}}" method="POST" class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-reddarken-100">
                 @csrf

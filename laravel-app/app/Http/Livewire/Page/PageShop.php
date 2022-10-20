@@ -15,6 +15,7 @@ class PageShop extends Component
     public $showDetail = false;
     public $itemID;
     public $alert = false;
+    public $row =10;
 
     // get Param URL
     public $nama_jenis;
@@ -35,12 +36,16 @@ class PageShop extends Component
 
     public function render()
     {
+        // dd($this->nama_jenis);
         $produk = Barang::with(['satuan', 'jenis','diskon'])->paginate(10);
         $jenis = Jenis::all();
         if($this->nama_jenis != null){
             $produk = Barang::with(['satuan', 'jenis','diskon'])
-            ->where('jenis_id', '=', $this->nama_jenis)
-            ->paginate(10);
+            ->orWhere('jenis_id', '=', $this->nama_jenis)
+            ->orWhereHas('jenis', function($query){
+                return $query->where('nama_jenis', 'like', '%'. $this->nama_jenis .'%');
+            })
+            ->paginate($this->row);
         }
         return view('livewire.page.page-shop', [
             'produk' => $produk,
@@ -85,5 +90,8 @@ class PageShop extends Component
             // example:
             Alert::info('Maaf Silahkan Login Terlebih Dahulu', 'error');
         }
+    }
+    public function loadmore(){
+        $this->row = $this->row + 10;
     }
 }

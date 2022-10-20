@@ -18,24 +18,35 @@
     <script src="{{ asset('js/sweetalert.all.js') }}"></script>
 
     @livewireStyles
+    <link rel="stylesheet" href="{{asset('css/owl.carousel.css')}}">
+    <link rel="stylesheet" href="{{asset('css/owl.theme.default.min.css')}}">
+
     {{--
     <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.2/dist/flowbite.min.css" /> --}}
 </head>
 
 <body>
     <!-- component -->
-    <header x-data="{ isOpen: false }" class="bg-white shadow">
+    <header x-data="{ isOpen: false }" class="bg-gray-700 shadow-lg fixed top-0 z-[1000] w-full ">
         <nav class="container mx-auto px-6 py-3">
             <div class="flex flex-col md:flex-row md:justify-between md:items-center">
                 <div class="flex justify-between items-center">
                     <div class="flex items-center">
-                        <a class="text-gray-800 text-xl font-bold md:text-2xl hover:text-gray-700" href="#"><x-jet-application-logo /></a>
+                        <a class="text-gray-800 text-xl font-bold md:text-2xl bg-white rounded-full px-3 group-hover:bg-white"
+                            href="#">
+                            <x-jet-application-logo />
+                        </a>
 
                         <!-- Search input on desktop screen -->
                         <div class="mx-10 hidden md:block">
-                            <input type="text"
+                            {{-- {{route('shop', ['jenis'=> $item->id])}} --}}
+                            <form action="{{route('shop')}}" method="get">
+                                @csrf
+                                <input type="search"
                                 class="w-32 lg:w-64 px-4 py-3 leading-tight text-sm text-gray-700 bg-gray-100 rounded-md placeholder-gray-500 border border-transparent focus:outline-none focus:bg-white focus:shadow-outline focus:border-blue-400"
-                                placeholder="Search" aria-label="Search">
+                                placeholder="Search" name="jenis" aria-label="Search">
+                                <button type="submit" class=" bg-white p-2 rounded-sm">Cari</button>
+                            </form>
                         </div>
                     </div>
 
@@ -56,13 +67,13 @@
                 <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
                 <div class="md:flex items-center" :class="isOpen ? 'block' : 'hidden'">
                     <div class="flex flex-col mt-2 md:flex-row md:mt-0 md:mx-1">
-                        <a class="my-1 text-sm text-gray-700 leading-5 hover:text-blue-600 hover:underline md:mx-4 md:my-0"
+                        <a class="my-1 text-sm text-white leading-5 hover:text-red-600 hover:underline md:mx-4 md:my-0"
                             href="{{route('home')}}">Home</a>
-                        <a class="my-1 text-sm text-gray-700 leading-5 hover:text-blue-600 hover:underline md:mx-4 md:my-0"
+                        <a class="my-1 text-sm text-white leading-5 hover:text-red-600 hover:underline md:mx-4 md:my-0"
                             href="{{route('shop')}}">Belanja</a>
-                        <a class="my-1 text-sm text-gray-700 leading-5 hover:text-blue-600 hover:underline md:mx-4 md:my-0"
+                        <a class="my-1 text-sm text-white leading-5 hover:text-red-600 hover:underline md:mx-4 md:my-0"
                             href="{{route('Promo-Diskon')}}">Promo</a>
-                        <a class="my-1 text-sm text-gray-700 leading-5 hover:text-blue-600 hover:underline md:mx-4 md:my-0"
+                        <a class="my-1 text-sm text-white leading-5 hover:text-red-600 hover:underline md:mx-4 md:my-0"
                             href="{{route('Keranjang')}}">Keranjang</a>
                     </div>
 
@@ -85,7 +96,9 @@
     </header>
 
 
-    {{ $slot }}
+    <main class="content mt-16 pt-3">
+        {{ $slot }}
+    </main>
     <div class="w-full">
         <footer class="bg-gray-500">
             <div class="w-full pointer-events-none overflow-hidden h-70-px" style="transform: translateZ(0px);">
@@ -164,7 +177,44 @@
     <!-- Start Footer -->
     @stack('modal')
     @livewireScripts
-
+    <script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
+    <script src="{{asset('js/owl.carousel.js')}}"></script>
+    <script src="{{asset('js/owl.lazyload.js')}}"></script>
+    <script>
+        $(document).ready(function(){
+            var owl = $('.owl-carousel');
+owl.owlCarousel({
+    loop:true,
+    nav:true,
+    margin:10,
+    lazyload :true,
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:3
+        },
+        960:{
+            items:5
+        },
+        1200:{
+            items:6
+        }
+    },
+    smartSpeed : 2000,
+    dragEndSpeed : true,
+});
+owl.on('mousewheel', '.owl-stage', function (e) {
+    if (e.deltaY>0) {
+        owl.trigger('next.owl');
+    } else {
+        owl.trigger('prev.owl');
+    }
+    e.preventDefault();
+});
+});
+    </script>
 </body>
 
 </html>

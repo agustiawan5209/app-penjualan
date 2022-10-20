@@ -1,14 +1,16 @@
 <div class="px-4  mx-auto w-full">
     <div class="flex flex-wrap mt-4">
         <div class="w-full my-6 px-4">
+            @include('sweetalert::alert')
             <div
                 class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white text-black">
                 <div class="rounded-t mb-0 px-4 py-3 border-0">
                     <div class="flex flex-wrap items-center">
+                    <x-jet-validation-errors />
                         <form class="relative w-full px-4 max-w-full flex-grow flex-1">
                             <div class="mb-3">
                                 <x-jet-label for='gambar_jenis'>Gambar</x-jet-label>
-                                <x-jet-input  type="file" wire:model='gambar_Jenis' />
+                                <x-jet-input  type="file" wire:model='gambar_jenis' />
                             </div>
                             <div class="mb-3">
                                 <x-jet-label for='nama_jenis'>Nama Jenis</x-jet-label>

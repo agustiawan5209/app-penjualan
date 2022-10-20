@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('jenis', function (Blueprint $table) {
             $table->id();
             $table->string('gambar')->nullable();
-            $table->string('nama_jenis', 20);
+            $table->string('nama_jenis', 20)->unique();
             $table->timestamps();
         });
     }
