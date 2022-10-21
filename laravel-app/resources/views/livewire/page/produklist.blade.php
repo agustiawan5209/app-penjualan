@@ -1,13 +1,13 @@
 <div class="w-full">
    @include('livewire.katalog')
-    <section class="relative pb-12 bg-gray-100 pt-5">
+    <section class="relative pb-12 bg-gray-100 pt-5 hero-shop">
         <div class="container mx-auto px-4">
-            <div class="mb-12 flex flex-wrap -mx-4 justify-start">
+            <div class="mb-5 flex flex-wrap -mx-4 justify-start">
                 <div class="px-4 relative w-full lg:w-8/12 text-left">
-                    <h6 class="mb-2 text-lg font-bold uppercase text-orange-500">Produk Kami</h6>
+                    <h6 class="mb-2 text-lg font-bold uppercase text-green-500">Produk Kami</h6>
                 </div>
             </div>
-            <div class="flex flex-wrap -mx-4">
+            <div class="flex flex-wrap -mx-4" >
                 @foreach ($produk as $item)
                 <div class=" relative w-1/2 md:w-[30%] shadow-lg cursor-pointe bg-white" wire:click="ShowDetail({{$item->id}})">
                     <div class="relative flex flex-col min-w-0 break-words w-full bg-transparent">

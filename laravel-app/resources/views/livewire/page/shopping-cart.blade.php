@@ -1,7 +1,7 @@
-<section class="h-100 h-custom" style="background-color: #eee;">
+<section class="h-full h-custom" style="background-color: #eee;">
     @include('sweetalert::alert')
-    <div class="w-full container md:px-6 px-2 shadow-2xl ">
-        <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg">
+    <div class="w-full md:px-6 px-2 py-10 shadow-2xl ">
+        <div class="relative flex justify-center mx-auto min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg">
             <div class="px-4 py-5 flex-auto">
                 @foreach ($cart as $item)
                 <div class="items-center my-4 flex items-start">
@@ -31,7 +31,7 @@
                     <hr class="mt-4 mb-2 bg-reddarken-300 ml-0">
                     <div class="flex justify-between">
                         <h6 class="text-reddarken-700 leading-normal mt-0 mb-2">Total</h6>
-                        <h6 class="leading-normal mt-0 mb-2">Rp. {{$total_bayar}}</h6>
+                        <h6 class="leading-normal mt-0 mb-2">Rp. {{number_format($total_bayar)}}</h6>
                     </div>
                 </div>
                 <div>

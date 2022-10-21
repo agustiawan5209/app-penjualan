@@ -3,7 +3,7 @@
         <section class="flex relative items-center p-0 min-h-screen z-0">
             <div class="absolute w-full h-full block bg-black opacity-50 z-1 left-0 top-0"></div>
             <div class="bg-gray-800 w-full h-full absolute bg-cover bg-50"
-                style="background-image: url({{asset('img/mufid-majnun-5QFq8wOLpqE-unsplash.jpg')}});"></div>
+                style="background-image: url({{asset('mike-petrucci-c9FQyqIECds-unsplash.jpg')}});  background-attachment: fixed;"></div>
             <div class="relative h-full text-center text-white container mx-auto px-4 z-2 mb-24">
                 <div class="justify-center flex flex-wrap -mx-4">
                     <div class="px-12 relative w-full md:w-8/12">

@@ -22,6 +22,13 @@
 
     {{--
     <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.2/dist/flowbite.min.css" /> --}}
+<style>
+    .hero-shop{
+        background-image: url('img/elcarito-MHNjEBeLTgw-unsplash.jpg');
+        background-size:cover;
+        background-attachment: fixed;
+    }
+</style>
 </head>
 
 <body class="overflow-x-hidden">
@@ -100,18 +107,12 @@
     </main>
     <div class="w-full relative bottom-0">
         <footer class="bg-green-500">
-            <div class="w-full pointer-events-none overflow-hidden h-70-px" style="transform: translateZ(0px);">
-                <svg class="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg"
-                    preserveAspectRatio="none" version="1.1" viewBox="0 0 2560 100" x="0" y="0">
-                    <polygon class="text-reddarken-100 fill-current" points="2560 0 2560 100 0 100"></polygon>
-                </svg>
-            </div>
-            <div class="relative bg-slate-100 pt-8 pb-6">
+            <div class="relative bg-green-500 py-2">
                 <div class="container mx-auto px-4">
-                    <hr class="my-6 border-reddarken-200">
+                    <hr class="my-6">
                     <div class="flex flex-wrap items-center md:justify-between justify-center">
                         <div class="w-full md:w-4/12 px-4 mx-auto text-center">
-                            <div class="text-sm text-reddarken-500 py-1">Copyright © 2021 Notus Design System PRO by
+                            <div class="text-sm text-white py-1">Copyright © 2021 Notus Design System PRO by
                                 Creative Tim.</div>
                         </div>
                     </div>
@@ -130,11 +131,11 @@
             var owl = $('.owl-carousel');
             owl.owlCarousel({
                 loop: true,
-                autoplay:true,
+                // autoplay:true,
                 nav: true,
-                animateIn : true,
+                // animateIn : true,
                 margin: 10,
-                autoplayHoverPause : true,
+                // autoplayHoverPause : true,
                 responsive: {
                     0: {
                         items: 3
