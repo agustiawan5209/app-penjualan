@@ -12,9 +12,7 @@
     <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
 
     <!-- Scripts -->
-    {{-- @vite(['resources/js/app.js', 'resources/css/app.css']) --}}
-    <link rel="stylesheet" href="{{asset('build/assets/app.ddcaad54.css')}}">
-    @vite(['resources/js/app.js'])
+    @vite(['resources/js/app.js', 'resources/css/app.css'])
 
     <script src="{{ asset('js/sweetalert.all.js') }}"></script>
 
@@ -28,7 +26,7 @@
 
 <body class="overflow-x-hidden">
     <!-- component -->
-    <header x-data="{ isOpen: false }" class="bg-orange-500 shadow-lg fixed top-0 z-[1000] w-full ">
+    <header x-data="{ isOpen: false }" class="bg-green-500 shadow-lg fixed top-0 z-[1000] w-full ">
         <nav class="container mx-auto px-6 py-3">
             <div class="flex flex-col md:flex-row md:justify-between md:items-center">
                 <div class="flex justify-between items-center">
@@ -81,7 +79,7 @@
                     <div class="flex items-center py-2 -mx-1 md:mx-0">
                         <a class="block w-1/2 px-3 py-2 mx-1 rounded text-center text-sm bg-gray-500 font-medium text-white leading-5 hover:bg-blue-600 md:mx-2 md:w-auto"
                             href="{{ route('login') }}">Login</a>
-                        <a class="block w-1/2 px-3 py-2 mx-1 rounded text-center text-sm bg-orange-500 font-medium text-white leading-5 hover:bg-orange-600 md:mx-0 md:w-auto"
+                        <a class="block w-1/2 px-3 py-2 mx-1 rounded text-center text-sm bg-green-500 font-medium text-white leading-5 hover:bg-green-600 md:mx-0 md:w-auto"
                             href="{{ route('register') }}">Daftar Gratis</a>
                     </div>
 
@@ -101,7 +99,7 @@
         {{ $slot }}
     </main>
     <div class="w-full relative bottom-0">
-        <footer class="bg-gray-500">
+        <footer class="bg-green-500">
             <div class="w-full pointer-events-none overflow-hidden h-70-px" style="transform: translateZ(0px);">
                 <svg class="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg"
                     preserveAspectRatio="none" version="1.1" viewBox="0 0 2560 100" x="0" y="0">
@@ -126,13 +124,13 @@
     @livewireScripts
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('js/owl.carousel.js') }}"></script>
-    <script src="{{ asset('js/owl.lazyload.js') }}"></script>
+    {{-- <script src="{{ asset('js/owl.lazyload.js') }}"></script> --}}
     <script>
         $(document).ready(function() {
             var owl = $('.owl-carousel');
             owl.owlCarousel({
                 loop: true,
-                autoplay:false,
+                autoplay:true,
                 nav: true,
                 animateIn : true,
                 margin: 10,

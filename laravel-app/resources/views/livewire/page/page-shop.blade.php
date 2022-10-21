@@ -21,7 +21,7 @@
                                         collection</span></div> --}}
                                 <img alt="..." src="{{asset('upload/'. $item->gambar)}}" class="w-full p-6">
                             </div>
-                            <div class="py-6 px-5 flex-auto text-left bg-orange-400">
+                            <div class="py-6 px-5 flex-auto text-left bg-green-400">
                                 <h5 class=" text-xs md:text-2xl text-center font-bold mt-0 bg-white"><a href="javascript:;"
                                         class="text-black  w-full border-b border-white">{{$item->nama_barang}}</a></h5>
                                 <h5 class="text-xs md:text-sm">Jenis :{{$item->jenis->nama_jenis}}</h5>

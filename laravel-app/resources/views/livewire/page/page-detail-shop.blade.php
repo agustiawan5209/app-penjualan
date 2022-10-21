@@ -40,19 +40,19 @@
                         <div class="px-4 relative w-full lg:w-5/12">
                             <div class="relative inline-flex flex-row w-full items-stretch">
                                 <div class="mr-2"><button
-                                        class="inline-block outline-none focus:outline-none align-middle transition-all duration-150 ease-in-out uppercase border border-solid font-bold last:mr-0 mr-2  text-white bg-orange-500 border-orange-500 active:bg-orange-600 active:border-orange-600 text-sm px-6 py-2 shadow hover:shadow-lg rounded-md" wire:click='countminus'>-</button></div>
+                                        class="inline-block outline-none focus:outline-none align-middle transition-all duration-150 ease-in-out uppercase border border-solid font-bold last:mr-0 mr-2  text-white bg-green-500 border-orange-500 active:bg-green-600 active:border-orange-600 text-sm px-6 py-2 shadow hover:shadow-lg rounded-md" wire:click='countminus'>-</button></div>
                                 <div class="mr-2">
                                     <div class="mb-3 pt-0"><input type="text"
                                             class="border-reddarken-300 px-3 py-2 text-sm  w-full placeholder-reddarken-200 text-reddarken-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200 "
                                             wire:model="count"></div>
                                 </div>
                                 <div><button
-                                        class="inline-block outline-none focus:outline-none align-middle transition-all duration-150 ease-in-out uppercase border border-solid font-bold last:mr-0 mr-2  text-white bg-orange-500 border-orange-500 active:bg-orange-600 active:border-orange-600 text-sm px-6 py-2 shadow hover:shadow-lg rounded-md" wire:click='countplus'>+</button></div>
+                                        class="inline-block outline-none focus:outline-none align-middle transition-all duration-150 ease-in-out uppercase border border-solid font-bold last:mr-0 mr-2  text-white bg-green-500 border-orange-500 active:bg-green-600 active:border-orange-600 text-sm px-6 py-2 shadow hover:shadow-lg rounded-md" wire:click='countplus'>+</button></div>
                             </div>
                         </div>
                     </div>
                     <button
-                        class="inline-block outline-none focus:outline-none align-middle transition-all duration-150 ease-in-out uppercase border border-solid font-bold last:mr-0 mr-2  text-white bg-orange-500 border-orange-500 active:bg-orange-600 active:border-orange-600 text-sm px-6 py-2 shadow hover:shadow-lg rounded-md" wire:click='addToCart({{$barang->id}})'>Keranjang <i class="fas fa-shopping-cart"></i></button>
+                        class="inline-block outline-none focus:outline-none align-middle transition-all duration-150 ease-in-out uppercase border border-solid font-bold last:mr-0 mr-2  text-white bg-green-500 border-orange-500 active:bg-green-600 active:border-orange-600 text-sm px-6 py-2 shadow hover:shadow-lg rounded-md" wire:click='addToCart({{$barang->id}})'>Keranjang <i class="fas fa-shopping-cart"></i></button>
                 </div>
             </div>
         </div>
