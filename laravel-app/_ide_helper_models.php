@@ -15,11 +15,11 @@ namespace App\Models{
  * App\Models\Bank
  *
  * @property int $id
+ * @property string $nama_pemilik
  * @property string $nama_bank
  * @property string $no_rek
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string|null $nama_pemilik
  * @method static \Illuminate\Database\Eloquent\Builder|Bank newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Bank newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Bank query()
@@ -45,7 +45,7 @@ namespace App\Models{
  * @property int $stock
  * @property string $deskripsi
  * @property int $satuan_id
- * @property int $jenis_id
+ * @property int|null $jenis_id
  * @property string $tgl_perolehan
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -112,14 +112,18 @@ namespace App\Models{
  * App\Models\Jenis
  *
  * @property int $id
+ * @property string|null $gambar
  * @property string $nama_jenis
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Barang|null $barang
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Katalog[] $katalog
+ * @property-read int|null $katalog_count
  * @method static \Illuminate\Database\Eloquent\Builder|Jenis newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Jenis newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Jenis query()
  * @method static \Illuminate\Database\Eloquent\Builder|Jenis whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Jenis whereGambar($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Jenis whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Jenis whereNamaJenis($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Jenis whereUpdatedAt($value)
@@ -132,7 +136,7 @@ namespace App\Models{
  * App\Models\Katalog
  *
  * @property int $id
- * @property int $barang_id
+ * @property int $jenis_id
  * @property string $nama_katalog
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -140,9 +144,9 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Katalog newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Katalog newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Katalog query()
- * @method static \Illuminate\Database\Eloquent\Builder|Katalog whereBarangId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Katalog whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Katalog whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Katalog whereJenisId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Katalog whereNamaKatalog($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Katalog whereUpdatedAt($value)
  */
@@ -215,7 +219,7 @@ namespace App\Models{
  * @property int $id
  * @property string $transaksi_id
  * @property string|null $tgl_pengiriman
- * @property int|null $harga
+ * @property int $harga
  * @property string $kode_pos
  * @property string $kabupaten
  * @property string $detail_alamat
