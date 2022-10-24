@@ -6,11 +6,12 @@
         type="button">
         Tambah Barang
     </button>
-    <button wire:click='tambahJenis()'
+    <a href='{{route('Admin.Page-Jenis')}}'
         class="bg-white text-black shadow-lg font-normal w-32 py-2 rounded-md items-center justify-center align-center outline-none focus:outline-none mr-2"
         type="button">
         Tambah Jenis
-    </button>
+    </a>
+
     <x-table wire:loading.delay wire:target="barang" wire:loading.class="bg-gray">
 
         <x-slot name="filter"></x-slot>
@@ -218,16 +219,7 @@
             </x-jet-secondary-button>
         </x-slot>
     </x-jet-dialog-modal>
-    <x-jet-dialog-modal wire:model.defer='addJenis' maxWidth="2xl">
-        <x-slot name='title'></x-slot>
-        <x-slot name='content'>
-            @include('page.katalog.modal')
-        </x-slot>
-        <x-slot name='footer'>
-            <x-jet-secondary-button wire:click="$toggle('addJenis')" wire:loading.attr='disabled'>Close
-            </x-jet-secondary-button>
-        </x-slot>
-    </x-jet-dialog-modal>
+
     @if ($itemTambah == true)
         <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-100 border-0"
             x-data="{ katalog: @entangle('katalog') }">

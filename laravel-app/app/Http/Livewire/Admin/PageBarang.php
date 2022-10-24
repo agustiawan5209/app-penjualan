@@ -26,7 +26,7 @@ class PageBarang extends Component
     public $katalog = [];
     public $dataKatalog = [];
     public $gambar, $kode_barang, $jenis_id, $satuan_id, $harga, $deskripsi, $tgl_perolehan, $itemID, $nama_barang, $stock;
-    public $updateFoto, $gambar_jenis;
+    public $updateFoto;
 
     public function render()
     {
@@ -157,12 +157,12 @@ class PageBarang extends Component
             'tgl_perolehan' => $this->tgl_perolehan,
             'stock' => $this->stock,
         ]);
-        for ($i = 0; $i < count($this->katalog); $i++) {
-            Katalog::create([
-                'barang_id' => $barang->id,
-                'nama_katalog' => $this->katalog[$i],
-            ]);
-        }
+        // for ($i = 0; $i < count($this->katalog); $i++) {
+        //     Katalog::create([
+        //         'barang_id' => $barang->id,
+        //         'nama_katalog' => $this->katalog[$i],
+        //     ]);
+        // }
         Alert::info('message', 'Berhasil Ditambah');
         $this->itemTambah = false;
         $this->gambar = null;
@@ -203,12 +203,12 @@ class PageBarang extends Component
             'tgl_perolehan' => $this->tgl_perolehan,
             'stock' => $this->stock,
         ]);
-        for ($i = 0; $i < count($this->katalog); $i++) {
-            Katalog::create([
-                'barang_id' => $id,
-                'nama_katalog' => $this->katalog[$i],
-            ]);
-        }
+        // for ($i = 0; $i < count($this->katalog); $i++) {
+        //     Katalog::create([
+        //         'barang_id' => $id,
+        //         'nama_katalog' => $this->katalog[$i],
+        //     ]);
+        // }
         $this->itemEdit = false;
         Alert::info('message', 'Berhasil Di Edit');
     }
@@ -219,74 +219,6 @@ class PageBarang extends Component
         $this->itemHapus = false;
     }
 
-    // Crud Jenis
-    // itemJenis
-    public $addJenis = false,
-        $editJenis = false,
-        $hapusJenis = false;
-    // field tabel jenis;
-    public $nama_Jenis;
-    public function tambahJenis()
-    {
-        $this->addJenis = true;
-    }
-    public function editJenisModal($id)
-    {
-        $jenis = Jenis::find($id);
-        $this->nama_Jenis = $jenis->nama_jenis;
-        $this->itemID = $jenis->id;
-        $this->editJenis = true;
-    }
-    public function hapusJenisModal($id)
-    {
-        $jenis = Jenis::find($id);
-        $this->itemID = $jenis->id;
-    }
-
-    public function createJenis()
-    {
-        $this->validate([
-            'nama_Jenis' => 'required',
-        ]);
-        $nama = $this->gambar_jenis->getClientOriginalName();
-        $this->gambar_jenis->storeAs('upload/jenis', $nama);
-        Jenis::create([
-            'gambar' => $nama,
-            'nama_jenis' => $this->nama_Jenis,
-        ]);
-        Alert::success("Info", 'Berhasil Di Tambah');
-
-    }
-    public function editJenis($id)
-    {
-        $this->validate([
-            'nama_Jenis' => 'required',
-            'gambar_jenis' => ['required', 'image'],
-        ]);
-        $jns = Jenis::find($id);
-        if ($this->gambar_jenis != null) {
-            if (Storage::exists('upload/jenis/' . $jns->gambar)) {
-                $nama = $this->gambar_jenis->getClientOriginalName();
-
-                Storage::delete('upload/jenis/' . $jns->gambar);
-                $this->gambar_jenis->storeAs('upload/jenis', $nama);
-            } else {
-                $nama = $this->gambar_jenis->getClientOriginalName();
-                $this->gambar_jenis->storeAs('upload/jenis', $nama);
-            }
-        }
-        Jenis::where('id', $id)->update([
-            'gambar' => $nama,
-            'nama_jenis' => $this->nama_Jenis,
-        ]);
-        Alert::success("Info", 'Berhasil Di Edit');
-        $this->editJenis = false;
-    }
-    public function hapusJenis($id)
-    {
-        Jenis::find($id)->delete();
-        $this->hapusJenis = false;
-    }
 
     // Satuan
     // Crud Satuan

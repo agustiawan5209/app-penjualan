@@ -10,6 +10,7 @@ use App\Http\Livewire\Admin\Dashboard;
 use App\Http\Livewire\Admin\Laporan;
 use App\Http\Livewire\Admin\PageBarang;
 use App\Http\Livewire\Admin\PageDiskon;
+use App\Http\Livewire\Admin\PageJenis;
 use App\Http\Livewire\Admin\PagePenjualan;
 use App\Http\Livewire\Admin\PagePromo;
 use App\Http\Livewire\Admin\PageVOucher;
@@ -64,6 +65,7 @@ Route::middleware([
         Route::get('Page-Voucher', PageVOucher::class)->name('Page-Voucher');
         Route::get('Metode-bayar', MetodeBayar::class)->name('Metode-Bayar');
         Route::get('Slide-Setting', SlideSetting::class)->name('Slide-setting');
+        Route::get('Page-Jenis', PageJenis::class)->name('Page-Jenis');
 
     });
     // Akses User
