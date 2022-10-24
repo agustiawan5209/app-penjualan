@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin;
 
 use App\Models\Jenis;
+use App\Models\Katalog;
 use Livewire\Component;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -12,9 +13,9 @@ class PageJenis extends Component
     // itemJenis
     public $addJenis = false,
         $editJenis = false,
-        $hapusJenis = false;
+        $hapusJenis = false, $itemKatalog = false;
     // field tabel jenis;
-    public $nama_Jenis, $gambar_jenis;
+    public $nama_Jenis, $gambar_jenis, $dataKatalog,$addKatalog = false ,$itemID, $nama_katalog;
     public function render()
     {
         $jenis = Jenis::all();
@@ -32,7 +33,9 @@ class PageJenis extends Component
     {
         $jenis = Jenis::find($id);
         $this->nama_Jenis = $jenis->nama_jenis;
+        $this->gambar_jenis = $jenis->gambar;
         $this->itemID = $jenis->id;
+        $this->addJenis = true;
         $this->editJenis = true;
     }
     public function hapusJenisModal($id)
@@ -58,7 +61,7 @@ class PageJenis extends Component
     {
         $this->validate([
             'nama_Jenis' => 'required',
-            'gambar_jenis' => ['required', 'image'],
+            // 'gambar_jenis' => ['required', 'image'],
         ]);
         $jns = Jenis::find($id);
         if ($this->gambar_jenis != null) {
@@ -71,6 +74,8 @@ class PageJenis extends Component
                 $nama = $this->gambar_jenis->getClientOriginalName();
                 $this->gambar_jenis->storeAs('upload/jenis', $nama);
             }
+        }else{
+            $nama = $jns->gambar;
         }
         Jenis::where('id', $id)->update([
             'gambar' => $nama,
@@ -78,10 +83,37 @@ class PageJenis extends Component
         ]);
         Alert::success("Info", 'Berhasil Di Edit');
         $this->editJenis = false;
+        $this->addJenis = false;
     }
     public function hapusJenis($id)
     {
         Jenis::find($id)->delete();
         $this->hapusJenis = false;
+    }
+    public function tambahKatalog($id)
+    {
+        $this->dataKatalog = Katalog::where('jenis_id', $id)->get();
+        $this->itemID = $id;
+        $this->addKatalog = true;
+    }
+    public function createModalKtalog()
+    {
+        $this->itemKatalog = true;
+    }
+    public function createKatalog()
+    {
+        Katalog::create([
+            'jenis_id'=> $this->itemID,
+            'nama_katalog'=> $this->nama_katalog,
+        ]);
+        $this->itemKatalog = false;
+        Alert::success('Info', 'Berhasil Di Tambah');
+    }
+    public function hapusKatalog($id)
+    {
+        Katalog::find($id)->delete();
+        $this->addKatalog = false;
+        $this->itemKatalog = false;
+        Alert::success('Info', 'Berhasil Di Hapus');
     }
 }

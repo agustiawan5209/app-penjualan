@@ -23,7 +23,7 @@
                 <x-th>Harga</x-th>
                 <x-th>Tgl Perolehan</x-th>
                 <x-th>Satuan</x-th>
-                <x-th>Jenis</x-th>
+                <x-th>Katalog</x-th>
                 <x-th>Action</x-th>
                 <x-th>Diskon</x-th>
             </tr>
@@ -40,7 +40,13 @@
                         <x-td>{{ $item->harga }}</x-td>
                         <x-td>{{ $item->tgl_perolehan }}</x-td>
                         <x-td>{{ $item->satuan->nama_satuan }}</x-td>
-                        <x-td>{{ $item->jenis->nama_jenis }}</x-td>
+                        <x-td>
+                            @if ($item->katalog == null)
+                                Katalog Kosong
+                            @else
+                            {{ $item->katalog->nama_katalog }}
+                            @endif
+                        </x-td>
                         <x-td>
                             <button wire:click='DetailModal({{ $item->id }})'
                                 class="px-1 py-2 text-red-500 text-sm font-semibold">
@@ -145,8 +151,8 @@
                         <div class="select-none cursor-pointer hover:bg-gray-50 flex flex-1 items-center p-4">
 
                             <div class="flex-1 pl-1">
-                                <div class="font-medium dark:text-white">Jenis</div>
-                                <div class="text-gray-600 dark:text-gray-200 text-sm">{{ $jenis_id }}</div>
+                                <div class="font-medium dark:text-white">Katalog</div>
+                                <div class="text-gray-600 dark:text-gray-200 text-sm">{{ $katalog_id }}</div>
                             </div>
                             <div class="flex flex-row justify-center">
                                 <div class="text-gray-600 dark:text-gray-200 text-xs">Satuan :
@@ -195,22 +201,6 @@
                             </div>
                         </div>
                     </li>
-                    <li class="flex flex-row">
-                        <div class="select-none cursor-pointer hover:bg-gray-50 flex flex-1 items-center p-4">
-
-                            <div class="flex-1 pl-1">
-                                <div class="font-medium dark:text-white">Katalog</div>
-                                <div class="text-gray-600 dark:text-gray-200 text-sm">
-                                    {{-- @if ($dataKatalog != null) --}}
-                                    @foreach ((object) $dataKatalog as $katalog)
-                                        <span
-                                            class="bg-red-300 rounded-sm p-1 text-gray-800">{{ $katalog->nama_katalog }}</span>
-                                    @endforeach
-                                    {{-- @endif --}}
-                                </div>
-                            </div>
-                        </div>
-                    </li>
                 </ul>
             </div>
         </x-slot>
@@ -222,7 +212,7 @@
 
     @if ($itemTambah == true)
         <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-100 border-0"
-            x-data="{ katalog: @entangle('katalog') }">
+           >
             <div class="rounded-t bg-white mb-0 px-6 py-6">
                 <div class="text-center flex justify-between">
                     <button wire:click='closeModal'
@@ -279,16 +269,16 @@
                             <div class="relative w-full mb-3">
                                 <label class="block uppercase text-gray-800 text-xs font-bold mb-2"
                                     htmlfor="grid-password">
-                                    Jenis
+                                    Katalog
                                 </label>
-                                <select wire:model.defer='jenis_id'
+                                <select wire:model.defer='katalog_id'
                                     class="border-0 px-3 py-3 placeholder-reddarken-300  rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
                                     <option value="--">--</option>
-                                    @foreach ($jenis as $item)
-                                        <option value="{{ $item->id }}">{{ $item->nama_jenis }}</option>
+                                    @foreach ($katalog as $item)
+                                        <option value="{{ $item->id }}">{{ $item->nama_katalog }}</option>
                                     @endforeach
                                 </select>
-                                @error('jenis_id')
+                                @error('katalog_id')
                                     <span class="text-gray-800">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -313,48 +303,7 @@
                         </div>
                     </div>
                     <hr class="mt-6 border-b-1 border-reddarken-300">
-                    <h6 class="text-gray-800 text-sm mt-3 mb-6 font-bold uppercase">
-                        Masukkan Katalog Barang
-                    </h6>
-                    <div x-data @tags-update="console.log('tags updated', $event.detail.tags)" data-tags='[]'
-                        class="max-w-lg m-6">
-                        <div x-data="tagSelect()" x-init="init('parentEl')" @click.away="clearSearch()"
-                            @keydown.escape="clearSearch()">
-                            <div class="relative" @keydown.enter.prevent="addTag(textInput)">
-                                <input x-model="textInput" x-ref="textInput" @input="search($event.target.value)"
-                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                    placeholder="Enter some tags">
-                                <div :class="[open ? 'block' : 'hidden']">
-                                    <div class="absolute z-40 left-0 mt-2 w-full">
-                                        <div
-                                            class="py-1 text-sm bg-white rounded shadow-lg border border-gray-300">
-                                            <a @click.prevent="addTag(textInput)"
-                                                class="block py-1 px-5 cursor-pointer hover:bg-indigo-600 hover:text-gray-800">Add
-                                                tag
-                                                "<span class="font-semibold" x-text="textInput"></span>"</a>
 
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- selections -->
-                                <template x-for="(tag, index) in tags">
-                                    <div class="bg-indigo-100 inline-flex items-center text-sm rounded mt-2 mr-1">
-                                        <span class="ml-2 mr-1 leading-relaxed truncate max-w-xs"
-                                            x-text="tag"></span>
-
-                                        <button @click.prevent="removeTag(index)"
-                                            class="w-6 h-8 inline-block align-middle text-gray-500 hover:text-gray-600 focus:outline-none">
-                                            <svg class="w-6 h-6 fill-current mx-auto"
-                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                                <path fill-rule="evenodd"
-                                                    d="M15.78 14.36a1 1 0 0 1-1.42 1.42l-2.82-2.83-2.83 2.83a1 1 0 1 1-1.42-1.42l2.83-2.82L7.3 8.7a1 1 0 0 1 1.42-1.42l2.83 2.83 2.82-2.83a1 1 0 0 1 1.42 1.42l-2.83 2.83 2.83 2.82z" />
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </template>
-                            </div>
-                        </div>
-                    </div>
                     <h6 class="text-gray-800 text-sm mt-3 mb-6 font-bold uppercase">
                         Detail Barang
                     </h6>
@@ -442,7 +391,7 @@
     @endif
     @if ($itemEdit == true)
         <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-100 border-0"
-            x-data="{ katalog: @entangle('katalog') }">
+      >
             <div class="rounded-t bg-white mb-0 px-6 py-6">
                 <div class="text-center flex justify-between">
                     <button wire:click='closeModal'
@@ -499,16 +448,16 @@
                             <div class="relative w-full mb-3">
                                 <label class="block uppercase text-gray-800 text-xs font-bold mb-2"
                                     htmlfor="grid-password">
-                                    Jenis
+                                    Katalog
                                 </label>
-                                <select wire:model.defer='jenis_id'
+                                <select wire:model.defer='katalog_id'
                                     class="border-0 px-3 py-3 placeholder-reddarken-300  rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
                                     <option value="--">--</option>
-                                    @foreach ($jenis as $item)
-                                        <option value="{{ $item->id }}">{{ $item->nama_jenis }}</option>
+                                    @foreach ($katalog as $item)
+                                        <option value="{{ $item->id }}">{{ $item->nama_katalog }}</option>
                                     @endforeach
                                 </select>
-                                @error('jenis_id')
+                                @error('katalog_id')
                                     <span class="text-gray-800">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -533,48 +482,7 @@
                         </div>
                     </div>
                     <hr class="mt-6 border-b-1 border-reddarken-300">
-                    <h6 class="text-gray-800 text-sm mt-3 mb-6 font-bold uppercase">
-                        Masukkan Katalog Barang
-                    </h6>
-                    <div x-data @tags-update="console.log('tags updated', $event.detail.tags)" data-tags='[@json($katalog)]'
-                        class="max-w-lg m-6">
-                        <div x-data="tagSelect()" x-init="init('parentEl')" @click.away="clearSearch()"
-                            @keydown.escape="clearSearch()">
-                            <div class="relative" @keydown.enter.prevent="addTag(textInput)">
-                                <input x-model="textInput" x-ref="textInput" @input="search($event.target.value)"
-                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                    placeholder="Enter some tags">
-                                <div :class="[open ? 'block' : 'hidden']">
-                                    <div class="absolute z-40 left-0 mt-2 w-full">
-                                        <div
-                                            class="py-1 text-sm bg-white rounded shadow-lg border border-gray-300">
-                                            <a @click.prevent="addTag(textInput)"
-                                                class="block py-1 px-5 cursor-pointer hover:bg-indigo-600 hover:text-gray-800">Add
-                                                tag
-                                                "<span class="font-semibold" x-text="textInput"></span>"</a>
 
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- selections -->
-                                <template x-for="(tag, index) in tags">
-                                    <div class="bg-indigo-100 inline-flex items-center text-sm rounded mt-2 mr-1">
-                                        <span class="ml-2 mr-1 leading-relaxed truncate max-w-xs"
-                                            x-text="tag"></span>
-
-                                        <button @click.prevent="removeTag(index)"
-                                            class="w-6 h-8 inline-block align-middle text-gray-500 hover:text-gray-600 focus:outline-none">
-                                            <svg class="w-6 h-6 fill-current mx-auto"
-                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                                <path fill-rule="evenodd"
-                                                    d="M15.78 14.36a1 1 0 0 1-1.42 1.42l-2.82-2.83-2.83 2.83a1 1 0 1 1-1.42-1.42l2.83-2.82L7.3 8.7a1 1 0 0 1 1.42-1.42l2.83 2.83 2.82-2.83a1 1 0 0 1 1.42 1.42l-2.83 2.83 2.83 2.82z" />
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </template>
-                            </div>
-                        </div>
-                    </div>
                     <h6 class="text-gray-800 text-sm mt-3 mb-6 font-bold uppercase">
                         Detail Barang
                     </h6>
@@ -668,60 +576,4 @@
     </x-jet-dialog-modal>
 
 </div>
-<script>
-    function tagSelect() {
-        return {
-            open: false,
-            textInput: '',
-            tags: [],
-            init() {
-                this.tags = JSON.parse(this.$el.parentNode.getAttribute('data-tags'));
-                console.log(this.katalog)
-            },
-            addTag(tag) {
-                tag = tag.trim()
-                if (tag != "" && !this.hasTag(tag)) {
-                    this.tags.push(tag)
-                    this.katalog.push(tag)
-                }
-                this.clearSearch()
-                this.$refs.textInput.focus()
-                this.fireTagsUpdateEvent()
-            },
-            fireTagsUpdateEvent() {
-                this.$el.dispatchEvent(new CustomEvent('tags-update', {
-                    detail: {
-                        tags: this.tags
-                    },
-                    bubbles: true,
-                }));
-            },
-            hasTag(tag) {
-                var tag = this.tags.find(e => {
-                    return e.toLowerCase() === tag.toLowerCase()
-                })
-                return tag != undefined
-            },
-            removeTag(index) {
-                this.tags.splice(index, 1)
-                this.fireTagsUpdateEvent()
-            },
-            search(q) {
-                if (q.includes(",")) {
-                    q.split(",").forEach(function(val) {
-                        this.addTag(val)
-                    }, this)
-                }
-                this.toggleSearch()
-            },
-            clearSearch() {
-                this.textInput = ''
-                this.toggleSearch()
-            },
-            toggleSearch() {
-                this.open = this.textInput != ''
-            }
-        }
-    }
-</script>
 </div>

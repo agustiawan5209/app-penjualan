@@ -45,15 +45,13 @@ namespace App\Models{
  * @property int $stock
  * @property string $deskripsi
  * @property int $satuan_id
- * @property int|null $jenis_id
+ * @property int|null $katalog_id
  * @property string $tgl_perolehan
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\TableDiskon[] $diskon
  * @property-read int|null $diskon_count
- * @property-read \App\Models\Jenis|null $jenis
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Katalog[] $katalog
- * @property-read int|null $katalog_count
+ * @property-read \App\Models\Katalog|null $katalog
  * @property-read \App\Models\Satuan|null $satuan
  * @method static \Database\Factories\BarangFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Barang newModelQuery()
@@ -64,7 +62,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Barang whereGambar($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Barang whereHarga($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Barang whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Barang whereJenisId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Barang whereKatalogId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Barang whereKodeBarang($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Barang whereNamaBarang($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Barang whereSatuanId($value)
@@ -140,7 +138,7 @@ namespace App\Models{
  * @property string $nama_katalog
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Barang|null $barang
+ * @property-read \App\Models\Jenis|null $jenis
  * @method static \Illuminate\Database\Eloquent\Builder|Katalog newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Katalog newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Katalog query()

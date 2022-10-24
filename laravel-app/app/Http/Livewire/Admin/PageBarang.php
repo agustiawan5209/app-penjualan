@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Admin;
 
-use App\Models\Jenis;
 use App\Models\Barang;
 use App\Models\DIskon;
 use App\Models\Satuan;
@@ -23,27 +22,25 @@ class PageBarang extends Component
         $order = 'asc';
     // Item FIeld Table
     // Barang
-    public $katalog = [];
     public $dataKatalog = [];
-    public $gambar, $kode_barang, $jenis_id, $satuan_id, $harga, $deskripsi, $tgl_perolehan, $itemID, $nama_barang, $stock;
+    public $gambar, $kode_barang, $katalog_id, $satuan_id, $harga, $deskripsi, $tgl_perolehan, $itemID, $nama_barang, $stock;
     public $updateFoto;
 
     public function render()
     {
         $barang = Barang::orderBy('id', $this->order)
-            ->with(['satuan', 'jenis'])->paginate($this->row);
+            ->with(['satuan', 'katalog'])->paginate($this->row);
         if ($this->search != null) {
             $barang = Barang::where('kode_barang', 'like', '%' . $this->search . '%')
                 ->orWhere('harga', 'like', '%' . $this->search . '%')
                 ->orWhereDate('tgl_perolehan', 'like', '%' . $this->search . '%')
                 ->orderBy('id', $this->order)
                 ->with('satuan')
-                ->with('jenis')
                 ->paginate($this->row);
         }
-        $jenis = Jenis::all();
+        $katalog = Katalog::all();
         $satuan = Satuan::all();
-        return view('livewire.admin.page-barang', compact('barang', 'satuan', 'jenis'));
+        return view('livewire.admin.page-barang', compact('barang', 'satuan', 'katalog'));
     }
 
     /*
@@ -75,20 +72,16 @@ class PageBarang extends Component
     }
     public function EditModal($id)
     {
-        $this->katalog = [];
         $barang = Barang::find($id);
         $this->itemID = $barang->id;
         $this->updateFoto = $barang->gambar;
         $this->nama_barang = $barang->nama_barang;
-        $this->jenis_id = $barang->jenis_id;
+        $this->katalog_id = $barang->katalog_id;
         $this->satuan_id = $barang->satuan_id;
         $this->harga = $barang->harga;
         $this->deskripsi = $barang->deskripsi;
         $this->tgl_perolehan = $barang->tgl_perolehan;
         $this->stock = $barang->stock;
-        foreach ($barang->katalog as $item) {
-            array_push($this->katalog, $item->nama_katalog);
-        }
         $this->itemEdit = true;
     }
 
@@ -98,7 +91,7 @@ class PageBarang extends Component
         $this->itemID = $barang->id;
         $this->updateFoto = $barang->gambar;
         $this->nama_barang = $barang->nama_barang;
-        $this->jenis_id = $barang->jenis->nama_jenis;
+        $this->katalog_id = $barang->katalog->nama_katalog;
         $this->satuan_id = $barang->satuan->nama_satuan;
         $this->harga = $barang->harga;
         $this->deskripsi = $barang->deskripsi;
@@ -119,7 +112,7 @@ class PageBarang extends Component
         $valid = $this->validate([
             'gambar' => 'image|max:2040',
             'nama_barang' => 'required',
-            'jenis_id' => 'required',
+            'katalog_id' => 'required',
             'satuan_id' => 'required',
             'harga' => 'required',
             'deskripsi' => 'required',
@@ -149,7 +142,7 @@ class PageBarang extends Component
         $barang = Barang::create([
             'gambar' => $nama,
             'kode_barang' => $book_id,
-            'jenis_id' => $this->jenis_id,
+            'katalog_id' => $this->katalog_id,
             'nama_barang' => $this->nama_barang,
             'satuan_id' => $this->satuan_id,
             'harga' => $this->harga,
@@ -166,12 +159,12 @@ class PageBarang extends Component
         Alert::info('message', 'Berhasil Ditambah');
         $this->itemTambah = false;
         $this->gambar = null;
-        $this->katalog = [];
+        $this->katalog_id = null;
         $this->deskripsi = null;
         $this->nama_barang = null;
         $this->tgl_perolehan = null;
         $this->jumlah_diskon = null;
-        $this->jenis_id = null;
+        $this->katalog_id = null;
         $this->satuan_id = null;
     }
     public function edit($id)
@@ -180,7 +173,7 @@ class PageBarang extends Component
             // 'gambar' => 'image|max:2040',
             // 'kode_barang'=> 'required',
             'nama_barang' => 'required',
-            'jenis_id' => 'required',
+            'katalog_id' => 'required',
             'satuan_id' => 'required',
             'harga' => 'required',
             'deskripsi' => 'required',
@@ -196,7 +189,7 @@ class PageBarang extends Component
         $barang = Barang::where('id', $id)->update([
             'gambar' => $random,
             // 'kode_barang' => $this->kode_barang,
-            'jenis_id' => $this->jenis_id,
+            'katalog_id' => $this->katalog_id,
             'satuan_id' => $this->satuan_id,
             'harga' => $this->harga,
             'deskripsi' => $this->deskripsi,

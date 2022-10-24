@@ -10,9 +10,9 @@ class Katalog extends Model
     use HasFactory;
     public $table='katalogs';
     public $fillable = [
-        'barang_id','nama_katalog'
+        'jenis_id','nama_katalog'
     ];
-    public function barang(){
-        return $this->hasOne(Barang::class, 'id', 'barang_id');
+    public function jenis(){
+        return $this->hasOne(Jenis::class, 'id', 'jenis_id');
     }
 }
