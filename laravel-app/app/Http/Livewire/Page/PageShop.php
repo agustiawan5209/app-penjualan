@@ -8,6 +8,7 @@ use Livewire\Component;
 use App\Models\Keranjang;
 use Illuminate\Support\Facades\Auth;
 use Alert;
+use App\Models\Katalog;
 
 class PageShop extends Component
 {
@@ -37,13 +38,13 @@ class PageShop extends Component
     public function render()
     {
         // dd($this->nama_jenis);
-        $produk = Barang::with(['satuan', 'jenis','diskon'])->paginate(10);
+        $produk = Barang::with(['satuan', 'katalog','diskon'])->paginate(10);
         $jenis = Jenis::all();
         if($this->nama_jenis != null){
-            $produk = Barang::with(['satuan', 'jenis','diskon'])
-            ->orWhere('jenis_id', '=', $this->nama_jenis)
-            ->orWhereHas('jenis', function($query){
-                return $query->where('nama_jenis', 'like', '%'. $this->nama_jenis .'%');
+            $produk = Barang::with(['satuan', 'katalog','diskon'])
+            ->orWhere('katalog_id', '=', $this->nama_jenis)
+            ->orWhereHas('katalog', function($query){
+                return $query->where('nama_katalog', 'like', '%'. $this->nama_jenis .'%');
             })
             ->paginate($this->row);
         }
