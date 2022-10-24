@@ -35,7 +35,7 @@ class PagePembayaran extends Component
         // dd($total_potongan);
 
         return view('livewire.page.page-pembayaran', [
-            'cart'=> Keranjang::with(['barang.jenis','barang.satuan','barang.katalog','barang'])->where('user_id', Auth::user()->id)->get(),
+            'cart'=> Keranjang::with(['barang.katalog','barang.satuan','barang.katalog','barang'])->where('user_id', Auth::user()->id)->get(),
             'potongan'=> $total_potongan,
             'sub_total'=>$data['sub_total'],
             'total_bayar'=> $data['total_bayar'] - $total_potongan,

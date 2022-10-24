@@ -63,7 +63,7 @@ class PagePenjualan extends Component
     public function detailItem($id){
         $pembayaran = Pembayaran::find($id);
 
-        return redirect()->route('detail-item-transaksi', ['idItem'=> $pembayaran->transaksi_id])->with('toast_success', 'Detail Pembayaran!');
+        return redirect()->route('Admin.Shop-detail', ['idItem'=> $pembayaran->transaksi_id])->with('toast_success', 'Detail Pembayaran!');
     }
     public function ongkirModal($id)
     {

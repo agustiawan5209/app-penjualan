@@ -30,9 +30,7 @@
                     <div class="mt-12 mb-6 flex flex-wrap -mx-4 border-b">
                         <label class="inline-block mb-2" >Katalog : </label>
                         <div class="px-4 relative w-full lg:w-6/12">
-                            @foreach ($barang->katalog as $item)
-                                <label class="inline-block mb-2">{{$item->nama_katalog}}</label>
-                            @endforeach
+                                <label class="inline-block mb-2">{{$barang->katalog->nama_katalog}}</label>
 
                         </div>
                     </div>

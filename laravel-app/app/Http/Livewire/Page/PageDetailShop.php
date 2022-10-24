@@ -19,7 +19,7 @@ class PageDetailShop extends Component
     {
         $barang = Barang::find($this->itemID);
         $barang_lain = Barang::whereNotIn('id',[ $barang->id])
-        ->where('jenis_id', '=', $barang->jenis_id)
+        ->where('katalog_id', '=', $barang->katalog)
         // ->orWhere('satuan_id', '=', $barang->satuan_id)
         ->get();
         return view('livewire.page.page-detail-shop',[

@@ -99,7 +99,7 @@ class PageBarang extends Component
         $this->stock = $barang->stock;
         // Ambil Katalog
 
-        $this->dataKatalog = Katalog::where('barang_id', $id)->get();
+        // $this->dataKatalog = Katalog::where('jenis', $id)->get();
         // dd($this->katalog);
         $this->itemDetail = true;
     }

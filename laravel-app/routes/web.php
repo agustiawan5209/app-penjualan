@@ -7,6 +7,7 @@ use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UsesUserPromoController;
 use App\Http\Livewire\Admin\Dashboard;
+use App\Http\Livewire\Admin\DetailItemPage as AdminDetailItemPage;
 use App\Http\Livewire\Admin\Laporan;
 use App\Http\Livewire\Admin\PageBarang;
 use App\Http\Livewire\Admin\PageDiskon;
@@ -66,6 +67,8 @@ Route::middleware([
         Route::get('Metode-bayar', MetodeBayar::class)->name('Metode-Bayar');
         Route::get('Slide-Setting', SlideSetting::class)->name('Slide-setting');
         Route::get('Page-Jenis', PageJenis::class)->name('Page-Jenis');
+        Route::get('Detail/{idItem}', AdminDetailItemPage::class)->name('Shop-detail');
+
 
     });
     // Akses User
