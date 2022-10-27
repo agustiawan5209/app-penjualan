@@ -12,9 +12,6 @@
                 <div class=" relative w-1/2 md:w-[30%] shadow-lg cursor-pointe bg-white" wire:click="ShowDetail({{$item->id}})">
                     <div class="relative flex flex-col min-w-0 break-words w-full bg-transparent">
                         <div>
-                            {{-- <div class="h-8 text-center"><span
-                                    class="text-teal-500 bg-teal-200 text-xs font-bold inline-block py-1 uppercase uppercase last:mr-0 mr-1 leading-tight rounded px-2">new
-                                    collection</span></div> --}}
                             <img alt="..." src="{{asset('upload/'. $item->gambar)}}" class="w-full p-6">
                         </div>
                         <div class="py-6 px-5 flex-auto text-left bg-green-400">

@@ -6,7 +6,7 @@
             style="background-image: url('../../assets/img/sections/photo-15.jpg');"></div>
         <div class="relative h-full text-center text-white container mx-auto px-4 z-3 mb-16">
             <div class="justify-center flex flex-wrap -mx-4">
-                <div class="px-12 px-4 relative w-full lg:w-6/12 w-full md:w-8/12">
+                <div class="px-12  relative  lg:w-6/12 w-full md:w-8/12">
                     <h1 class="text-4xl font-bold leading-tight">Checkout</h1>
                     <p class="text-lg opacity-75 pt-2 text-gray-600">Detail Pembayaran</p>
                 </div>
@@ -53,7 +53,7 @@
                                         <div class="mr-2">
                                             <div class="mb-3 pt-0"><input placeholder="Kode Promo" type="text"
                                                     name="kode_promo"
-                                                    class="border-gray-300 px-3 py-2 text-sm  w-full placeholder-gray-200 text-gray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200 ">
+                                                    class="border-gray-300 px-3 py-2 text-sm  w-full placeholder-gray-200 text-gray-700 relative bg-white rounded-md outline-none focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200 ">
                                             </div>
                                         </div>
                                         <div class="mb-0"><button
@@ -98,7 +98,7 @@
                                                 class="block uppercase text-gray-700 text-xs font-bold mb-2 ml-1">
                                                 name*</label>
                                             <div class="mb-3 pt-0"><input placeholder="E.g. Smith" type="text" name="nama"
-                                                    class="border-gray-300 px-3 py-2 text-sm  w-full placeholder-gray-200 text-gray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200 ">
+                                                    class="border-gray-300 px-3 py-2 text-sm  w-full placeholder-gray-200 text-gray-700 relative bg-white rounded-md outline-none focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200 ">
                                             </div>
                                         </div>
                                         <div class="px-4 pb-2 relative w-full lg:w-6/12">
@@ -107,7 +107,7 @@
                                                 Pengambilan barang*</label>
                                             <div class="mb-3 pt-0">
                                                 <select type="text" x-model="ongkir" name="metode"
-                                                    class="border-gray-300 px-3 py-2 text-sm  w-full placeholder-gray-200 text-gray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200 ">
+                                                    class="border-gray-300 px-3 py-2 text-sm  w-full placeholder-gray-200 text-gray-700 relative bg-white rounded-md outline-none focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200 ">
                                                     <option value="">--</option>
                                                     <option value="0">Ambil Sendiri</option>
                                                     <option value="1">Kirim Barang</option>
@@ -121,7 +121,7 @@
                                                 address*</label>
                                             <div class="mb-3 pt-0"><input placeholder="E.g. email@email.email"
                                                     type="email" name="email" value="{{auth()->user()->email}}" readonly
-                                                    class="border-gray-300 px-3 py-2 text-sm  w-full placeholder-gray-200 text-gray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200 ">
+                                                    class="border-gray-300 px-3 py-2 text-sm  w-full placeholder-gray-200 text-gray-700 relative bg-white rounded-md outline-none focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200 ">
                                             </div>
                                         </div>
                                         <div class="px-4 pb-2 relative w-full lg:w-6/12">
@@ -130,7 +130,7 @@
                                                 Telepon*</label>
                                             <div class="mb-3 pt-0"><input placeholder="E.g. +1 (5417) 543 010"
                                                     type="text" name="no_telpon"
-                                                    class="border-gray-300 px-3 py-2 text-sm  w-full placeholder-gray-200 text-gray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200 ">
+                                                    class="border-gray-300 px-3 py-2 text-sm  w-full placeholder-gray-200 text-gray-700 relative bg-white rounded-md outline-none focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200 ">
                                             </div>
                                         </div>
                                         <div class="px-4 pb-2 relative w-full lg:w-8/12" x-show="ongkir == 1">

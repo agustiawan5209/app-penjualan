@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Jenis;
 use Livewire\Component;
 
 class Katalog extends Component
@@ -14,8 +15,10 @@ class Katalog extends Component
     }
     public function render()
     {
+        $jenis =Jenis::all();
         return view('livewire.katalog', [
-            'title'=> $this->title
+            'title'=> $this->title,
+            'jenis'=> $jenis,
         ]);
     }
 }

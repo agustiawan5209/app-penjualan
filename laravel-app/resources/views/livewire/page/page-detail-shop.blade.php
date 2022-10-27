@@ -5,7 +5,7 @@
     <section class="relative ">
         <div class="container mx-auto px-4 py-4 shadow-xl">
             <div class="flex flex-wrap -mx-4">
-                <div class="mx-auto px-4 relative w-full lg:w-6/12 w-full md:w-full">
+                <div class="mx-auto px-4 relative w-full lg:w-6/12  md:w-full">
                     <div class="relative">
                         <div class="relative w-full overflow-hidden">
                             <div class="w-full p-12 transform duration-500 transition-all ease-in-out mx-auto block">
@@ -17,7 +17,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="mr-auto px-4 relative w-full lg:w-6/12 w-full md:w-full">
+                <div class="mr-auto px-4 relative  lg:w-6/12 w-full md:w-full">
                     <h2 class="text-3xl font-bold leading-tight mt-0 mb-0">{{$barang->nama_barang}}</h2>
                     {{-- <div class="pt-2">
                         <div class="text-orange-500"><i class="mr-1 fas fa-star"></i><i class="mr-1 fas fa-star"></i><i
@@ -41,7 +41,7 @@
                                         class="inline-block outline-none focus:outline-none align-middle transition-all duration-150 ease-in-out uppercase border border-solid font-bold last:mr-0 mr-2  text-white bg-green-500 border-orange-500 active:bg-green-600 active:border-orange-600 text-sm px-6 py-2 shadow hover:shadow-lg rounded-md" wire:click='countminus'>-</button></div>
                                 <div class="mr-2">
                                     <div class="mb-3 pt-0"><input type="text"
-                                            class="border-reddarken-300 px-3 py-2 text-sm  w-full placeholder-reddarken-200 text-reddarken-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200 "
+                                            class="border-reddarken-300 px-3 py-2 text-sm  w-full placeholder-reddarken-200 text-reddarken-700 relative bg-white rounded-md outline-none  focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200 "
                                             wire:model="count"></div>
                                 </div>
                                 <div><button
@@ -69,7 +69,7 @@
                         <div class="relative flex flex-col min-w-0 break-words w-full bg-transparent">
                             <div>
                                 {{-- <div class="h-8 text-center"><span
-                                        class="text-teal-500 bg-teal-200 text-xs font-bold inline-block py-1 uppercase uppercase last:mr-0 mr-1 leading-tight rounded px-2">new
+                                        class="text-teal-500 bg-teal-200 text-xs font-bold inline-block py-1 uppercase  last:mr-0 mr-1 leading-tight rounded px-2">new
                                         collection</span></div> --}}
                                 <img alt="..." src="{{asset('upload/'. $item->gambar)}}" class="w-full p-6">
                             </div>
