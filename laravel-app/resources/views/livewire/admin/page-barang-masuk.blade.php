@@ -6,10 +6,10 @@
             <x-slot name="filter"></x-slot>
             <thead>
                 <x-tr>
-                    <x-th>No. </x-th>
                     <x-th>Barang</x-th>
                     <x-th>Jumlah Barang</x-th>
                     <x-th>Tanggal Barang</x-th>
+                    <x-th>Pemasok Barang</x-th>
                     <x-th>Aksi</x-th>
                 </x-tr>
             </thead>
@@ -20,6 +20,7 @@
                         <x-td>{{$item->barang->nama_barang}}</x-td>
                         <x-td>{{$item->jumlah}}</x-td>
                         <x-td>{{$item->tgl_masuk}}</x-td>
+                        <x-td>{{$item->pemasok}}</x-td>
                         <x-td>
                             <x-tdaction :item="$item->id"/>
                         </x-td>
@@ -35,13 +36,14 @@
             <x-slot name="title"></x-slot>
             <x-slot name="content">
                 <form action="#" class="w-full px-3 flex flex-col ">
+                    <x-jet-validation-errors />
                     <div class="mb-2">
                         <x-jet-label for="name" class="text-white">Barang</x-jet-label>
                         <select wire:model="barang_id"
                             class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-full">
                             <option value="">----</option>
                             @foreach ($barang as $item)
-                                <option value="{{ $item->id }}">{{ $item->nama_barang }}</option>
+                                <option value="{{ $item->id }}">{{ $item->kode_barang }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -56,6 +58,10 @@
                     <div class="mb-2">
                         <x-jet-label for="name" class="text-white">Pemasok</x-jet-label>
                         <x-jet-input type="text" wire:model="pemasok" />
+                    </div>
+                    <div class="mb-2">
+                        <x-jet-label for="name" class="text-white">Harga</x-jet-label>
+                        <x-jet-input type="text" wire:model="harga" />
                     </div>
                 </form>
             </x-slot>

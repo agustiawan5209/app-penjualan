@@ -80,6 +80,7 @@ namespace App\Models{
  * @property int $id
  * @property int|null $barang_id
  * @property int $jumlah
+ * @property int $harga
  * @property string $tgl_keluar
  * @property string $status
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -90,6 +91,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|BarangKeluar query()
  * @method static \Illuminate\Database\Eloquent\Builder|BarangKeluar whereBarangId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|BarangKeluar whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BarangKeluar whereHarga($value)
  * @method static \Illuminate\Database\Eloquent\Builder|BarangKeluar whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|BarangKeluar whereJumlah($value)
  * @method static \Illuminate\Database\Eloquent\Builder|BarangKeluar whereStatus($value)
@@ -106,6 +108,7 @@ namespace App\Models{
  * @property int $id
  * @property int|null $barang_id
  * @property int $jumlah
+ * @property int $harga
  * @property string $tgl_masuk
  * @property string $status
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -116,6 +119,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|BarangMasuk query()
  * @method static \Illuminate\Database\Eloquent\Builder|BarangMasuk whereBarangId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|BarangMasuk whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BarangMasuk whereHarga($value)
  * @method static \Illuminate\Database\Eloquent\Builder|BarangMasuk whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|BarangMasuk whereJumlah($value)
  * @method static \Illuminate\Database\Eloquent\Builder|BarangMasuk whereStatus($value)

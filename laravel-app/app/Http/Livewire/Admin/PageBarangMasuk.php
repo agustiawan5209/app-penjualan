@@ -11,7 +11,7 @@ class PageBarangMasuk extends Component
 {
     public $search = '';
     public $itemAdd = false, $itemEdit = false, $itemDelete = false, $itemID;
-    public $barang_id, $tgl_masuk, $jumlah, $status ,$pemasok;
+    public $barang_id, $tgl_masuk, $jumlah, $status ,$pemasok, $harga;
     public function render()
     {
         $barangMasuk = BarangMasuk::latest()->get();
@@ -48,7 +48,8 @@ class PageBarangMasuk extends Component
              'jumlah'=> 'required',
             //  'pemasok'=> 'required',
              'tgl_masuk'=> 'required',
-             'status'=> 'required',
+            //  'status'=> 'required',
+             'harga'=> 'required',
          ]);
          $barang = BarangMasuk::create($valid);
          Alert::success('Info', 'Berhasil Di Tambah');
@@ -58,7 +59,8 @@ class PageBarangMasuk extends Component
         $valid =  $this->validate([
              'barang_id'=> 'required',
              'jumlah'=> 'required',
-             'pemasok'=> 'required',
+            //  'pemasok'=> 'required',
+             'harga'=> 'required',
          ]);
          $barang = BarangMasuk::find($id)->update($valid);
          Alert::success('Info', 'Berhasil Di Tambah');
