@@ -7,10 +7,10 @@
             <thead>
                 <x-tr>
                     <x-th>No. </x-th>
-                    {{-- <x-th>Kode Barang</x-th> --}}
+                    <x-th>Barang</x-th>
                     <x-th>Jumlah Barang</x-th>
                     <x-th>Tanggal Barang</x-th>
-                    <x-th>Status Barang</x-th>
+                    <x-th>Aksi</x-th>
                 </x-tr>
             </thead>
             <tbody>
@@ -20,7 +20,9 @@
                         <x-td>{{$item->barang->nama_barang}}</x-td>
                         <x-td>{{$item->jumlah}}</x-td>
                         <x-td>{{$item->tgl_masuk}}</x-td>
-                        <x-td>{{$item->status}}</x-td>
+                        <x-td>
+                            <x-tdaction :item="$item->id"/>
+                        </x-td>
                     </tr>
                 @endforeach
             </tbody>
@@ -62,10 +64,18 @@
                 @if ($itemEdit == false)
                     <x-jet-danger-button wire:click="create">Tambah</x-jet-danger-button>
                     @else
-                    <x-jet-danger-button wire:click="edit">Simpan</x-jet-danger-button>
+                    <x-jet-danger-button class="!bg-green-500 hover:bg-green-700" wire:click="edit({{$itemID}})">Simpan</x-jet-danger-button>
                 @endif
             </x-slot>
         </x-jet-dialog-modal>
+    <x-jet-confirmation-modal wire:model="itemDelete">
+        <x-slot name="title">Apakah Anda Yakin?</x-slot>
+        <x-slot name="content"></x-slot>
+        <x-slot name="footer">
+            <x-jet-danger-button wire:click="$toggle('itemDelete')">Batal</x-jet-danger-button>
+            <x-jet-button class="!bg-gray-800 !hover:bg-gray-900" wire:click="delete({{$itemID}})">Hapus</x-jet-button>
+        </x-slot>
+    </x-jet-confirmation-modal>
     </div>
 
 </div>

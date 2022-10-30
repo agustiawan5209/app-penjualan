@@ -77,9 +77,24 @@ namespace App\Models{
 /**
  * App\Models\BarangKeluar
  *
+ * @property int $id
+ * @property int|null $barang_id
+ * @property int $jumlah
+ * @property string $tgl_keluar
+ * @property string $status
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Barang|null $barang
  * @method static \Illuminate\Database\Eloquent\Builder|BarangKeluar newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|BarangKeluar newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|BarangKeluar query()
+ * @method static \Illuminate\Database\Eloquent\Builder|BarangKeluar whereBarangId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BarangKeluar whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BarangKeluar whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BarangKeluar whereJumlah($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BarangKeluar whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BarangKeluar whereTglKeluar($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BarangKeluar whereUpdatedAt($value)
  */
 	class BarangKeluar extends \Eloquent {}
 }
@@ -88,10 +103,24 @@ namespace App\Models{
 /**
  * App\Models\BarangMasuk
  *
+ * @property int $id
+ * @property int|null $barang_id
+ * @property int $jumlah
+ * @property string $tgl_masuk
+ * @property string $status
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Barang|null $barang
  * @method static \Illuminate\Database\Eloquent\Builder|BarangMasuk newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|BarangMasuk newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|BarangMasuk query()
+ * @method static \Illuminate\Database\Eloquent\Builder|BarangMasuk whereBarangId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BarangMasuk whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BarangMasuk whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BarangMasuk whereJumlah($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BarangMasuk whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BarangMasuk whereTglMasuk($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BarangMasuk whereUpdatedAt($value)
  */
 	class BarangMasuk extends \Eloquent {}
 }
