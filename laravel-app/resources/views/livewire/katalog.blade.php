@@ -1,6 +1,6 @@
 <div>
     <h1 class="font-medium container mx-auto pt-5 text-center  pb-4">
-        <span class="max-w-xl rounded-md px-3 py-3 bg-green-500 text-white font-bold">Kategori</span>
+        <span class="max-w-xl rounded-md px-3 py-3 bg-gray-900 text-white font-bold">Kategori</span>
     </h1>
     <div class="bg-white w-full mx-auto border border-gray-200 pb-10">
         <ul class="shadow-box grid grid-cols-3 md:grid-cols-6 lg:grid-cols-8 gap-2">

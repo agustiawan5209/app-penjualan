@@ -49,6 +49,27 @@
             </a>
         </li>
 
+        <li class="items-center" x-data="{ Transaksi: false }">
+            <a href="#" @click="Transaksi =! Transaksi"
+                class="text-xs uppercase py-3 font-bold block {{ request()->routeIs('Admin.Page-Barang') || request()->routeIs('Admin.Page-Promo') || request()->routeIs('Admin.Page-Voucher') ? ' bg-reddarken text-white' : 'text-gray-700 hover:text-gray-500' }}">
+                <i class=" mr-2 text-sm text-gray-300"></i>
+                Transaksi Barang
+            </a>
+            <ul class="md:flex-col md:min-w-full flex flex-col list-none bg-reddarken" x-show="Transaksi" x-transition>
+                <li class="items-center">
+                    <a href="{{ route('Admin.Stok-Barang-Masuk') }}"
+                        class="text-xs uppercase py-3 px-3 font-bold block text-white hover:text-white">
+                        Barang Masuk
+                    </a>
+                </li>
+                <li class="items-center">
+                    <a href="{{ route('Admin.Stok-Barang-Keluar') }}"
+                        class="text-xs uppercase py-3 px-3 font-bold block text-white hover:text-white">
+                        Barang Keluar
+                    </a>
+                </li>
+            </ul>
+        </li>
 
         <li class="items-center">
             <a href="{{ route('Admin.Laporan') }}"

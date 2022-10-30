@@ -125,13 +125,13 @@
             <nav
                 class="absolute top-0 left-0 w-full z-10 bg-transparent md:flex-row md:flex-nowrap md:justify-start flex items-center p-4 shadow-sm shadow-white">
                 <div class="w-full mx-autp items-center flex justify-between md:flex-nowrap flex-wrap md:px-10 px-4">
-                    {{-- <a class="text-white text-sm uppercase hidden lg:inline-block font-semibold"
-                        href="#">IrsanJaya</a> --}}
-                    {{-- <form class="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3">
+                    <a class="text-white text-sm uppercase hidden lg:inline-block font-semibold"
+                        href="#">IrsanJaya</a>
+                    <form class="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3">
                         <div class="relative flex w-full flex-wrap items-stretch">
                             <livewire:item.notification-menu>
                         </div>
-                    </form> --}}
+                    </form>
 
                 </div>
             </nav>
@@ -143,7 +143,7 @@
             </div>
 
         </div>
-        <footer class="py-4 static -z-0  bottom-0 w-full bg-white ">
+        <footer class="py-4 relative -z-0  bottom-0 w-full bg-white ">
             <div class="container mx-auto px-4 static">
                 <hr class="mb-4 border-b-1 border-gray-200" />
                 <div class="flex flex-wrap items-center md:justify-between justify-center">
@@ -167,7 +167,7 @@
                             <li>
                                 <a href="https://www.creative-tim.com/presentation?ref=njs-dashboard"
                                     class="text-gray-600 hover:text-gray-800 text-sm font-semibold block py-1 px-3">
-                                    Tentang Kmai
+                                    Tentang Kami
                                 </a>
                             </li>
                             <li>

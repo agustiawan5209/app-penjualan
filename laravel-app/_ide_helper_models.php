@@ -75,6 +75,29 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\BarangKeluar
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|BarangKeluar newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|BarangKeluar newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|BarangKeluar query()
+ */
+	class BarangKeluar extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\BarangMasuk
+ *
+ * @property-read \App\Models\Barang|null $barang
+ * @method static \Illuminate\Database\Eloquent\Builder|BarangMasuk newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|BarangMasuk newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|BarangMasuk query()
+ */
+	class BarangMasuk extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Diskon
  *
  * @property int $id

@@ -13,7 +13,7 @@
                         <p class="text-xl leading-relaxed opacity-75 mt-1 mb-4">Menjual Bahan Bangunan & Alat-alat
                             Listrik</p>
                         <a href="{{route('shop')}}"
-                            class="inline-block outline-none focus:outline-none align-middle transition-all duration-150 ease-in-out uppercase border border-solid font-bold last:mr-0 mr-2  text-white bg-green-500 border-green-500 active:bg-green-600 active:border-green-600 text-sm px-6 py-2 shadow hover:shadow-lg rounded-md"><i
+                            class="inline-block outline-none focus:outline-none align-middle transition-all duration-150 ease-in-out uppercase border border-solid font-bold last:mr-0 mr-2  text-white bg-gray-800 border-gray-500 active:bg-gray-600 active:border-gray-600 text-sm px-6 py-2 shadow hover:shadow-lg rounded-md"><i
                                 class="fas fa-shopping-cart mr-1"></i>Mulai Belanja</a>
                     </div>
                 </div>

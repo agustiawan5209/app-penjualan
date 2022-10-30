@@ -1,36 +1,38 @@
 <?php
 
-use App\Http\Controllers\PDFController;
-use App\Http\Controllers\PembayaranController;
-use App\Http\Controllers\StatusBarangController;
-use App\Http\Controllers\TransaksiController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\UsesUserPromoController;
-use App\Http\Livewire\Admin\Dashboard;
-use App\Http\Livewire\Admin\DetailItemPage as AdminDetailItemPage;
+use Illuminate\Http\Request;
+use App\Http\Livewire\Pesanan;
 use App\Http\Livewire\Admin\Laporan;
+use App\Http\Livewire\Page\PageShop;
+use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Admin\Dashboard;
+use App\Http\Livewire\Admin\PageJenis;
+use App\Http\Livewire\Admin\PagePromo;
+use App\Http\Controllers\PDFController;
 use App\Http\Livewire\Admin\PageBarang;
 use App\Http\Livewire\Admin\PageDiskon;
-use App\Http\Livewire\Admin\PageJenis;
-use App\Http\Livewire\Admin\PagePenjualan;
-use App\Http\Livewire\Admin\PagePromo;
+use App\Http\Controllers\UserController;
 use App\Http\Livewire\Admin\PageVOucher;
-use App\Http\Livewire\Item\DetailItemPage;
-use App\Http\Livewire\Item\PagePengiriman;
 use App\Http\Livewire\Page\HalamanUtama;
-use App\Http\Livewire\Page\PageDetailShop;
-use App\Http\Livewire\Page\PagePembayaran;
-use App\Http\Livewire\Page\PageShop;
 use App\Http\Livewire\Page\ShoppingCart;
 use App\Http\Livewire\PageSearchkatalog;
-use App\Http\Livewire\Pesanan;
+use App\Http\Livewire\Admin\PagePenjualan;
+use App\Http\Livewire\Item\DetailItemPage;
+use App\Http\Livewire\Item\PagePengiriman;
+use App\Http\Livewire\Page\PageDetailShop;
+use App\Http\Livewire\Page\PagePembayaran;
 use App\Http\Livewire\Setting\MetodeBayar;
 use App\Http\Livewire\Setting\SlideSetting;
-use App\Http\Livewire\User\Dashboard as UserDashboard;
+use App\Http\Livewire\Admin\PageBarangMasuk;
+use App\Http\Controllers\TransaksiController;
+use App\Http\Livewire\Admin\PageBarangKeluar;
 use App\Http\Livewire\User\PageKirimanBarang;
+use App\Http\Controllers\PembayaranController;
+use App\Http\Controllers\StatusBarangController;
+use App\Http\Controllers\UsesUserPromoController;
 use App\View\Components\User\PagePesananCustomer;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\User\Dashboard as UserDashboard;
+use App\Http\Livewire\Admin\DetailItemPage as AdminDetailItemPage;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,11 +61,17 @@ Route::middleware([
     Route::group(['middleware' => 'role:Admin', 'prefix' => 'Admin', 'as'=> 'Admin.'], function () {
         Route::get('Dashboard', Dashboard::class)->name('Dashboard-Admin');
         Route::get('Laporan', Laporan::class)->name('Laporan');
+
+        //
         Route::get('Page-Barang', PageBarang::class)->name('Page-Barang');
         Route::get('Page-Diskon', PageDiskon::class)->name('Page-Diskon');
         Route::get('Page-Penjualan', PagePenjualan::class)->name('Page-Penjualan');
         Route::get('Page-Promo', PagePromo::class)->name('Page-Promo');
         Route::get('Page-Voucher', PageVOucher::class)->name('Page-Voucher');
+        Route::get('Page/Barang-Masuk', PageBarangMasuk::class)->name('Stok-Barang-Masuk');
+        Route::get('Page/Barang-Keluar', PageBarangKeluar::class)->name('Stok-Barang-Keluar');
+
+        //
         Route::get('Metode-bayar', MetodeBayar::class)->name('Metode-Bayar');
         Route::get('Slide-Setting', SlideSetting::class)->name('Slide-setting');
         Route::get('Page-Jenis', PageJenis::class)->name('Page-Jenis');

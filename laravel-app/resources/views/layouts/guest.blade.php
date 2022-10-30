@@ -33,7 +33,7 @@
 
 <body class="overflow-x-hidden">
     <!-- component -->
-    <header x-data="{ isOpen: false }" class="bg-green-500 shadow-lg fixed top-0 z-[1000] w-full ">
+    <header x-data="{ isOpen: false }" class="bg-transparent  shadow-lg absolute top-0 z-[1000] w-full ">
         <nav class="container mx-auto px-6 py-3">
             <div class="flex flex-col md:flex-row md:justify-between md:items-center">
                 <div class="flex justify-between items-center">
@@ -73,13 +73,13 @@
                 <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
                 <div class="md:flex items-center" :class="isOpen ? 'block' : 'hidden'">
                     <div class="flex flex-col mt-2 md:flex-row md:mt-0 md:mx-1">
-                        <a class="my-1 text-sm font-bold text-white leading-5 hover:text-red-600 hover:underline md:mx-4 md:my-0"
+                        <a class="my-1 text-sm font-bold text-white leading-5 hover:text-red-600 hover:underline md:mx-4 md:my-0 tracking-wide"
                             href="{{ route('home') }}">Home</a>
-                        <a class="my-1 text-sm font-bold text-white leading-5 hover:text-red-600 hover:underline md:mx-4 md:my-0"
+                        <a class="my-1 text-sm font-bold text-white leading-5 hover:text-red-600 hover:underline md:mx-4 md:my-0 tracking-wide"
                             href="{{ route('shop') }}">Belanja</a>
-                        <a class="my-1 text-sm font-bold text-white leading-5 hover:text-red-600 hover:underline md:mx-4 md:my-0"
+                        <a class="my-1 text-sm font-bold text-white leading-5 hover:text-red-600 hover:underline md:mx-4 md:my-0 tracking-wide"
                             href="{{ route('Promo-Diskon') }}">Promo</a>
-                        <a class="my-1 text-sm font-bold text-white leading-5 hover:text-red-600 hover:underline md:mx-4 md:my-0"
+                        <a class="my-1 text-sm font-bold text-white leading-5 hover:text-red-600 hover:underline md:mx-4 md:my-0 tracking-wide"
                             href="{{ route('Keranjang') }}">Keranjang</a>
                     </div>
 
@@ -102,12 +102,12 @@
     </header>
 
 
-    <main class="content mt-16 pt-3">
+    <main class="content ">
         {{ $slot }}
     </main>
     <div class="w-full relative bottom-0">
-        <footer class="bg-green-500">
-            <div class="relative bg-green-500 py-2">
+        <footer class="bg-gray-800">
+            <div class="relative py-2">
                 <div class="container mx-auto px-4">
                     <hr class="my-6">
                     <div class="flex flex-wrap items-center md:justify-between justify-center">
