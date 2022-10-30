@@ -26,8 +26,6 @@
 </head>
 
 <body class="font-sans antialiased bg-reddarken">
-
-    <noscript>You need to enable JavaScript to run this app.</noscript>
     @include('sweetalert::alert')
     <div id="root" x-data="{ Dropdown: false }">
         <nav
