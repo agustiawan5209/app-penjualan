@@ -34,7 +34,7 @@ class PDFController extends Controller
         return $pdf->stream('Penjualan.pdf');
     }
     public function LaporanBarangKeluar(Request $request){
-        $bayar = BarangKeluar::with(['barang'])->whereBetween('tgl_masuk', [$request->start, $request->end])->get();
+        $bayar = BarangKeluar::with(['barang'])->whereBetween('tgl_keluar', [$request->start, $request->end])->get();
         if($request->start == "" && $request->end == ''){
             $bayar= BarangKeluar::with(['barang'])->get();
         }
