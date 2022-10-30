@@ -12,7 +12,8 @@
     <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
 
     <!-- Scripts -->
-    @vite(['resources/js/app.js', 'resources/css/app.css'])
+    <link rel="stylesheet" href="{{asset('build/assets/app.071e00f0.css')}}">
+    @vite(['resources/js/app.js'])
 
     <script src="{{ asset('js/sweetalert.all.js') }}"></script>
 

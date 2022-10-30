@@ -11,7 +11,8 @@
     <!-- Fonts -->
 
     <!-- Scripts -->
-    @vite(['resources/css/app.css','resources/js/app.js'])
+    <link rel="stylesheet" href="{{asset('build/assets/app.071e00f0.css')}}">
+    @vite(['resources/js/app.js'])
 
     @livewireStyles
     {{-- <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.2/dist/flowbite.min.css" /> --}}
