@@ -1,0 +1,14 @@
+
+2
+3
+4
+5
+---
+
+deployment:
+
+ tasks:
+
+ - export DEPLOYPATH=/home/websites/irsanjaya.oraclesip.my.id
+
+ - /usr/bin/rsync -Paz * $DEPLOYPATH --delete
