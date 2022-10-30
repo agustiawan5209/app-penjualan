@@ -10,6 +10,7 @@
                     <x-th>Jumlah Barang</x-th>
                     <x-th>Tanggal Barang</x-th>
                     <x-th>Pemasok Barang</x-th>
+                    <x-th>Harga Barang</x-th>
                     <x-th>Aksi</x-th>
                 </x-tr>
             </thead>
@@ -21,6 +22,7 @@
                         <x-td>{{$item->jumlah}}</x-td>
                         <x-td>{{$item->tgl_masuk}}</x-td>
                         <x-td>{{$item->pemasok}}</x-td>
+                        <x-td>{{number_format($item->harga,0,2)}}</x-td>
                         <x-td>
                             <x-tdaction :item="$item->id"/>
                         </x-td>

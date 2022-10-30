@@ -48,13 +48,14 @@ use App\Http\Livewire\Admin\Laporan\BarangMasuk;
 */
 
 Route::get('/', HalamanUtama::class)->name('home');
-Route::post('Kode/Promo', [UsesUserPromoController::class, 'CekPromoUser'])->name('masukan-kode-promo');
 
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
+Route::post('Kode/Promo', [UsesUserPromoController::class, 'CekPromoUser'])->name('masukan-kode-promo');
+
     Route::get('/dashboard', [UserController::class, 'Index'])->name('dashboard');
     Route::get('Detail-Item/{idItem}', DetailItemPage::class)->name('detail-item-transaksi');
     Route::get('Pengiriman-Barang', PagePengiriman::class)->name('Page-Pengiriman');
@@ -101,6 +102,8 @@ Route::middleware([
 
     // Laporan
     Route::get('Laporan/', [PDFController::class, 'LaporanPenjualan'])->name("Laporan");
+    Route::get('Laporan/BarangMasuk', [PDFController::class, 'LaporanBarangMasuk'])->name("Laporan-BarangMasuk");
+    Route::get('Laporan/Barangkeluar', [PDFController::class, 'LaporanBarangkeluar'])->name("Laporan-Barangkeluar");
 
 });
 Route::get('stock/chart',[StatusBarangController::class, 'chart']);
