@@ -6,7 +6,6 @@
             <x-slot name="filter"></x-slot>
             <thead>
                 <x-tr>
-                    <x-th>No. </x-th>
                     <x-th>Barang</x-th>
                     <x-th>Jumlah Barang</x-th>
                     <x-th>Tanggal Barang</x-th>
@@ -19,7 +18,7 @@
                         <x-td>{{$loop->iteration}}</x-td>
                         <x-td>{{$item->barang->nama_barang}}</x-td>
                         <x-td>{{$item->jumlah}}</x-td>
-                        <x-td>{{$item->tgl_masuk}}</x-td>
+                        <x-td>{{$item->tgl_keluar}}</x-td>
                         <x-td>
                             <x-tdaction :item="$item->id"/>
                         </x-td>
@@ -51,11 +50,7 @@
                     </div>
                     <div class="mb-2">
                         <x-jet-label for="name" class="text-white">Tanggal Keluar</x-jet-label>
-                        <x-jet-input type="date" wire:model="tgl_masuk" />
-                    </div>
-                    <div class="mb-2">
-                        <x-jet-label for="name" class="text-white">Pemasok</x-jet-label>
-                        <x-jet-input type="text" wire:model="pemasok" />
+                        <x-jet-input type="date" wire:model="tgl_keluar" />
                     </div>
                 </form>
             </x-slot>

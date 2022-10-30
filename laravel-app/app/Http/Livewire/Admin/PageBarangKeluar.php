@@ -11,7 +11,7 @@ class PageBarangKeluar extends Component
 {
     public $search = '';
     public $itemAdd = false,  $itemEdit = false, $itemDelete = false, $itemID;
-    public $barang_id, $tgl_masuk, $jumlah, $status ,$pemasok;
+    public $barang_id, $tgl_keluar, $jumlah, $status ,$pemasok;
     public function render()
     {
         $barangkeluar = BarangKeluar::latest()->get();
@@ -35,8 +35,7 @@ class PageBarangKeluar extends Component
         $this->barang_id = $barang->barang_id;
         $this->status = $barang->status;
         $this->jumlah = $barang->jumlah;
-        $this->pemasok = $barang->pemasok;
-        $this->tgl_masuk = $barang->tgl_masuk;
+        $this->tgl_keluar = $barang->tgl_keluar;
     }
     public function deleteModal($id){
         $this->itemDelete = true;
@@ -47,10 +46,15 @@ class PageBarangKeluar extends Component
              'barang_id'=> 'required',
              'jumlah'=> 'required',
             //  'pemasok'=> 'required',
-             'tgl_masuk'=> 'required',
-             'status'=> 'required',
+             'tgl_keluar'=> 'required',
+            //  'status'=> 'required',
          ]);
-         $barang = BarangKeluar::create($valid);
+         $barang = Barang::find($this->barang_id);
+         $count = $barang->stock - $this->jumlah;
+         $barang->update([
+            'stock'=> $count
+         ]);
+        BarangKeluar::create($valid);
          Alert::success('Info', 'Berhasil Di Tambah');
          $this->itemAdd = false;
      }
@@ -58,10 +62,14 @@ class PageBarangKeluar extends Component
         $valid =  $this->validate([
              'barang_id'=> 'required',
              'jumlah'=> 'required',
-             'pemasok'=> 'required',
          ]);
          $barang = BarangKeluar::find($id)->update($valid);
          Alert::success('Info', 'Berhasil Di Tambah');
          $this->itemAdd = false;
+     }
+     public function delete($id){
+        BarangKeluar::find($id)->delete();
+        Alert::error('Info', "Berhasil Di Hapus");
+        $this->itemDelete = false;
      }
 }

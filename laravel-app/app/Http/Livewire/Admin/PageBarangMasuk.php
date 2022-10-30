@@ -51,7 +51,12 @@ class PageBarangMasuk extends Component
             //  'status'=> 'required',
              'harga'=> 'required',
          ]);
-         $barang = BarangMasuk::create($valid);
+         $barang = Barang::find($this->barang_id);
+         $count = $barang->stock + $this->jumlah;
+         $barang->update([
+            'stock'=> $count
+         ]);
+        BarangMasuk::create($valid);
          Alert::success('Info', 'Berhasil Di Tambah');
          $this->itemAdd = false;
      }
@@ -65,5 +70,10 @@ class PageBarangMasuk extends Component
          $barang = BarangMasuk::find($id)->update($valid);
          Alert::success('Info', 'Berhasil Di Tambah');
          $this->itemAdd = false;
+     }
+     public function delete($id){
+        BarangMasuk::find($id)->delete();
+        Alert::error('Info', "Berhasil Di Hapus");
+        $this->itemDelete = false;
      }
 }

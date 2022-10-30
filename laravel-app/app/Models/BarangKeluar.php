@@ -9,7 +9,7 @@ class BarangKeluar extends Model
 {
     use HasFactory;
     protected $table = 'barang_keluars';
-    protected $fillable = ['barang_id', 'jumlah', 'pemasok','tgl_masuk', 'status'];
+    protected $fillable = ['barang_id', 'jumlah', 'pemasok','tgl_keluar', 'status'];
 
     public function barang(){
         return $this->hasOne(Barang::class, 'id', 'barang_id');
