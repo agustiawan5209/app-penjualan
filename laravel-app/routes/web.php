@@ -33,6 +33,8 @@ use App\Http\Controllers\UsesUserPromoController;
 use App\View\Components\User\PagePesananCustomer;
 use App\Http\Livewire\User\Dashboard as UserDashboard;
 use App\Http\Livewire\Admin\DetailItemPage as AdminDetailItemPage;
+use App\Http\Livewire\Admin\Laporan\BarangKeluar;
+use App\Http\Livewire\Admin\Laporan\BarangMasuk;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,7 +62,6 @@ Route::middleware([
     // Akses Admin
     Route::group(['middleware' => 'role:Admin', 'prefix' => 'Admin', 'as'=> 'Admin.'], function () {
         Route::get('Dashboard', Dashboard::class)->name('Dashboard-Admin');
-        Route::get('Laporan', Laporan::class)->name('Laporan');
 
         //
         Route::get('Page-Barang', PageBarang::class)->name('Page-Barang');
@@ -70,6 +71,12 @@ Route::middleware([
         Route::get('Page-Voucher', PageVOucher::class)->name('Page-Voucher');
         Route::get('Page/Barang-Masuk', PageBarangMasuk::class)->name('Stok-Barang-Masuk');
         Route::get('Page/Barang-Keluar', PageBarangKeluar::class)->name('Stok-Barang-Keluar');
+
+        // Laporan
+        Route::get('Laporan/BarangMasuk', BarangMasuk::class)->name('Laporan-barang-masuk');
+        Route::get('Laporan/Barangkeluar', BarangKeluar::class)->name('Laporan-barang-keluar');
+        // Laporan Penjualan
+        Route::get('Laporan', Laporan::class)->name('Laporan');
 
         //
         Route::get('Metode-bayar', MetodeBayar::class)->name('Metode-Bayar');

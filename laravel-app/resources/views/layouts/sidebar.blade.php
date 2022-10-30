@@ -71,12 +71,32 @@
             </ul>
         </li>
 
-        <li class="items-center">
-            <a href="{{ route('Admin.Laporan') }}"
-                class="text-xs uppercase py-3 font-bold block {{ request()->routeIs('Admin.Laporan') ? ' bg-reddarken text-white' : 'text-gray-700 hover:text-gray-500' }}">
+        <li class="items-center" x-data="{ Laporan: false }">
+            <a href="#" @click="Laporan =! Laporan"
+                class="text-xs uppercase py-3 font-bold block {{ request()->routeIs('Admin.Page-Barang') || request()->routeIs('Admin.Page-Promo') || request()->routeIs('Admin.Page-Voucher') ? ' bg-reddarken text-white' : 'text-gray-700 hover:text-gray-500' }}">
                 <i class=" mr-2 text-sm text-gray-300"></i>
-                Laporan
+                Laporan Barang
             </a>
+            <ul class="md:flex-col md:min-w-full flex flex-col list-none bg-reddarken" x-show="Laporan" x-transition>
+                <li class="items-center">
+                    <a href="{{ route('Admin.Laporan-barang-masuk') }}"
+                        class="text-xs uppercase py-3 px-3 font-bold block text-white hover:text-white">
+                        Barang Masuk
+                    </a>
+                </li>
+                <li class="items-center">
+                    <a href="{{ route('Admin.Laporan-barang-keluar') }}"
+                        class="text-xs uppercase py-3 px-3 font-bold block text-white hover:text-white">
+                        Barang Keluar
+                    </a>
+                </li>
+                <li class="items-center">
+                    <a href="{{ route('Admin.Laporan') }}"
+                        class="text-xs uppercase py-3 px-3 font-bold block text-white hover:text-white">
+                        Penjualan
+                    </a>
+                </li>
+            </ul>
         </li>
     @endcan
     @can('Manage-Customer', User::class)

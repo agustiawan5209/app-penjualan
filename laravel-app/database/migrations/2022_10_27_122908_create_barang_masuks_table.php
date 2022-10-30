@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('barang_id')->nullable();
             $table->integer('jumlah');
+            $table->bigInteger('harga');
             $table->date('tgl_masuk');
             $table->enum('status', ['0','1','2'])->default('0');
             $table->timestamps();
