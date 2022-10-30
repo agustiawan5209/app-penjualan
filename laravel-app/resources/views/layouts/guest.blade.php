@@ -31,7 +31,7 @@
 </style>
 </head>
 
-<body class="overflow-x-hidden">
+<body class="overflow-x-hidden bg-gray-800">
     <!-- component -->
     <header x-data="{ isOpen: false }" class="bg-transparent  shadow-lg absolute top-0 z-[1000] w-full ">
         <nav class="container mx-auto px-6 py-3">
@@ -102,7 +102,7 @@
     </header>
 
 
-    <main class="content ">
+    <main class="content bg-white">
         {{ $slot }}
     </main>
     <div class="w-full relative bottom-0">

@@ -1,7 +1,7 @@
 <x-guest-layout>
-    <div class="container mx-auto flex justify-center pt-10">
+    <div class="container mx-auto flex justify-center pt-10 mt-20">
         <div class="w-full md:w-1/2">
-            <form action="{{route('login')}}" method="POST" class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-reddarken-100">
+            <form action="{{route('login')}}" method="POST" class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-reddarken-100 border-gray-800 border-y">
                 @csrf
                 <div class="flex-auto px-4 lg:px-10 py-6">
                     <div class="text-reddarken-500 text-center mb-3 font-bold text-3xl"><small>Login</small>
