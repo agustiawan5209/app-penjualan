@@ -17,7 +17,7 @@
     <!-- Styles -->
     @livewireStyles
     <link rel="stylesheet" href="{{asset('build/assets/app.071e00f0.css')}}">
-    @vite(['resources/js/app.js'])
+    <script src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" />
     <link rel="stylesheet" href="{{ asset('@fortawesome/fontawesome-free/css/all.min.css') }}" />

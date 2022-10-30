@@ -12,12 +12,11 @@
     <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
 
     <!-- Scripts -->
+    @livewireStyles
     <link rel="stylesheet" href="{{asset('build/assets/app.071e00f0.css')}}">
-    @vite(['resources/js/app.js'])
+    <script src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
 
     <script src="{{ asset('js/sweetalert.all.js') }}"></script>
-
-    @livewireStyles
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}">
     <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
 
