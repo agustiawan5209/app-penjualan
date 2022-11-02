@@ -25,7 +25,7 @@
                 <th>Email</th>
                 <th>Tanggal Pembelian</th>
                 {{-- <th>Pesanan</th> --}}
-                <th>Pesanan</th>
+                <th>Tipe Pembayaran</th>
                 <th>Total</th>
             </tr>
         </thead>
@@ -38,7 +38,7 @@
                     {{-- <x-td>{{ $pembayaran->nama }}</x-td> --}}
                     <x-td>{{ $pembayaran->tgl_transaksi }}</x-td>
                     <x-td>
-                       {{$pembayaran->item_details}}
+                       {{$pembayaran->payment_type}}
                     </x-td>
                     <x-td>{{ number_format($pembayaran->total_price,0,2) }}</x-td>
                     @php
