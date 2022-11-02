@@ -35,7 +35,7 @@
             </div>
              <div class="flex justify-between w-full px-4 py-2">
                  <div class="text-lg font-bold">
-                   Laporan Penjualan
+                   Laporan Data Pelanggan
                  </div>
                  <a href="{{route('Laporan', ['start'=> $startDate, 'end'=> $maxDate])}}" class="px-2 py-2 text-white bg-red-500 rounded-md hover:bg-red-600">
                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
