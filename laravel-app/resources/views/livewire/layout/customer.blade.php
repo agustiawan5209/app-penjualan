@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="{{asset('build/assets/app.9e104d4c.css')}}">
-    <script src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
     @livewireScripts
 </head>
 
@@ -45,6 +44,8 @@
     @stack('modal')
 
     @livewireScripts
+    <script defer src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
+
 </body>
 
 </html>
