@@ -13,7 +13,8 @@
 
     <!-- Scripts -->
     @livewireStyles
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{asset('build/assets/app.9e104d4c.css')}}">
+    <script src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
 
 
     <script src="{{ asset('js/sweetalert.all.js') }}"></script>
