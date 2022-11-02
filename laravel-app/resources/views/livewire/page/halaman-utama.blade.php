@@ -10,8 +10,7 @@
                         <h1 class="text-5xl font-bold leading-tight mt-0 mb-2 bg-white rounded-lg ">
                             <x-jet-application-logo />
                         </h1>
-                        <p class="text-xl leading-relaxed opacity-75 mt-1 mb-4">Menjual Bahan Bangunan & Alat-alat
-                            Listrik</p>
+                        <p class="text-xl leading-relaxed opacity-75 mt-1 mb-4">Menjual Bahan Bangunan</p>
                         <a href="{{route('shop')}}"
                             class="inline-block outline-none focus:outline-none align-middle transition-all duration-150 ease-in-out uppercase border border-solid font-bold last:mr-0 mr-2  text-white bg-gray-800 border-gray-500 active:bg-gray-600 active:border-gray-600 text-sm px-6 py-2 shadow hover:shadow-lg rounded-md"><i
                                 class="fas fa-shopping-cart mr-1"></i>Mulai Belanja</a>

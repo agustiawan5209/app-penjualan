@@ -12,29 +12,29 @@
     <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
 
     <!-- Scripts -->
-    <link rel="stylesheet" href="{{asset('build/assets/app.071e00f0.css')}}">
-    @vite(['resources/js/app.js'])
+    <link rel="stylesheet" href="{{asset('build/assets/app.9e104d4c.css')}}">
+    <script src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
+    @livewireStyles
+
 
     <script src="{{ asset('js/sweetalert.all.js') }}"></script>
-
-    @livewireStyles
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}">
     <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
 
     {{--
     <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.2/dist/flowbite.min.css" /> --}}
-<style>
-    .hero-shop{
-        background-image: url('img/elcarito-MHNjEBeLTgw-unsplash.jpg');
-        background-size:cover;
-        background-attachment: fixed;
-    }
-</style>
+    <style>
+        .hero-shop {
+            background-image: url('img/elcarito-MHNjEBeLTgw-unsplash.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+        }
+    </style>
 </head>
 
 <body class="overflow-x-hidden bg-gray-800">
     <!-- component -->
-    <header x-data="{ isOpen: false }" class="bg-transparent  shadow-lg absolute top-0 z-[1000] w-full ">
+    <header x-data="{ isOpen: false }" class=" bg-white md:bg-transparent  shadow-lg absolute top-0 z-[1000] w-full ">
         <nav class="container mx-auto px-6 py-3">
             <div class="flex flex-col md:flex-row md:justify-between md:items-center">
                 <div class="flex justify-between items-center">
@@ -74,21 +74,35 @@
                 <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
                 <div class="md:flex items-center" :class="isOpen ? 'block' : 'hidden'">
                     <div class="flex flex-col mt-2 md:flex-row md:mt-0 md:mx-1">
-                        <a class="my-1 text-sm font-bold text-white leading-5 hover:text-red-600 hover:underline md:mx-4 md:my-0 tracking-wide"
+                        <a class="my-1 text-sm font-bold text-gray-800 leading-5 hover:text-red-600 hover:underline md:mx-4 md:my-0 tracking-wide"
                             href="{{ route('home') }}">Home</a>
-                        <a class="my-1 text-sm font-bold text-white leading-5 hover:text-red-600 hover:underline md:mx-4 md:my-0 tracking-wide"
+                        <a class="my-1 text-sm font-bold text-gray-800 leading-5 hover:text-red-600 hover:underline md:mx-4 md:my-0 tracking-wide"
                             href="{{ route('shop') }}">Belanja</a>
-                        <a class="my-1 text-sm font-bold text-white leading-5 hover:text-red-600 hover:underline md:mx-4 md:my-0 tracking-wide"
+                        <a class="my-1 text-sm font-bold text-gray-800 leading-5 hover:text-red-600 hover:underline md:mx-4 md:my-0 tracking-wide"
                             href="{{ route('Promo-Diskon') }}">Promo</a>
-                        <a class="my-1 text-sm font-bold text-white leading-5 hover:text-red-600 hover:underline md:mx-4 md:my-0 tracking-wide"
+                        <a class="my-1 text-sm font-bold text-gray-800 leading-5 hover:text-red-600 hover:underline md:mx-4 md:my-0 tracking-wide"
                             href="{{ route('Keranjang') }}">Keranjang</a>
                     </div>
 
                     <div class="flex items-center py-2 -mx-1 md:mx-0">
-                        <a class="block w-1/2 px-3 py-2 mx-1 rounded text-center text-sm bg-gray-500 font-medium text-white leading-5 hover:bg-blue-600 md:mx-2 md:w-auto"
-                            href="{{ route('login') }}">Login</a>
-                        <a class="block w-1/2 px-3 py-2 mx-1 rounded text-center text-sm bg-green-500 font-medium text-white leading-5 hover:bg-green-600 md:mx-0 md:w-auto"
-                            href="{{ route('register') }}">Daftar Gratis</a>
+                        @if (Route::has('login'))
+                            @auth
+                            @can('Manage-Customer')
+                            <a class="block w-1/2 px-3 py-2 mx-1 rounded text-center text-sm bg-gray-500 font-medium text-white leading-5 hover:bg-blue-600 md:mx-2 md:w-auto"
+                                href="{{ route('Customer.Dashboard-User') }}">Dashboard</a>
+                        @endcan
+                        @can('Manage-Admin')
+                            <a class="block w-1/2 px-3 py-2 mx-1 rounded text-center text-sm bg-gray-500 font-medium text-white leading-5 hover:bg-blue-600 md:mx-2 md:w-auto"
+                                href="{{ route('Admin.Dashboard-Admin') }}">Dashboard</a>
+                        @endcan
+                            @else
+                                <a class="block w-1/2 px-3 py-2 mx-1 rounded text-center text-sm bg-gray-500 font-medium text-white leading-5 hover:bg-blue-600 md:mx-2 md:w-auto"
+                                    href="{{ route('login') }}">Login</a>
+                                <a class="block w-1/2 px-3 py-2 mx-1 rounded text-center text-sm bg-green-500 font-medium text-white leading-5 hover:bg-green-600 md:mx-0 md:w-auto"
+                                    href="{{ route('register') }}">Daftar Gratis</a>
+
+                            @endauth
+                        @endif
                     </div>
 
                     <!-- Search input on mobile screen -->
@@ -103,7 +117,7 @@
     </header>
 
 
-    <main class="content bg-white">
+    <main class="content bg-white pt-20">
         {{ $slot }}
     </main>
     <div class="w-full relative bottom-0">
