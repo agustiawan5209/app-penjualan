@@ -13,7 +13,6 @@
 
     <!-- Scripts -->
     <link rel="stylesheet" href="{{asset('build/assets/app.9e104d4c.css')}}">
-    <script src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
     @livewireStyles
 
 
@@ -141,6 +140,8 @@
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('js/owl.carousel.js') }}"></script>
     {{-- <script src="{{ asset('js/owl.lazyload.js') }}"></script> --}}
+    <script src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
+
     <script>
         $(document).ready(function() {
             var owl = $('.owl-carousel');
