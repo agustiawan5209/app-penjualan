@@ -185,7 +185,7 @@
 
     @livewireScripts
 
-    <script type="text/javascript" src="{{asset('build/assets/app.ab93cf8a.js')}}" defer></script>
+    <script defer  src="{{asset('build/assets/app.ab93cf8a.js')}}" ></script>
 
 </body>
 

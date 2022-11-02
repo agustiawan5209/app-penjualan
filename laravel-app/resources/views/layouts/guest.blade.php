@@ -140,7 +140,7 @@
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('js/owl.carousel.js') }}"></script>
     {{-- <script src="{{ asset('js/owl.lazyload.js') }}"></script> --}}
-    <script src="{{asset('build/assets/app.ab93cf8a.js')}}" defer></script>
+    <script defer src="{{asset('build/assets/app.ab93cf8a.js')}}" ></script>
 
     <script>
         $(document).ready(function() {
