@@ -10,17 +10,11 @@
     <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
-    {{-- <link rel="stylesheet" href="{{asset('build/assets/app.70c88c20.css')}}">
-    <script defer src="{{asset('build/assets/app.b4b86c71.js')}}"></script> --}}
-    <!-- Scripts -->
-
-    <!-- Styles -->
     @livewireStyles
     <link rel="stylesheet" href="{{asset('build/assets/app.9e104d4c.css')}}">
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" />
     <link rel="stylesheet" href="{{ asset('@fortawesome/fontawesome-free/css/all.min.css') }}" />
-    <script src="{{ asset('js/sweetalert.all.js') }}"></script>
 
 </head>
 
@@ -191,8 +185,7 @@
 
     @livewireScripts
 
-
-    <script type="text/javascript" src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
+    <script type="text/javascript" src="{{asset('build/assets/app.ab93cf8a.js')}}" defer></script>
 
 </body>
 
