@@ -19,7 +19,7 @@
                                     <x-jet-validation-errors />
                                         <div class="mb-3">
                                             <x-jet-label for='gambar_jenis'>Gambar</x-jet-label>
-                                            <x-jet-input type="file" wire:model='gambar_jenis' />
+                                            <input type="file" wire:model='gambar_jenis' />
                                         </div>
                                         <div class="mb-3">
                                             <x-jet-label for='nama_jenis'>Nama Jenis</x-jet-label>
@@ -28,7 +28,7 @@
                                         @if ($editJenis == false)
                                             <x-jet-button type='button' wire:click='createJenis'>Tambah</x-jet-button>
                                         @elseif($editJenis == true)
-                                            <x-jet-button type='button' wire:click='editJenis({{ $itemID }})'>Simpan
+                                            <x-jet-button type='button' wire:click='editJenis({{ $itemID }})'>EDIT
                                             </x-jet-button>
                                         @endif
                                     </form>
@@ -46,6 +46,10 @@
                                 <tr>
                                     <th
                                         class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-red-800 text-white border-red-700">
+                                        gambar
+                                    </th>
+                                    <th
+                                        class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-red-800 text-white border-red-700">
                                         Jenis
                                     </th>
                                     <th
@@ -60,6 +64,7 @@
                             <tbody>
                                 @foreach ($jenis as $item)
                                     <tr class="border-b border-black">
+                                      <x-td>{{$item->gambar}}</x-td>
                                       <x-td>{{$item->nama_jenis}}</x-td>
                                       <x-td>
                                         <x-jet-button wire:click="tambahKatalog({{$item->id}})">Katalog</x-jet-button>

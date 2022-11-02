@@ -6,10 +6,12 @@ use App\Models\Jenis;
 use App\Models\Katalog;
 use Livewire\Component;
 use Illuminate\Support\Facades\Storage;
+use Livewire\WithFileUploads;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PageJenis extends Component
 {
+    use WithFileUploads;
     // itemJenis
     public $addJenis = false,
         $editJenis = false,
@@ -48,6 +50,7 @@ class PageJenis extends Component
     {
         $this->validate([
             'nama_Jenis' => 'required',
+            'gambar_jenis' => 'required',
         ]);
         $nama = $this->gambar_jenis->getClientOriginalName();
         $this->gambar_jenis->storeAs('upload/jenis', $nama);
@@ -61,7 +64,7 @@ class PageJenis extends Component
     {
         $this->validate([
             'nama_Jenis' => 'required',
-            // 'gambar_jenis' => ['required', 'image'],
+            // 'gambar_jenis' => ['required'],
         ]);
         $jns = Jenis::find($id);
         if ($this->gambar_jenis != null) {
