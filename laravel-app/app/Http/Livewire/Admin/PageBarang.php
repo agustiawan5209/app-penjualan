@@ -136,7 +136,7 @@ class PageBarang extends Component
         }
         if ($this->gambar != null) {
             $nama = $this->gambar->getClientOriginalName();
-            $random = bcrypt($nama) . '.' . $this->gambar->getClientOriginalExtension();
+            $random = md5($nama) . '.' . $this->gambar->getClientOriginalExtension();
             $this->gambar->storeAs('upload/', $nama);
         }
         $barang = Barang::create([
@@ -183,7 +183,7 @@ class PageBarang extends Component
         $random = $this->updateFoto;
         if ($this->gambar != null) {
             $nama = $this->gambar->getClientOriginalName();
-            $random = bcrypt($nama) . '.' . $this->gambar->getClientOriginalExtension();
+            $random = md5($nama) . '.' . $this->gambar->getClientOriginalExtension();
             $this->gambar->storeAs('upload', $random);
         }
         $barang = Barang::where('id', $id)->update([
