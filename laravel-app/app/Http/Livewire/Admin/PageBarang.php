@@ -195,6 +195,8 @@ class PageBarang extends Component
             'deskripsi' => $this->deskripsi,
             'tgl_perolehan' => $this->tgl_perolehan,
             'stock' => $this->stock,
+            'nama_barang' => $this->nama_barang,
+
         ]);
         // for ($i = 0; $i < count($this->katalog); $i++) {
         //     Katalog::create([
