@@ -35,6 +35,7 @@ use App\Http\Livewire\User\Dashboard as UserDashboard;
 use App\Http\Livewire\Admin\DetailItemPage as AdminDetailItemPage;
 use App\Http\Livewire\Admin\Laporan\BarangKeluar;
 use App\Http\Livewire\Admin\Laporan\BarangMasuk;
+use App\Http\Livewire\Laporan\DataPelanggan;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,6 +77,7 @@ Route::post('Kode/Promo', [UsesUserPromoController::class, 'CekPromoUser'])->nam
         // Laporan
         Route::get('Laporan/BarangMasuk', BarangMasuk::class)->name('Laporan-barang-masuk');
         Route::get('Laporan/Barangkeluar', BarangKeluar::class)->name('Laporan-barang-keluar');
+        Route::get('Laporan/DataPelanggan', DataPelanggan::class)->name('Laporan-Data-Pelanggan');
         // Laporan Penjualan
         Route::get('Laporan', Laporan::class)->name('Laporan');
 

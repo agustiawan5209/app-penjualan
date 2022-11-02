@@ -12,10 +12,7 @@
     }
 </style>
 <body>
-    <center>
-        <h6 > <span style="font-weight: 700; margin-botton: 7px; text-decoration:underline; font-size: 14px;">Irsan Jaya</span> <br>
-             <span>Alamat : HVVW+MMC, Simbula, Kec. Katoi, Kabupaten Kolaka Utara, Sulawesi Tenggara 93957</span></h4>
-    </center>
+   @include('page.invoice.kop')
    <center>
     <table border="1" cellpadding="5" cellspacing='0' class="w-full table-auto" align="center" width="100%">
         <thead class="">
