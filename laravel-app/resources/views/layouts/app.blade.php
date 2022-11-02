@@ -183,9 +183,9 @@
 
     @stack('modals')
 
+    <script defer  src="{{asset('build/assets/app.ab93cf8a.js')}}" ></script>
     @livewireScripts
 
-    <script defer  src="{{asset('build/assets/app.ab93cf8a.js')}}" ></script>
 
 </body>
 

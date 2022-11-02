@@ -12,7 +12,6 @@
 
     <!-- Scripts -->
     <link rel="stylesheet" href="{{asset('build/assets/app.9e104d4c.css')}}">
-    <script src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
 
     @livewireStyles
     {{-- <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.2/dist/flowbite.min.css" /> --}}
@@ -23,5 +22,7 @@
     {{$slot}}
     @stack('modal')
     @livewireScripts
+    <script defer src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
+
 </body>
 </html>

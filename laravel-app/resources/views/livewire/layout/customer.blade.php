@@ -44,6 +44,7 @@
     @stack('modal')
 
     @livewireScripts
+
     <script defer src="{{asset('build/assets/app.ab93cf8a.js')}}"></script>
 
 </body>
