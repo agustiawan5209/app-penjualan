@@ -64,7 +64,7 @@
                             <tbody>
                                 @foreach ($jenis as $item)
                                     <tr class="border-b border-black">
-                                      <x-td>{{$item->gambar}}</x-td>
+                                        <x-td><img src="{{asset('upload/jenis/'.$item->gambar)}}" alt="" srcset="" width="100"></x-td>
                                       <x-td>{{$item->nama_jenis}}</x-td>
                                       <x-td>
                                         <x-jet-button wire:click="tambahKatalog({{$item->id}})">Katalog</x-jet-button>
