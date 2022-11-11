@@ -64,7 +64,7 @@ class PageJenis extends Component
     {
         $this->validate([
             'nama_Jenis' => 'required',
-            // 'gambar_jenis' => ['required'],
+            'gambar_jenis' => ['required'],
         ]);
         $jns = Jenis::find($id);
         if ($this->gambar_jenis != null) {
