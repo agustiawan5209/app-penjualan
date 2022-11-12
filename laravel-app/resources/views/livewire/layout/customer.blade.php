@@ -33,6 +33,18 @@
                                 class="hover:opacity-75 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold transition-all duration-150 ease-in-out text-white">Pengiriman
                                 Barang</a>
                         </li>
+                        <li>
+                            <form action="{{ route('logout') }}" method="POST"
+                            class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-white">
+                            @csrf
+                            <button type='submit'
+                                class=" text-white hover:text-gray-500 text-xs uppercase py-3 font-bold block">
+
+                                Logout
+                            </button>
+                        </form>
+                        </li>
+
                     </ul>
                 </div>
             </div>
