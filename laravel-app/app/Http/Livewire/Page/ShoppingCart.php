@@ -75,6 +75,7 @@ class ShoppingCart extends Component
         Barang::find($barang->id)->update([
             'stock'=> $barang->stock + $kr->quantity,
         ]);
+        $kr->delete();
         Alert::success('Berhasil', 'Berhasil Di Hapus !');
     }
 
