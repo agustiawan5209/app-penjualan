@@ -13,11 +13,12 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class Produklist extends Component
 {
+    public $show = 5;
     public function render()
     {
         $produk = Barang::all();
         // \Cart::remove(1);
-        $jenis = Jenis::all();
+        $jenis = Jenis::paginate($this->show);
         return view('livewire.page.produklist', [
             'produk' => $produk,
             'jenis'=> $jenis,
@@ -27,5 +28,7 @@ class Produklist extends Component
     {
         return redirect()->route('Shop-detail', ['itemID'=> $id]);
     }
-
+    public function showMore(){
+        $this->show = $this->show + 5;
+    }
 }
