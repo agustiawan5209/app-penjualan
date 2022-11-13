@@ -21,4 +21,7 @@ class Katalog extends Component
             'jenis'=> $jenis,
         ]);
     }
+    public function showMore(){
+        $this->show = 20;
+    }
 }

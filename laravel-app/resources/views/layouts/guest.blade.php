@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
 
     <!-- Scripts -->
-    <link rel="stylesheet" href="{{asset('build/assets/app.9e104d4c.css')}}">
+    <link rel="stylesheet" href="{{asset('build/assets/app.ec87363b.css')}}">
     @livewireStyles
 
 

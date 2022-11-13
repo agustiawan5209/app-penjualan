@@ -1,35 +1,41 @@
 <div>
-    <h1 class="font-medium container mx-auto pt-5 text-center  pb-4">
-        <span class="max-w-xl rounded-md px-3 py-3 bg-gray-900 text-white font-bold">Kategori</span>
-    </h1>
-    <div class="bg-white w-full mx-auto border border-gray-200 pb-10">
-        <ul class="shadow-box grid grid-cols-3 md:grid-cols-6 lg:grid-cols-8 gap-2">
+    <div class="w-full flex items-center justify-center my-8">
+        <div class="bg-gray-900 rounded-lg shadow-lg flex-col w-5/6 lg:max-w-xl">
+            <div class="px-5 py-3 mb-3 text-2xl font-bold text-gray-100 flex flex-row justify-between items-center mt-4">
+                <div class="">Kategori</div>
 
-           @foreach ($jenis as $jenis)
-             <li class="relative border border-gray-400 rounded-lg" x-data="{ selected: null }">
+            </div>
+            <ul class="flex-col">
+                @foreach ($jenis as $item)
+                    <li class="flex-col mb-5" x-data="{ JenisItem: false }">
+                        <div class="px-5 text-gray-600 text-xs flex flex-row justify-between items-center"
+                            @click="JenisItem = ! JenisItem">
+                            <p class="text-gray-100 text-base">{{ $item->nama_jenis }}</p>
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5" />
+                                  </svg>
 
-                 <button type="button" class="w-full px-8 py-6 text-left"
-                     @click="selected !== 1 ? selected = 1 : selected = null">
-                     <div class="flex flex-col items-center justify-center">
-                        <img src="{{asset('upload/jenis/'. $jenis->gambar)}}" width="100" alt="Foto Jenis">
-                         <span class=" text-sm text-center">
-                             {{$jenis->nama_jenis}}</span>
-                     </div>
-                 </button>
-
-                 <div class="relative overflow-hidden transition-all max-h-0 duration-700" style=""
-                     x-ref="container1"
-                     x-bind:style="selected == 1 ? 'max-height: ' + $refs.container1.scrollHeight + 'px' : ''">
-                     <div class="p-6 flex flex-col justify-center gap-4">
-                       @foreach ($jenis->katalog as $katalog)
-                         <a href="{{route('shop', ['jenis'=> $katalog->nama_katalog])}}" class="px-3 py-1 border rounded-md text-xs">{{$katalog->nama_katalog}}</a>
-                       @endforeach
-                     </div>
-                 </div>
-
-             </li>
-
-           @endforeach
-        </ul>
+                            </span>
+                        </div>
+                        @if ($item->katalog->count() > 0)
+                            <div class="px-5 text-gray-300 text-sm" x-show="JenisItem" x-on:transition>
+                                <ul>
+                                    @foreach ($item->katalog as $item)
+                                        <li class=" py-1 rounded border-gray-700">{{ $item->nama_katalog }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                    </li>
+                @endforeach
+            </ul>
+            @if ($jenis->count() > 0)
+                <div class="px-5 py-2 text-blue-600 cursor-pointer hover:text-blue-500 mb-4 text-sm"
+                    wire:click="showMore">
+                    Tampilkan Lagi
+                </div>
+            @endif
+        </div>
     </div>
 </div>
