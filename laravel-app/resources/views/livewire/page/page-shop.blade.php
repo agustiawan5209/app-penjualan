@@ -12,46 +12,31 @@
                 </div>
                 <div class="flex flex-wrap -mx-4">
                     @foreach ($produk as $item)
-                        <div class="flex font-sans bg-white">
-                            <div class="flex-none w-48 relative">
-                                <img src="{{ asset('upload/' . $item->gambar) }}" alt=""
-                                    class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+                        <!-- component -->
+                        <!-- This is an example component -->
+                        <div class="bg-white w-48 relative shadow overflow-hidden cursor-pointer" wire:click='ShowDetail({{$item->id}})'>
+                            @if ($item->diskon->count() > 0)
+                                @foreach ($item->diskon as $diskon)
+                                    <div class="absolute font-bold text-white px-2 py-1 bg-green-600 rounded-r-sm">
+                                        <span class="text-sm">Diskon {{ $diskon->jumlah_diskon }}%</span>
+                                    </div>
+                                @endforeach
+                            @endif
+                            <img src="{{ asset('upload/' . $item->gambar) }}"
+                                alt="AGLAONEMA RED ANJAMANI / AGLONEMA RED ANJAMANI MURMER">
+                            <div class="pt-3 pb-4 px-2">
+                                <div class="text-sm overflow-hidden h-8 leading-4">{{ $item->nama_barang }}</div>
+                                <div class="flex justify-between items-center">
+                                    <div class="text-grabg-green-600">
+                                        <span class="text-sm">Rp</span><span
+                                            class="text-md font-semibold">{{ number_format($item->harga, 0, 2) }}</span>
+                                        <br>
+                                        <span class="text-xs">Kategori : </span><span
+                                            class="text-sm">{{ $item->katalog->nama_katalog }}</span>
+                                    </div>
+                                    <div class="text-sm text-gray-600">Stok {{ $item->stock }}</div>
+                                </div>
                             </div>
-                            <form class="flex-auto p-6">
-                                <div class="flex flex-wrap">
-                                    <h1 class="flex-auto text-lg font-semibold text-slate-900">
-                                        {{ $item->nama_barang }}
-                                    </h1>
-                                    <div class="text-lg font-semibold text-slate-500">
-                                        {{ $item->hargaBarang($item->harga) }}
-                                    </div>
-                                    <div class="w-full flex-none text-sm font-medium text-slate-700 mt-2">
-                                        Stock : {{ $item->stock }}
-                                    </div>
-                                </div>
-                                <div class="flex items-baseline mt-4 mb-6 pb-6 border-b border-slate-200">
-                                    <div class="space-x-2 flex text-sm">
-                                        <label>
-                                            <input class="sr-only peer" name="size" type="radio" value="xs"
-                                                checked />
-                                            <div
-                                                class="w-full px-3 h-9 rounded-lg flex items-center justify-center text-slate-700 peer-checked:font-semibold peer-checked:bg-slate-900 peer-checked:text-white">
-                                                {{ $item->katalog->nama_katalog }}
-                                            </div>
-                                    </div>
-                                </div>
-                                <div class="flex space-x-4 mb-6 text-sm font-medium">
-                                    <div class="flex-auto flex space-x-4">
-                                        <button class="h-10 px-6 font-semibold rounded-md bg-black text-white"
-                                            type="button" wire:click="ShowDetail({{ $item->id }})">
-                                            Beli Sekarang
-                                        </button>
-                                    </div>
-                                </div>
-                                <p class="text-sm text-slate-700">
-                                    {{ $item->deskripsi }}
-                                </p>
-                            </form>
                         </div>
                     @endforeach
                 </div>
