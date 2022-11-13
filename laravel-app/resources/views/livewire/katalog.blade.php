@@ -12,11 +12,10 @@
                             @click="JenisItem = ! JenisItem">
                             <p class="text-gray-100 text-base">{{ $item->nama_jenis }}</p>
                             <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 hover:text-gray-100"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path
-                                        d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5" />
+                                  </svg>
+
                             </span>
                         </div>
                         @if ($item->katalog->count() > 0)
