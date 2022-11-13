@@ -43,7 +43,7 @@
 
                         </div><img
                             data-lazy="{{asset('upload/'. $item->thumbnail)}}"
-                            class="w-full h-full absolute inset-0 object-cover bg-cover">
+                            class="max-w-4xl mx-auto h-full absolute inset-0 object-cover bg-cover ">
                     </div>
                 </div>
             @endforeach
