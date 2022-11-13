@@ -17,7 +17,7 @@ class PageShop extends Component
     public $itemID;
     public $alert = false;
     public $row =10;
-
+    public $show = 5;
     // get Param URL
     public $nama_jenis;
     public function mount($nama_jenis){
@@ -39,7 +39,7 @@ class PageShop extends Component
     {
         // dd($this->nama_jenis);
         $produk = Barang::with(['satuan', 'katalog','diskon'])->paginate(10);
-        $jenis = Jenis::all();
+        $jenis = Jenis::paginate($this->show);
         if($this->nama_jenis != null){
             $produk = Barang::with(['satuan', 'katalog','diskon'])
             ->orWhere('katalog_id', '=', $this->nama_jenis)
@@ -52,6 +52,9 @@ class PageShop extends Component
             'produk' => $produk,
             'jenis' => $jenis,
         ])->layout('layouts.guest');
+    }
+    public function showMore(){
+        $this->show = $this->show + 5;
     }
     public function addToCart($id)
     {
