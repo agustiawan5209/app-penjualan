@@ -7,7 +7,7 @@
             </div>
             <ul class="flex-col">
                 @foreach ($jenis as $item)
-                    <li class="flex-col mb-5" x-data="{ JenisItem: false }">
+                    <li class="flex-col mb-5 cursor-pointer" x-data="{ JenisItem: false }">
                         <div class="px-5 text-gray-600 text-xs flex flex-row justify-between items-center"
                             @click="JenisItem = ! JenisItem">
                             <p class="text-gray-100 text-base">{{ $item->nama_jenis }}</p>
