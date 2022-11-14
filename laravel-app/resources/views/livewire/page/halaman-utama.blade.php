@@ -3,7 +3,7 @@
 
         <section class="flex relative items-center max-w-6xl mx-auto p-0 h-full z-0">
             <div class="conteiner mx-auto px-16">
-                <video controls autoplay >
+                <video autoplay loop muted>
                     <source src="{{asset('video/slide.mp4')}}" type="video/mp4">
                     <source src="{{asset('video/slide.mp4')}}" type="video/ogg">
                     Your browser does not support the video tag.
