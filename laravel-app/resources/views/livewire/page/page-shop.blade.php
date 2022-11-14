@@ -14,10 +14,10 @@
                     @foreach ($produk as $item)
                         <!-- component -->
                         <!-- This is an example component -->
-                        <div class="bg-white w-48 relative shadow overflow-hidden cursor-pointer" wire:click='ShowDetail({{$item->id}})'>
+                        <div class="bg-gray-800 w-48 relative shadow overflow-hidden cursor-pointer" wire:click='ShowDetail({{$item->id}})'>
                             @if ($item->diskon->count() > 0)
                                 @foreach ($item->diskon as $diskon)
-                                    <div class="absolute font-bold text-white px-2 py-1 bg-green-600 rounded-r-sm">
+                                    <div class="absolute font-bold text-white px-2 py-1 bg-slate-600 rounded-r-sm">
                                         <span class="text-sm">Diskon {{ $diskon->jumlah_diskon }}%</span>
                                     </div>
                                 @endforeach
@@ -27,7 +27,7 @@
                             <div class="pt-3 pb-4 px-2">
                                 <div class="text-sm overflow-hidden h-8 leading-4">{{ $item->nama_barang }}</div>
                                 <div class="flex justify-between items-center">
-                                    <div class="text-grabg-green-600">
+                                    <div class="text-grabg-slate-600">
                                         <span class="text-sm">Rp</span><span
                                             class="text-md font-semibold">{{ number_format($item->harga, 0, 2) }}</span>
                                         <br>

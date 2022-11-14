@@ -1,5 +1,5 @@
 <div class="w-full">
-    <section class="relative pb-12 bg-gray-100 pt-5 hero-shop grid grid-cols-5 gap-4">
+    <section class="relative pb-12 bg-gray-800 hero-shop grid grid-cols-5 gap-4">
         <div class="absolute left-0 bottom-0 pointer-events-none hidden lg:block owl fade_in" aria-hidden="true" >
             <svg width="428" height="328" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -29,15 +29,15 @@
         <div class="container mx-auto px-4 col-span-4">
             <div class="mb-5 flex flex-wrap -mx-4 justify-start">
                 <div class="px-4 relative w-full lg:w-8/12 text-left">
-                    <h6 class="mb-2 text-lg font-bold uppercase text-black">Produk Kami</h6>
+                    <h6 class="mb-2 text-lg font-bold uppercase text-white">Produk Kami</h6>
                 </div>
             </div>
             <div class="grid grid-cols-3 gap-2 -mx-4 wow fadeInDown">
                 @foreach ($produk as $item)
-                <div class="bg-white w-48 relative shadow overflow-hidden cursor-pointer" wire:click='ShowDetail({{$item->id}})'>
+                <div class="bg-gray-800 w-48 relative shadow overflow-hidden cursor-pointer" wire:click='ShowDetail({{$item->id}})'>
                     @if ($item->diskon->count() > 0)
                         @foreach ($item->diskon as $diskon)
-                            <div class="absolute font-bold text-white px-2 py-1 bg-green-600 rounded-r-sm">
+                            <div class="absolute font-bold text-white px-2 py-1 bg-slate-600 rounded-r-sm">
                                 <span class="text-sm">Diskon {{ $diskon->jumlah_diskon }}%</span>
                             </div>
                         @endforeach
@@ -47,7 +47,7 @@
                     <div class="pt-3 pb-4 px-2">
                         <div class="text-sm overflow-hidden h-8 leading-4">{{ $item->nama_barang }}</div>
                         <div class="flex justify-between items-center">
-                            <div class="text-grabg-green-600">
+                            <div class="text-grabg-slate-600">
                                 <span class="text-sm">Rp</span><span
                                     class="text-md font-semibold">{{ number_format($item->harga, 0, 2) }}</span>
                                 <br>
@@ -62,4 +62,6 @@
             </div>
         </div>
     </section>
+    <div id="particles-1" class="particles"></div>
+
 </div>
