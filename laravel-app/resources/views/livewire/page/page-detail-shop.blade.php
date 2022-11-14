@@ -40,7 +40,7 @@
                                         wire:click='countminus'>-</button></div>
                                 <div class="mr-2">
                                     <div class="mb-3 pt-0"><input type="text"
-                                            class="border-reddarken-300 px-3 py-2 text-sm  w-full placeholder-reddarken-200 text-reddarken-700 relative bg-white rounded-md outline-none  focus:ring-lightBlue-900 focus:ring-1 focus:border-lightBlue-900 border border-solid transition duration-200 "
+                                            class="border-reddarken-300 px-3 text-black py-2 text-sm  w-full placeholder-reddarken-200 text-reddarken-700 relative bg-white rounded-md outline-none  focus:ring-lightBlue-900 focus:ring-1 focus:border-lightBlue-900 border border-solid transition duration-200 "
                                             wire:model="count"></div>
                                 </div>
                                 <div><button

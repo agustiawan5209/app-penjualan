@@ -8,13 +8,13 @@
                         <img src="{{ asset('upload/' . $item->barang->gambar) }}" class="mr-4 w-20 p-2" alt="...">
                         <div class="flex-1">
                             <div class="justify-between">
-                                <h6 class="text-xl font-semibold leading-tight mb-1">{{ $item->barang->nama_barang }}
+                                <h6 class="text-xl text-gray-800 font-semibold leading-tight mb-1">{{ $item->barang->nama_barang }}
                                 </h6>
-                                <p class="text-reddarken-500 uppercase font-bold text-xs">Jumlah : {{ $item->quantity }}
+                                <p class="text-gray-500 uppercase font-bold text-xs">Jumlah : {{ $item->quantity }}
                                 </p>
                             </div>
                         </div>
-                        <span class="text-reddarken-700">Rp. {{ number_format($item->sub_total, 0, 2) }}</span>
+                        <span class="text-gray-800">Rp. {{ number_format($item->sub_total, 0, 2) }}</span>
                         <button wire:click='removeCart({{ $item->id }})' class="px-1 py-2 text-red-500 text-sm font-semibold">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -28,19 +28,19 @@
                 <div>
                     <hr class="mt-4 mb-2 bg-reddarken-300 ml-0">
                     <div class="flex justify-between">
-                        <h6 class="text-reddarken-700 leading-normal mt-0 mb-2">Subtotal</h6>
-                        <h6 class="leading-normal mt-0 mb-2">Rp. {{ number_format($sub_total) }}</h6>
+                        <h6 class="text-gray-800 leading-normal mt-0 mb-2">Subtotal</h6>
+                        <h6 class="leading-normal mt-0 mb-2 text-gray-800">Rp. {{ number_format($sub_total) }}</h6>
                     </div>
                     <div class="flex justify-between">
-                        <h6 class="text-reddarken-700 leading-normal mt-0 mb-2">Diskon</h6>
-                        <h6 class="leading-normal mt-0 mb-2">Rp. {{ number_format($potongan) }}</h6>
+                        <h6 class="text-gray-800 leading-normal mt-0 mb-2">Diskon</h6>
+                        <h6 class="leading-normal mt-0 mb-2 text-gray-800">Rp. {{ number_format($potongan) }}</h6>
                     </div>
                 </div>
                 <div>
                     <hr class="mt-4 mb-2 bg-reddarken-300 ml-0">
                     <div class="flex justify-between">
-                        <h6 class="text-reddarken-700 leading-normal mt-0 mb-2">Total</h6>
-                        <h6 class="leading-normal mt-0 mb-2">Rp. {{ number_format($total_bayar) }}</h6>
+                        <h6 class="text-gray-800 leading-normal mt-0 mb-2">Total</h6>
+                        <h6 class="leading-normal mt-0 mb-2 text-gray-800">Rp. {{ number_format($total_bayar) }}</h6>
                     </div>
                 </div>
                 <div>
