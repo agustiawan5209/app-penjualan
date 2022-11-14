@@ -62,6 +62,7 @@
             </div>
         </div>
     </section>
-    <div id="particles-1" class="particles"></div>
-
+    <div class="absolute top-0 left-0 z-[2] w-full h-full">
+        <div id="particles-1" class="particles"></div>
+    </div>
 </div>
