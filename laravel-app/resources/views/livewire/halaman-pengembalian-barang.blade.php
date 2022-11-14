@@ -66,12 +66,12 @@
                                 <x-forms.td>
                                     @if ($item->status == 0)
                                         <a href="#_" wire:click='StatusModal({{ $item->id }})'
-                                            class="inline-block px-2 py-1 text-sm mx-auto text-white bg-green-500 rounded-full hover:bg-green-600 md:mx-0">
+                                            class="inline-block px-2 py-1 text-sm mx-auto text-white bg-green-500 rounded-full hover:bg-slate-600 md:mx-0">
                                             Update Status
                                         </a>
                                     @else
                                     <a href="#_"
-                                        class="inline-block px-2 py-1 text-sm mx-auto text-white bg-green-500 rounded-full hover:bg-green-600 md:mx-0">
+                                        class="inline-block px-2 py-1 text-sm mx-auto text-white bg-green-500 rounded-full hover:bg-slate-600 md:mx-0">
                                         @if ($item->status == 1)
                                             Ditolak
                                         @elseif ($item->status == 2)

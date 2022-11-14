@@ -19,8 +19,8 @@
 
     <link rel="stylesheet" href="css/libs/animate.css">
     <script src="{{ asset('js/sweetalert.all.js') }}"></script>
-    <link rel="stylesheet" type="text/css" href="{{asset('slick/slick.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('slick/slick-theme.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('slick/slick.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('slick/slick-theme.css') }}">
 
     <script src="{{ asset('js/wow.js') }}"></script>
 
@@ -31,7 +31,8 @@
 
 <body class="overflow-x-hidden bg-gray-800">
     <!-- component -->
-    <header x-data="{ isOpen: false }" class=" bg-gray-800 text-white md:bg-transparent  shadow-lg absolute top-0 z-[1000] w-full ">
+    <header x-data="{ isOpen: false }"
+        class=" bg-gray-800 text-white md:bg-transparent  shadow-lg absolute top-0 z-[1000] w-full ">
         <nav class="container mx-auto px-6 py-3">
             <div class="flex flex-col md:flex-row md:justify-between md:items-center">
                 <div class="flex justify-between items-center">
@@ -95,7 +96,7 @@
                             @else
                                 <a class="block w-1/2 px-3 py-2 mx-1 rounded text-center text-sm bg-gray-500 font-medium text-white leading-5 hover:bg-blue-600 md:mx-2 md:w-auto"
                                     href="{{ route('login') }}">Login</a>
-                                <a class="block w-1/2 px-3 py-2 mx-1 rounded text-center text-sm bg-green-500 font-medium text-white leading-5 hover:bg-green-600 md:mx-0 md:w-auto"
+                                <a class="block w-1/2 px-3 py-2 mx-1 rounded text-center text-sm bg-green-500 font-medium text-white leading-5 hover:bg-slate-600 md:mx-0 md:w-auto"
                                     href="{{ route('register') }}">Daftar Gratis</a>
 
                             @endauth
@@ -116,6 +117,7 @@
 
     <main class="content bg-gray-800 text-white pt-20">
         {{ $slot }}
+
     </main>
     <div class="w-full relative bottom-0">
         <footer class="bg-gray-800">
@@ -153,18 +155,243 @@
             this.parentNode.insertBefore(section, this);
         };
     </script>
-      <script src="{{asset('slick/slick.js')}}" type="text/javascript" charset="utf-8"></script>
+    <script src="{{ asset('slick/slick.js') }}" type="text/javascript" charset="utf-8"></script>
+    <script src="{{asset('js/particles.min.js')}}"></script>
 
     <script>
         $(document).ready(function() {
             $('.slick').slick({
                 dots: true,
-  infinite: true,
-  speed: 300,
-  slidesToShow: 1,
-  adaptiveHeight: true
-            });
+                infinite: true,
+                speed: 300,
+                slidesToShow: 1,
+                adaptiveHeight: true,
+                fade: true,
+                cssEase: 'linear',
+                autoplay : true
 
+            });
+            if (document.getElementById("particles-1")) particlesJS("particles-1", {
+        "particles": {
+            "number": {
+                "value": 40,
+                "density": {
+                    "enable": !0,
+                    "value_area": 4000
+                }
+            },
+            "color": {
+                "value": ["#FFFFFF", "#FFFFFF", "#FFFFFF"]
+            },
+            "shape": {
+                "type": "circle",
+                "stroke": {
+                    "width": 0,
+                    "color": "#fff"
+                },
+                "polygon": {
+                    "nb_sides": 5
+                },
+                "image": {
+                    "src": "img/github.svg",
+                    "width": 33,
+                    "height": 33
+                }
+            },
+            "opacity": {
+                "value": 0.15,
+                "random": !0,
+                "anim": {
+                    "enable": !0,
+                    "speed": 0.2,
+                    "opacity_min": 0.15,
+                    "sync": !1
+                }
+            },
+            "size": {
+                "value": 50,
+                "random": !0,
+                "anim": {
+                    "enable": !0,
+                    "speed": 2,
+                    "size_min": 5,
+                    "sync": !1
+                }
+            },
+            "line_linked": {
+                "enable": !1,
+                "distance": 150,
+                "color": "#ffffff",
+                "opacity": 0.4,
+                "width": 1
+            },
+            "move": {
+                "enable": !0,
+                "speed": 1,
+                "direction": "top",
+                "random": !0,
+                "straight": !1,
+                "out_mode": "out",
+                "bounce": !1,
+                "attract": {
+                    "enable": !1,
+                    "rotateX": 600,
+                    "rotateY": 600
+                }
+            }
+        },
+        "interactivity": {
+            "detect_on": "canvas",
+            "events": {
+                "onhover": {
+                    "enable": !1,
+                    "mode": "bubble"
+                },
+                "onclick": {
+                    "enable": !1,
+                    "mode": "repulse"
+                },
+                "resize": !0
+            },
+            "modes": {
+                "grab": {
+                    "distance": 400,
+                    "line_linked": {
+                        "opacity": 1,
+                    }
+                },
+                "bubble": {
+                    "distance": 250,
+                    "size": 0,
+                    "duration": 2,
+                    "opacity": 0,
+                    "speed": 3
+                },
+                "repulse": {
+                    "distance": 400,
+                    "duration": 0.4
+                },
+                "push": {
+                    "particles_nb": 4
+                },
+                "remove": {
+                    "particles_nb": 2
+                }
+            }
+        },
+        "retina_detect": !0
+    });
+
+    if (document.getElementById("particles-2")) particlesJS("particles-2", {
+        "particles": {
+            "number": {
+                "value": 40,
+                "density": {
+                    "enable": !0,
+                    "value_area": 4000
+                }
+            },
+            "color": {
+                "value": ["#FFFFFF", "#FFFFFF", "#FFFFFF"]
+            },
+            "shape": {
+                "type": "circle",
+                "stroke": {
+                    "width": 0,
+                    "color": "#fff"
+                },
+                "polygon": {
+                    "nb_sides": 5
+                },
+                "image": {
+                    "src": "img/github.svg",
+                    "width": 33,
+                    "height": 33
+                }
+            },
+            "opacity": {
+                "value": 0.15,
+                "random": !0,
+                "anim": {
+                    "enable": !0,
+                    "speed": 0.2,
+                    "opacity_min": 0.15,
+                    "sync": !1
+                }
+            },
+            "size": {
+                "value": 50,
+                "random": !0,
+                "anim": {
+                    "enable": !0,
+                    "speed": 2,
+                    "size_min": 5,
+                    "sync": !1
+                }
+            },
+            "line_linked": {
+                "enable": !1,
+                "distance": 150,
+                "color": "#ffffff",
+                "opacity": 0.4,
+                "width": 1
+            },
+            "move": {
+                "enable": !0,
+                "speed": 1,
+                "direction": "top",
+                "random": !0,
+                "straight": !1,
+                "out_mode": "out",
+                "bounce": !1,
+                "attract": {
+                    "enable": !1,
+                    "rotateX": 600,
+                    "rotateY": 600
+                }
+            }
+        },
+        "interactivity": {
+            "detect_on": "canvas",
+            "events": {
+                "onhover": {
+                    "enable": !1,
+                    "mode": "bubble"
+                },
+                "onclick": {
+                    "enable": !1,
+                    "mode": "repulse"
+                },
+                "resize": !0
+            },
+            "modes": {
+                "grab": {
+                    "distance": 400,
+                    "line_linked": {
+                        "opacity": 1,
+                    }
+                },
+                "bubble": {
+                    "distance": 250,
+                    "size": 0,
+                    "duration": 2,
+                    "opacity": 0,
+                    "speed": 3
+                },
+                "repulse": {
+                    "distance": 400,
+                    "duration": 0.4
+                },
+                "push": {
+                    "particles_nb": 4
+                },
+                "remove": {
+                    "particles_nb": 2
+                }
+            }
+        },
+        "retina_detect": !0
+    });
         });
     </script>
 </body>

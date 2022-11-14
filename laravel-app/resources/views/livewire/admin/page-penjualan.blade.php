@@ -69,7 +69,7 @@
                                 </button>
                             @else
                                 <button type="button"
-                                    class="inline-block px-5 py-2 mx-auto text-white bg-green-600 rounded-full hover:bg-green-700 md:mx-0">
+                                    class="inline-block px-5 py-2 mx-auto text-white bg-slate-600 rounded-full hover:bg-green-700 md:mx-0">
                                     Dikonfirmasi
                                 </button>
                             @endif
