@@ -7,7 +7,7 @@
             </div>
             <ul class="flex-col">
                 @foreach ($jenis as $item)
-                    <li class="flex-col mb-5 cursor-pointer" x-data="{ JenisItem: false }">
+                    <li class="flex-col mb-5 cursor-pointer" x-data="{ JenisItem: false }" >
                         <div class="px-5 text-gray-600 text-xs flex flex-row justify-between items-center"
                             @click="JenisItem = ! JenisItem">
                             <p class="text-gray-100 text-base">{{ $item->nama_jenis }}</p>
@@ -22,7 +22,7 @@
                             <div class="px-5 text-gray-300 text-sm" x-show="JenisItem" x-on:transition>
                                 <ul>
                                     @foreach ($item->katalog as $item)
-                                        <li class=" py-1 rounded border-gray-700">{{ $item->nama_katalog }}</li>
+                                        <li class=" py-1 rounded border-gray-700" ><a href="{{route('shop', ['jenis'=> $item->id])}}">{{ $item->nama_katalog }}</a></li>
                                     @endforeach
                                 </ul>
                             </div>
