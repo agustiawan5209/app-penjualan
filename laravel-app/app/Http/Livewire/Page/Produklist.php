@@ -28,6 +28,10 @@ class Produklist extends Component
     {
         return redirect()->route('Shop-detail', ['itemID'=> $id]);
     }
+    public function JenisPage($id)
+    {
+        return redirect()->route('shop', ['jenis'=> $id]);
+    }
     public function showMore(){
         $this->show = $this->show + 5;
     }
