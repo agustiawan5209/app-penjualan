@@ -42,7 +42,7 @@
                     <h6 class="mb-2 text-lg font-bold uppercase text-white">Produk Kami</h6>
                 </div>
             </div>
-            <div class="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-5 gap-2 -mx-4 wow fadeInDown">
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 -mx-4 wow fadeInDown">
                 @foreach ($produk as $item)
                     @if ($item->stock <= 0)
                         <div class="bg-slate-800 col-span-1 relative shadow overflow-hidden  cursor-not-allowed">
@@ -73,13 +73,13 @@
                                 <span class="text-sm">Rp</span><span
                                     class="text-md font-semibold">{{ number_format($item->harga, 0, 2) }}</span>
                                 <br>
-                                <span class="text-xs">Kategori : </span><span
-                                    class="text-sm">
-                                @if ($item->katalog == null)
-                                    ----
-                                @else
-                                {{ $item->katalog->nama_katalog }}
-                                @endif</span>
+                                <span class="text-xs">Kategori : </span><span class="text-sm">
+                                    @if ($item->katalog == null)
+                                        ----
+                                    @else
+                                        {{ $item->katalog->nama_katalog }}
+                                    @endif
+                                </span>
                             </div>
                             <div class="text-sm text-gray-600">Stok {{ $item->stock }}</div>
                         </div>
