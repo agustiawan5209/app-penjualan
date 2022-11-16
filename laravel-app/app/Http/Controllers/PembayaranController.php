@@ -69,16 +69,16 @@ class PembayaranController extends Controller
             // 'kode_pos' => 'required',
             'metode' => 'required',
             'sub_total' => 'required',
-            'foto' => ['required','image', 'max:5000','mimes:png,jpg'],
+            'foto' => ['required', 'image', 'max:5000', 'mimes:png,jpg'],
             'nama' => 'required',
             'tgl_transaksi' => ['required', 'date'],
         ]);
-        if($request->metode ==1){
+        if ($request->metode == 1) {
             $request->validate([
-                'kode_pos'=> 'required',
-                'detail_alamat'=> 'required',
-                'kabupaten'=>'required',
-                'kecamatan'=> 'required'
+                'kode_pos' => 'required',
+                'detail_alamat' => 'required',
+                'kabupaten' => 'required',
+                'kecamatan' => 'required'
             ]);
         }
         if (session()->has('keranjang')) {
@@ -90,7 +90,7 @@ class PembayaranController extends Controller
 
             // dd($cek_file);
             $transaksi_id = $this->transaksi_id();
-            $pdf = Pdf::loadView('page.invoice.invoice', ['data'=> session('keranjang'), 'request'=> $request, 'file' => $this->uploadFile($request->foto), 'transaksi_id'=> $transaksi_id])->setPaper('a4', 'landscape');
+            $pdf = Pdf::loadView('page.invoice.invoice', ['data' => session('keranjang'), 'request' => $request, 'file' => $this->uploadFile($request->foto), 'transaksi_id' => $transaksi_id])->setPaper('a4', 'landscape');
             $item_details = session('keranjang');
             $this->createPayment($request, $item_details['item'], $pdf->download()->getOriginalContent(), $transaksi_id);
             $this->createTransaksi($item_details['item'], $transaksi_id);
@@ -100,7 +100,7 @@ class PembayaranController extends Controller
 
             Alert::success('Berhasil', "Pemesanan Barang Berhasil, Mohon Tunggu Konfirmasi");
             return redirect()->route('home');
-        }else{
+        } else {
             return redirect()->route('home');
         }
     }
@@ -132,7 +132,7 @@ class PembayaranController extends Controller
         }
 
         for ($i = 0; $i < count($item_details); $i++) {
-            $item_param = [$item_details[$i]->nama_barang, $item_details[$i]->harga, $item_details[$i]->quantity, $item_details[$i]->sub_total];
+            $item_param = [$item_details[$i]->barang->nama_barang, $item_details[$i]->barang->harga, $item_details[$i]->quantity, $item_details[$i]->sub_total];
             $exp = implode('/', $item_param);
         }
         $permitted_chars = '01234567891011223344556677889900_abcdefghijklmnopqrstuvwxyz_ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -145,7 +145,7 @@ class PembayaranController extends Controller
 
         $payemnt = Pembayaran::create([
             'user_id' => Auth::user()->id,
-            'nama'=> $request->nama,
+            'nama' => $request->nama,
             'no_telpon' => $request->no_telpon,
             'total_price' => $request->sub_total,
             'payment_status' => '1',
@@ -156,16 +156,15 @@ class PembayaranController extends Controller
             'item_details' => $exp,
             'metode_pengiriman' => $request->metode,
         ]);
-        Notification::send($payemnt,new InvoicePaid([
-            'type'=> 'payment',
-            'body'=> Auth::user()->name . " Baru Saja Melakukan Pembayaran",
-            'from'=> 'User='. Auth::user()->id,
+        Notification::send($payemnt, new InvoicePaid([
+            'type' => 'payment',
+            'body' => Auth::user()->name . " Baru Saja Melakukan Pembayaran",
+            'from' => 'User=' . Auth::user()->id,
         ]));
         // $this->createOngkir($request, $ID_Transkasi);
-        if($request->metode == 1){
+        if ($request->metode == 1) {
             $this->createOngkir($request, $ID_Transkasi);
         }
-
     }
 
     /**
@@ -180,7 +179,7 @@ class PembayaranController extends Controller
         $harga = 0;
         if ($request->kabupaten == 'Kota Kendari' || $request->kabupaten == 'Kendari') {
             $harga = '12000';
-        }else{
+        } else {
             $harga = '0';
         }
         Ongkir::create([
@@ -236,10 +235,10 @@ class PembayaranController extends Controller
                 ->where('id', $item_details[$i]['barang_id'])
                 ->first();
             $item_param = [
-               'barang_id'=> $item_details[$i]->barang_id,
-               'total_awal'=> $item_details[$i]->total_awal,
-               'jumlah'=> $item_details[$i]->quantity,
-               'sub_total'=> $item_details[$i]->sub_total,
+                'barang_id' => $item_details[$i]->barang_id,
+                'total_awal' => $item_details[$i]->total_awal,
+                'jumlah' => $item_details[$i]->quantity,
+                'sub_total' => $item_details[$i]->sub_total,
             ];
             // dd($item_details[$i]);
             // Jika Potongan sama Dengan 0 atau null maka potongan sama dengan harga jika tidak maka harga akan dipotong
@@ -251,7 +250,11 @@ class PembayaranController extends Controller
                     $potongan[] = $item->jumlah_diskon;
                 }
             }
-            $total_potongan = $item_details[$i]->total_awal * (array_sum($potongan) / 100);
+            if ($promo_nominal == 0) {
+                $total_potongan = $item_details[$i]->total_awal * (array_sum($potongan) / 100) - $promo_persen;
+            } else {
+                $total_potongan = $item_details[$i]->total_awal * (array_sum($potongan) / 100) - $promo_nominal;
+            }
 
             Transaksi::create([
                 'ID_transaksi' => $transaksi_id,
@@ -261,11 +264,32 @@ class PembayaranController extends Controller
                 'potongan' => $total_potongan,
                 'total' => $item_details[$i]->sub_total - $total_potongan,
             ]);
+            UsesUserVoucher::where('status', '=', '3')
+            ->where('user_id', Auth::user()->id)
+            ->update([
+                'status' => '4',
+            ]);
+            $user_promo = UsesUserPromo::where('user_id', Auth::user()->id)
+            ->where('status', '=', '1')
+            ->get();
+            foreach ($user_promo as $item) {
+                UsesUserPromo::find($item->id)
+                ->where('status', '=', '1')
+                ->update([
+                    'status' => '0'
+                ]);
+            }
+            $user_promo = UsesUserPromo::where('user_id', Auth::user()->id)->get();
+            foreach ($user_promo as $item) {
+                UsesUserPromo::find($item->id)
+                ->where('status', '=', '1')
+                ->update([
+                    'status' => '0'
+                ]);
+            }
         }
         // Hapus Voucher Yang Memiliki Status 3
-        // UsesUserVoucher::where('status', '=', '3')->update([
-        //     'status' => '4',
-        // ]);
+
     }
 
     /**

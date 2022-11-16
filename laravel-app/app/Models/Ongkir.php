@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Ongkir extends Model
 {
     protected $table = 'ongkirs';
-    protected $fillable = ['transaksi_id','tgl_pengiriman','alamat', 'kode_pos', 'kabupaten', 'detail_alamat','status'];
+    protected $fillable = ['transaksi_id','tgl_pengiriman','alamat','harga', 'kode_pos', 'kabupaten', 'detail_alamat','status'];
     use HasFactory;
 
     public function pembayaran(){
