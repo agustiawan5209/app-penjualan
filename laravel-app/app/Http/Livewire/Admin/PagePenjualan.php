@@ -81,11 +81,11 @@ class PagePenjualan extends Component
             $this->kabupaten = $item->kabupaten;
             $this->tgl_pengiriman = $item->tgl_pengiriman;
             $this->status = $item->status;
-            $this->harga = $item->harga;
-            if ($this->kabupaten == 'Kota Makassar') {
+            // $this->harga = $item->harga;
+            if ($this->kabupaten == 'Kota Kendari') {
                 $this->harga = '12000';
             }
-            if ( $this->kabupaten == 'Kabupaten Gowa') {
+            if ( $this->kabupaten == 'Kendari') {
                 $this->harga = '12000';
             }
         }
@@ -95,7 +95,7 @@ class PagePenjualan extends Component
     {
         $this->validate([
             'tgl_pengiriman' => ['required','date'],
-            'harga' => ['required','integer'],
+            'harga' => ['required','numeric'],
             'status' => ['required','integer'],
         ]);
         if ($this->status == 0) {
@@ -104,6 +104,7 @@ class PagePenjualan extends Component
         // dd($this->harga);
         $ongkir = ongkir::where('transaksi_id', '=', $this->transaksi_id)->first();
         if($this->harga != null){
+            // dd($this->harga);
             $ongkir->update([
                 'tgl_pengiriman' => $this->tgl_pengiriman,
                 'harga' => $this->harga,

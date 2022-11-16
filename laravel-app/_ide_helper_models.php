@@ -271,7 +271,7 @@ namespace App\Models{
  * @property int $id
  * @property string $transaksi_id
  * @property string|null $tgl_pengiriman
- * @property int $harga
+ * @property string $harga
  * @property string $kode_pos
  * @property string $kabupaten
  * @property string $detail_alamat
