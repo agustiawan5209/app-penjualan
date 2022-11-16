@@ -1,6 +1,6 @@
 <x-guest-layout>
     <div class="container py-5 h-full flex justify-center items-center ">
-        <div class="  h-full w-full md:w-1/2">
+        <div class="  h-full w-full md:w-1/2 bg-white">
             <div class=" shadow-md p-4 p-lg-5 w-full text-black">
                 <x-jet-validation-errors />
                 <form action="{{ route('register') }}" method="POST" class="w-full">

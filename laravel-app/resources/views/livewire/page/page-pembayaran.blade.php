@@ -25,7 +25,7 @@
         <div class="container mx-auto px-4 -mt-64">
             <div class="flex flex-wrap -mx-4">
                 <div class="px-4 relative w-full lg:w-4/12">
-                    <h3 class="text-4xl font-normal leading-normal mt-0 mb-2 text-white">Order summary</h3>
+                    <h3 class="text-4xl font-normal leading-normal mt-0 mb-2 text-white">Detail Pembayaran</h3>
                     <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg">
                         <div class="px-4 py-5 flex-auto">
                             @foreach ($cart as $item)
@@ -90,7 +90,7 @@
                         <div class="px-4 py-5 flex-auto">
                             <form>
                                 <div class="container mx-auto px-4">
-                                    <h3 class="text-3xl font-semibold mt-4 mb-6">Billing address</h3>
+                                    <h3 class="text-3xl font-semibold mt-4 mb-6">Detail Pengguna</h3>
                                     <x-jet-validation-errors/>
                                     <div class="flex flex-wrap -mx-4">
                                         <div class="px-4 pb-2 relative w-full lg:w-6/12">
@@ -136,10 +136,10 @@
                                         <div class="px-4 pb-2 relative w-full lg:w-8/12" x-show="ongkir == 1">
                                             <label
                                                 class="block uppercase text-gray-700 text-xs font-bold mb-2 ml-1">Alamat*</label>
-                                            <div class="mb-3 pt-0"><input placeholder="E.g. 420 Long Beach, CA"
-                                                    type="text" name="detail_alamat"
+                                            <template x-if="ongkir == 1"  class="mb-3 pt-0"><input placeholder="E.g. 420 Long Beach, CA"
+                                                    type="text" name="detail_alamat" x-if=""
                                                     class="border-gray-300 px-3 py-2 text-sm  w-full placeholder-gray-200 text-gray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200 ">
-                                            </div>
+                                            </template>
                                         </div>
                                         <div class="px-4 pb-2 relative w-full lg:w-4/12" x-show="ongkir == 1">
                                             <label
@@ -151,14 +151,14 @@
                                         <div class="px-4 pb-2 relative w-full lg:w-4/12" x-show="ongkir == 1">
                                             <label
                                                 class="block uppercase text-gray-700 text-xs font-bold mb-2 ml-1">Kecamatan</label>
-                                            <div class="mb-3 pt-0"><input placeholder="E.g. YC7B 3UT" type="text"
+                                            <div class="mb-3 pt-0"><input placeholder="E.g. YC7B 3UT" type="text" name="kecamatan"
                                                     class="border-gray-300 px-3 py-2 text-sm  w-full placeholder-gray-200 text-gray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200 ">
                                             </div>
                                         </div>
                                         <div class="px-4 pb-2 relative w-full lg:w-4/12" x-show="ongkir == 1">
                                             <label
                                                 class="block uppercase text-gray-700 text-xs font-bold mb-2 ml-1">Kabupaten*</label>
-                                            <div class="mb-3 pt-0"><input placeholder="E.g. London" type="text"
+                                            <div class="mb-3 pt-0"><input placeholder="E.g. London" type="text" name="kabupaten"
                                                     class="border-gray-300 px-3 py-2 text-sm  w-full placeholder-gray-200 text-gray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200 ">
                                             </div>
                                         </div>

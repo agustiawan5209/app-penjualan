@@ -1,4 +1,5 @@
 <main>
+    @include('sweetalert::alert')
     <div class="w-full relative">
 
         <section class="flex relative items-center max-w-6xl mx-auto p-0 h-full z-0">

@@ -73,7 +73,14 @@ class PembayaranController extends Controller
             'nama' => 'required',
             'tgl_transaksi' => ['required', 'date'],
         ]);
-        // dd(session('param'));
+        if($request->metode ==1){
+            $request->validate([
+                'kode_pos'=> 'required',
+                'detail_alamat'=> 'required',
+                'kabupaten'=>'required',
+                'kecamatan'=> 'required'
+            ]);
+        }
         if (session()->has('keranjang')) {
             $param = [
                 'param' => session('keranjang'),
@@ -170,11 +177,11 @@ class PembayaranController extends Controller
      */
     public function createOngkir($request, $ID_Transkasi)
     {
-        $status = 0;
-        if ($request->kabupaten == 'Kota Makassar' || $request->kabupaten == 'Kabupaten Gowa') {
-            $harga = 12000;
-        } else {
-            $harga = 0;
+        $harga = 0;
+        if ($request->kabupaten == 'Kota Kendari' || $request->kabupaten == 'Kendari') {
+            $harga = '12000';
+        }else{
+            $harga = '0';
         }
         Ongkir::create([
             'transaksi_id' => $ID_Transkasi,
@@ -182,7 +189,7 @@ class PembayaranController extends Controller
             'harga' => $harga,
             'kode_pos' => $request->kode_pos,
             'kabupaten' => $request->kabupaten,
-            'detail_alamat' => $request->alamat,
+            'detail_alamat' => $request->detail_alamat,
             // 'status' => $status,
         ]);
     }
