@@ -42,7 +42,13 @@
                                         class="text-md font-semibold">{{ number_format($item->harga, 0, 2) }}</span>
                                     <br>
                                     <span class="text-xs">Kategori : </span><span
-                                        class="text-sm">{{ $item->katalog->nama_katalog }}</span>
+                                        class="text-sm">
+                                        @if ($item->katalog == null)
+                                        ----
+                                    @else
+                                        {{ $item->katalog->nama_katalog }}
+                                    @endif
+                                </span>
                                 </div>
                                 <div class="text-sm text-gray-600">Stok {{ $item->stock }}</div>
                             </div>
