@@ -11,7 +11,7 @@
     <!-- Fonts -->
 
     <!-- Scripts -->
-    <link rel="stylesheet" href="{{asset('build/assets/app.b70468d6.css')}}">
+    <link rel="stylesheet" href="{{asset('build/assets/app.3fa6c477.css')}}">
 
     @livewireStyles
     {{-- <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.2/dist/flowbite.min.css" /> --}}
