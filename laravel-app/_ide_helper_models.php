@@ -682,7 +682,7 @@ namespace App\Models{
  * @property int $id
  * @property int $user_id
  * @property int $promo_id
- * @property string $status
+ * @property int $status
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Promo|null $promo
