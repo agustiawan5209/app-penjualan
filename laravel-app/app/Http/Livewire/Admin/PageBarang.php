@@ -114,7 +114,7 @@ class PageBarang extends Component
             'nama_barang' => 'required',
             'katalog_id' => 'required',
             'satuan_id' => 'required',
-            'harga' => 'required',
+            'harga' => ['required', 'numeric'],
             'deskripsi' => 'required',
             'tgl_perolehan' => 'required',
             'stock' => 'required',
@@ -175,7 +175,8 @@ class PageBarang extends Component
             'nama_barang' => 'required',
             'katalog_id' => 'required',
             'satuan_id' => 'required',
-            'harga' => 'required',
+            'harga' => ['required', 'numeric'],
+
             'deskripsi' => 'required',
             'tgl_perolehan' => 'required',
             'stock' => 'required',
