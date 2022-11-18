@@ -36,7 +36,11 @@
                                         <h6 class="text-xl font-semibold leading-tight">{{$item->barang->nama_barang}}
                                         </h6> <br>
                                         <p class="text-gray-500 uppercase font-bold text-xs"> Jenis
-                                            :{{$item->barang->katalog->nama_katalog}}</p>
+                                            : @if ($item->katalog != null)
+                                            {{$item->barang->katalog->nama_katalog}}
+                                            @else
+                                            ---
+                                            @endif</p>
                                         <p class="text-gray-500 uppercase font-bold text-xs">Jumlah :
                                             {{$item->quantity}}</p>
                                     </div>
