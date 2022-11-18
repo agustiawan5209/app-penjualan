@@ -2,56 +2,9 @@
     @include('sweetalert::alert')
     <!-- Card stats -->
     {{-- @include('') --}}
-    @if ($notif_user->count()> 0)
-        @foreach ($notif_user as $user)
-            @foreach ($user->unreadNotifications as $notification)
-                {{-- @if ($notification->data['type'] == 'User Regis') --}}
-                    <div class="mt-2 px-6 py-4 bg-white rounded-lg shadow w-full">
-                        <div class=" inline-flex items-center justify-between w-full">
-                            <div class="inline-flex items-center">
-                                <img src="https://cdn-icons-png.flaticon.com/512/893/893257.png" alt="Messages Icon"
-                                    class="w-6 h-6 mr-3">
-                                <h3 class="font-bold text-base text-gray-800">{{ $notification->data['type'] }}</h3>
-                            </div>
-                            <p class="text-xs text-gray-500">
-                               {{$notification->created_at}}
-                               <x-jet-danger-button wire:click='read({{$user->id}})'>X</x-jet-danger-button>
-                            </p>
-                        </div>
-                        <p class="mt-1 text-sm">
-                            {{ $notification->data['body'] }}
-                        </p>
-                    </div>
-                {{-- @endif --}}
-            @endforeach
-        @endforeach
-    @endif
-    @if ($notif_bayar->count()> 0)
-        @foreach ($notif_bayar as $bayar)
-            @foreach ($bayar->unreadNotifications as $notification)
-                {{-- @if ($notification->data['type'] == 'User Regis') --}}
-                    <div class="mt-2 px-6 py-4 bg-white rounded-lg shadow w-full">
-                        <div class=" inline-flex items-center justify-between w-full">
-                            <div class="inline-flex items-center">
-                                <img src="https://cdn-icons-png.flaticon.com/512/893/893257.png" alt="Messages Icon"
-                                    class="w-6 h-6 mr-3">
-                                <h3 class="font-bold text-base text-gray-800">{{ $notification->data['type'] }}</h3>
-                            </div>
-                            <p class="text-xs text-gray-500">
-                               {{$notification->created_at}}
-                               <x-jet-danger-button wire:click='readBayar({{$bayar->id}})'>X</x-jet-danger-button>
-                            </p>
-                        </div>
-                        <p class="mt-1 text-sm">
-                            {{ $notification->data['body'] }}
-                        </p>
-                    </div>
-                {{-- @endif --}}
-            @endforeach
-        @endforeach
-    @endif
-    <div class="flex flex-wrap py-10">
-        <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 flex-wrap py-10">
+        <div class="w-full col-span-1 px-4">
             <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
                 <div class="flex-auto p-4">
                     <div class="flex flex-wrap">
@@ -81,7 +34,7 @@
                 </div>
             </div>
         </div>
-        <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
+        <div class="w-full col-span-1 px-4">
             <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
                 <div class="flex-auto p-4">
                     <div class="flex flex-wrap">
@@ -109,7 +62,7 @@
                 </div>
             </div>
         </div>
-        <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
+        <div class="w-full col-span-1 px-4">
             <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
                 <div class="flex-auto p-4">
                     <div class="flex flex-wrap">
@@ -137,41 +90,11 @@
                 </div>
             </div>
         </div>
-        <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
-            <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
-                <div class="flex-auto p-4">
-                    <div class="flex flex-wrap">
-                        <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
-                            <h5 class="text-reddarken uppercase font-bold text-xs">
-                                Performance
-                            </h5>
-                            <span class="font-semibold text-xl text-reddarken">
-                                49,65%
-                            </span>
-                        </div>
-                        <div class="relative w-auto pl-4 flex-initial">
-                            <div
-                                class="text-reddarken p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-lightBlue-500">
-                                <i class="fas fa-percent"></i>
-                            </div>
-                        </div>
-                    </div>
-                    {{-- <p class="text-sm text-white mt-4">
-                        <span class="text-emerald-500 mr-2">
-                            <i class="fas fa-arrow-up"></i> 12%
-                        </span>
-                        <span class="whitespace-nowrap">
-                            Since last month
-                        </span>
-                    </p> --}}
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 <div class="py-8">
     <div class="flex flex-wrap">
-        <div class="w-full xl:w-4/12 px-4">
+        <div class="w-full  px-4">
             <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
                 <div class="rounded-t mb-0 px-4 py-3 bg-transparent">
                     <div class="flex flex-wrap items-center">
@@ -185,9 +108,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="p-4 flex-auto">
+                <div class="p-4 flex-auto w-full">
                     <!-- Chart -->
-                    <div class="relative h-350-px">
+                    <div class="relative h-350-px w-full">
                         <canvas id="bar-chart"></canvas>
                     </div>
                 </div>

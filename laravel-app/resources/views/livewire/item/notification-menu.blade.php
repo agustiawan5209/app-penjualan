@@ -26,28 +26,56 @@
                 </button>
             </div>
             <p class="mt-8 font-medium text-gray-500 text-sm sm:text-base dark:text-white">Today</p>
-            {{-- @if ($notif_user->unreadNotifications != [])
-            @foreach ($notif_user->unreadNotifications as $notification)
-                @if ($notification->data['type'] == 'User Regis')
-                    <div class="mt-2 px-6 py-4 bg-white rounded-lg shadow w-full">
-                        <div class=" inline-flex items-center justify-between w-full">
-                            <div class="inline-flex items-center">
-                                <img src="https://cdn-icons-png.flaticon.com/512/893/893257.png" alt="Messages Icon"
-                                    class="w-6 h-6 mr-3">
-                                <h3 class="font-bold text-base text-gray-800">{{ $notification->data['type'] }}</h3>
+            @if ($notif_user->count() > 0)
+                @foreach ($notif_user as $user)
+                    @foreach ($user->unreadNotifications as $notification)
+                        {{-- @if ($notification->data['type'] == 'User Regis') --}}
+                        <div class="mt-2 px-6 py-4 bg-white rounded-lg shadow w-full">
+                            <div class=" inline-flex items-center justify-between w-full">
+                                <div class="inline-flex items-center">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/893/893257.png" alt="Messages Icon"
+                                        class="w-6 h-6 mr-3">
+                                    <h3 class="font-bold text-base text-gray-800">{{ $notification->data['type'] }}</h3>
+                                </div>
+                                <p class="text-xs text-gray-500">
+                                    {{ $notification->created_at }}
+                                    <x-jet-danger-button wire:click='read({{ $user->id }})'>X</x-jet-danger-button>
+                                </p>
                             </div>
-                            <p class="text-xs text-gray-500">
-                                1 hour ago
+                            <p class="mt-1 text-sm">
+                                {{ $notification->data['body'] }}
                             </p>
                         </div>
-                        <p class="mt-1 text-sm">
-                            {{ $notification->data['body'] }}
-                        </p>
-                    </div>
-                @endif
-            @endforeach
-            @endif --}}
-            <button wire:click="$toggle('notif')" wire:loading.attr='disabled' type="button"
+                        {{-- @endif --}}
+                    @endforeach
+                @endforeach
+            @endif
+            @if ($notif_bayar->count() > 0)
+                @foreach ($notif_bayar as $bayar)
+                    @foreach ($bayar->unreadNotifications as $notification)
+                        {{-- @if ($notification->data['type'] == 'User Regis') --}}
+                        <div class="mt-2 px-6 py-4 bg-white rounded-lg shadow w-full">
+                            <div class=" inline-flex items-center justify-between w-full">
+                                <div class="inline-flex items-center">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/893/893257.png" alt="Messages Icon"
+                                        class="w-6 h-6 mr-3">
+                                    <h3 class="font-bold text-base text-gray-800">{{ $notification->data['type'] }}</h3>
+                                </div>
+                                <p class="text-xs text-gray-500">
+                                    {{ $notification->created_at }}
+                                    <x-jet-danger-button wire:click='readBayar({{ $bayar->id }})'>X
+                                    </x-jet-danger-button>
+                                </p>
+                            </div>
+                            <p class="mt-1 text-sm">
+                                {{ $notification->data['body'] }}
+                            </p>
+                        </div>
+                        {{-- @endif --}}
+                    @endforeach
+                @endforeach
+            @endif
+            <button wire:click="clearall" wire:loading.attr='disabled' type="button"
                 class="inline-flex text-sm bg-white justify-center px-4 py-2 mt-12 w-full text-red-500 items-center rounded font-medium
          shadow border focus:outline-none transform active:scale-75 transition-transform duration-700 hover:bg-red-500
           hover:text-white hover:-translate-y-1 hover:scale-110 dark:hover:bg-white dark:text-gray-800 dark:hover:text-gray-800">
