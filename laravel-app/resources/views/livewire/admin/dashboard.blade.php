@@ -166,7 +166,7 @@
                     data: {
                         labels: Years,
                         datasets: [{
-                            label: 'Infosys Price',
+                            label: 'Total Penjualan',
                             data: Prices,
                             borderWidth: 1,
                         }]
