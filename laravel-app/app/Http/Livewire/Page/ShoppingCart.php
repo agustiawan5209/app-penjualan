@@ -142,6 +142,8 @@ class ShoppingCart extends Component
             'potongan'=> $potongan,
             'sub_total'=> $sub_total,
             'total_bayar'=> $total_bayar,
+            'jenis'=> 'cart',
+
         ]);
         return redirect()->route('Customer.Page-Pembayaran');
     }

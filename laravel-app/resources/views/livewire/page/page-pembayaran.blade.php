@@ -28,30 +28,57 @@
                     <h3 class="text-4xl font-normal leading-normal mt-0 mb-2 text-white">Detail Pembayaran</h3>
                     <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg">
                         <div class="px-4 py-5 flex-auto">
-                            @foreach ($cart as $item)
-                            <div class="items-center my-4 flex">
-                                <img src="{{asset('upload/'. $item->barang->gambar)}}" class="mr-4 w-20 p-2" alt="...">
-                                <div class="flex-1">
-                                    <div class="justify-between">
-                                        <h6 class="text-xl font-semibold leading-tight">{{$item->barang->nama_barang}}
-                                        </h6> <br>
-                                        <p class="text-gray-500 uppercase font-bold text-xs"> Jenis
-                                            : @if ($item->katalog != null)
-                                            {{$item->barang->katalog->nama_katalog}}
-                                            @else
-                                            ---
-                                            @endif</p>
-                                        <p class="text-gray-500 uppercase font-bold text-xs">Jumlah :
-                                            {{$item->quantity}}</p>
+                            @if ($jenis == 'cart')
+                                @foreach ($cart as $item)
+                                    <div class="items-center my-4 flex">
+                                        <img src="{{ asset('upload/' . $item->barang->gambar) }}" class="mr-4 w-20 p-2"
+                                            alt="...">
+                                        <div class="flex-1">
+                                            <div class="justify-between">
+                                                <h6 class="text-xl font-semibold leading-tight">
+                                                    {{ $item->barang->nama_barang }}
+                                                </h6> <br>
+                                                <p class="text-gray-500 uppercase font-bold text-xs"> Jenis
+                                                    : @if ($item->katalog != null)
+                                                        {{ $item->barang->katalog->nama_katalog }}
+                                                    @else
+                                                        ---
+                                                    @endif
+                                                </p>
+                                                <p class="text-gray-500 uppercase font-bold text-xs">Jumlah :
+                                                    {{ $item->quantity }}</p>
+                                            </div>
+                                        </div>
+                                        <span
+                                            class="text-gray-700">{{ $item->hargaBarang($item->barang->harga) }}</span>
                                     </div>
+                                @endforeach
+                            @elseif($jenis == 'beli')
+                                <div class="items-center my-4 flex">
+                                    <img src="{{ asset('upload/' . $cart->gambar) }}" class="mr-4 w-20 p-2"
+                                        alt="...">
+                                    <div class="flex-1">
+                                        <div class="justify-between">
+                                            <h6 class="text-xl font-semibold leading-tight">{{ $cart->nama_barang }}
+                                            </h6> <br>
+                                            <p class="text-gray-500 uppercase font-bold text-xs"> Jenis
+                                                : @if ($cart->katalog != null)
+                                                    {{ $cart->katalog->nama_katalog }}
+                                                @else
+                                                    ---
+                                                @endif
+                                            </p>
+                                            <p class="text-gray-500 uppercase font-bold text-xs">Jumlah :
+                                                {{ $cart->quantity }}</p>
+                                        </div>
+                                    </div>
+                                    <span class="text-gray-700">{{ $cart->hargaBarang($cart->harga) }}</span>
                                 </div>
-                                <span class="text-gray-700">{{$item->hargaBarang($item->barang->harga)}}</span>
-                            </div>
-                            @endforeach
+                            @endif
                             <hr class="mt-6 mb-4 bg-gray-300 ml-0">
                             <div class="mb-0 pt-0 relative">
                                 <label class="block uppercase text-gray-700 text-xs font-bold mb-2 ml-1">Promo</label>
-                                <form action="{{route('masukan-kode-promo')}}" method="POST">
+                                <form action="{{ route('masukan-kode-promo') }}" method="POST">
                                     @csrf
                                     <div class="mb-2 relative flex flex-wrap w-full items-stretch">
                                         <div class="mr-2">
@@ -70,38 +97,39 @@
                                 <hr class="mt-4 mb-2 bg-gray-300 ml-0">
                                 <div class="flex justify-between">
                                     <h6 class="text-gray-700 leading-normal mt-0 mb-2">Subtotal</h6>
-                                    <h6 class="leading-normal mt-0 mb-2">Rp. {{number_format($sub_total,0,2)}}</h6>
+                                    <h6 class="leading-normal mt-0 mb-2">Rp. {{ number_format($sub_total, 0, 2) }}</h6>
                                 </div>
                                 <div class="flex justify-between">
                                     <h6 class="text-gray-700 leading-normal mt-0 mb-2">potongan</h6>
-                                    <h6 class="leading-normal mt-0 mb-2">Rp. {{number_format($potongan,0,2)}}</h6>
+                                    <h6 class="leading-normal mt-0 mb-2">Rp. {{ number_format($potongan, 0, 2) }}</h6>
                                 </div>
                             </div>
                             <div>
                                 <hr class="mt-4 mb-2 bg-gray-300 ml-0">
                                 <div class="flex justify-between">
                                     <h6 class="text-gray-700 leading-normal mt-0 mb-2">Total</h6>
-                                    <h6 class="leading-normal mt-0 mb-2">Rp. {{number_format($total_bayar,0,2)}}</h6>
+                                    <h6 class="leading-normal mt-0 mb-2">Rp. {{ number_format($total_bayar, 0, 2) }}</h6>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <form action="{{route('Customer.Pembayaran-Selesai')}}" method="POST" enctype="multipart/form-data" class="px-4 relative w-full lg:w-8/12" x-data="{ongkir : 0,}">
+                <form action="{{ route('Customer.Pembayaran-Selesai') }}" method="POST" enctype="multipart/form-data"
+                    class="px-4 relative w-full lg:w-8/12" x-data="{ ongkir: 0, }">
                     @csrf
-                    <input type="hidden" name="sub_total" value="{{$total_bayar}}">
+                    <input type="hidden" name="sub_total" value="{{ $total_bayar }}">
                     <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg">
                         <div class="px-4 py-5 flex-auto">
                             <form>
                                 <div class="container mx-auto px-4">
                                     <h3 class="text-3xl font-semibold mt-4 mb-6">Detail Pengguna</h3>
-                                    <x-jet-validation-errors/>
+                                    <x-jet-validation-errors />
                                     <div class="flex flex-wrap -mx-4">
                                         <div class="px-4 pb-2 relative w-full lg:w-6/12">
-                                            <label
-                                                class="block uppercase text-gray-700 text-xs font-bold mb-2 ml-1">
+                                            <label class="block uppercase text-gray-700 text-xs font-bold mb-2 ml-1">
                                                 name*</label>
-                                            <div class="mb-3 pt-0"><input placeholder="E.g. Smith" type="text" name="nama"
+                                            <div class="mb-3 pt-0"><input placeholder="E.g. Smith" type="text"
+                                                    name="nama"
                                                     class="border-gray-300 px-3 py-2 text-sm  w-full placeholder-gray-200 text-gray-700 relative bg-white rounded-md outline-none focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200 ">
                                             </div>
                                         </div>
@@ -124,7 +152,8 @@
                                                 class="block uppercase text-gray-700 text-xs font-bold mb-2 ml-1">Email
                                                 address*</label>
                                             <div class="mb-3 pt-0"><input placeholder="E.g. email@email.email"
-                                                    type="email" name="email" value="{{auth()->user()->email}}" readonly
+                                                    type="email" name="email"
+                                                    value="{{ auth()->user()->email }}" readonly
                                                     class="border-gray-300 px-3 py-2 text-sm  w-full placeholder-gray-200 text-gray-700 relative bg-white rounded-md outline-none focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200 ">
                                             </div>
                                         </div>
@@ -140,54 +169,62 @@
                                         <div class="px-4 pb-2 relative w-full lg:w-8/12" x-show="ongkir == 1">
                                             <label
                                                 class="block uppercase text-gray-700 text-xs font-bold mb-2 ml-1">Alamat*</label>
-                                            <template x-if="ongkir == 1"  class="mb-3 pt-0"><input placeholder="E.g. 420 Long Beach, CA"
-                                                    type="text" name="detail_alamat" x-if=""
+                                            <template x-if="ongkir == 1" class="mb-3 pt-0"><input
+                                                    placeholder="E.g. 420 Long Beach, CA" type="text"
+                                                    name="detail_alamat" x-if=""
                                                     class="border-gray-300 px-3 py-2 text-sm  w-full placeholder-gray-200 text-gray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200 ">
                                             </template>
                                         </div>
                                         <div class="px-4 pb-2 relative w-full lg:w-4/12" x-show="ongkir == 1">
                                             <label
                                                 class="block uppercase text-gray-700 text-xs font-bold mb-2 ml-1">Postcode/Zip*</label>
-                                            <div class="mb-3 pt-0"><input placeholder="E.g. 340112" type="text" name="kode_pos"
+                                            <div class="mb-3 pt-0"><input placeholder="E.g. 340112" type="text"
+                                                    name="kode_pos"
                                                     class="border-gray-300 px-3 py-2 text-sm  w-full placeholder-gray-200 text-gray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200 ">
                                             </div>
                                         </div>
                                         <div class="px-4 pb-2 relative w-full lg:w-4/12" x-show="ongkir == 1">
                                             <label
                                                 class="block uppercase text-gray-700 text-xs font-bold mb-2 ml-1">Kecamatan</label>
-                                            <div class="mb-3 pt-0"><input placeholder="E.g. YC7B 3UT" type="text" name="kecamatan"
+                                            <div class="mb-3 pt-0"><input placeholder="E.g. YC7B 3UT" type="text"
+                                                    name="kecamatan"
                                                     class="border-gray-300 px-3 py-2 text-sm  w-full placeholder-gray-200 text-gray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200 ">
                                             </div>
                                         </div>
                                         <div class="px-4 pb-2 relative w-full lg:w-4/12" x-show="ongkir == 1">
                                             <label
                                                 class="block uppercase text-gray-700 text-xs font-bold mb-2 ml-1">Kabupaten*</label>
-                                            <div class="mb-3 pt-0"><input placeholder="E.g. London" type="text" name="kabupaten"
+                                            <div class="mb-3 pt-0"><input placeholder="E.g. London" type="text"
+                                                    name="kabupaten"
                                                     class="border-gray-300 px-3 py-2 text-sm  w-full placeholder-gray-200 text-gray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200 ">
                                             </div>
                                         </div>
                                     </div>
                                     <h3 class="text-3xl font-semibold mt-4 mb-6">Payment method</h3>
                                     <ul class="flex-col md:flex-row flex flex-wrap list-none pl-0 mb-0">
-                                       @foreach ($bank as $item)
-                                         <li class="-mb-px mr-2 last:mr-0 flex-auto text-center"><a href="javascript:;"
-                                                 class="text-xs font-bold uppercase px-5 py-3 shadow rounded block leading-normal sm:mb-4 md:mb-0 uppercase duration-500 transition-all ease-in-out bg-pink-500 text-white">{{$item->nama_bank}}</a></li>
-                                       @endforeach
+                                        @foreach ($bank as $item)
+                                            <li class="-mb-px mr-2 last:mr-0 flex-auto text-center"><a
+                                                    href="javascript:;"
+                                                    class="text-xs font-bold uppercase px-5 py-3 shadow rounded block leading-normal sm:mb-4 md:mb-0 uppercase duration-500 transition-all ease-in-out bg-pink-500 text-white">{{ $item->nama_bank }}</a>
+                                            </li>
+                                        @endforeach
                                     </ul>
                                     <div class="w-full">
                                         <div class="my-8 transform duration-500 transition-all ease-in-out block">
                                             <div class="flex flex-wrap -mx-4">
                                                 <div class="px-4 relative w-full lg:w-12/12">
                                                     <label
-                                                        class="block uppercase text-gray-700 text-xs font-bold mb-2 ml-1">Bukti Transaksi
-                                                        </label>
+                                                        class="block uppercase text-gray-700 text-xs font-bold mb-2 ml-1">Bukti
+                                                        Transaksi
+                                                    </label>
                                                     <div class="mb-3 pt-0"><input type="file" name="foto"
                                                             class="border-gray-300 px-3 py-2 text-sm  w-full placeholder-gray-200 text-gray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200 ">
                                                     </div>
                                                 </div>
                                                 <div class="px-4 relative w-full lg:w-7/12">
                                                     <label
-                                                        class="block uppercase text-gray-700 text-xs font-bold mb-2 ml-1">Tanggal Transaksi</label>
+                                                        class="block uppercase text-gray-700 text-xs font-bold mb-2 ml-1">Tanggal
+                                                        Transaksi</label>
                                                     <div class="mb-3 pt-0"><input placeholder="E.g. SMITH JOHN"
                                                             type="date" name="tgl_transaksi"
                                                             class="border-gray-300 px-3 py-2 text-sm  w-full placeholder-gray-200 text-gray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200 ">

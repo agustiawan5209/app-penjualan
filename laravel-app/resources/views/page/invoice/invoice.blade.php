@@ -185,19 +185,33 @@
                     $total = array()
                 @endphp
             </tr>
-            @foreach ($data['item'] as $item)
-                <tr class="item" style="border: 1px solid #bbbabb;">
-                    <td style="width: 10px;">{{$loop->iteration}}</td>
-                    <td>{{$item->barang->nama_barang}}</td>
-                    <td>{{$item->total_awal}}</td>
-                    <td>{{$item->quantity}}</td>
-                    <td>{{$item->diskon}}</td>
-                    <td>{{$item->sub_total}}</td>
-                    @php
-                        array_push($total, $item->sub_total)
-                    @endphp
-                </tr>
-            @endforeach
+           @if ($data['jenis'] == 'cart')
+             @foreach ($data['item'] as $item)
+                 <tr class="item" style="border: 1px solid #bbbabb;">
+                     <td style="width: 10px;">{{$loop->iteration}}</td>
+                     <td>{{$item->barang->nama_barang}}</td>
+                     <td>{{$item->total_awal}}</td>
+                     <td>{{$item->quantity}}</td>
+                     <td>{{$potongan}}</td>
+                     <td>{{$item->sub_total}}</td>
+                     @php
+                         array_push($total, $item->sub_total)
+                     @endphp
+                 </tr>
+             @endforeach
+           @elseif($data['jenis'] == 'beli')
+           <tr class="item" style="border: 1px solid #bbbabb;">
+            <td style="width: 10px;">1</td>
+            <td>{{$data['item']->nama_barang}}</td>
+            <td>{{$data['item']->total_awal}}</td>
+            <td>{{$data['item']->quantity}}</td>
+            <td>{{$potongan}}</td>
+            <td>{{$data['item']->sub_total}}</td>
+            @php
+                array_push($total, $data['item']->sub_total)
+            @endphp
+        </tr>
+           @endif
             <tr class="total">
                 <td colspan="6" style="text-align: right;">Total: Rp. {{number_format(array_sum($total))}}</td>
             </tr>

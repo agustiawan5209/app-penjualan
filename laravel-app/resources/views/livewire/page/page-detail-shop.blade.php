@@ -55,7 +55,7 @@
                             class="fas fa-shopping-cart"></i></button>
                     <button
                         class="inline-block outline-none focus:outline-none align-middle transition-all duration-150 ease-in-out uppercase border border-solid font-bold last:mr-0 mr-2  text-white bg-gray-900 border-orange-900 active:bg-gray-600 active:border-orange-600 text-sm px-6 py-2 shadow hover:shadow-lg rounded-md"
-                        wire:click='addToCart({{ $barang->id }})'>Beli <i
+                        wire:click='BeliBarang({{ $barang->id }})'>Beli <i
                             class="fas fa-shopping-cart"></i></button>
                 </div>
             </div>
