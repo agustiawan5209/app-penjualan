@@ -37,7 +37,7 @@
                                 class="h-12 w-12 bg-white rounded-full border" srcset="">
                         </x-td>
                         <x-td>{{ $item->kode_barang }}</x-td>
-                        <x-td>{{ $item->harga }}</x-td>
+                        <x-td>Rp. {{ number_format($item->harga,0,2) }}</x-td>
                         <x-td>{{ $item->tgl_perolehan }}</x-td>
                         <x-td>{{ $item->satuan->nama_satuan }}</x-td>
                         <x-td>

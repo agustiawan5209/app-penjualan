@@ -32,14 +32,15 @@ class PagePembayaran extends Component
         $potongan_persen = $this->hitungPotonganPersen($arr_persen, $data['total_bayar']);
         $potongan_nominal = $this->hitungPotonganNominal($arr_nominal);
         $total_potongan = array_sum([$potongan_persen, $potongan_nominal, $data['potongan']]);
-        // dd($total_potongan);
+        // dd($data);
 
         return view('livewire.page.page-pembayaran', [
-            'cart'=> Keranjang::with(['barang.katalog','barang.satuan','barang.katalog','barang'])->where('user_id', Auth::user()->id)->get(),
+            'cart'=> $data['item'],
             'potongan'=> $total_potongan,
             'sub_total'=>$data['sub_total'],
             'total_bayar'=> $data['total_bayar'] - $total_potongan,
             'bank' => Bank::all(),
+            'jenis'=> $data['jenis'],
         ])->layout('components.layout.pay');
     }
 
