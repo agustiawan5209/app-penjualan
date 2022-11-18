@@ -78,4 +78,14 @@ class PageDetailShop extends Component
     {
         return redirect()->route('Shop-detail', ['itemID'=> $id]);
     }
+    public function BayarDetail( $potongan, $sub_total, $total_bayar){
+        $cart = Keranjang::where('user_id', Auth::user()->id)->get();
+        session()->put('keranjang', [
+            'item'=> $cart,
+            'potongan'=> $potongan,
+            'sub_total'=> $sub_total,
+            'total_bayar'=> $total_bayar,
+        ]);
+        return redirect()->route('Customer.Page-Pembayaran');
+    }
 }
