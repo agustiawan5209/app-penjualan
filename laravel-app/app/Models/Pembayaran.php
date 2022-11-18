@@ -16,7 +16,7 @@ class Pembayaran extends Model
 
 
     public function ongkir(){
-        return $this->hasOne(ongkir::class, 'transaksi_id','transaksi_id');
+        return $this->hasOne(Ongkir::class, 'transaksi_id','transaksi_id');
     }
     public function user()
     {
