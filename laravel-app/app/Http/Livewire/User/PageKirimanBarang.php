@@ -37,16 +37,16 @@ class PageKirimanBarang extends Component
         $produk =  Pembayaran::where('user_id', '=', Auth::user()->id)->get();
         if($produk->count() > 0){
             foreach ($produk as $key => $value) {
-                $belum_terkirim = ongkir::where('status', '!=', '5')
+                $belum_terkirim =Ongkir::where('status', '!=', '5')
                     ->where('transaksi_id', '=', $value->transaksi_id)
                     ->orderBy('id', 'desc')
                     ->get();
 
-                $terkirim = ongkir::where('status', '=', '2')->orWhere('status' ,'=', '3')
+                $terkirim =Ongkir::where('status', '=', '2')->orWhere('status' ,'=', '3')
                     ->where('transaksi_id', '=', $value->transaksi_id)
                     ->orderBy('id', 'desc')
                     ->get();
-                $diterima = ongkir::where('status', '=', '4')
+                $diterima =Ongkir::where('status', '=', '4')
                     ->where('transaksi_id', '=', $value->transaksi_id)
                     ->orderBy('id', 'desc')
                     ->get();

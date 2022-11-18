@@ -73,7 +73,7 @@ class PagePenjualan extends Component
             $this->item_details = $item->item_details;
             $this->transaksi_id = $item->transaksi_id;
         }
-        $ongkir = ongkir::where('transaksi_id', '=', $this->transaksi_id)->get();
+        $ongkir =Ongkir::where('transaksi_id', '=', $this->transaksi_id)->get();
         foreach ($ongkir as $item) {
             $this->kode_pos = $item->kode_pos;
             $this->kabupaten = $item->kabupaten;
@@ -102,7 +102,7 @@ class PagePenjualan extends Component
             $this->status = '2';
         }
         // dd($this->harga);
-        $ongkir = ongkir::where('transaksi_id', '=', $this->transaksi_id)->first();
+        $ongkir =Ongkir::where('transaksi_id', '=', $this->transaksi_id)->first();
         if($this->harga != null){
             // dd($this->harga);
             $ongkir->update([
