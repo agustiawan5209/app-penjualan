@@ -100,7 +100,7 @@ class PageVoucher extends Component
     {
         $this->validate([
             'kode_voucher' => 'required',
-            'diskon'=> 'required',
+            'diskon'=> ['required', 'numeric'],
             'jenis_voucher'=> 'required',
         ]);
         $Voucher = Voucher::create([
@@ -132,10 +132,11 @@ class PageVoucher extends Component
     public function edit($id)
     {
         $barang = $this->barang_id == "--" ?  $this->barang_id : null;
-        // dd([
-        //     $this->barang_id,
-        //     $this->category_id
-        // ]);
+        $this->validate([
+            'kode_voucher' => 'required',
+            'diskon'=> ['required', 'numeric'],
+            'jenis_voucher'=> 'required',
+        ]);
         $Voucher = Voucher::where('id', $id)->update([
             'kode_voucher' => $this->kode_voucher,
             'deskripsi' => $this->deskripsi,

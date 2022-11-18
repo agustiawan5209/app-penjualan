@@ -58,7 +58,7 @@ class PageDiskon extends Component
     {
         $valid =   $this->validate([
             'barang_id' => 'required',
-            'jumlah_diskon' => 'required',
+            'jumlah_diskon' => ['required', 'numeric'],
             'tgl_mulai' => 'required',
             'tgl_kadaluarsa' => 'required',
         ]);
@@ -69,7 +69,7 @@ class PageDiskon extends Component
     public function editDsikon($id){
         $valid =   $this->validate([
             'barang_id' => 'required',
-            'jumlah_diskon' => 'required',
+            'jumlah_diskon' => ['required', 'numeric'],
             'tgl_mulai' => 'required',
             'tgl_kadaluarsa' => 'required',
         ]);
