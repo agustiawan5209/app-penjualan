@@ -155,10 +155,9 @@
         $(document).ready(function() {
             $.get(url, function(response) {
                 response.forEach(function(data) {
-                    Years.push(data.tgl_perolehan);
+                    Years.push(data.created_at);
                     Labels.push(data.id);
-                    Prices.push(data.harga);
-                    console.log(data.updated_at)
+                    Prices.push(data.total_price);
                 });
                 var ctx = document.getElementById("bar-chart").getContext('2d');
                 var myChart = new Chart(ctx, {

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Livewire\Pesanan;
 use App\Models\Barang;
+use App\Models\Pembayaran;
 use App\Models\StatusBarang;
 use Illuminate\Http\Request;
 
@@ -10,7 +12,7 @@ class StatusBarangController extends Controller
 {
     public function chart()
     {
-      $result = Barang::whereNotNull('updated_at')
+      $result = Pembayaran::whereNotNull('updated_at')
                   ->orderBy('id', 'ASC')
                   ->get();
       return response()->json($result);
