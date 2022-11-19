@@ -83,7 +83,8 @@
             background: #bbbb;
             border: 2px solid #bbbabb;
         }
-       .heading-item  {
+
+        .heading-item {
             background: #bbbb;
             border: 1px solid #cccc;
         }
@@ -95,10 +96,12 @@
         .invoice-box table tr.item td {
             border: 1px solid #bbbb;
         }
-        .total td{
+
+        .total td {
             border: 1px solid #000;
             color: black;
         }
+
         @media only screen and (max-width: 600px) {
             .invoice-box table tr.top table td {
                 width: 100%;
@@ -123,8 +126,8 @@
                     <table>
                         <tr>
                             <td>
-                                ID Transaksi #: {{$transaksi_id}}<br />
-                                Tanggal Transaksi: {{$request->tgl_transaksi}}<br />
+                                ID Transaksi #: {{ $transaksi_id }}<br />
+                                Tanggal Transaksi: {{ $request->tgl_transaksi }}<br />
                             </td>
                         </tr>
                     </table>
@@ -172,7 +175,7 @@
             </tr>
 
         </table>
-        <table >
+        <table>
 
             <tr class="heading-item">
                 <th>#</th>
@@ -182,38 +185,38 @@
                 <th>Potongan</th>
                 <th>Total</th>
                 @php
-                    $total = array()
+                    $total = [];
                 @endphp
             </tr>
-           @if ($data['jenis'] == 'cart')
-             @foreach ($data['item'] as $item)
-                 <tr class="item" style="border: 1px solid #bbbabb;">
-                     <td style="width: 10px;">{{$loop->iteration}}</td>
-                     <td>{{$item->barang->nama_barang}}</td>
-                     <td>{{$item->total_awal}}</td>
-                     <td>{{$item->quantity}}</td>
-                     <td>{{$potongan}}</td>
-                     <td>{{$item->sub_total}}</td>
-                     @php
-                         array_push($total, $item->sub_total)
-                     @endphp
-                 </tr>
-             @endforeach
-           @elseif($data['jenis'] == 'beli')
-           <tr class="item" style="border: 1px solid #bbbabb;">
-            <td style="width: 10px;">1</td>
-            <td>{{$data['item']->nama_barang}}</td>
-            <td>{{$data['item']->total_awal}}</td>
-            <td>{{$data['item']->quantity}}</td>
-            <td>{{$potongan}}</td>
-            <td>{{$data['item']->sub_total}}</td>
-            @php
-                array_push($total, $data['item']->sub_total)
-            @endphp
-        </tr>
-           @endif
+            @if ($data['jenis'] == 'cart')
+                @foreach ($data['item'] as $item)
+                    <tr class="item" style="border: 1px solid #bbbabb;">
+                        <td style="width: 10px;">{{ $loop->iteration }}</td>
+                        <td>{{ $item->barang->nama_barang }}</td>
+                        <td>{{ $item->total_awal }}</td>
+                        <td>{{ $item->quantity }}</td>
+                        <td>{{ $potongan }}</td>
+                        <td>{{ $item->sub_total }}</td>
+                        @php
+                            array_push($total, $item->sub_total);
+                        @endphp
+                    </tr>
+                @endforeach
+            @elseif($data['jenis'] == 'beli')
+                <tr class="item" style="border: 1px solid #bbbabb;">
+                    <td style="width: 10px;">1</td>
+                    <td>{{ $data['item']->nama_barang }}</td>
+                    <td>{{ $data['item']->total_awal }}</td>
+                    <td>{{ $data['item']->quantity }}</td>
+                    <td>{{ $potongan }}</td>
+                    <td>{{ $data['item']->sub_total }}</td>
+                    @php
+                        array_push($total, $data['item']->sub_total);
+                    @endphp
+                </tr>
+            @endif
             <tr class="total">
-                <td colspan="6" style="text-align: right;">Total: Rp. {{number_format(array_sum($total))}}</td>
+                <td colspan="6" style="text-align: right;">Total: Rp. {{ number_format(array_sum($total)) }}</td>
             </tr>
             <tr>
                 <td></td>
@@ -223,13 +226,15 @@
             </tr>
             <tr>
                 <td>Bukti</td>
-                <td>@if ($file != null)
-                    <h3 class="text-underline">BUKTI PEMBAYARAN</h3>
-                    <br>
-                    <img class="bukti-bayar" src="{{public_path('bukti/'.$file)}}" width="100" alt="">
-                @else
-                    <h3 class="text-underline">DALAM PROSES</h3>
-                @endif</td>
+                <td>
+                    @if ($file != null)
+                        <h3 class="text-underline">BUKTI PEMBAYARAN</h3>
+                        <br>
+                        <img class="bukti-bayar" src="{{ public_path('bukti/' . $file) }}" width="100" alt="">
+                    @else
+                        <h3 class="text-underline">DALAM PROSES</h3>
+                    @endif
+                </td>
             </tr>
         </table>
     </div>

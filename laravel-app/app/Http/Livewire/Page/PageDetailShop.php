@@ -101,11 +101,10 @@ class PageDetailShop extends Component
         $jumlah_diskon = (int) array_sum($arr);
         $sub_total = $cart->harga;
         $diskon = ($jumlah_diskon / 100) * $sub_total;
-        $potongan = $diskon;
-        $total_bayar = $sub_total - $potongan;
+        $total_bayar = $sub_total - $diskon;
         session()->put('keranjang', [
             'item' => $cart,
-            'potongan' => $potongan,
+            'potongan' => $diskon,
             'sub_total' => $sub_total,
             'total_bayar' => $total_bayar,
             'jenis' => 'beli',
