@@ -59,7 +59,7 @@ class KeranjangController extends Controller
         $count = count($arr);
         $hasil = [];
         for ($i = 0; $i < $count; $i++) {
-            $cek = Promo::where('id', $arr[$i])->get();
+            $cek = Promo::where('id', $arr[$i])->where('status', '0')->get();
             foreach ($cek as $item) {
                 if ($item->promo_nominal != null) {
                     $hasil[] =  $item->promo_nominal;

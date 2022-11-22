@@ -20,12 +20,12 @@ class PagePromo extends Component
 
     public function render()
     {
-        $Promo = Promo::orderBy('id', 'desc')->paginate($this->row);
+        $Promo = Promo::orderBy('id', 'desc')->orderBy('status', 'desc')->paginate($this->row);
         if ($this->search != null) {
             $Promo = Promo::where('kode_Promo', 'like', '%' . $this->search . '%')
                 ->orWhere('harga', 'like', '%' .  $this->search . '%')
                 ->orWhereDate('tgl_perolehan', 'like', '%' . $this->search . '%')
-                ->orderBy('id', 'desc')->paginate($this->row);
+                ->orderBy('id', 'desc')->orderBy('status', 'desc')->paginate($this->row);
         }
         return view('livewire.admin.page-promo', compact('Promo'));
     }

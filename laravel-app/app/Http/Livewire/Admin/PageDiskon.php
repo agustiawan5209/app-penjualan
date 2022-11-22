@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin;
 
+use App\Http\Controllers\DiskonController;
 use App\Models\Barang;
 use App\Models\DIskon;
 use Livewire\Component;
@@ -19,6 +20,11 @@ class PageDiskon extends Component
 
     // itemSearch And Row
     public $search = '', $row=10;
+
+    public function mount(){
+        $dis = new DiskonController();
+    }
+
     public function closeModal(){
         $this->editItem=false;
         $this->addItem = false;
@@ -27,6 +33,7 @@ class PageDiskon extends Component
     {
         $diskon = DIskon::paginate($this->row);
         $barang = Barang::all();
+
         return view('livewire.admin.page-diskon',[
             'diskon'=> $diskon,
             'barang'=> $barang,

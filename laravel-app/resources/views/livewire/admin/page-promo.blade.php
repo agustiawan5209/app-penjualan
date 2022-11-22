@@ -1,6 +1,6 @@
 <div>
     @include('sweetalert::alert')
-    <div class="w-full py-10 block">
+    <div class="w-full py-3 block">
         <div class="mt-6 lg:mb-0 mb-6">
             <x-jet-dialog-modal wire:model='itemAdd'>
                 <x-slot name='title'></x-slot>
@@ -29,6 +29,7 @@
                     <x-th>type</x-th>
                     <x-th>Jumlah Promo</x-th>
                     <x-th>Jumlah Pengguna</x-th>
+                    <x-th>Status</x-th>
                     <x-th>Action</x-th>
                 </tr>
             </thead>
@@ -55,6 +56,13 @@
                         @endif
                     </x-td>
                     <x-td>{{$item->use_user}}</x-td>
+                    <x-td>
+                        @if ($item->status == 0)
+                            <span class="px-2 py-1 bg-orange-400">Aktif</span>
+                            @else
+                            <span class="px-2 py-1 bg-slate-400 rounded">Kadaluarsa</span>
+
+                        @endif</x-td>
                     <x-td>
                         <button wire:click='EditModal({{$item->id}})' class="px-1 py-2 text-green-500 text-sm font-semibold"><svg
                                 class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"

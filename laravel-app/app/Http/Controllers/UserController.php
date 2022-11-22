@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Notifications\InvoicePaid;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 use Notification;
+use App\Models\User;
+use Illuminate\Http\Request;
+use App\Notifications\InvoicePaid;
+use Illuminate\Support\Facades\Gate;
+use App\Http\Controllers\DiskonController;
+
 class UserController extends Controller
 {
     public function Index(User $user){
+        $dis = (new DiskonController)->getDiskon();
+
         if (Gate::allows('Manage-Admin', $user)) {
             return redirect()->route('Admin.Dashboard-Admin', ['id' => $user->created_at])->withToastSuccess('Selamat Datang '. $user->name);
         }

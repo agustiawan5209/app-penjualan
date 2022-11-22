@@ -271,7 +271,7 @@ namespace App\Models{
  * @property int $id
  * @property string $transaksi_id
  * @property string|null $tgl_pengiriman
- * @property string $harga
+ * @property int $harga
  * @property string $kode_pos
  * @property string $kabupaten
  * @property string $detail_alamat
@@ -419,6 +419,7 @@ namespace App\Models{
  * @property int|null $use_user
  * @property string $tgl_mulai
  * @property string $tgl_kadaluarsa
+ * @property string|null $status 1: kadaluarsa
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|Promo newModelQuery()
@@ -430,6 +431,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Promo whereMaxUser($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Promo wherePromoNominal($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Promo wherePromoPersen($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Promo whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Promo whereTglKadaluarsa($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Promo whereTglMulai($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Promo whereUpdatedAt($value)
@@ -682,7 +684,7 @@ namespace App\Models{
  * @property int $id
  * @property int $user_id
  * @property int $promo_id
- * @property int $status
+ * @property string $status
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Promo|null $promo

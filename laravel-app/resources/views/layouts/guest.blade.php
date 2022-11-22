@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
 
     <!-- Scripts -->
-    @vite(['resources/js/app.js'])
+    @vite(['resources/js/app.js' , 'resources/css/app.css'])
     @livewireStyles
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
@@ -29,7 +29,7 @@
 
 </head>
 
-<body class="overflow-x-hidden bg-gray-800">
+<body class="overflow-x-hidden bg-gray-800 h-screen max-h-screen overflow-y-auto">
     <!-- component -->
     <header x-data="{ isOpen: false }"
         class=" bg-gray-800 text-white md:bg-transparent  shadow-lg absolute top-0 z-[1000] w-full ">
@@ -115,8 +115,10 @@
     <main class="content bg-gray-800 text-white pt-20">
         {{ $slot }}
 
+
     </main>
-    <div class="w-full relative bottom-0">
+
+    <div class="w-full relative mt-20 bottom-0">
         <footer class="bg-gray-800">
             <div class="relative py-2">
                 <div class="container mx-auto px-4">

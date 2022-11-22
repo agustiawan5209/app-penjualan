@@ -11,7 +11,7 @@
                     <x-th>Tanggal Transaksi</x-th>
                     <x-th>Item</x-th>
                     <x-th>Jumlah Pembelian</x-th>
-                    <x-th>Jumlah Potongan</x-th>
+                    <x-th>Jumlah Diskon / Potongan</x-th>
                     <x-th>Total Bayar</x-th>
                 </tr>
             </thead>

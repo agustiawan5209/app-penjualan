@@ -310,17 +310,17 @@ class PembayaranController extends Controller
                 ->get();
             foreach ($user_promo as $item) {
                 UsesUserPromo::find($item->id)
-                    ->where('status', '=', '1')
                     ->update([
                         'status' => '0'
                     ]);
             }
-            $user_promo = UsesUserPromo::where('user_id', Auth::user()->id)->get();
+            $user_promo = UsesUserPromo::where('user_id', Auth::user()->id)
+            ->whereIn('status', ['1','2'])
+            ->get();
             foreach ($user_promo as $item) {
                 UsesUserPromo::find($item->id)
-                    ->where('status', '=', '1')
                     ->update([
-                        'status' => '0'
+                        'status' => '4'
                     ]);
             }
         }

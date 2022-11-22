@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DiskonController;
 use Illuminate\Http\Request;
 use App\Http\Livewire\Pesanan;
 use App\Http\Livewire\Admin\Laporan;
@@ -49,20 +50,18 @@ use App\Http\Livewire\Laporan\DataPelanggan;
 */
 
 Route::get('/', HalamanUtama::class)->name('home');
-
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-Route::post('Kode/Promo', [UsesUserPromoController::class, 'CekPromoUser'])->name('masukan-kode-promo');
-
+    Route::post('Kode/Promo', [UsesUserPromoController::class, 'CekPromoUser'])->name('masukan-kode-promo');
     Route::get('/dashboard', [UserController::class, 'Index'])->name('dashboard');
     Route::get('Detail-Item/{idItem}', DetailItemPage::class)->name('detail-item-transaksi');
     Route::get('Pengiriman-Barang', PagePengiriman::class)->name('Page-Pengiriman');
 
     // Akses Admin
-    Route::group(['middleware' => 'role:Admin', 'prefix' => 'Admin', 'as'=> 'Admin.'], function () {
+    Route::group(['middleware' => 'role:Admin', 'prefix' => 'Admin', 'as' => 'Admin.'], function () {
         Route::get('Dashboard', Dashboard::class)->name('Dashboard-Admin');
 
         //
@@ -86,8 +85,6 @@ Route::post('Kode/Promo', [UsesUserPromoController::class, 'CekPromoUser'])->nam
         Route::get('Slide-Setting', SlideSetting::class)->name('Slide-setting');
         Route::get('Page-Jenis', PageJenis::class)->name('Page-Jenis');
         Route::get('Detail/{idItem}', AdminDetailItemPage::class)->name('Shop-detail');
-
-
     });
     // Akses User
     Route::group(['middleware' => 'role:Customer', 'prefix' => 'Customer', 'as' => 'Customer.'], function () {
@@ -106,29 +103,28 @@ Route::post('Kode/Promo', [UsesUserPromoController::class, 'CekPromoUser'])->nam
     Route::get('Laporan/', [PDFController::class, 'LaporanPenjualan'])->name("Laporan");
     Route::get('Laporan/BarangMasuk', [PDFController::class, 'LaporanBarangMasuk'])->name("Laporan-BarangMasuk");
     Route::get('Laporan/Barangkeluar', [PDFController::class, 'LaporanBarangkeluar'])->name("Laporan-Barangkeluar");
-
 });
-Route::get('stock/chart',[StatusBarangController::class, 'chart']);
+Route::get('stock/chart', [StatusBarangController::class, 'chart']);
 Route::get('Keranjang', ShoppingCart::class)->name('Keranjang');
-Route::get('shop' , function(Request $request){
+Route::get('shop', function (Request $request) {
     $jenis = $request->jenis;
     return view('shop', compact('jenis'));
 })->name('shop');
-Route::get('katalog/{id}/{nama_jenis}' , PageSearchkatalog::class)->name('katalog');
+Route::get('katalog/{id}/{nama_jenis}', PageSearchkatalog::class)->name('katalog');
 Route::get('Detail/{itemID}', PageDetailShop::class)->name('Shop-detail');
 
 
 
-Route::get('about' , function(){
+Route::get('about', function () {
     return view('about');
 })->name('about');
-Route::get('contact' , function(){
+Route::get('contact', function () {
     return view('contact');
 })->name('contact');
-Route::get('shop-single' , function(){
+Route::get('shop-single', function () {
     return view('shop-single');
 })->name('shop-single');
-Route::get("Promo-Diskon", function(){
+Route::get("Promo-Diskon", function () {
     return view('page.promo.index');
 })->name('Promo-Diskon');
 

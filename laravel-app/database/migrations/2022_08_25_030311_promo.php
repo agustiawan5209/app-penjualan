@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('use_user')->nullable();
             $table->date('tgl_mulai');
             $table->date('tgl_kadaluarsa');
+            $table->enum('status', ['0','1']);
             $table->timestamps();
         });
     }

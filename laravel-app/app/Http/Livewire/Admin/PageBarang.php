@@ -2,15 +2,16 @@
 
 namespace App\Http\Livewire\Admin;
 
-use App\Models\Barang;
-use App\Models\DIskon;
-use App\Models\Satuan;
-use Livewire\Component;
-use Livewire\WithFileUploads;
-use Livewire\WithPagination;
 use Alert;
-use App\Models\Katalog;
 use Storage;
+use App\Models\Barang;
+use App\Models\Satuan;
+use App\Models\Katalog;
+use Livewire\Component;
+use Livewire\WithPagination;
+use Livewire\WithFileUploads;
+use App\Http\Controllers\DiskonController;
+use App\Models\Diskon as ModelsDiskon;
 
 class PageBarang extends Component
 {
@@ -26,6 +27,10 @@ class PageBarang extends Component
     public $gambar, $kode_barang, $katalog_id, $satuan_id, $harga, $deskripsi, $tgl_perolehan, $itemID, $nama_barang, $stock;
     public $updateFoto;
 
+    public function mount()
+    {
+        $dis = (new DiskonController)->getDiskon();
+    }
     public function render()
     {
         $barang = Barang::orderBy('id', $this->order)
@@ -58,6 +63,9 @@ class PageBarang extends Component
         $this->itemTambah = false;
         $this->itemID = null;
         $this->addItemDiskon = false;
+        $this->editDiskon = false;
+        $this->itemDetail = false;
+
     }
     public function TambahModal()
     {
@@ -267,7 +275,7 @@ class PageBarang extends Component
     // item field table DISKON
     // public $itemID;
     public $jumlah_diskon, $tgl_kadaluarsa, $tgl_mulai, $barang_id;
-    public $addItemDiskon, $edit;
+    public $addItemDiskon = false, $editDiskon = false;
     public function TambahModalDiskon($id)
     {
         $this->addItemDiskon = true;
@@ -275,16 +283,19 @@ class PageBarang extends Component
     }
     public function EditModalDiskon($id)
     {
-        $diskon = DIskon::find($id);
-        $this->edit = $diskon->barang_id;
-        $this->jumlah_diskon = $diskon->jumlah_diskon;
-        $this->tgl_kadaluarsa = $diskon->tgl_kadaluarsa;
-        $this->tgl_mulai = $diskon->tgl_mulai;
+        $barang = Barang::find($id);
+        $this->editDiskon = true;
+        foreach ($barang->diskon as $diskon) {
+            $this->itemID = $diskon->id;
+            $this->jumlah_diskon = $diskon->jumlah_diskon;
+            $this->tgl_kadaluarsa = $diskon->tgl_kadaluarsa;
+            $this->tgl_mulai = $diskon->tgl_mulai;
+        }
         $this->addItemDiskon = true;
     }
     public function HapusModalDiskon($id)
     {
-        $diskon = DIskon::find($id);
+        $diskon = ModelsDiskon::find($id);
         $this->itemID = $diskon->id;
         $this->hapusItem = true;
     }
@@ -300,7 +311,7 @@ class PageBarang extends Component
         ]);
         // $data = array_push($barang_id, $valid);
         // dd($valid);
-        $diskon = DIskon::create([
+        $diskon = ModelsDiskon::create([
             'barang_id' => $barang_id,
             'jumlah_diskon' => $this->jumlah_diskon,
             'tgl_mulai' => $this->tgl_mulai,
@@ -318,18 +329,18 @@ class PageBarang extends Component
             'tgl_kadaluarsa' => 'required',
         ]);
 
-        $diskon = DIskon::where('id', $id)->update([
+        $diskon = ModelsDiskon::where('id', $id)->update([
             'jumlah_diskon' => $this->jumlah_diskon,
             'tgl_mulai' => $this->tgl_mulai,
             'tgl_kadaluarsa' => $this->tgl_kadaluarsa,
         ]);
         $this->addItemDiskon = false;
+        $this->editDiskon = false;
         Alert::success('message', 'Berhasil Di Edit');
     }
     public function deleteDiskon($id)
     {
-        DIskon::where('id', $id)->delete();
+        ModelsDiskon::where('id', $id)->delete();
         Alert::success('message', 'Berhasil Di Hapus');
-        $this->hapusItem = false;
     }
 }

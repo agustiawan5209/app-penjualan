@@ -51,7 +51,7 @@
                             @endif
                         </x-td>
                         <x-td>
-                            <x-jet-button type="button" wire:click='detailItem({{ $pembayaran->id }})'>Detail Item
+                            <x-jet-button type="button" wire:click='detailItem({{ $pembayaran->id }})' class="text-black border">Detail Item
                             </x-jet-button>
                         </x-td>
                     </tr>

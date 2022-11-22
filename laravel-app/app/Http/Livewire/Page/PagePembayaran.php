@@ -5,19 +5,22 @@ namespace App\Http\Livewire\Page;
 use Carbon\Carbon;
 use App\Models\Bank;
 use App\Models\Promo;
+use App\Models\Voucher;
 use Livewire\Component;
 use App\Models\Keranjang;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\KeranjangController;
 use App\Models\UsesUserPromo;
+use App\Models\UsesUserVoucher;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Http\Controllers\KeranjangController;
 
 class PagePembayaran extends Component
 {
     public $kode_promo;
 
-    public function mount(){
-        if(!session()->has('keranjang')){
+    public function mount()
+    {
+        if (!session()->has('keranjang')) {
             abort(401);
         }
     }
@@ -31,34 +34,37 @@ class PagePembayaran extends Component
         $arr_nominal = [$potongan_promo_nominal];
         $potongan_persen = $this->hitungPotonganPersen($arr_persen, $data['total_bayar']);
         $potongan_nominal = $this->hitungPotonganNominal($arr_nominal);
-        $total_potongan = array_sum([$potongan_persen, $potongan_nominal, $data['potongan']]);
+        $total_potongan = array_sum([$potongan_persen, $potongan_nominal, $data['potongan']]) + $this->CekVoucher();
         // dd($data);
 
         return view('livewire.page.page-pembayaran', [
-            'cart'=> $data['item'],
-            'potongan'=> $total_potongan,
-            'sub_total'=>$data['sub_total'],
-            'total_bayar'=> $data['total_bayar'] - $total_potongan,
+            'cart' => $data['item'],
+            'potongan' => $total_potongan,
+            'sub_total' => $data['sub_total'],
+            'total_bayar' => $data['total_bayar'] - $total_potongan,
             'bank' => Bank::all(),
-            'jenis'=> $data['jenis'],
+            'jenis' => $data['jenis'],
         ])->layout('components.layout.pay');
     }
 
-    public function PotonganPromoPersen(){
+    public function PotonganPromoPersen()
+    {
         $promoController  = new KeranjangController();
         return $promoController->GetPromo();
-
     }
-    public function PotonganPromoNominal(){
+    public function PotonganPromoNominal()
+    {
         $promoController  = new KeranjangController();
         return $promoController->GetPromoNominal();
     }
-    public function hitungPotonganPersen($data = [], $total){
+    public function hitungPotonganPersen($data = [], $total)
+    {
         $jumlah_persen = array_sum($data);
         $total_b = $total * ($jumlah_persen / 100);
         return abs($total_b);
     }
-    public function hitungPotonganNominal($data = []){
+    public function hitungPotonganNominal($data = [])
+    {
         $jumlah_nominal = array_sum($data);
         return $jumlah_nominal;
     }
@@ -83,7 +89,7 @@ class PagePembayaran extends Component
                     $cek_pengguna = true;
                 }
             }
-        }else{
+        } else {
             Alert::warning('Info', 'Kode Promo Salah');
         }
         // Cek Promo
@@ -91,7 +97,7 @@ class PagePembayaran extends Component
             $promo = Promo::where('kode_promo', '=', $this->kode_promo)->first();
             if ($promo->count() > 0) {
                 // Mencocokan Kode Promo
-                $promo_user = UsesUserPromo::where('user_id', '=', Auth::user()->id)->where('status', '=', '1')->get();
+                $promo_user = UsesUserPromo::where('user_id', '=', Auth::user()->id)->where('status', '=', '0')->get();
                 // Jika Gagal
                 if ($promo_user->count() > 0) {
                     Alert::info('message', 'Maaf Promo Sudah Terpakai');
@@ -100,12 +106,12 @@ class PagePembayaran extends Component
                     $promo_user = UsesUserPromo::insert([
                         'user_id' => Auth::user()->id,
                         'promo_id' => $promo->id,
-                        'status'=> '0'
+                        'status' => '0'
                     ]);
                     $get_promo = Promo::find($promo->id);
-                    if($get_promo->use_user == $get_promo->max_user){
+                    if ($get_promo->use_user == $get_promo->max_user) {
                         Alert::info('message', 'Maaf Kode Promo Salah');
-                    }else{
+                    } else {
 
                         $count = $get_promo->use_user + 1;
                         Promo::where('id', $promo->id)->update([
@@ -139,5 +145,24 @@ class PagePembayaran extends Component
                 // }
             }
         }
+    }
+    public function CekVoucher()
+    {
+        $data = session('keranjang');
+        $potongan_voucher = [];
+        $voucher = Voucher::all();
+        if ($voucher->count() > 0) {
+            // Cek Voucher User
+            $voucher_user = UsesUserVoucher::where('user_id', '=', Auth::user()->id)->whereIn('status', ['2', '3'])->get();
+            // dd($voucher->count());
+            // Jika Ada
+            if ($voucher_user->count() > 0) {
+                foreach ($voucher_user as $voucher) {
+                    $potongan_voucher[] = $voucher->voucher->diskon;
+                }
+            }
+        }
+        $hasil = $data['total_bayar'] * (array_sum($potongan_voucher) / 100);
+        return $hasil;
     }
 }
