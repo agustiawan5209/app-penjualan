@@ -11,7 +11,7 @@
     <!-- Fonts -->
 
     <!-- Scripts -->
-    <link rel="stylesheet" href="{{asset('build/assets/app.8473a5be.css')}}">
+    <link rel="stylesheet" href="{{asset('build/assets/app.e57bea07.css')}}">
     @vite(['resources/js/app.js'])
 
     @livewireStyles
