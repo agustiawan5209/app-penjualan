@@ -1,5 +1,5 @@
 <div>
-    <div x-data="{ notif: false }">
+    <div x-data="{ notif: false }" class=" h-3/4 max-h-[70%] overflow-hidden box-border">
         <button type="button" class=" ring-0 text-white focus:ring-0 active:ring-0" @click="notif = ! notif">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -25,17 +25,17 @@
                     Close
                 </button>
             </div>
-            <p class="mt-8 font-medium text-gray-500 text-sm sm:text-base dark:text-white">Today</p>
-            @if ($notif_user->count() > 0)
+            <div class="box-border h-3/4 max-h-[60vh] overflow-y-auto">
+                @if ($notif_user->count() > 0)
                 @foreach ($notif_user as $user)
                     @foreach ($user->unreadNotifications as $notification)
                         {{-- @if ($notification->data['type'] == 'User Regis') --}}
-                        <div class="mt-2 px-6 py-4 bg-white rounded-lg shadow w-full">
+                        <div class="mt-2 md:px-6 md:py-4 bg-white rounded-lg shadow w-full">
                             <div class=" inline-flex items-center justify-between w-full">
                                 <div class="inline-flex items-center">
                                     <img src="https://cdn-icons-png.flaticon.com/512/893/893257.png" alt="Messages Icon"
-                                        class="w-6 h-6 mr-3">
-                                    <h3 class="font-bold text-base text-gray-800">{{ $notification->data['type'] }}</h3>
+                                        class="md:w-6 md:h-6 w-3 h-3 mr-3">
+                                    <h3 class="font-bold md:text-base text-gray-800 text-xs">{{ $notification->data['type'] }}</h3>
                                 </div>
                                 <p class="text-xs text-gray-500">
                                     {{ $notification->created_at }}
@@ -58,7 +58,7 @@
                             <div class=" inline-flex items-center justify-between w-full">
                                 <div class="inline-flex items-center">
                                     <img src="https://cdn-icons-png.flaticon.com/512/893/893257.png" alt="Messages Icon"
-                                        class="w-6 h-6 mr-3">
+                                        class="md:w-6 md:h-6 w-3 h-3 mr-3">
                                     <h3 class="font-bold text-base text-gray-800">{{ $notification->data['type'] }}</h3>
                                 </div>
                                 <p class="text-xs text-gray-500">
@@ -75,6 +75,7 @@
                     @endforeach
                 @endforeach
             @endif
+            </div>
             <button wire:click="clearall" wire:loading.attr='disabled' type="button"
                 class="inline-flex text-sm bg-white justify-center px-4 py-2 mt-12 w-full text-red-500 items-center rounded font-medium
          shadow border focus:outline-none transform active:scale-75 transition-transform duration-700 hover:bg-red-500
