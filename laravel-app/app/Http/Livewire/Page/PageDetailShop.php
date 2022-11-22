@@ -36,7 +36,7 @@ class PageDetailShop extends Component
             $userID = auth()->user()->id;
             $barang = Barang::find($id);
             // Cek Keranajng Barang
-            $keranjang = Keranjang::where('barang_id', '=', $barang->id)->get();
+            $keranjang = Keranjang::where('barang_id', '=', $barang->id)->where('user_id', Auth::user()->id)->get();
             // Cek Diskon
 
             if (1 <= 0) {

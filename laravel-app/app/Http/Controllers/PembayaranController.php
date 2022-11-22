@@ -98,8 +98,6 @@ class PembayaranController extends Controller
                 'request' => $request,
                 'file' => $this->uploadFile($request->foto),
             ];
-
-            // dd($cek_file);
             $transaksi_id = $this->transaksi_id();
             $pdf = Pdf::loadView('page.invoice.invoice', ['data' => session('keranjang'), 'request' => $request, 'file' => $this->uploadFile($request->foto), 'transaksi_id' => $transaksi_id, 'potongan' => $this->dataPotonganAll()])->setPaper('a4', 'landscape');
             $item_details = session('keranjang');
@@ -212,12 +210,12 @@ class PembayaranController extends Controller
      */
     public function createTransaksi($item_details = [], $transaksi_id)
     {
-        $jenis_m =  session('keranjang')['jenis'];
+        $jenis_m =  session('keranjang');
 
 
-        if ($jenis_m == 'cart') {
+        if ($jenis_m['jenis'] == 'cart') {
             $count = count($item_details);
-        } elseif ($jenis_m == 'beli') {
+        } elseif ($jenis_m['jenis'] == 'beli') {
             $item_details = [$item_details];
             $count = count($item_details);
         }
@@ -249,46 +247,56 @@ class PembayaranController extends Controller
             }
             // end Vocuher
 
-            if ($jenis_m == 'cart') {
+            if ($jenis_m['jenis'] == 'cart') {
                 $promo_persen = $cart->GetPromo($item_details[$i]['barang_id']);
                 $promo_nominal = $cart->GetPromoNominal($item_details[$i]['barang_id']);
                 $barang = Barang::with('diskon')
                     ->where('id', $item_details[$i]['barang_id'])
                     ->first();
-            } elseif ($jenis_m == 'beli') {
+            } else if ($jenis_m['jenis'] == 'beli') {
                 $promo_persen = $cart->GetPromo($item_details[$i]['id']);
                 $promo_nominal = $cart->GetPromoNominal($item_details[$i]['id']);
                 $barang = Barang::with('diskon')
                     ->where('id', $item_details[$i]['id'])
                     ->first();
             }
-            $item_param = [
-                'barang_id' => $jenis_m == 'beli' ? $item_details[$i]->id : $item_details[$i]->barang_id,
-                'total_awal' => $item_details[$i]->total_awal,
-                'jumlah' => $item_details[$i]->quantity,
-                'sub_total' => $item_details[$i]->sub_total,
-            ];
-            // dd($item_details[$i]);
+            if ($jenis_m['jenis'] == 'cart') {
+                $item_param = [
+                    $item_details[$i]->barang->id,
+                    $item_details[$i]->total_awal,
+                    $item_details[$i]->quantity,
+                    $item_details[$i]->sub_total,
+                    '/'
+                ];
+            } else if ($jenis_m['jenis'] == 'beli') {
+                $item_param = [
+                    $item_details[$i]->id,
+                    $item_details[$i]->harga,
+                    '1',
+                    $item_details[$i]->harga,
+                    '/'
+                ];
+            }
             // Jika Potongan sama Dengan 0 atau null maka potongan sama dengan harga jika tidak maka harga akan dipotong
             // $potongan_nominal =  $promo_nominal ;
             // $potongan_persen = $item_details[$i]->sub_total * ((int) $promo_persen / 100);
-            // dd($barang->diskon->jumlah_diskon);
+            // dd($item_param);
             if ($barang->diskon != null) {
                 foreach ($barang->diskon as $item) {
                     $potongan[] = $item->jumlah_diskon;
                 }
             }
             if ($promo_nominal == 0) {
-                $total_potongan = $item_details[$i]->total_awal * (array_sum($potongan) / 100) - $promo_persen;
+                $total_potongan =  $promo_persen - ($item_details[$i]->total_awal * (array_sum($potongan) / 100) );
             } else {
-                $total_potongan = $item_details[$i]->total_awal * (array_sum($potongan) / 100) - $promo_nominal;
-            }
+                $total_potongan =  $promo_nominal - ($item_details[$i]->total_awal * (array_sum($potongan) / 100) );
 
+            }
             Transaksi::create([
                 'ID_transaksi' => $transaksi_id,
                 'tgl_transaksi' => Carbon::now()->format('Y-m-d'),
                 'item_details' => implode(',', $item_param),
-                'barang_id' => $jenis_m == 'beli' ? $item_details[$i]->id : $item_details[$i]->barang_id,
+                'barang_id' => $jenis_m['jenis'] == 'beli' ? $item_details[$i]->id : $item_details[$i]->barang_id,
                 'potongan' => $total_potongan,
                 'total' => $item_details[$i]->sub_total - $total_potongan,
             ]);

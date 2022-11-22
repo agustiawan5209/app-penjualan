@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="{{asset('build/assets/app.3fa6c477.css')}}">
+    @vite(['resources/js/app.js', 'resources/css/app.css'])
+
     @livewireScripts
 </head>
 
@@ -24,6 +26,10 @@
                 <div
                     class="items-center w-full lg:flex lg:w-auto flex-grow duration-300 transition-all ease-in-out hidden">
                     <ul class="lg:items-center flex flex-wrap list-none  flex-col pl-0 mb-0 lg:flex-row">
+                        <li>
+                            <a href="{{ url('/') }}"
+                                class="hover:opacity-75 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold transition-all duration-150 ease-in-out text-white">Home</a>
+                        </li>
                         <li>
                             <a href="{{ route('Customer.Pesanan') }}"
                                 class="hover:opacity-75 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold transition-all duration-150 ease-in-out text-white">Pesanan</a>

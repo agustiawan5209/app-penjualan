@@ -17,37 +17,56 @@
     <table border="1" cellpadding="5" cellspacing='0' class="w-full table-auto" align="center" width="100%">
         <thead class="">
             <tr class="text-xs p-1">
-                <th>No.</th>
-                <th>Pengguna</th>
-                <th>Email</th>
-                <th>Tanggal Pembelian</th>
-                {{-- <th>Pesanan</th> --}}
-                <th>Tipe Pembayaran</th>
-                <th>Total</th>
+                <x-th>No.</x-th>
+                <x-th>Pengguna</x-th>
+                <x-th>Email</x-th>
+                <x-th>Tanggal Pembelian</x-th>
+                {{-- <x-th>Pesanan</x-th> --}}
+                <x-th>Tipe Pembayaran</x-th>
+                <x-th>Barang</x-th>
+                <x-th>jumlah</x-th>
+                <x-th>Total</x-th>
             </tr>
         </thead>
         <tbody>
-                @foreach ($data as $pembayaran)
-                <tr wire:loading.class='"opacity-50'>
-                    <x-td>{{ $loop->iteration }}</x-td>
-                    <x-td>{{ $pembayaran->user->name }}</x-td>
-                    <x-td>{{ $pembayaran->user->email }}</x-td>
-                    {{-- <x-td>{{ $pembayaran->nama }}</x-td> --}}
-                    <x-td>{{ $pembayaran->tgl_transaksi }}</x-td>
-                    <x-td>
-                       {{$pembayaran->payment_type}}
-                    </x-td>
-                    <x-td>{{ number_format($pembayaran->total_price,0,2) }}</x-td>
-                    @php
-                        $total_price[] = $pembayaran->total_price;
-                    @endphp
-                </tr>
-                @endforeach
-                <tr>
-                    <td colspan="4">Total Penjualan</td>
-                    <td colspan="2">Rp. {{number_format(array_sum($total_price))}}</td>
-                </tr>
-        </tbody>
+            @if ($data->count() > 0)
+              @foreach ($data as $transaksi)
+              <tr wire:loading.class='"opacity-50'>
+                  <x-td>{{ $loop->iteration }}</x-td>
+                  <x-td>{{ $transaksi->pembayaran->user->name }}</x-td>
+                  <x-td>{{ $transaksi->pembayaran->user->email }}</x-td>
+                  {{-- <x-td>{{ $transaksi->pembayaran->nama }}</x-td> --}}
+                  <x-td>{{ $transaksi->pembayaran->tgl_transaksi }}</x-td>
+                  <x-td>
+                     {{$transaksi->pembayaran->payment_type}}
+                  </x-td>
+                  <x-td>
+                     {{$transaksi->barang->nama_barang}}
+                  </x-td>
+                  <x-td>
+                     @php
+                         $data = explode(',', $transaksi->item_details);
+                     @endphp
+                     {{$data[2] }}
+                  </x-td>
+                  <x-td>Rp. {{ number_format($transaksi->total,0,2) }}</x-td>
+                  @php
+                      $total_price[] = $transaksi->total;
+                  @endphp
+              </tr>
+          @endforeach
+          <x-tr>
+              <x-td colspan="5">Total Penjualan</x-td>
+              <x-td colspan="2">Rp. {{number_format(array_sum($total_price),0,2)}}</x-td>
+          </x-tr>
+          @else
+          <x-tr>
+             <x-td colspan="7">
+                 Kosong
+             </x-td>
+          </x-tr>
+            @endif
+         </tbody>
     </table>
    </center>
 </body>

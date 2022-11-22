@@ -108,7 +108,8 @@
                                 <hr class="mt-4 mb-2 bg-gray-300 ml-0">
                                 <div class="flex justify-between">
                                     <h6 class="text-gray-700 leading-normal mt-0 mb-2">Total</h6>
-                                    <h6 class="leading-normal mt-0 mb-2">Rp. {{ number_format($total_bayar, 0, 2) }}</h6>
+                                    <h6 class="leading-normal mt-0 mb-2">Rp. {{ number_format($total_bayar, 0, 2) }}
+                                    </h6>
                                 </div>
                             </div>
                         </div>
@@ -172,7 +173,7 @@
                                             <template x-if="ongkir == 1" class="mb-3 pt-0"><input
                                                     placeholder="E.g. 420 Long Beach, CA" type="text"
                                                     name="detail_alamat" x-if=""
-                                                    class="border-gray-300 px-3 py-2 text-sm  w-full placeholder-gray-200 text-gray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200 ">
+                                                    class="border-gray-300 px-3 py-2 text-sm  w-full placeholder-gray-200 text-gray-700 relative bg-white rounded-md outline-none  focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200 ">
                                             </template>
                                         </div>
                                         <div class="px-4 pb-2 relative w-full lg:w-4/12" x-show="ongkir == 1">
@@ -180,7 +181,7 @@
                                                 class="block uppercase text-gray-700 text-xs font-bold mb-2 ml-1">Postcode/Zip*</label>
                                             <div class="mb-3 pt-0"><input placeholder="E.g. 340112" type="text"
                                                     name="kode_pos"
-                                                    class="border-gray-300 px-3 py-2 text-sm  w-full placeholder-gray-200 text-gray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200 ">
+                                                    class="border-gray-300 px-3 py-2 text-sm  w-full placeholder-gray-200 text-gray-700 relative bg-white rounded-md outline-none  focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200 ">
                                             </div>
                                         </div>
                                         <div class="px-4 pb-2 relative w-full lg:w-4/12" x-show="ongkir == 1">
@@ -188,7 +189,7 @@
                                                 class="block uppercase text-gray-700 text-xs font-bold mb-2 ml-1">Kecamatan</label>
                                             <div class="mb-3 pt-0"><input placeholder="E.g. YC7B 3UT" type="text"
                                                     name="kecamatan"
-                                                    class="border-gray-300 px-3 py-2 text-sm  w-full placeholder-gray-200 text-gray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200 ">
+                                                    class="border-gray-300 px-3 py-2 text-sm  w-full placeholder-gray-200 text-gray-700 relative bg-white rounded-md outline-none  focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200 ">
                                             </div>
                                         </div>
                                         <div class="px-4 pb-2 relative w-full lg:w-4/12" x-show="ongkir == 1">
@@ -196,16 +197,34 @@
                                                 class="block uppercase text-gray-700 text-xs font-bold mb-2 ml-1">Kabupaten*</label>
                                             <div class="mb-3 pt-0"><input placeholder="E.g. London" type="text"
                                                     name="kabupaten"
-                                                    class="border-gray-300 px-3 py-2 text-sm  w-full placeholder-gray-200 text-gray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200 ">
+                                                    class="border-gray-300 px-3 py-2 text-sm  w-full placeholder-gray-200 text-gray-700 relative bg-white rounded-md outline-none  focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200 ">
                                             </div>
                                         </div>
                                     </div>
                                     <h3 class="text-3xl font-semibold mt-4 mb-6">Payment method</h3>
                                     <ul class="flex-col md:flex-row flex flex-wrap list-none pl-0 mb-0">
                                         @foreach ($bank as $item)
-                                            <li class="-mb-px mr-2 last:mr-0 flex-auto text-center"><a
-                                                    href="javascript:;"
-                                                    class="text-xs font-bold uppercase px-5 py-3 shadow rounded block leading-normal sm:mb-4 md:mb-0 uppercase duration-500 transition-all ease-in-out bg-pink-500 text-white">{{ $item->nama_bank }}</a>
+                                            <li class="-mb-px mr-2 last:mr-0 text-center relative box-border"
+                                                x-data="{ pay: false, }">
+                                                <a href="javascript:;" @click="pay = ! pay" @outside="pay =false"
+                                                    class="text-xs font-bold  px-5 py-3 shadow rounded block leading-normal sm:mb-4 md:mb-0 uppercase duration-500 transition-all ease-in-out bg-pink-500 text-white">{{ $item->nama_bank }}</a>
+                                                <table x-show="pay" class="table w-full text-left">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Nama </td>
+                                                            <td>: {{ $item->nama_pemilik }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>No. Rek </td>
+                                                            <td>: {{ $item->no_rek }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Bank </td>
+                                                            <td>: {{ $item->nama_bank }}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+
                                             </li>
                                         @endforeach
                                     </ul>
@@ -218,7 +237,7 @@
                                                         Transaksi
                                                     </label>
                                                     <div class="mb-3 pt-0"><input type="file" name="foto"
-                                                            class="border-gray-300 px-3 py-2 text-sm  w-full placeholder-gray-200 text-gray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200 ">
+                                                            class="border-gray-300 px-3 py-2 text-sm  w-full placeholder-gray-200 text-gray-700 relative bg-white rounded-md outline-none focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200 ">
                                                     </div>
                                                 </div>
                                                 <div class="px-4 relative w-full lg:w-7/12">
@@ -227,7 +246,7 @@
                                                         Transaksi</label>
                                                     <div class="mb-3 pt-0"><input placeholder="E.g. SMITH JOHN"
                                                             type="date" name="tgl_transaksi"
-                                                            class="border-gray-300 px-3 py-2 text-sm  w-full placeholder-gray-200 text-gray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200 ">
+                                                            class="border-gray-300 px-3 py-2 text-sm  w-full placeholder-gray-200 text-gray-700 relative bg-white rounded-md outline-none  focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200 ">
                                                     </div>
                                                 </div>
                                             </div>
@@ -239,7 +258,7 @@
                                                         class="block uppercase text-gray-700 text-xs font-bold mb-2 ml-1">Email</label>
                                                     <div class="mb-3 pt-0"><input placeholder="E.g. email@email.email"
                                                             type="email"
-                                                            class="border-gray-300 px-3 py-2 text-sm  w-full placeholder-gray-200 text-gray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200 ">
+                                                            class="border-gray-300 px-3 py-2 text-sm  w-full placeholder-gray-200 text-gray-700 relative bg-white rounded-md outline-none  focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200 ">
                                                     </div>
                                                 </div>
                                             </div>

@@ -13,16 +13,21 @@ class Laporan extends Component
     public $startDate = "", $maxDate = "";
     public function render()
     {
-        $pembayaran = Pembayaran::all();
-        if($this->startDate != null && $this->maxDate != null){
-            $pembayaran = Pembayaran::whereBetween('tgl_transaksi', [$this->startDate, $this->maxDate])->get();
-            // dd($pembayaran);
+        $pembayaran = Transaksi::whereHas('pembayaran', function ($query) {
+            $query->whereIn('payment_status', [2, 3]);
+        })->get();
+        if ($this->startDate != null && $this->maxDate != null) {
+            $pembayaran = Transaksi::whereBetween('tgl_transaksi', [$this->startDate, $this->maxDate])
+                ->whereHas('pembayaran', function ($query) {
+                    $query->whereIn('payment_status', [2, 3]);
+                })->get();
         }
-        return view('livewire.admin.laporan',[
-            'pembayaran'=> $pembayaran,
+        return view('livewire.admin.laporan', [
+            'transaksis' => $pembayaran,
         ]);
     }
-    public function OpenLaporan(){
+    public function OpenLaporan()
+    {
         Alert::info('info', 'berhasil');
         $this->openLaporan = true;
     }
