@@ -2,20 +2,35 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Livewire\Pesanan;
+use Carbon\Carbon;
 use App\Models\Barang;
+use App\Models\Transaksi;
 use App\Models\Pembayaran;
 use App\Models\StatusBarang;
 use Illuminate\Http\Request;
+use App\Http\Livewire\Pesanan;
 
 class StatusBarangController extends Controller
 {
     public function chart()
     {
-      $result = Pembayaran::whereNotNull('updated_at')
-                  ->orderBy('id', 'ASC')
-                  ->get();
-      return response()->json($result);
+        $carbon = Carbon::now()->parse();
+        $year = $carbon->toArray();
+
+        $transaksi = [];
+        // $januari =
+        for ($i = 1; $i < 13; $i++) {
+            $potongan = Transaksi::where('status', '=', '0')
+            ->whereYear('created_at', $year['year'])
+            ->whereMonth('created_at', '' . $i . '')
+            ->sum('potongan');
+            $total = Transaksi::where('status', '=', '0')
+            ->whereYear('created_at', $year['year'])
+            ->whereMonth('created_at', '' . $i . '')
+            ->sum('total');
+            $transaksi[$i] = $total - $potongan;
+        }
+        return response()->json($transaksi);
     }
     /**
      * Display a listing of the resource.

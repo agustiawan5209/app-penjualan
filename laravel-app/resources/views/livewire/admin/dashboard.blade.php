@@ -13,7 +13,7 @@
                                 Penjualan
                             </h5>
                             <span class="font-semibold text-xl text-reddarken">
-                               Rp. {{number_format($penjualan,0,2)}}
+                                Rp. {{ number_format($penjualan, 0, 2) }}
                             </span>
                         </div>
                         <div class="relative w-auto pl-4 flex-initial">
@@ -43,7 +43,7 @@
                                 Jumlah Pengguna
                             </h5>
                             <span class="font-semibold text-xl text-reddarken">
-                                {{$user_use}}
+                                {{ $user_use }}
                             </span>
                         </div>
                         <div class="relative w-auto pl-4 flex-initial">
@@ -71,7 +71,7 @@
                                 Jumlah Barang
                             </h5>
                             <span class="font-semibold text-xl text-reddarken">
-                                {{$jm_barang}}
+                                {{ $jm_barang }}
                             </span>
                         </div>
                         <div class="relative w-auto pl-4 flex-initial">
@@ -153,17 +153,19 @@
         var Labels = new Array();
         var Prices = new Array();
         $(document).ready(function() {
-            $.get(url, function(response) {
-                response.forEach(function(data) {
-                    Years.push(data.created_at);
-                    Labels.push(data.id);
-                    Prices.push(data.total_price);
-                });
+            $.get(url, function(response, status,data) {
+
+                for (let i = 1; i < 13; i++) {
+                    Prices.push(response[i]);
+                }
+                const monthNames = ["January", "February", "March", "April", "May", "June",
+                    "July", "August", "September", "October", "November", "December"
+                ];
                 var ctx = document.getElementById("bar-chart").getContext('2d');
                 var myChart = new Chart(ctx, {
                     type: 'bar',
                     data: {
-                        labels: Years,
+                        labels: monthNames,
                         datasets: [{
                             label: 'Total Penjualan',
                             data: Prices,
