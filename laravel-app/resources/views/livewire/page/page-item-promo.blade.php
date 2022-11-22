@@ -71,6 +71,9 @@
                                 @endif
                             @endif
                         </p>
+                        <p class="md:w-80 text-base leading-6 mt-4 text-gray-600 dark:text-gray-200">
+                           {{$voucher->deskripsi}}
+                        </p>
                         <p class="md:w-80 text-base leading-6 mt-4 text-gray-600 dark:text-gray-200">Potongan <span
                                 class="underline-offset-1 text-red-500">
                                 <span class="text-lg font-semibold">{{ $voucher->diskon }}</span>%

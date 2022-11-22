@@ -77,7 +77,7 @@ class CreateNewUser implements CreatesNewUsers
     }
     public function KlaimVoucher(User $user)
     {
-        $voucher = Voucher::where('jenis_voucher', '1')->first();
+        $voucher = Voucher::where('jenis_voucher', '1')->latest()->first();
 
         $carbon_hours = Carbon::now()
             ->add(10, 'hours')
