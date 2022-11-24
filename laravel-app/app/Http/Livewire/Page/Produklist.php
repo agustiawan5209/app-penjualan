@@ -18,7 +18,7 @@ class Produklist extends Component
     {
         $produk = Barang::all();
         // \Cart::remove(1);
-        $jenis = Jenis::paginate($this->show);
+        $jenis = Jenis::all();
         return view('livewire.page.produklist', [
             'produk' => $produk,
             'jenis'=> $jenis,

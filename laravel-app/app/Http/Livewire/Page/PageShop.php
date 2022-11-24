@@ -42,9 +42,11 @@ class PageShop extends Component
         $jenis = Jenis::paginate($this->show);
         if($this->nama_jenis != null){
             $produk = Barang::with(['satuan', 'katalog','diskon'])
-            ->orWhere('katalog_id', '=', $this->nama_jenis)
+            // ->orWhere('katalog_id', '=', $this->nama_jenis)
             ->orWhereHas('katalog', function($query){
-                return $query->where('nama_katalog', 'like', '%'. $this->nama_jenis .'%');
+                return $query->whereHas('jenis',function($query){
+                    return $query->where('nama_jenis', 'like', '%'. $this->nama_jenis .'%');
+                });
             })
             ->paginate($this->row);
         }

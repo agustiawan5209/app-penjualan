@@ -129,7 +129,7 @@
                 </div>
             </nav>
             <!-- Header -->
-            <div class="relative  pt-20">
+            <div class="relative  pt-20 z-10">
                 <div class="px-4 md:px-6  mx-auto w-full">
                     {{ $slot }}
                 </div>
