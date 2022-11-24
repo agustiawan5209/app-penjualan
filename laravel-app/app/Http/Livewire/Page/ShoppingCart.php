@@ -36,7 +36,7 @@ class ShoppingCart extends Component
     public function render()
     {
         $carbon = Carbon::now()->format('Y-m-d');
-        $cart = Keranjang::with(['barang.katalog','barang.satuan','barang.katalog'])->where('user_id', Auth::user()->id)->get();
+        $cart = Keranjang::with(['barang.katalog', 'barang.satuan', 'barang.katalog'])->where('user_id', Auth::user()->id)->get();
         $this->Diskon($cart);
         $this->quantity;
 
@@ -45,20 +45,21 @@ class ShoppingCart extends Component
         ])->layout('layouts.guest');
     }
 
-    public function Diskon($cart){
+    public function Diskon($cart)
+    {
         $arr = [];
         $subtotal = Keranjang::where('user_id', Auth::user()->id)->sum('sub_total');
         // dd($subtotal);
         $quantity = Keranjang::where('user_id', Auth::user()->id)->sum('quantity');
         // $diskon_kadaluarsa = Diskon::whereDate('tgl_kadaluarsa', '<' , $carbon)->delete();
-        $this->sub_total = $subtotal ;
+        $this->sub_total = $subtotal;
         foreach ($cart as $keranjang) {
             $arr[] = Diskon::where('barang_id', $keranjang->barang_id)->sum('jumlah_diskon');
         }
         $jumlah_diskon = (int) array_sum($arr);
-        $this->diskon = ($jumlah_diskon / 100) * $this->sub_total ;
+        $this->diskon = ($jumlah_diskon / 100) * $this->sub_total;
         $this->potongan = $this->diskon - $this->promo - $this->voucher;
-       $this->total_bayar = $this->sub_total - $this->potongan;
+        $this->total_bayar = $this->sub_total - $this->potongan;
     }
     public function show($id)
     {
@@ -70,10 +71,10 @@ class ShoppingCart extends Component
     }
     public function removeCart($id)
     {
-       $kr =  Keranjang::find($id);
-        $barang= Barang::find($kr->barang_id);
+        $kr =  Keranjang::find($id);
+        $barang = Barang::find($kr->barang_id);
         Barang::find($barang->id)->update([
-            'stock'=> $barang->stock + $kr->quantity,
+            'stock' => $barang->stock + $kr->quantity,
         ]);
         $kr->delete();
         Alert::success('Berhasil', 'Berhasil Di Hapus !');
@@ -87,13 +88,13 @@ class ShoppingCart extends Component
     public function PlusupdateCart($id)
     {
         $cart = Keranjang::find($id);
-        if($cart->barang->stock <= $this->quantity){
+        if ($cart->barang->stock <= $this->quantity) {
             $this->quantity = $cart->barang->stock;
-        }else{
+        } else {
             $this->quantity++;
             Keranjang::where('id', $id)->update([
-                'quantity' => $this->quantity ,
-                'sub_total'=> $this->quantity * $cart->total_awal,
+                'quantity' => $this->quantity,
+                'sub_total' => $this->quantity * $cart->total_awal,
             ]);
         }
 
@@ -103,23 +104,23 @@ class ShoppingCart extends Component
     {
         $cart = Keranjang::find($id);
 
-        if($this->quantity <= 1){
+        if ($this->quantity <= 1) {
             $this->quantity = 1;
-
-        }else{
+        } else {
             $this->quantity--;
             Keranjang::where('id', $id)->update([
-                'quantity' => $this->quantity ,
-                'sub_total'=> $this->quantity * $cart->total_awal,
+                'quantity' => $this->quantity,
+                'sub_total' => $this->quantity * $cart->total_awal,
             ]);
         }
 
         // $this->emit('cartUpdated');
     }
-    public function quantityChange($id){
+    public function quantityChange($id)
+    {
         $cart = Keranjang::find($id);
         $cat = Keranjang::where('id', $id)->update([
-            'quantity' => $this->quantity ,
+            'quantity' => $this->quantity,
         ]);
         // if ($cat) {
         //     Keranjang::where('id', $id)->update([
@@ -131,22 +132,26 @@ class ShoppingCart extends Component
     {
         return redirect()->route('Customer.Pembayaran');
     }
-    public $bayardetail= false;
-    public function formBayar(){
+    public $bayardetail = false;
+    public function formBayar()
+    {
         $this->bayardetail = true;
     }
-    public function BayarDetail( $potongan, $sub_total, $total_bayar){
+    public function BayarDetail($potongan, $sub_total, $total_bayar)
+    {
         $cart = Keranjang::where('user_id', Auth::user()->id)->get();
-        session()->put('keranjang', [
-            'item'=> $cart,
-            'potongan'=> $potongan,
-            'sub_total'=> $sub_total,
-            'total_bayar'=> $total_bayar,
-            'jenis'=> 'cart',
+        if ($cart->count() > 0) {
+            session()->put('keranjang', [
+                'item' => $cart,
+                'potongan' => $potongan,
+                'sub_total' => $sub_total,
+                'total_bayar' => $total_bayar,
+                'jenis' => 'cart',
 
-        ]);
-        return redirect()->route('Customer.Page-Pembayaran');
+            ]);
+            return redirect()->route('Customer.Page-Pembayaran');
+        } else {
+            Alert::error('Maaf', "Keranjang Kosong..!!!");
+        }
     }
-
-
 }
