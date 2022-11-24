@@ -181,9 +181,9 @@
             </div>
         </footer>
     </div>
-<script defer src="{{ asset('build/assets/app.d225c007.js') }}"></script>
     @stack('modals')
     @livewireScripts
+    <script defer src="{{ asset('build/assets/app.d225c007.js') }}"></script>
 
 
 </body>
