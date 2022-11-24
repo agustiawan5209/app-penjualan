@@ -33,7 +33,7 @@
             </div>
         </div>
         <div class="mt-6 overflow-x-auto">
-            <table class="w-full table-auto example">
+            <table class="w-full table-auto">
                 {{ $slot }}
             </table>
         </div>
