@@ -1,5 +1,4 @@
-<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
-<link href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css" rel="stylesheet" />
+<div>
 
 @include('sweetalert::alert')
 <div class="items-center w-full py-4 mx-auto mb-10 bg-white rounded-lg shadow-md ">
@@ -34,7 +33,7 @@
             </div>
         </div>
         <div class="mt-6 overflow-x-auto">
-            <table class="w-full table-auto">
+            <table class="w-full table-auto example">
                 {{ $slot }}
             </table>
         </div>
@@ -44,11 +43,4 @@
     </div>
 </div>
 
-
-<script>
-    $(document).ready(function() {
-        $('#example').DataTable({
-
-        });
-    });
-</script>
+</div>
