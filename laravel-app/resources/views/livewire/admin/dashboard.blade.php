@@ -91,116 +91,117 @@
             </div>
         </div>
     </div>
-</div>
-<div class="py-8">
-    <div class="flex flex-wrap">
-        <div class="w-full  px-4">
-            <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
-                <div class="rounded-t mb-0 px-4 py-3 bg-transparent">
-                    <div class="flex flex-wrap items-center">
-                        <div class="relative w-full max-w-full flex-grow flex-1">
-                            <h6 class="uppercase text-reddarken mb-1 text-xs font-semibold">
-                                Diagram
-                            </h6>
-                            <h2 class="text-reddarken text-xl font-semibold">
-                                Total Penjualan
-                            </h2>
+    <div class="py-8">
+        <div class="flex flex-wrap">
+            <div class="w-full  px-4">
+                <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+                    <div class="rounded-t mb-0 px-4 py-3 bg-transparent">
+                        <div class="flex flex-wrap items-center">
+                            <div class="relative w-full max-w-full flex-grow flex-1">
+                                <h6 class="uppercase text-reddarken mb-1 text-xs font-semibold">
+                                    Diagram
+                                </h6>
+                                <h2 class="text-reddarken text-xl font-semibold">
+                                    Total Penjualan
+                                </h2>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="p-4 flex-auto w-full">
-                    <!-- Chart -->
-                    <div class="relative h-350-px w-full">
-                        <canvas id="bar-chart"></canvas>
+                    <div class="p-4 flex-auto w-full">
+                        <!-- Chart -->
+                        <div class="relative h-350-px w-full">
+                            <canvas id="bar-chart"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" charset="utf-8"></script>
-    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
-    <script type="text/javascript">
-        /* Make dynamic date appear */
-        (function() {
-            if (document.getElementById("get-current-year")) {
-                document.getElementById("get-current-year").innerHTML =
-                    new Date().getFullYear();
-            }
-        })();
-        /* Sidebar - Side navigation menu on mobile/responsive mode */
-        function toggleNavbar(collapseID) {
-            document.getElementById(collapseID).classList.toggle("hidden");
-            document.getElementById(collapseID).classList.toggle("bg-white");
-            document.getElementById(collapseID).classList.toggle("m-2");
-            document.getElementById(collapseID).classList.toggle("py-3");
-            document.getElementById(collapseID).classList.toggle("px-6");
-        }
-        /* Function for dropdowns */
-        function openDropdown(event, dropdownID) {
-            let element = event.target;
-            while (element.nodeName !== "A") {
-                element = element.parentNode;
-            }
-            Popper.createPopper(element, document.getElementById(dropdownID), {
-                placement: "bottom-start"
-            });
-            document.getElementById(dropdownID).classList.toggle("hidden");
-            document.getElementById(dropdownID).classList.toggle("block");
-        }
-
-        var url = "{{ url('stock/chart') }}";
-        var Years = new Array();
-        var Labels = new Array();
-        var Prices = new Array();
-        $(document).ready(function() {
-            $.get(url, function(response, status,data) {
-
-                for (let i = 1; i < 13; i++) {
-                    Prices.push(response[i]);
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" charset="utf-8"></script>
+        <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+        <script type="text/javascript">
+            /* Make dynamic date appear */
+            (function() {
+                if (document.getElementById("get-current-year")) {
+                    document.getElementById("get-current-year").innerHTML =
+                        new Date().getFullYear();
                 }
-                const monthNames = ["January", "February", "March", "April", "May", "June",
-                    "July", "August", "September", "October", "November", "December"
-                ];
-                var ctx = document.getElementById("bar-chart").getContext('2d');
-                var myChart = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: monthNames,
-                        datasets: [{
-                            label: 'Total Penjualan',
-                            data: Prices,
-                            borderWidth: 1,
-                        }]
-                    },
-                    options: {
-                        scales: {
-                            yAxes: [{
-                                ticks: {
-                                    beginAtZero: true
-                                }
+            })();
+            /* Sidebar - Side navigation menu on mobile/responsive mode */
+            function toggleNavbar(collapseID) {
+                document.getElementById(collapseID).classList.toggle("hidden");
+                document.getElementById(collapseID).classList.toggle("bg-white");
+                document.getElementById(collapseID).classList.toggle("m-2");
+                document.getElementById(collapseID).classList.toggle("py-3");
+                document.getElementById(collapseID).classList.toggle("px-6");
+            }
+            /* Function for dropdowns */
+            function openDropdown(event, dropdownID) {
+                let element = event.target;
+                while (element.nodeName !== "A") {
+                    element = element.parentNode;
+                }
+                Popper.createPopper(element, document.getElementById(dropdownID), {
+                    placement: "bottom-start"
+                });
+                document.getElementById(dropdownID).classList.toggle("hidden");
+                document.getElementById(dropdownID).classList.toggle("block");
+            }
+
+            var url = "{{ url('stock/chart') }}";
+            var Years = new Array();
+            var Labels = new Array();
+            var Prices = new Array();
+            $(document).ready(function() {
+                $.get(url, function(response, status, data) {
+
+                    for (let i = 1; i < 13; i++) {
+                        Prices.push(response[i]);
+                    }
+                    const monthNames = ["January", "February", "March", "April", "May", "June",
+                        "July", "August", "September", "October", "November", "December"
+                    ];
+                    var ctx = document.getElementById("bar-chart").getContext('2d');
+                    var myChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: monthNames,
+                            datasets: [{
+                                label: 'Total Penjualan',
+                                data: Prices,
+                                borderWidth: 1,
                             }]
                         },
-                        tooltip: {
-                            callbacks: {
-                                labelColor: function(context) {
-                                    return {
-                                        borderColor: 'rgb(0, 0, 255)',
-                                        backgroundColor: 'rgb(255, 0, 0)',
-                                        borderWidth: 2,
-                                        borderDash: [2, 2],
-                                        borderRadius: 2,
-                                    };
-                                },
-                                labelTextColor: function(context) {
-                                    return '#543453';
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }]
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    labelColor: function(context) {
+                                        return {
+                                            borderColor: 'rgb(0, 0, 255)',
+                                            backgroundColor: 'rgb(255, 0, 0)',
+                                            borderWidth: 2,
+                                            borderDash: [2, 2],
+                                            borderRadius: 2,
+                                        };
+                                    },
+                                    labelTextColor: function(context) {
+                                        return '#543453';
+                                    }
                                 }
                             }
-                        }
 
-                    }
+                        }
+                    });
                 });
             });
-        });
-    </script>
-    <script></script>
+        </script>
+        <script></script>
+    </div>
 </div>
+
