@@ -72,8 +72,8 @@
                                 {{$transaksi->pembayaran->payment_type}}
                              </x-td>
                              <x-td>
-                                @if ($item->barang != null)
-                                {{$item->barang->nama_barang}}
+                                @if ($transaksi->barang != null)
+                                {{$transaksi->barang->nama_barang}}
                                 @else
                                 Data Barang Hilang
                                 @endif
