@@ -23,7 +23,7 @@
                     <option value="asc">asc</option>
                     <option value="desc">desc</option>
                 </select>
-                <select
+                <select wire:model='row'
                     class="border border-gray-300 rounded-md text-gray-600 px-3 py-[9px] bg-white hover:border-gray-400 focus:outline-none text-xs focus:ring-0">
                     <option value="10">10</option>
                     <option value="20">20</option>
