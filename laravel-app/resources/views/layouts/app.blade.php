@@ -183,7 +183,6 @@
     </div>
     @stack('modals')
     @livewireScripts
-    <script defer src="{{ asset('build/assets/app.69456af7.js') }}"></script>
 
 </body>
 
