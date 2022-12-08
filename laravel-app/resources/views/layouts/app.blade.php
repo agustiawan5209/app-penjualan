@@ -16,6 +16,7 @@
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" />
     <link rel="stylesheet" href="{{ asset('@fortawesome/fontawesome-free/css/all.min.css') }}" />
+    <script defer src="{{ asset('build/assets/app.d225c007.js') }}"></script>
 
 </head>
 
@@ -183,7 +184,6 @@
     </div>
     @stack('modals')
     @livewireScripts
-    <script defer src="{{ asset('build/assets/app.d225c007.js') }}"></script>
 
 </body>
 
