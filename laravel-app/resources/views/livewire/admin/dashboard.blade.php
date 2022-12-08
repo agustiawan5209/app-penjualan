@@ -153,7 +153,7 @@
             var Prices = new Array();
             $(document).ready(function() {
                 $.get(url, function(response, status, data) {
-
+                    console.log(response)
                     for (let i = 1; i < 13; i++) {
                         Prices.push(response[i]);
                     }

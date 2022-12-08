@@ -99,7 +99,7 @@ class PageDetailShop extends Component
         $cart = Barang::find($id);
         $arr[] = Diskon::where('barang_id', $id)->sum('jumlah_diskon');
         $jumlah_diskon = (int) array_sum($arr);
-        $sub_total = $cart->harga;
+        $sub_total = $this->count * $cart->harga;
         $diskon = ($jumlah_diskon / 100) * $sub_total;
         $total_bayar = $sub_total - $diskon;
         session()->put('keranjang', [
@@ -107,6 +107,7 @@ class PageDetailShop extends Component
             'potongan' => $diskon,
             'sub_total' => $sub_total,
             'total_bayar' => $total_bayar,
+            'jumlah' => $this->count,
             'jenis' => 'beli',
         ]);
         return redirect()->route('Customer.Page-Pembayaran');

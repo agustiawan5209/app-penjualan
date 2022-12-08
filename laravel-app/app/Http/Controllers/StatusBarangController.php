@@ -19,7 +19,7 @@ class StatusBarangController extends Controller
 
         $transaksi = [];
         // $januari =
-        for ($i = 1; $i < 13; $i++) {
+        for ($i = 0; $i < 13; $i++) {
             $potongan = Transaksi::where('status', '=', '0')
             ->whereYear('created_at', $year['year'])
             ->whereMonth('created_at', '' . $i . '')
