@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
 
     <!-- Scripts -->
-    <link rel="stylesheet" href="{{asset('build/assets/app.e57bea07.css')}}">
+    <link rel="stylesheet" href="{{asset('build/assets/app.6440f46b.css')}}">
     <script src="{{ asset('js/sweetalert.all.js') }}"></script>
     @vite(['resources/js/app.js'])
 
@@ -26,7 +26,7 @@
     @stack('modal')
     @livewireScripts
     <script src="{{asset('js/pay.js')}}"></script>
-    {{-- <script defer src="{{asset('build/assets/app.d225c007.js')}}"></script> --}}
+    {{-- <script defer src="{{asset('build/assets/app.69456af7.js')}}"></script> --}}
 
 </body>
 </html>

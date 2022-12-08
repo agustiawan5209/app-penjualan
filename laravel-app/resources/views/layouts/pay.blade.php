@@ -11,7 +11,7 @@
     <!-- Fonts -->
 
     <!-- Scripts -->
-    <link rel="stylesheet" href="{{asset('build/assets/app.e57bea07.css')}}">
+    <link rel="stylesheet" href="{{asset('build/assets/app.6440f46b.css')}}">
     @vite(['resources/js/app.js'])
 
     @livewireStyles
@@ -23,7 +23,7 @@
     {{$slot}}
     @stack('modal')
     @livewireScripts
-    <script defer src="{{asset('build/assets/app.d225c007.js')}}"></script>
+    <script defer src="{{asset('build/assets/app.69456af7.js')}}"></script>
 
 </body>
 </html>
