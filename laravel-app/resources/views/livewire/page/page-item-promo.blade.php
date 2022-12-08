@@ -67,12 +67,16 @@
                                 Jumlah Pembelian {{ $voucher->jumlah_pembelian }}
                             @elseif ($voucher->jenis_voucher == 3)
                                 Pembelian Produk @if ($voucher->barang != null)
-                                    {{ $voucher->barang->nama_barang }}
+                                    @if ($item->barang != null)
+                                        {{ $voucher->barang->nama_barang }}
+                                    @else
+                                        Data Barang Hilang
+                                    @endif
                                 @endif
                             @endif
                         </p>
                         <p class="md:w-80 text-base leading-6 mt-4 text-gray-600 dark:text-gray-200">
-                           {{$voucher->deskripsi}}
+                            {{ $voucher->deskripsi }}
                         </p>
                         <p class="md:w-80 text-base leading-6 mt-4 text-gray-600 dark:text-gray-200">Potongan <span
                                 class="underline-offset-1 text-red-500">

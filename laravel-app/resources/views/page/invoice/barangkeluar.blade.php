@@ -29,7 +29,13 @@
                 @foreach ($data as $barang)
                 <tr wire:loading.class='"opacity-50'>
                     <x-td>{{$loop->iteration}}</x-td>
-                    <x-td>{{$barang->barang->kode_barang}}</x-td>
+                    <x-td>
+                        @if ($item->barang != null)
+                        {{$item->barang->kode_barang}}
+                        @else
+                        Data Barang Hilang
+                        @endif
+                    </x-td>
                     <x-td>{{$barang->jumlah}}</x-td>
                     <x-td>{{$barang->tgl_keluar}}</x-td>
                 </tr>
