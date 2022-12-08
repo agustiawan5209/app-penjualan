@@ -57,7 +57,13 @@
                         @foreach ($barang as $item)
                             <tr>
                                 <x-td>{{$loop->iteration}}</x-td>
-                                <x-td>{{$item->barang->kode_barang}}</x-td>
+                                <x-td>
+                                    @if ($item->barang != null)
+                                    {{$item->barang->kode_barang}}
+                                    @else
+                                    Data Barang Hilang
+                                    @endif
+                                </x-td>
                                 <x-td>{{$item->jumlah}}</x-td>
                                 <x-td>{{$item->tgl_keluar}}</x-td>
                             </tr>
