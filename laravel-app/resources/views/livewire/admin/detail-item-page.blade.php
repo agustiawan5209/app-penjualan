@@ -27,7 +27,11 @@
                         $jumlah = explode(',' ,$item->item_details);
                     @endphp
                     <x-td>
-                       {{$item->barang->nama_barang  }}
+                        @if ($item->barang != null)
+                        {{$item->barang->nama_barang}}
+                        @else
+                        Data Barang Hilang
+                        @endif
                     </x-td>
                     <x-td>{{$jumlah[2]}}</x-td>
                     <x-td>

@@ -192,7 +192,13 @@
                 @foreach ($data['item'] as $item)
                     <tr class="item" style="border: 1px solid #bbbabb;">
                         <td style="width: 10px;">{{ $loop->iteration }}</td>
-                        <td>{{ $item->barang->nama_barang }}</td>
+                        <td>
+                            @if ($item->barang != null)
+                            {{$item->barang->nama_barang}}
+                            @else
+                            Data Barang Hilang
+                            @endif
+                        </td>
                         <td>{{ $item->total_awal }}</td>
                         <td>{{ $item->quantity }}</td>
                         <td>{{ $potongan }}</td>

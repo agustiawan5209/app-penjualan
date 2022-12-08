@@ -30,8 +30,18 @@
                 @foreach ($diskon as $item)
                     <tr>
                         <x-td>{{ ($diskon->currentpage() - 1) * $diskon->perpage() + $loop->index + 1 }}</x-td>
-                        <x-td>{{ $item->barang->kode_barang }}</x-td>
-                        <x-td>{{ $item->barang->harga }}</x-td>
+                        <x-td>@if ($item->barang != null)
+                            {{$item->barang->kode_barang}}
+                            @else
+                            Data Barang Hilang
+                            @endif</x-td>
+                        <x-td>
+                            @if ($item->barang != null)
+                            {{$item->barang->harga}}
+                            @else
+                            Data Barang Hilang
+                            @endif
+                        </x-td>
                         <x-td>{{ $item->jumlah_diskon }}</x-td>
 
                         <x-td>
