@@ -1,12 +1,12 @@
 <x-guest-layout>
     <div class="container py-5 h-full flex justify-center items-center ">
-        <div class="  h-full w-full md:w-1/2 bg-white">
+        <div class="  h-full w-full md:w-1/2 bg-white py-12 rounded-lg">
             <div class=" shadow-md p-4 p-lg-5 w-full text-black">
                 <x-jet-validation-errors />
                 <form action="{{ route('register') }}" method="POST" class="w-full">
                     @csrf
-                    <div class="flex align-items-center mb-3 pb-1">
-                      <x-jet-application-logo />
+                    <div class="flex justify-center mb-3 pb-1">
+                        <span class=" text-indigo-600 text-3xl font-bold ">Irsan</span>&nbsp;<span class="text-indigo-600 text-3xl font-bold">Jaya</span>
                     </div>
                     <div class="w-full mb-4">
                         <x-jet-input type="text" name="name" id="name" :value="old('name')"
