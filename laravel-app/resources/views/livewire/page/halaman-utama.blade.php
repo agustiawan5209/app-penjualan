@@ -4,7 +4,7 @@
     @if (Auth::check())
         <livewire:banner-voucher />
     @endif
-    <div class="w-full relative">
+    <div class="w-full relative bg-white">
 
         <section class="flex relative items-center max-w-6xl mx-auto p-0 h-full z-0">
             <div class="conteiner mx-auto px-16">
@@ -28,10 +28,10 @@
     <livewire:page.produklist />
 
     {{-- About --}}
-    <section class="relative">
+    <section class="relative bg-white">
 
         <div class="max-w-6xl mx-auto px-4 sm:px-6 wow fadeInDown mt-5">
-            <div class="pb-12 md:pb-20">
+            <div class="py-12 md:pb-20">
                 <div class="relative bg-gray-900 rounded py-10 px-8 md:py-16 md:px-12 shadow-2xl overflow-hidden wow fadeIn grid"
                     data-aos="zoom-y-out">
                     <div class="absolute right-0 bottom-0 pointer-events-none hidden lg:block wow fadeInRight"

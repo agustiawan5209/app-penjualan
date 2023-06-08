@@ -1,7 +1,7 @@
 <div>
     @include('sweetalert::alert')
-    <div class="lg:flex flex-col items-center justify-between" x-data="{ promo: true, voucher: false }">
-        <div class="lg:w-1/2 w-full bg-white flex justify-center flex-col">
+    <div class="lg:flex flex-col items-center justify-between py-12" x-data="{ promo: true, voucher: false }">
+        <div class="lg:w-1/2 w-full bg-white flex justify-center flex-col px-4 py-6 rounded-lg">
             <h1 role="heading" class="md:text-5xl text-3xl font-bold leading-10 mt-3 text-gray-800 dark:text-white">
                 Promo/Voucher</h1>
             <div class="w-full">

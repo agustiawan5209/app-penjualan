@@ -7,7 +7,7 @@
             <div class="container mx-auto px-4 col-span-4">
                 <div class="mb-5 flex flex-wrap -mx-4 justify-start">
                     <div class="px-4 relative w-full lg:w-8/12 text-left">
-                        <h6 class="mb-2 text-lg font-bold uppercase text-green-500">Produk Kami</h6>
+                        <h6 class="mb-2 text-lg font-bold uppercase text-indigo-500">Produk Kami</h6>
                     </div>
                 </div>
                 <div class="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-5 gap-2 -mx-4 wow fadeInDown">

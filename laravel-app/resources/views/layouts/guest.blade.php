@@ -96,7 +96,7 @@
                         @else
                             <a class="block w-1/2 px-3 py-2 mx-1 rounded text-center text-sm bg-gray-500 font-medium text-white leading-5 hover:bg-blue-600 md:mx-2 md:w-auto"
                                 href="{{ route('login') }}">Login</a>
-                            <a class="block w-1/2 px-3 py-2 mx-1 rounded text-center text-sm bg-green-500 font-medium text-white leading-5 hover:bg-slate-600 md:mx-0 md:w-auto"
+                            <a class="block w-1/2 px-3 py-2 mx-1 rounded text-center text-sm bg-indigo-600 font-medium text-white leading-5 hover:bg-slate-600 md:mx-0 md:w-auto"
                                 href="{{ route('register') }}">Daftar Gratis</a>
                         @endif
                     </div>
