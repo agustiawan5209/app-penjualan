@@ -42,8 +42,8 @@
                     <h6 class="mb-2 text-lg font-bold uppercase text-white">Produk Kami</h6>
                 </div>
             </div>
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 -mx-4 wow fadeInDown">
-                @foreach ($produk as $item)
+            @foreach ($produk as $item)
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 -mx-4 wow fadeInDown">
                     @if ($item->stock <= 0)
                         <div class="bg-slate-800 col-span-1 relative shadow overflow-hidden  cursor-not-allowed">
                         @else
@@ -59,7 +59,7 @@
                         @endforeach
                     @endif
                     <img src="{{ asset('upload/' . $item->gambar) }}"
-                        alt="AGLAONEMA RED ANJAMANI / AGLONEMA RED ANJAMANI MURMER" class="object-cover max-w-md">
+                        alt="AGLAONEMA RED ANJAMANI / AGLONEMA RED ANJAMANI MURMER" class="object-cover max-w-md h-96">
                     <div class="pt-3 pb-4 px-2 group-hover:bg-gray-900">
                         @if ($item->stock <= 0)
                             <span class="text-red-500 font-bold">Stok Habis</span>
@@ -84,7 +84,7 @@
                             <div class="text-sm text-gray-600">Stok {{ $item->stock }}</div>
                         </div>
                     </div>
-            </div>
+                </div>
             @endforeach
         </div>
     </section>
