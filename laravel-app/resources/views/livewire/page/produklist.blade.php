@@ -42,50 +42,51 @@
                     <h6 class="mb-2 text-lg font-bold uppercase text-white">Produk Kami</h6>
                 </div>
             </div>
-            @foreach ($produk as $item)
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 -mx-4 wow fadeInDown">
-                    @if ($item->stock <= 0)
-                        <div class="bg-slate-800 col-span-1 relative shadow overflow-hidden  cursor-not-allowed">
-                        @else
-                            <div class="bg-slate-800 col-span-1 relative shadow overflow-hidden  cursor-pointer"
-                                wire:click='ShowDetail({{ $item->id }})'>
-                    @endif
-                    @if ($item->diskon->count() > 0)
-                        @foreach ($item->diskon as $diskon)
-                            <div
-                                class="absolute font-bold  text-white px-2 py-1 bg-slate-600 rounded-r-sm shadow-lg shadow-white">
-                                <span class="text-sm">Diskon {{ $diskon->jumlah_diskon }}%</span>
-                            </div>
-                        @endforeach
-                    @endif
-                    <img src="{{ asset('upload/' . $item->gambar) }}"
-                        alt="AGLAONEMA RED ANJAMANI / AGLONEMA RED ANJAMANI MURMER" class="object-cover max-w-md h-96">
-                    <div class="pt-3 pb-4 px-2 group-hover:bg-gray-900">
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 -mx-4 wow fadeInDown">
+                @foreach ($produk as $item)
                         @if ($item->stock <= 0)
-                            <span class="text-red-500 font-bold">Stok Habis</span>
-                            <div class="text-sm overflow-hidden h-8 leading-4 text-ellipsis line-through">
-                                {{ $item->nama_barang }} </div>
-                        @else
-                            <div class="text-sm overflow-hidden h-8 leading-4">{{ $item->nama_barang }} </div>
+                            <div class="bg-slate-800 col-span-1 relative shadow overflow-hidden  cursor-not-allowed shadow-white">
+                            @else
+                                <div class="bg-slate-800 col-span-1 relative shadow overflow-hidden  cursor-pointer shadow-white"
+                                    wire:click='ShowDetail({{ $item->id }})'>
                         @endif
-                        <div class="flex justify-between items-center">
-                            <div class="text-grabg-slate-600">
-                                <span class="text-sm">Rp</span><span
-                                    class="text-md font-semibold">{{ number_format($item->harga, 0, 2) }}</span>
-                                <br>
-                                <span class="text-xs">Kategori : </span><span class="text-sm">
-                                    @if ($item->katalog == null)
-                                        ----
-                                    @else
-                                        {{ $item->katalog->nama_katalog }}
-                                    @endif
-                                </span>
+                        @if ($item->diskon->count() > 0)
+                            @foreach ($item->diskon as $diskon)
+                                <div
+                                    class="absolute font-bold  text-white px-2 py-1 bg-slate-600 rounded-r-sm shadow-lg shadow-white">
+                                    <span class="text-sm">Diskon {{ $diskon->jumlah_diskon }}%</span>
+                                </div>
+                            @endforeach
+                        @endif
+                        <img src="{{ asset('upload/' . $item->gambar) }}"
+                            alt="AGLAONEMA RED ANJAMANI / AGLONEMA RED ANJAMANI MURMER" class="object-cover" style="height:12rem;">
+                        <div class="pt-3 pb-4 px-2 group-hover:bg-gray-900">
+                            @if ($item->stock <= 0)
+                                <span class="text-red-500 font-bold">Stok Habis</span>
+                                <div class="text-sm overflow-hidden h-8 leading-4 text-ellipsis line-through">
+                                    {{ $item->nama_barang }} </div>
+                            @else
+                                <div class="text-sm overflow-hidden h-8 leading-4">{{ $item->nama_barang }} </div>
+                            @endif
+                            <div class="flex justify-between items-center">
+                                <div class="text-grabg-slate-600">
+                                    <span class="text-sm">Rp</span><span
+                                        class="text-md font-semibold">{{ number_format($item->harga, 0, 2) }}</span>
+                                    <br>
+                                    <span class="text-xs">Kategori : </span><span class="text-sm">
+                                        @if ($item->katalog == null)
+                                            ----
+                                        @else
+                                            {{ $item->katalog->nama_katalog }}
+                                        @endif
+                                    </span>
+                                </div>
+                                <div class="text-sm text-gray-600">Stok {{ $item->stock }}</div>
                             </div>
-                            <div class="text-sm text-gray-600">Stok {{ $item->stock }}</div>
                         </div>
-                    </div>
-                </div>
-            @endforeach
+                        </div>
+                    @endforeach
+            </div>
         </div>
     </section>
     <div class="absolute top-0 left-0 z-[2] w-full h-full">
