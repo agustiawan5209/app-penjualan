@@ -27,7 +27,7 @@
                             @endforeach
                         @endif
                         <img src="{{ asset('upload/' . $item->gambar) }}"
-                            alt="AGLAONEMA RED ANJAMANI / AGLONEMA RED ANJAMANI MURMER">
+                            alt="AGLAONEMA RED ANJAMANI / AGLONEMA RED ANJAMANI MURMER" class="object-cover w-full" style="height:12rem;">
                         <div class="pt-3 pb-4 px-2 group-hover:bg-gray-900">
                             @if ($item->stock <= 0)
                                 <span class="text-red-500 font-bold">Stok Habis</span>

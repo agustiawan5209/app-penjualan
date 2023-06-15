@@ -88,7 +88,7 @@
                                             </div>
                                         </div>
                                         <div class="mb-0"><button
-                                                class="inline-block outline-none focus:outline-none align-middle transition-all duration-150 ease-in-out uppercase border border-solid font-bold last:mr-0 mr-2  text-white bg-pink-500 border-pink-500 active:bg-pink-600 active:border-pink-600 text-sm px-6 py-2 shadow hover:shadow-lg rounded-md"
+                                                class="inline-block outline-none focus:outline-none align-middle transition-all duration-150 ease-in-out uppercase border border-solid font-bold last:mr-0 mr-2  text-white bg-gray-800 border-gray-800 active:bg-gray-800 active:border-gray-800 text-sm px-6 py-2 shadow hover:shadow-lg rounded-md"
                                                 type="submit">Apply</button></div>
                                     </div>
                                 </form>

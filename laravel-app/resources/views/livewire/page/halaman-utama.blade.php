@@ -30,12 +30,13 @@
     {{-- About --}}
     <section class="relative bg-white">
 
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 wow fadeInDown mt-5">
+        <div class="max-w-full mx-auto wow fadeInDown mt-5">
             <div class="py-12 md:pb-20">
                 <div class="relative bg-gray-900 rounded py-10 px-8 md:py-16 md:px-12 shadow-2xl overflow-hidden wow fadeIn grid"
                     data-aos="zoom-y-out">
-                    <div class="absolute right-0 bottom-0 pointer-events-none hidden lg:block wow fadeInRight"
-                        aria-hidden="true"><svg width="428" height="328" xmlns="http://www.w3.org/2000/svg">
+                    {{-- <div class="absolute right-0 bottom-0 pointer-events-none hidden lg:block wow fadeInRight"
+                        aria-hidden="true">
+                        <svg width="428" height="328" xmlns="http://www.w3.org/2000/svg">
                             <defs>
                                 <radialGradient cx="35.542%" cy="34.553%" fx="35.542%" fy="34.553%"
                                     r="96.031%" id="ni-a">
@@ -65,12 +66,19 @@
                                 </g>
                                 <circle fill="url(#ni-a)" cx="276" cy="237" r="200"></circle>
                             </g>
-                        </svg></div>
+                        </svg>
+                    </div> --}}
                     <div class="relative flex flex-col lg:flex-row justify-between items-center">
                         <div class="text-center lg:text-left lg:max-w-xl">
-                            <h1 class="wow fadeInLeft h3 text-white mb-2 md:text-2xl">Tentang Toko
+                            <h1 class="wow fadeInLeft h3 text-white mb-2 w-full">Tentang Toko
                                 <strong>Irsanjaya</strong>
                             </h1>
+                            <p class="text-justify w-full">
+                                Toko bangunan Irsanjaya merupakan toko bahan bangunan online yang menyediakan berbagai
+                                bahan material secara lengkap untuk kebutuhan pengerjaan bangunan mulai dari rumah, ruko
+                                hingga gedung perkantoran anda dapat beli bahan bangunan online dengan lengkap dan
+                                terpercaya, serta memiliki mutu kualitas yang terjamin dari ruko bangunan lengkap
+                                seperti toko bangunan Irsanjaya.</p>
                             <ul class="space-y-6 py-3">
                                 <li class="flex flex-row gap-4 wow fadeInLeft ">
                                     <span class="icon">
@@ -118,12 +126,7 @@
                                     </div>
                                 </li>
                             </ul>
-                            <p>
-                                Toko bangunan Irsanjaya merupakan toko bahan bangunan online yang menyediakan berbagai
-                                bahan material secara lengkap untuk kebutuhan pengerjaan bangunan mulai dari rumah, ruko
-                                hingga gedung perkantoran anda dapat beli bahan bangunan online dengan lengkap dan
-                                terpercaya, serta memiliki mutu kualitas yang terjamin dari ruko bangunan lengkap
-                                seperti toko bangunan Irsanjaya.</p>
+
 
                         </div>
                     </div>

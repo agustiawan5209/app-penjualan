@@ -11,7 +11,7 @@
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
     @livewireStyles
-    <link rel="stylesheet" href="{{ asset('build/assets/app.3df57435.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/assets/app.1dcfe522.css') }}">
     @vite(['resources/js/app.js'])
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" />
